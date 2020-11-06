@@ -1,0 +1,67 @@
+import React, { useState ,useEffect} from "react";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { SidebarData } from "./SidebarData";
+import "./SideNav.css";
+import { IconContext } from "react-icons";
+import {FaUserAlt} from "react-icons/fa";
+import { MDBBtn } from "mdbreact";
+import history from "../../history/History";
+import axios from "axios";
+import Admin from "../../auth/Admin";
+
+function Navbar() {
+  const [sidebar, setSidebar] = useState(false);
+  const [personName,setPersonName]=useState("");
+  const showSidebar = () => setSidebar(!sidebar);
+
+  useEffect(()=>{
+    axios.get("http://localhost:5000/users/getUser",{headers:{"x-auth-token":localStorage.getItem("auth-token")}}).then(res=>{
+        setPersonName(res.data.userName);
+    }
+    );
+},[]);
+  const logout = () => {
+    localStorage.removeItem("auth-token");
+    history.push("/login");
+  };
+
+  return (
+    <Admin>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="navbar" style={{backgroundColor:"#A6A7BB"}}>
+          <Link to="#" className="menu-bars">
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
+          <h2 style={{fontFamily:"mono space"}}>{personName} <FaUserAlt /></h2>
+        </div>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"} style={{backgroundColor:"#A6A7BB"}}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle" style={{backgroundColor:"#A6A7BB"}}>
+              <Link to="#" className="menu-bars">
+                <AiIcons.AiOutlineClose />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path?item.path:"#"}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                    <h4 style={{color:"white",textDecoration:"underline",fontFamily:"mono space",paddingLeft:"1em"}}>{item.heading}</h4>
+                  </Link>
+                </li>
+              );
+            })}
+            <MDBBtn onClick={logout} style={{ left: "20%" }}>
+              Logout
+            </MDBBtn>
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </Admin>
+  );
+}
+
+export default Navbar;
