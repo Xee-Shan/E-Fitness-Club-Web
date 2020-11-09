@@ -1,10 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const socketio = require('socket.io');
 const cors = require("cors");
+const router = require("./routes/userRouter");
 require("dotenv").config();
-
-
 
 //setup express
 
@@ -12,7 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static("uploadImages"));
-
 
 const PORT = process.env.PORT || 5000;
 
@@ -41,4 +38,4 @@ app.use("/products", require("./routes/productRouter"));
 app.use("/orders", require("./routes/orderRouter"));
 app.use("/recipes", require("./routes/recipe"));
 app.use("/training", require("./routes/trainingRouter"));
-
+app.use("/exercise", require("./routes/exerciseRouter"));

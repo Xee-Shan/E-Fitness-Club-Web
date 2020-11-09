@@ -41,7 +41,8 @@ import Chat from "./Chat System/Chat/Chat";
 import Join from "./Chat System/Join/Join";
 import Doctor from "./Doctor/Home";
 import DetailWorkouts from "./User/Training System/Detail";
-
+import View from "./trainer/Components/Training Program Details/ViewDetail";
+import AddDetail from "./trainer/Components/Training Program Details/AddDetail";
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -107,6 +108,8 @@ const App = () => {
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
+          <Route path="/trainer/add/program/detail" component={AddDetail} />
+          <Route path="/trainer/view/program/detail" component={View} />
           <Route path="/user/program" component={UserProgram} />
           <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />

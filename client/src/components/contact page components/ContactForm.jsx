@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBRow,
   MDBCol,
@@ -6,32 +6,58 @@ import {
   MDBCardBody,
   MDBIcon,
   MDBBtn,
-  MDBInput
+  MDBInput,
+  MDBContainer,
 } from "mdbreact";
+import Axios from "axios";
 
 const Contactform = () => {
+  const [name, setName] = useState([""]);
+  const [email, setEmail] = useState([""]);
+  const [subject, setSubject] = useState([""]);
+  const [message, setMessage] = useState([""]);
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const onChangeSubject = (e) => {
+    setSubject(e.target.value);
+  };
+  const onChangeMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(name, email, subject, message);
+  };
+
   return (
-    <div className="container">
-      <section className="my-5">
+    <MDBContainer>
+      <br />
+      <section>
         <MDBRow>
-          <MDBCol lg="5" className="lg-0 mb-4">
+          <MDBCol>
             <MDBCard>
               <MDBCardBody>
-                <div className="form-header blue accent-1">
-                  <h3 className="mt-2">
+                <div>
+                  <h2>
                     <MDBIcon icon="envelope" /> Write to us:
-                  </h3>
+                  </h2>
                 </div>
-                <p className="dark-grey-text">
-                  We'll write rarely, but only the best content.
-                </p>
-                <div className="md-form">
+
+                <div>
                   <MDBInput
                     icon="user"
                     label="Your name"
                     iconClass="grey-text"
                     type="text"
                     id="form-name"
+                    value={name}
+                    onChange={onChangeName}
                   />
                 </div>
                 <div className="md-form">
@@ -41,6 +67,8 @@ const Contactform = () => {
                     iconClass="grey-text"
                     type="text"
                     id="form-email"
+                    value={email}
+                    onChange={onChangeEmail}
                   />
                 </div>
                 <div className="md-form">
@@ -50,66 +78,33 @@ const Contactform = () => {
                     iconClass="grey-text"
                     type="text"
                     id="form-subject"
+                    value={subject}
+                    onChange={onChangeSubject}
                   />
                 </div>
                 <div className="md-form">
                   <MDBInput
                     icon="pencil-alt"
-                    label="Icon Prefix"
+                    label="Message"
                     iconClass="grey-text"
                     type="textarea"
                     id="form-text"
+                    value={message}
+                    onChange={onChangeMessage}
                   />
                 </div>
                 <div className="text-center">
-                  <MDBBtn color="light-blue">Submit</MDBBtn>
+                  <MDBBtn color="blue" onClick={handleSubmit}>
+                    Submit
+                  </MDBBtn>
                 </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol lg="7">
-            <div
-              id="map-container"
-              className="rounded z-depth-1-half map-container"
-              style={{ height: "400px" }}
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d76765.98321148289!2d-73.96694563267306!3d40.751663750099084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1525939514494"
-                title="This is a unique title"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                style={{ border: 0 }}
-              />
-            </div>
-            <br />
-            <MDBRow className="text-center">
-              <MDBCol md="4">
-                <MDBBtn tag="a" floating color="blue" className="accent-1">
-                  <MDBIcon icon="map-marker-alt" />
-                </MDBBtn>
-                <p>New York, 94126</p>
-                <p className="mb-md-0">United States</p>
-              </MDBCol>
-              <MDBCol md="4">
-                <MDBBtn tag="a" floating color="blue" className="accent-1">
-                  <MDBIcon icon="phone" />
-                </MDBBtn>
-                <p>+ 01 234 567 89</p>
-                <p className="mb-md-0">Mon - Fri, 8:00-22:00</p>
-              </MDBCol>
-              <MDBCol md="4">
-                <MDBBtn tag="a" floating color="blue" className="accent-1">
-                  <MDBIcon icon="envelope" />
-                </MDBBtn>
-                <p>info@gmail.com</p>
-                <p className="mb-md-0">sale@gmail.com</p>
-              </MDBCol>
-            </MDBRow>
-          </MDBCol>
         </MDBRow>
       </section>
-    </div>
+      <br />
+    </MDBContainer>
   );
 };
 

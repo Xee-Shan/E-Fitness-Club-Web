@@ -5,7 +5,6 @@ import axios from "axios";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
 
-
 const CreateProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
@@ -61,7 +60,7 @@ const CreateProduct = () => {
 
   return (
     <Admin>
-      <SideNav/>
+      <SideNav />
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
@@ -89,8 +88,15 @@ const CreateProduct = () => {
                 required
               />
               <br />
-              <input type="text" placeholder="choose your option" name="city" className="form-control" list="category" onChange={onChangeCategory}/>
-                <datalist id="category">
+              <input
+                type="text"
+                placeholder="choose your option"
+                name="city"
+                className="form-control"
+                list="category"
+                onChange={onChangeCategory}
+              />
+              <datalist id="category">
                 <option value="Equipment">Equipment</option>
                 <option value="Tops">Tops</option>
                 <option value="Bottoms">Bottoms</option>
