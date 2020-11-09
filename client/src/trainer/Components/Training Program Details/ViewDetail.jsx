@@ -8,7 +8,6 @@ const View = () => {
   const fetchProgramDetail = async () => {
     const res = await Axios.get("http://localhost:5000/exercise/get");
     setData(res.data);
-    console.log(res.data._id);
   };
 
   useEffect(() => {
@@ -20,16 +19,18 @@ const View = () => {
       <SideNav />
       <br />
       <br />
-      <MDBContainer>
-        <MDBTable>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th>Day</th>
-              <th>Area</th>
-            </tr>
-          </MDBTableHead>
-        </MDBTable>
-      </MDBContainer>
+      
+          {
+            data.map(data=>(
+              data.exercise.map((arr,i)=>{
+                return( <div key={i}>
+                  <h1>{arr.day}</h1>
+                  <h1>{arr.area}</h1>
+                  </div>
+                  )
+              })
+            ))
+          }
     </>
   );
 };

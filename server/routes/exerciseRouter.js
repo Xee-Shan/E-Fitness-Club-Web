@@ -15,9 +15,15 @@ router.post("/create", async (req, res) => {
 
 //Get Exercise Details
 router.get("/get", async (req, res) => {
-  await Exercise.find((err, doc) => {
+  const exercise=await Exercise.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
+  });
+  let day;
+  exercise.map(data=>{
+    data.exercise.map(arr=>{
+      console.log(arr.day);
+    })
   });
 });
 
