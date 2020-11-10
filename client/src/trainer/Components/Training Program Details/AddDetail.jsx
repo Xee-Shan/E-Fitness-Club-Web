@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
 import SideNav from "../SideNav/SideNav";
 
-const AddDetail = () => {
+const AddDetail = (props) => {
   const [inputFields, setInputFields] = useState([{ day: "", area: "" }]);
 
   const handleChangeInput = (index, event) => {
@@ -25,7 +25,7 @@ const AddDetail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputFields);
-    Axios.post("http://localhost:5000/training/add/detail", inputFields);
+    Axios.post("http://localhost:5000/training/add/detail/"+props.match.params.id, inputFields);
   };
 
   return (

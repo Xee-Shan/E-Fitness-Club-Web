@@ -109,7 +109,7 @@ const App = () => {
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
-          <Route path="/trainer/add/program/detail" component={AddDetail} />
+          <Route path="/trainer/add/program/detail/:id" component={AddDetail} />
           <Route path="/trainer/view/program/detail" component={View} />
           <Route path="/user/program" component={UserProgram} />
           <Route
