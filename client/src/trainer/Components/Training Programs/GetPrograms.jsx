@@ -6,7 +6,6 @@ const GetPrograms = ({ program }) => {
   const deleteProgram = async (id) => {
     const value = window.confirm("Are you sure you want to delete program ?");
     if (value === true) {
-      console.log(id);
       await Axios.delete("http://localhost:5000/training/delete/" + id);
       window.location.reload();
     }
@@ -24,7 +23,7 @@ const GetPrograms = ({ program }) => {
         </tr>
       </MDBTableHead>
 
-      {program.map((program) => (
+      {program?.map((program) => (
         <MDBTableBody key={program._id}>
           <tr>
             <td>{program.programId}</td>
@@ -41,6 +40,13 @@ const GetPrograms = ({ program }) => {
                 onClick={() => deleteProgram(program._id)}
               >
                 Delete
+              </MDBBtn>
+              <MDBBtn
+                color="secondary"
+                size="sm"
+                href={"/trainer/add/program/detail/"+program._id}
+              >
+                Details
               </MDBBtn>
             </td>
           </tr>

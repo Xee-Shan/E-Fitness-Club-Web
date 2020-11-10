@@ -102,16 +102,16 @@ const TeamPage = () => {
             <MDBCol lg="6" md="12" className="mb-5">
               <MDBCol md="4" lg="6" className="float-left">
                 <img
-                  src="https://scontent.flhe13-1.fna.fbcdn.net/v/t1.0-9/16602841_1114034188706147_5470258682028639371_n.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_eui2=AeH8mXt9pstNDulH6Zn_KyaY2CnGN3FWZFzYKcY3cVZkXBMfrPW8Fz9Zf12Apsdbc1QuMG2CTwU-J7q8pbYDA_Pf&_nc_ohc=T4Y04sMdLacAX9iimd-&_nc_ht=scontent.flhe13-1.fna&oh=f27556e8ce04a8bcd4af2cee758cc180&oe=5FA6E551"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
                   tag="img"
                   alt="Sample avatar"
                 />
               </MDBCol>
               <MDBCol md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Mohtashim Tajamal</h4>
+                <h4 className="font-weight-bold mb-3">Osama Abdul Sabboor</h4>
                 <h6 className="font-weight-bold grey-text mb-3">
-                  Front-End Developer
+                  Graphics Designer
                 </h6>
                 <p className="grey-text">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
@@ -125,18 +125,18 @@ const TeamPage = () => {
                   <MDBIcon fab icon="facebook-f" />
                 </a>
                 <a
-                  href="https://twitter.com/"
+                  href="https://www.youtube.com/"
                   target="blank"
-                  className="p-2 fa-lg tw-ic"
+                  className="p-2 fa-lg yt-ic"
                 >
-                  <MDBIcon fab icon="twitter" />
+                  <MDBIcon fab icon="youtube" />
                 </a>
                 <a
-                  href="https://github.com/"
+                  href="https://www.instagram.com/"
                   target="blank"
-                  className="p-2 fa-lg github-ic"
+                  className="p-2 fa-lg ins-ic"
                 >
-                  <MDBIcon fab icon="github" />
+                  <MDBIcon fab icon="instagram" />
                 </a>
               </MDBCol>
             </MDBCol>

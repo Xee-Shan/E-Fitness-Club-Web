@@ -26,4 +26,10 @@ export const SidebarData = [
     icon: <FaIcons.FaTable />,
     cName: "nav-text",
   },
+  {
+    title: "View Program Detail",
+    path: "/trainer/view/program/detail",
+    icon: <FaIcons.FaTable />,
+    cName: "nav-text",
+  },
 ];

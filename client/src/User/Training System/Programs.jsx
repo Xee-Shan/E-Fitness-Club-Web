@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useState } from "react";
 import {
   MDBRow,
   MDBCol,
@@ -13,18 +12,23 @@ import {
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../../components/navbar/Navbar";
+import history from "../../history/History";
 
-export default function Product() {
-  const [program, setProgram] = useState();
+const Program = () => {
+  const [program, setProgram] = useState([]);
+
+  const fetchData = async () => {
+    const response = await Axios.get("http://localhost:5000/training/get");
+    setProgram(response.data);
+  };
+
+  const btnClicked = (id) => {
+    history.push("/user/programdetail/" + id);
+  };
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await Axios.get("http://localhost:5000/training/get", {
-        headers: { "x-auth-token": localStorage.getItem("auth-token") },
-      });
-      setProgram(response.data);
-    }
     fetchData();
-  }, [program]);
+  }, []);
 
   return (
     <>
@@ -51,7 +55,9 @@ export default function Product() {
                       Target Areas: {program.targetArea}
                     </MDBCardText>
                     <MDBCardText>Equipments: {program.equipment}</MDBCardText>
-                    <MDBBtn href="/user/programdetail">Details</MDBBtn>
+                    <MDBBtn onClick={() => btnClicked(program._id)}>
+                      Details
+                    </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -61,4 +67,6 @@ export default function Product() {
       </MDBContainer>
     </>
   );
-}
+};
+
+export default Program;

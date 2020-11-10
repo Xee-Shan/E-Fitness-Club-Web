@@ -45,6 +45,7 @@ import NutritionistDashboard from "./Nutrition/Dashboard"
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans"
 import DietPlans from "./Nutrition/DietPlans/dietPlans"
 
+import AddDetail from "./trainer/Components/Training Program Details/AddDetail";
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -113,7 +114,14 @@ const App = () => {
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
+          <Route path="/trainer/add/program/detail/:id" component={AddDetail} />
+          <Route path="/trainer/view/program/detail" component={View} />
           <Route path="/user/program" component={UserProgram} />
+          <Route
+            path="/user/programdetail/:id"
+            component={ProgramDetail}
+            exact
+          />
           <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />
           <Route path="/admin/employee" component={Employee} />
