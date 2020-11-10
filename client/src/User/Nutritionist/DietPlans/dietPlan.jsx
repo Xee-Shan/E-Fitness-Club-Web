@@ -1,5 +1,5 @@
 import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow } from 'mdbreact';
-import history from "../../history/History"
+import history from "../../../history/History"
 import React, { Fragment } from 'react';
 import underweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.44 PM.jpeg"
 import overweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.45 PM.jpeg"

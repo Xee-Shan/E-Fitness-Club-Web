@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { MDBBtn } from "mdbreact";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import axios from "axios";
-import { updateProduct } from "../../actions/productAction";
+// import { updateProduct } from "../../actions/productAction";
 import history from "../../history/History";
-import SideNav from "../SideNav/SideNav"
+import SideNav from "../SideNav/SideNav" 
+// import { DietPlan } from "../../../../server/models/dietPlan";
 
 export default function Recipe() {
-  const dispatch = useDispatch();
-  let [recipe, setRecipe] = useState();
+//   const dispatch = useDispatch();
+  const [dietPlan, setDietPlan] = useState();
   useEffect(() => {
+  
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/recipes/get");
-      setRecipe(response.data);
+      const response = await axios.get("http://localhost:5000/dietPlan/get");
+      setDietPlan(response.data);
+      console.log(dietPlan);
     }
     fetchData();
   }, []);
@@ -21,51 +24,51 @@ export default function Recipe() {
   function handleDelete(id) {
     const value = window.confirm("Are you sure you want to delete this Diet Plan ?");
     if (value === true) {
-    axios.delete("http://localhost:5000/recipes/delete/" + id);
+    axios.delete("http://localhost:5000/dietPlan/delete/" + id);
     window.location.reload();
   }
 }
 
   const handleEdit = (product) => {
-    dispatch(updateProduct(product));
+    // dispatch(updateProduct(product));
     history.push("/nutrition/update/recipe");
   };
   return (
     <div>
       <SideNav/>
       <br/>
-      <h2>List of Recipes : </h2>
-      {recipe?.length === 0 ? (
+      <h2>List of Diet Plans : </h2>
+      {dietPlan?.length === 0 ? (
         <div>NOTHING TO DISPLAY YET...</div>
       ) : (
-        recipe?.map((recipe, i) => (
+        dietPlan?.map((dietPlan, i) => (
           <MDBTable key={i} bordered>
             <MDBTableHead color="primary-color" textWhite>
               <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Method</th>
-                <th>Ingredients</th>
-                <th>Description</th>
+                <th>Day</th>
+                <th>User Type</th>
+                <th>Diet Type</th>
+                <th>Diet</th>
+                {/* <th>Description</th> */}
                 <th>Action</th>
               </tr>
             </MDBTableHead>
             <MDBTableBody>
               <tr>
                 <td>{i + 1}</td>
-                <td>{recipe.name}</td>
-                <td>{recipe.type}</td>
-                <td>{recipe.method}</td>
-                <td>{recipe.ingredients}</td>
-                <td>{recipe.description}</td>
+                <td>{dietPlan.day}</td>
+                <td>{dietPlan.userType}</td>
+                <td>{dietPlan.dietType}</td>
+                <td>{dietPlan.diet}</td>
+                {/* <td>{recipe.description}</td> */}
                 <td>
-                  <MDBBtn color="warning" onClick={() => handleEdit(recipe)}>
+                  <MDBBtn color="warning" onClick={() => handleEdit(dietPlan)}>
                     Edit
                   </MDBBtn>
                   <MDBBtn
                     color="danger"
-                    onClick={() => handleDelete(recipe._id)}
+                    onClick={() => handleDelete(dietPlan._id)}
                   >
                     Delete
                   </MDBBtn>

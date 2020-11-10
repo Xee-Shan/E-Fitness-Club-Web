@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import history from "../../history/History";
+import SideNav from "../SideNav/SideNav"
 
 const CreateRecipe = () => {
   let [name, setName] = useState("");
@@ -42,12 +43,15 @@ const CreateRecipe = () => {
 
     axios.post("http://localhost:5000/recipes/create", formData).then((res) => {
       if (res.data.success) {
-        history.push("/nutrition/recipe");
+        history.push("/nutritionist/recipe");
       } else alert("Error occured");
     });
   };
 
   return (
+    <>
+    <SideNav/>
+    <br/>
     <MDBContainer>
       <MDBRow>
         <MDBCol md="6">
@@ -138,6 +142,7 @@ const CreateRecipe = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    </>
   );
 };
 

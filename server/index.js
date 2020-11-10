@@ -40,5 +40,5 @@ app.use("/users", require("./routes/userRouter"));
 app.use("/products", require("./routes/productRouter"));
 app.use("/orders", require("./routes/orderRouter"));
 app.use("/recipes", require("./routes/recipe"));
+app.use("/dietPlan", require("./routes/dietPlan"));
 app.use("/training", require("./routes/trainingRouter"));
-

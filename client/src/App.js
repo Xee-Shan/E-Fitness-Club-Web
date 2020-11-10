@@ -30,10 +30,10 @@ import CreateRecipe from "./Nutrition/Recipes/createRecipe";
 import UpdateRecipe from "./Nutrition/Recipes/updateRecipe";
 import Recipe from "./Nutrition/Recipes/Recipe";
 import NutritionistLogin from "./Nutrition/nutritionloginform";
-import UnderWeight from "./Nutrition/DietPlans/underWeightDietPlan";
-import Obese from "./Nutrition/DietPlans/obeseDiet";
-import Normal from "./Nutrition/DietPlans/normal";
-import OverWieght from "./Nutrition/DietPlans/overWeight";
+import UnderWeight from "./User/Nutritionist/DietPlans/underWeightDietPlan";
+import Obese from "./User/Nutritionist/DietPlans/obeseDiet";
+import Normal from "./User/Nutritionist/DietPlans/normal";
+import OverWieght from "./User/Nutritionist/DietPlans/overWeight";
 import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
@@ -41,6 +41,9 @@ import Chat from "./Chat System/Chat/Chat";
 import Join from "./Chat System/Join/Join";
 import Doctor from "./Doctor/Home";
 import DetailWorkouts from "./User/Training System/Detail";
+import NutritionistDashboard from "./Nutrition/Dashboard"
+import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans"
+import DietPlans from "./Nutrition/DietPlans/dietPlans"
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -93,16 +96,19 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />
           <Route path="/admin/create/product" component={CreateProduct} />
-          <Route path="/admin/edit/product" component={EditProduct} />
+          <Route path="/admin/edit-/product" component={EditProduct} />
           <Route path="/admin/order" component={Order} />
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
           {/*<Route path="/auth" component={UserAuth} />*/}
-          <Route path="/nutrition/create/recipe" component={CreateRecipe} />
-          <Route path="/nutrition/update/recipe" component={UpdateRecipe} />
-          <Route path="/nutrition/recipe" component={Recipe} />
-          <Route path="/nutrition/login" component={NutritionistLogin} />
+          <Route path="/nutritionist/create/recipe" component={CreateRecipe} />
+          <Route path="/nutritionist/update/recipe" component={UpdateRecipe} />
+          <Route path="/nutritionist/recipe" component={Recipe} />
+          <Route path="/nutritionist/login" component={NutritionistLogin} />
+          <Route path="/nutritionist/dashboard" component={NutritionistDashboard} />
+          <Route path="/nutritionist/create/dietPlan" component={CreateDietPlan} />
+          <Route path="/nutritionist/dietPlan" component={DietPlans} />
           <Route path="/trainer/login" component={TrainerLoginForm} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
@@ -114,7 +120,6 @@ const App = () => {
           <Route path="/doctor/home" component={Doctor} />
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
-
           <Route path="/user/programdetail" component={DetailWorkouts} />
           <Redirect to="/pagenotfound" />
         </Switch>

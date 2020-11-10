@@ -1,6 +1,6 @@
 import React from "react";
 import UserAuth from "../../auth/UserAuth";
-import DietPlan from "../../Nutrition/DietPlans/dietPlan";
+import DietPlan from "../../User/Nutritionist/DietPlans/dietPlan";
 import Navbar from "../navbar/Navbar";
 
 const Recipes = () => {
