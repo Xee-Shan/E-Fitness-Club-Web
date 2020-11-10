@@ -4,7 +4,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody } from "mdbreact";
 
 const ProgramDetail = (props) => {
-  const [program, setProgram] = useState([]);
+  const [program, setProgram] = useState({});
 
   const fetchData = async () => {
     const res = await Axios.get(
@@ -16,7 +16,7 @@ const ProgramDetail = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(program);
+
   return (
     <>
       <Navbar />
@@ -29,16 +29,13 @@ const ProgramDetail = (props) => {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {program.map((data) =>
-              data.exercise.map((arr, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{arr.day}</td>
-                    <td>{arr.area}</td>
-                  </tr>
-                );
-              })
-            )}
+            {program?.exercise?.map((data,i)=>{
+              return( <tr key={i}>
+                <td>{data.day}</td>
+              <td>{data.area}</td>
+                </tr>
+              )
+            })}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
