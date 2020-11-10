@@ -31,8 +31,8 @@ const ProgramDetail = (props) => {
           <MDBTableBody>
             {program?.exercise?.map((data,i)=>{
               return( <tr key={i}>
-                <td>{data.day}</td>
-              <td>{data.area}</td>
+                <td><input value={data.day}type="text"/></td>
+              <td><input value={data.area}type="text"/></td>
                 </tr>
               )
             })}
