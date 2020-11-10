@@ -29,6 +29,7 @@ const ProgramDetail = (props) => {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
+<<<<<<< Updated upstream
             {program?.exercise?.map((data, i) => {
               return (
                 <tr key={i}>
@@ -37,6 +38,18 @@ const ProgramDetail = (props) => {
                 </tr>
               );
             })}
+=======
+            {Object.keys(program).map((data) =>
+              data.exercise.map((arr, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{arr.day}</td>
+                    <td>{arr.area}</td>
+                  </tr>
+                );
+              })
+            )}
+>>>>>>> Stashed changes
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
