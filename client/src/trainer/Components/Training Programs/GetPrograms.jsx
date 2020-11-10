@@ -44,7 +44,7 @@ const GetPrograms = ({ program }) => {
               <MDBBtn
                 color="secondary"
                 size="sm"
-                href={"/trainer/add/program/detail/"+program._id}
+                href={"/trainer/add/program/detail/" + program._id}
               >
                 Details
               </MDBBtn>
