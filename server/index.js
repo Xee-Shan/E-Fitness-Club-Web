@@ -38,4 +38,3 @@ app.use("/products", require("./routes/productRouter"));
 app.use("/orders", require("./routes/orderRouter"));
 app.use("/recipes", require("./routes/recipe"));
 app.use("/training", require("./routes/trainingRouter"));
-app.use("/exercise", require("./routes/exerciseRouter"));

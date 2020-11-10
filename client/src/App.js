@@ -40,8 +40,9 @@ import Employee from "./Admin/Employee/Employee";
 import Chat from "./Chat System/Chat/Chat";
 import Join from "./Chat System/Join/Join";
 import Doctor from "./Doctor/Home";
-import DetailWorkouts from "./User/Training System/Detail";
 import View from "./trainer/Components/Training Program Details/ViewDetail";
+import ProgramDetail from "./User/Training System/ProgramDetail";
+
 import AddDetail from "./trainer/Components/Training Program Details/AddDetail";
 const App = () => {
   const [userData, setUserData] = useState({
@@ -111,6 +112,11 @@ const App = () => {
           <Route path="/trainer/add/program/detail" component={AddDetail} />
           <Route path="/trainer/view/program/detail" component={View} />
           <Route path="/user/program" component={UserProgram} />
+          <Route
+            path="/user/programdetail/:id"
+            component={ProgramDetail}
+            exact
+          />
           <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />
           <Route path="/admin/employee" component={Employee} />
@@ -118,7 +124,6 @@ const App = () => {
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
 
-          <Route path="/user/programdetail" component={DetailWorkouts} />
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>

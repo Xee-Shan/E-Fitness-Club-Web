@@ -8,6 +8,7 @@ const trainingSchema = new mongoose.Schema({
   description: { type: String },
   imageName: { type: String },
   imagePath: { type: String },
+  exercise: { type: Array },
 });
 
 const Training = mongoose.model("Training", trainingSchema);

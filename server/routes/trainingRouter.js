@@ -23,7 +23,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //Create Training Program
-
 router.post("/create", upload.single("image"), async (req, res) => {
   const training = new Training({
     programId: req.body.programId,
@@ -48,8 +47,15 @@ router.get("/get", async (req, res) => {
   });
 });
 
-//Delete Training Program
+//Get Training Program by id
+router.get("/get/:id", async (req, res) => {
+  await Training.findById(req.params.id).exec((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 
+//Delete Training Program
 router.delete("/delete/:id", async (req, res) => {
   console.log(req.params.id);
   const training = await Training.findByIdAndDelete({ _id: req.params.id });
@@ -69,6 +75,25 @@ router.put("/update/:id", async (req, res) => {
   training.description = req.body.description;
   await training.save();
   return res.send(training);
+});
+
+//Add Program Details
+router.post("/add/detail", async (req, res) => {
+  const training = new Training({
+    exercise: req.body,
+  });
+  await training.save((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
+
+//Get Program Details
+router.get("/get/detail", async (req, res) => {
+  const training = await Training.find((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
 });
 
 module.exports = router;

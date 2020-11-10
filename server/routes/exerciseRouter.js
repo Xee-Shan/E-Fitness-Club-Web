@@ -5,7 +5,9 @@ const { Exercise } = require("../models/exerciseModel");
 //Create Exercise Details
 router.post("/create", async (req, res) => {
   const exercise = new Exercise({
-    exercise: req.body,
+    $push: {
+      exercise: { id: req.body._id, day: req.body.day, area: req.body.area },
+    },
   });
   await exercise.save((err, doc) => {
     if (err) res.status(400).send(err);
@@ -15,15 +17,15 @@ router.post("/create", async (req, res) => {
 
 //Get Exercise Details
 router.get("/get", async (req, res) => {
-  const exercise=await Exercise.find((err, doc) => {
+  const exercise = await Exercise.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
   let day;
-  exercise.map(data=>{
-    data.exercise.map(arr=>{
+  exercise.map((data) => {
+    data.exercise.map((arr) => {
       console.log(arr.day);
-    })
+    });
   });
 });
 

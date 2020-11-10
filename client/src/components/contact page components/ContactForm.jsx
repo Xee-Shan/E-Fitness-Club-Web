@@ -9,7 +9,6 @@ import {
   MDBInput,
   MDBContainer,
 } from "mdbreact";
-import Axios from "axios";
 
 const Contactform = () => {
   const [name, setName] = useState([""]);
