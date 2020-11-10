@@ -10,6 +10,7 @@ const ProgramDetail = (props) => {
     const res = await Axios.get(
       "http://localhost:5000/training/get/" + props.match.params.id
     );
+    console.log("kjskjflk")
     setProgram(res.data);
   };
 
