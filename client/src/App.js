@@ -40,12 +40,12 @@ import Employee from "./Admin/Employee/Employee";
 import Chat from "./Chat System/Chat/Chat";
 import Join from "./Chat System/Join/Join";
 import Doctor from "./Doctor/Home";
-import DetailWorkouts from "./User/Training System/Detail";
-import NutritionistDashboard from "./Nutrition/Dashboard"
-import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans"
-import DietPlans from "./Nutrition/DietPlans/dietPlans"
-
+import ProgramDetail from "./User/Training System/ProgramDetail";
+import NutritionistDashboard from "./Nutrition/Dashboard";
+import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
+import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import AddDetail from "./trainer/Components/Training Program Details/AddDetail";
+import View from "./trainer/Components/Training Program Details/ViewDetail";
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -107,8 +107,14 @@ const App = () => {
           <Route path="/nutritionist/update/recipe" component={UpdateRecipe} />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route path="/nutritionist/login" component={NutritionistLogin} />
-          <Route path="/nutritionist/dashboard" component={NutritionistDashboard} />
-          <Route path="/nutritionist/create/dietPlan" component={CreateDietPlan} />
+          <Route
+            path="/nutritionist/dashboard"
+            component={NutritionistDashboard}
+          />
+          <Route
+            path="/nutritionist/create/dietPlan"
+            component={CreateDietPlan}
+          />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
           <Route path="/trainer/login" component={TrainerLoginForm} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
@@ -117,18 +123,13 @@ const App = () => {
           <Route path="/trainer/add/program/detail/:id" component={AddDetail} />
           <Route path="/trainer/view/program/detail" component={View} />
           <Route path="/user/program" component={UserProgram} />
-          <Route
-            path="/user/programdetail/:id"
-            component={ProgramDetail}
-            exact
-          />
+          <Route path="/user/programdetail/:id" component={ProgramDetail} />
           <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />
           <Route path="/admin/employee" component={Employee} />
           <Route path="/doctor/home" component={Doctor} />
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
-          <Route path="/user/programdetail" component={DetailWorkouts} />
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>

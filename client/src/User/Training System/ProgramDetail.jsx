@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
+import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody } from "mdbreact";
 
 const ProgramDetail = (props) => {
   const [program, setProgram] = useState([]);
@@ -15,16 +16,32 @@ const ProgramDetail = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  console.log(program);
   return (
     <>
       <Navbar />
-      {program.length === 0 ? null : (
-        <>
-          <p>{program?.title} </p>
-          <p>{program?.targetArea}</p>
-        </>
-      )}
+      <MDBContainer>
+        <MDBTable bordered>
+          <MDBTableHead color="primary-color" textWhite>
+            <tr>
+              <th>Day</th>
+              <th>Area</th>
+            </tr>
+          </MDBTableHead>
+          <MDBTableBody>
+            {program.map((data) =>
+              data.exercise.map((arr, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{arr.day}</td>
+                    <td>{arr.area}</td>
+                  </tr>
+                );
+              })
+            )}
+          </MDBTableBody>
+        </MDBTable>
+      </MDBContainer>
     </>
   );
 };
