@@ -29,12 +29,19 @@ const ProgramDetail = (props) => {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             {program?.exercise?.map((data, i) => {
               return (
                 <tr key={i}>
                   <td>{data.day}</td>
                   <td>{data.area}</td>
+=======
+            {program?.exercise?.map((data,i)=>{
+              return( <tr key={i}>
+                <td><input value={data.day}type="text"/></td>
+              <td><input value={data.area}type="text"/></td>
+>>>>>>> 13390cbd0628e7a450fa9ee6a52047355b95e710
                 </tr>
               );
             })}
