@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import SideNav from "../../SideNav/SideNav";
-import { MDBTable, MDBTableHead, MDBTableBody, MDBContainer } from "mdbreact";
+import {MDBBtn, MDBTable, MDBTableHead, MDBTableBody, MDBContainer } from "mdbreact";
+import history from "../../../../history/History";
 
 const View = (props) => {
   const [data, setData] = useState([]);
@@ -15,7 +16,10 @@ const View = (props) => {
   useEffect(() => {
     fetchProgramDetail();
   }, []);
-  console.log(data);
+ function editSchedule(i){
+   console.log(i);
+  history.push("/trainer/editSchedule/"+props.match.params.id+"/"+i);
+  }
   return (
     <>
       <SideNav />
@@ -27,6 +31,7 @@ const View = (props) => {
             <tr>
               <th>Day</th>
               <th>Area</th>
+              <th>Action</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
@@ -35,6 +40,9 @@ const View = (props) => {
                 <tr key={i}>
                   <td>{data.day}</td>
                   <td>{data.area}</td>
+                  <td><MDBBtn color="warning" onClick={()=>editSchedule(i)} >
+                      Edit
+                    </MDBBtn></td>
                 </tr>
               );
             })}
