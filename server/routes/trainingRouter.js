@@ -55,11 +55,13 @@ router.get("/get/:id", async (req, res) => {
   });
 });
 router.put("/edit/schedule/:id/:index",async (req,res)=>{
-  training=await Training.findById(req.params.id);
+  const training=await Training.findByIdAndUpdate({ _id: req.params.id });
   training.exercise[req.params.index]=req.body;
+  training.markModified('exercise');
   await training.save();
 
-});
+  });
+  
 //Delete Training Program
 router.delete("/delete/:id", async (req, res) => {
   console.log(req.params.id);

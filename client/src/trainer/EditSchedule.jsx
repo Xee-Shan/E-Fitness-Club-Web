@@ -25,7 +25,7 @@ export default function EditSchedule(props) {
               day:day,
               area:area
           }
-        Axios.put("http://localhost:5000/training/edit/schedule/" + props.match.params.id+"/"+props.match.params.index, data,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
+        Axios.put("http://localhost:5000/training/edit/schedule/" + props.match.params.id+"/"+props.match.params.index, data);
       }
     return (
         <div>
