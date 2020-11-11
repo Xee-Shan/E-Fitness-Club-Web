@@ -17,7 +17,6 @@ const View = (props) => {
     fetchProgramDetail();
   }, []);
  function editSchedule(i){
-   console.log(i);
   history.push("/trainer/editSchedule/"+props.match.params.id+"/"+i);
   }
   return (

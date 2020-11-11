@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import Axios from "axios";
+import { MDBBtn } from "mdbreact";
 
 export default function EditSchedule(props) {
     const [day,setDay]=useState();
@@ -19,7 +20,13 @@ export default function EditSchedule(props) {
       useEffect(() => {
         fetchProgramDetail();
       }, [props]);
-      
+      function edit(){
+          const data={
+              day:day,
+              area:area
+          }
+        Axios.put("http://localhost:5000/training/edit/schedule/" + props.match.params.id+"/"+props.match.params.index, data,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
+      }
     return (
         <div>
             <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
@@ -28,7 +35,7 @@ export default function EditSchedule(props) {
               <input
                 type="text"
                 value={day}
-                
+                onChange={(e)=>setDay(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
@@ -39,11 +46,18 @@ export default function EditSchedule(props) {
               <input
                 type="text"
                 value={area}
-                
+                onChange={(e)=>setArea(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
               />
+               <MDBBtn
+                  onClick={edit}
+                  color="unique"
+                  type="submit"
+                >
+                  Edit
+                </MDBBtn>
         </div>
     )
 }
