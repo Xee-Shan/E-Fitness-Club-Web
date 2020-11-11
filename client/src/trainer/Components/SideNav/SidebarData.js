@@ -15,21 +15,15 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "All Trainees",
-    path: "/trainer/trainee",
-    icon: <FaIcons.FaList />,
-    cName: "nav-text",
-  },
-  {
     title: "All Programs",
     path: "/trainer/program",
     icon: <FaIcons.FaTable />,
     cName: "nav-text",
   },
   {
-    title: "View Program Detail",
-    path: "/trainer/view/program/detail",
-    icon: <FaIcons.FaTable />,
+    title: "All Trainees",
+    path: "/trainer/trainee",
+    icon: <FaIcons.FaList />,
     cName: "nav-text",
   },
 ];

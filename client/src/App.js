@@ -44,8 +44,9 @@ import ProgramDetail from "./User/Training System/ProgramDetail";
 import NutritionistDashboard from "./Nutrition/Dashboard";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
-import AddDetail from "./trainer/Components/Training Program Details/AddDetail";
-import View from "./trainer/Components/Training Program Details/ViewDetail";
+import AddSchedule from "./trainer/Components/Training Program Details/Schedule Details/AddSchedule";
+import ViewDetail from "./trainer/Components/Training Program Details/View Details/ViewDetail";
+import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -120,8 +121,9 @@ const App = () => {
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
-          <Route path="/trainer/add/program/detail/:id" component={AddDetail} />
-          <Route path="/trainer/view/program/detail" component={View} />
+          <Route path="/trainer/add/schedule/:id" component={AddSchedule} />
+          <Route path="/trainer/add/workout/:id" component={AddWorkout} />
+          <Route path="/trainer/view/program/:id" component={ViewDetail} />
           <Route path="/user/program" component={UserProgram} />
           <Route path="/user/programdetail/:id" component={ProgramDetail} />
           <Route path="/trainer/trainee" component={Trainee} />

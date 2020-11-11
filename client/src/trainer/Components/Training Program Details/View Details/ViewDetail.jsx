@@ -1,50 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Navbar from "../../components/navbar/Navbar";
-import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody } from "mdbreact";
+import SideNav from "../../SideNav/SideNav";
+import { MDBTable, MDBTableHead, MDBTableBody, MDBContainer } from "mdbreact";
 
-const ProgramDetail = (props) => {
-  const [program, setProgram] = useState({});
-
-  const fetchData = async () => {
+const View = (props) => {
+  const [data, setData] = useState([]);
+  const fetchProgramDetail = async () => {
     const res = await Axios.get(
       "http://localhost:5000/training/get/" + props.match.params.id
     );
-    console.log(res.data);
-    setProgram(res.data);
+    setData(res.data);
   };
 
   useEffect(() => {
-    fetchData();
+    fetchProgramDetail();
   }, []);
-
+  console.log(data);
   return (
     <>
-      <Navbar />
+      <SideNav />
       <MDBContainer>
         <br />
-        <iframe
-          width="1100"
-          height="400"
-          src="https://www.youtube.com/embed/ZzOk6yH9bT8"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </MDBContainer>
-
-      <MDBContainer>
-        <br />
-        <p className="h3 text-center mb-4">Complete Workout Schedule</p>
-        <MDBTable bordered>
-          <MDBTableHead color="primary-color" textWhite>
+        <p className="h3 text-center mb-4">Complete Program Schedule</p>
+        <MDBTable>
+          <MDBTableHead color="black" textWhite>
             <tr>
               <th>Day</th>
               <th>Area</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {program?.exercise?.map((data, i) => {
+            {data?.exercise?.map((data, i) => {
               return (
                 <tr key={i}>
                   <td>{data.day}</td>
@@ -55,19 +41,20 @@ const ProgramDetail = (props) => {
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
+
       <MDBContainer>
         <br />
         <p className="h3 text-center mb-4">Complete Workout List</p>
-        <MDBTable bordered>
-          <MDBTableHead color="primary-color" textWhite>
+        <MDBTable>
+          <MDBTableHead color="black" textWhite>
             <tr>
               <th>Exercise Name</th>
               <th>Sets</th>
-              <th>reps</th>
+              <th>Reps</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {program?.workoutList?.map((data, i) => {
+            {data?.workoutList?.map((data, i) => {
               return (
                 <tr key={i}>
                   <td>{data.exerciseName}</td>
@@ -82,4 +69,5 @@ const ProgramDetail = (props) => {
     </>
   );
 };
-export default ProgramDetail;
+
+export default View;

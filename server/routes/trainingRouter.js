@@ -3,7 +3,6 @@ const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
 const { Training } = require("../models/trainingModel");
-const { transcode } = require("buffer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -80,19 +79,40 @@ router.put("/update/:id", async (req, res) => {
 
 //Add Program Details
 router.post("/add/detail/:id", async (req, res) => {
- const training=await Training.findById(req.params.id);
-  let detail=[];
-  req.body.map(data=>{
+  const training = await Training.findById(req.params.id);
+  let detail = [];
+  req.body.map((data) => {
     detail.push(data);
   });
-  training.exercise=detail;
-  await training.save(err=>{
-    if(err) res.status(400).send(err);
+  training.exercise = detail;
+  await training.save((err) => {
+    if (err) res.status(400).send(err);
   });
 });
 
 //Get Program Details
 router.get("/get/detail", async (req, res) => {
+  const training = await Training.find((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
+
+//Add Workout List
+router.post("/add/workout/detail/:id", async (req, res) => {
+  const training = await Training.findById(req.params.id);
+  let detail = [];
+  req.body.map((data) => {
+    detail.push(data);
+  });
+  training.workoutList = detail;
+  await training.save((err) => {
+    if (err) res.status(400).send(err);
+  });
+});
+
+//Get Workout List
+router.get("/get/workout/detail", async (req, res) => {
   const training = await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);

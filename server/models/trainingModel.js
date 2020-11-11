@@ -9,6 +9,7 @@ const trainingSchema = new mongoose.Schema({
   imageName: { type: String },
   imagePath: { type: String },
   exercise: { type: Array },
+  workoutList: { type: Array },
 });
 
 const Training = mongoose.model("Training", trainingSchema);

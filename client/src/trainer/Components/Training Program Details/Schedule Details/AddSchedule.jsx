@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
-import SideNav from "../SideNav/SideNav";
+import SideNav from "../../SideNav/SideNav";
 
 const AddDetail = (props) => {
   const [inputFields, setInputFields] = useState([{ day: "", area: "" }]);
@@ -25,7 +25,11 @@ const AddDetail = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputFields);
-    Axios.post("http://localhost:5000/training/add/detail/"+props.match.params.id, inputFields);
+    Axios.post(
+      "http://localhost:5000/training/add/detail/" + props.match.params.id,
+      inputFields
+    );
+    alert("Program Schedule Added");
   };
 
   return (
