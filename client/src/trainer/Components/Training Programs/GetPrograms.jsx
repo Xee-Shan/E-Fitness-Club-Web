@@ -12,26 +12,26 @@ const GetPrograms = ({ program }) => {
   };
 
   return (
-    <MDBTable>
+    <MDBTable bordered striped small>
       <MDBTableHead color="black" textWhite>
         <tr>
-          <th>Program Id</th>
-          <th>Title</th>
-          <th>Target Area</th>
-          <th>Equipment</th>
-          <th>Actions</th>
-          <th>Details</th>
+          <th className="text-center">Program Id</th>
+          <th className="text-center">Title</th>
+          <th className="text-center">Target Area</th>
+          <th className="text-center">Equipment</th>
+          <th className="text-center">Actions</th>
+          <th className="text-center">Details</th>
         </tr>
       </MDBTableHead>
 
       {program?.map((program) => (
         <MDBTableBody key={program._id}>
           <tr>
-            <td>{program.programId}</td>
-            <td>{program.title}</td>
-            <td>{program.targetArea}</td>
-            <td>{program.equipment}</td>
-            <td>
+            <td className="text-center">{program.programId}</td>
+            <td className="text-center">{program.title}</td>
+            <td className="text-center">{program.targetArea}</td>
+            <td className="text-center">{program.equipment}</td>
+            <td className="text-center">
               <MDBBtn color="warning" size="sm">
                 Edit
               </MDBBtn>

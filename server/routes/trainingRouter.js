@@ -54,14 +54,7 @@ router.get("/get/:id", async (req, res) => {
     res.status(200).send(doc);
   });
 });
-router.put("/edit/schedule/:id/:index",async (req,res)=>{
-  const training=await Training.findByIdAndUpdate({ _id: req.params.id });
-  training.exercise[req.params.index]=req.body;
-  training.markModified('exercise');
-  await training.save();
 
-  });
-  
 //Delete Training Program
 router.delete("/delete/:id", async (req, res) => {
   console.log(req.params.id);
@@ -105,6 +98,14 @@ router.get("/get/detail", async (req, res) => {
   });
 });
 
+//Update Program Schedule
+router.put("/edit/schedule/:id/:index", async (req, res) => {
+  const training = await Training.findByIdAndUpdate({ _id: req.params.id });
+  training.exercise[req.params.index] = req.body;
+  training.markModified("exercise");
+  await training.save();
+});
+
 //Add Workout List
 router.post("/add/workout/detail/:id", async (req, res) => {
   const training = await Training.findById(req.params.id);
@@ -124,6 +125,14 @@ router.get("/get/workout/detail", async (req, res) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
+});
+
+//Update Program Workout
+router.put("/edit/workout/:id/:index", async (req, res) => {
+  const training = await Training.findByIdAndUpdate({ _id: req.params.id });
+  training.workoutList[req.params.index] = req.body;
+  training.markModified("workoutList");
+  await training.save();
 });
 
 module.exports = router;

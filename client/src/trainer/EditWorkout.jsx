@@ -3,8 +3,9 @@ import Axios from "axios";
 import { MDBBtn } from "mdbreact";
 
 export default function EditSchedule(props) {
-  const [day, setDay] = useState();
-  const [area, setArea] = useState();
+  const [exercise, setExercise] = useState();
+  const [sets, setSets] = useState();
+  const [reps, setReps] = useState();
   const [data, setData] = useState();
 
   const fetchProgramDetail = async () => {
@@ -12,8 +13,9 @@ export default function EditSchedule(props) {
       "http://localhost:5000/training/get/" + props.match.params.id
     ).then((res) => {
       setData(res.data);
-      setDay(res.data.exercise[props.match.params.index].day);
-      setArea(res.data.exercise[props.match.params.index].area);
+      setExercise(res.data.workoutList[props.match.params.index].exerciseName);
+      setSets(res.data.workoutList[props.match.params.index].sets);
+      setReps(res.data.workoutList[props.match.params.index].reps);
     });
   };
 
@@ -23,11 +25,12 @@ export default function EditSchedule(props) {
 
   const edit = () => {
     const data = {
-      day: day,
-      area: area,
+      exerciseName: exercise,
+      sets: sets,
+      reps: reps,
     };
     Axios.put(
-      "http://localhost:5000/training/edit/schedule/" +
+      "http://localhost:5000/training/edit/workout/" +
         props.match.params.id +
         "/" +
         props.match.params.index,
@@ -37,23 +40,34 @@ export default function EditSchedule(props) {
   return (
     <div>
       <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-        Day
+        Exercise
       </label>
       <input
         type="text"
-        value={day}
-        onChange={(e) => setDay(e.target.value)}
+        value={exercise}
+        onChange={(e) => setExercise(e.target.value)}
         id="defaultFormRegisterNameEx"
         className="form-control"
         required
       />
       <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-        Area
+        Sets
       </label>
       <input
         type="text"
-        value={area}
-        onChange={(e) => setArea(e.target.value)}
+        value={sets}
+        onChange={(e) => setSets(e.target.value)}
+        id="defaultFormRegisterNameEx"
+        className="form-control"
+        required
+      />
+      <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+        Reps
+      </label>
+      <input
+        type="text"
+        value={reps}
+        onChange={(e) => setReps(e.target.value)}
         id="defaultFormRegisterNameEx"
         className="form-control"
         required

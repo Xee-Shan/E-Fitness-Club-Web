@@ -10,7 +10,6 @@ const ProgramDetail = (props) => {
     const res = await Axios.get(
       "http://localhost:5000/training/get/" + props.match.params.id
     );
-    console.log(res.data.title);
     setProgram(res.data);
   };
 
@@ -23,32 +22,34 @@ const ProgramDetail = (props) => {
       <Navbar />
       <MDBContainer>
         <br />
+        <h1 className="h1 text-center mb-4">{program.title}</h1>
+        <p>{program.description}</p>
+      </MDBContainer>
+      <MDBContainer>
+        <br />
         <iframe
           width="1100"
           height="400"
           src="https://www.youtube.com/embed/ZzOk6yH9bT8"
-          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
         ></iframe>
       </MDBContainer>
-      <h1>{program?.title}</h1>
       <MDBContainer>
         <br />
-        <p className="h3 text-center mb-4">Complete Workout Schedule</p>
-        <MDBTable bordered>
-          <MDBTableHead color="primary-color" textWhite>
+        <p className="h4 text-center mb-4">Complete Workout Schedule</p>
+        <MDBTable bordered striped small>
+          <MDBTableHead color="black" textWhite>
             <tr>
-              <th>Day</th>
-              <th>Area</th>
+              <th className="text-center">Day</th>
+              <th className="text-center">Area</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
             {program?.exercise?.map((data, i) => {
               return (
                 <tr key={i}>
-                  <td>{data.day}</td>
-                  <td>{data.area}</td>
+                  <td className="text-center">{data.day}</td>
+                  <td className="text-center">{data.area}</td>
                 </tr>
               );
             })}
@@ -57,22 +58,22 @@ const ProgramDetail = (props) => {
       </MDBContainer>
       <MDBContainer>
         <br />
-        <p className="h3 text-center mb-4">Complete Workout List</p>
-        <MDBTable bordered>
-          <MDBTableHead color="primary-color" textWhite>
+        <p className="h4 text-center mb-4">Complete Workout List</p>
+        <MDBTable bordered striped small>
+          <MDBTableHead color="black" textWhite>
             <tr>
-              <th>Exercise Name</th>
-              <th>Sets</th>
-              <th>reps</th>
+              <th className="text-center">Exercise Name</th>
+              <th className="text-center">Sets</th>
+              <th className="text-center">reps</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
             {program?.workoutList?.map((data, i) => {
               return (
                 <tr key={i}>
-                  <td>{data.exerciseName}</td>
-                  <td>{data.sets}</td>
-                  <td>{data.reps}</td>
+                  <td className="text-center">{data.exerciseName}</td>
+                  <td className="text-center">{data.sets}</td>
+                  <td className="text-center">{data.reps}</td>
                 </tr>
               );
             })}

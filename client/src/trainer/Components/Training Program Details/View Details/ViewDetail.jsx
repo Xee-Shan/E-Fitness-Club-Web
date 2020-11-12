@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import SideNav from "../../SideNav/SideNav";
-import {MDBBtn, MDBTable, MDBTableHead, MDBTableBody, MDBContainer } from "mdbreact";
+import {
+  MDBBtn,
+  MDBTable,
+  MDBTableHead,
+  MDBTableBody,
+  MDBContainer,
+} from "mdbreact";
 import history from "../../../../history/History";
 
 const View = (props) => {
   const [data, setData] = useState([]);
+
   const fetchProgramDetail = async () => {
     const res = await Axios.get(
       "http://localhost:5000/training/get/" + props.match.params.id
@@ -16,32 +23,43 @@ const View = (props) => {
   useEffect(() => {
     fetchProgramDetail();
   }, []);
- function editSchedule(i){
-  history.push("/trainer/editSchedule/"+props.match.params.id+"/"+i);
-  }
+
+  const editSchedule = (i) => {
+    history.push("/trainer/editSchedule/" + props.match.params.id + "/" + i);
+  };
+
+  const editWorkout = (i) => {
+    history.push("/trainer/editWorkout/" + props.match.params.id + "/" + i);
+  };
   return (
     <>
       <SideNav />
       <MDBContainer>
         <br />
-        <p className="h3 text-center mb-4">Complete Program Schedule</p>
-        <MDBTable>
+        <p className="h4 text-center mb-4">Complete Program Schedule</p>
+        <MDBTable bordered striped small>
           <MDBTableHead color="black" textWhite>
             <tr>
-              <th>Day</th>
-              <th>Area</th>
-              <th>Action</th>
+              <th className="text-center">Day</th>
+              <th className="text-center">Area</th>
+              <th className="text-center">Action</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
             {data?.exercise?.map((data, i) => {
               return (
                 <tr key={i}>
-                  <td>{data.day}</td>
-                  <td>{data.area}</td>
-                  <td><MDBBtn color="warning" onClick={()=>editSchedule(i)} >
+                  <td className="text-center">{data.day}</td>
+                  <td className="text-center">{data.area}</td>
+                  <td className="text-center">
+                    <MDBBtn
+                      size="sm"
+                      color="warning"
+                      onClick={() => editSchedule(i)}
+                    >
                       Edit
-                    </MDBBtn></td>
+                    </MDBBtn>
+                  </td>
                 </tr>
               );
             })}
@@ -51,22 +69,32 @@ const View = (props) => {
 
       <MDBContainer>
         <br />
-        <p className="h3 text-center mb-4">Complete Workout List</p>
-        <MDBTable>
+        <p className="h4 text-center mb-4">Complete Workout List</p>
+        <MDBTable bordered striped small>
           <MDBTableHead color="black" textWhite>
             <tr>
-              <th>Exercise Name</th>
-              <th>Sets</th>
-              <th>Reps</th>
+              <th className="text-center">Exercise Name</th>
+              <th className="text-center">Sets</th>
+              <th className="text-center">Reps</th>
+              <th className="text-center">Action</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
             {data?.workoutList?.map((data, i) => {
               return (
                 <tr key={i}>
-                  <td>{data.exerciseName}</td>
-                  <td>{data.sets}</td>
-                  <td>{data.reps}</td>
+                  <td className="text-center">{data.exerciseName}</td>
+                  <td className="text-center">{data.sets}</td>
+                  <td className="text-center">{data.reps}</td>
+                  <td className="text-center">
+                    <MDBBtn
+                      size="sm"
+                      color="warning"
+                      onClick={() => editWorkout(i)}
+                    >
+                      Edit
+                    </MDBBtn>
+                  </td>
                 </tr>
               );
             })}

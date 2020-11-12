@@ -48,6 +48,7 @@ import AddSchedule from "./trainer/Components/Training Program Details/Schedule 
 import ViewDetail from "./trainer/Components/Training Program Details/View Details/ViewDetail";
 import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
 import EditSchedule from "./trainer/EditSchedule";
+import EditWorkout from "./trainer/EditWorkout";
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -127,7 +128,14 @@ const App = () => {
           <Route path="/trainer/view/program/:id" component={ViewDetail} />
           <Route path="/user/program" component={UserProgram} />
           <Route path="/user/programdetail/:id" component={ProgramDetail} />
-          <Route path="/trainer/editSchedule/:id/:index" component={EditSchedule} />
+          <Route
+            path="/trainer/editSchedule/:id/:index"
+            component={EditSchedule}
+          />
+          <Route
+            path="/trainer/editWorkout/:id/:index"
+            component={EditWorkout}
+          />
           <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />
           <Route path="/admin/employee" component={Employee} />
