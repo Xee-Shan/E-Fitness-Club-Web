@@ -10,7 +10,7 @@ const ProgramDetail = (props) => {
     const res = await Axios.get(
       "http://localhost:5000/training/get/" + props.match.params.id
     );
-    console.log(res.data);
+    console.log(res.data.title);
     setProgram(res.data);
   };
 
@@ -32,7 +32,7 @@ const ProgramDetail = (props) => {
           allowfullscreen
         ></iframe>
       </MDBContainer>
-
+      <h1>{program?.title}</h1>
       <MDBContainer>
         <br />
         <p className="h3 text-center mb-4">Complete Workout Schedule</p>
