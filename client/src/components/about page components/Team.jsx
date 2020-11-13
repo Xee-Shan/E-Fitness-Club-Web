@@ -109,9 +109,9 @@ const TeamPage = () => {
                 />
               </MDBCol>
               <MDBCol md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Osama Abdul Sabboor</h4>
+                <h4 className="font-weight-bold mb-3">Mohtashim Tajamal</h4>
                 <h6 className="font-weight-bold grey-text mb-3">
-                  Graphics Designer
+                  Front end Developer
                 </h6>
                 <p className="grey-text">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
