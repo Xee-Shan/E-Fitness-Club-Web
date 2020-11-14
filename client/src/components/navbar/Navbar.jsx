@@ -15,7 +15,6 @@ import { FaShoppingCart } from "react-icons/fa";
 const Navbar = () => {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
-
   const register = () => history.push("/register");
   const login = () => history.push("/login");
   const logout = () => {

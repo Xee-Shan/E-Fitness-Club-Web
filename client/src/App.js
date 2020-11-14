@@ -49,6 +49,8 @@ import ViewDetail from "./trainer/Components/Training Program Details/View Detai
 import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
 import EditSchedule from "./trainer/EditSchedule";
 import EditWorkout from "./trainer/EditWorkout";
+// import AdminRequirements from "./components/pages/adminRequirements"
+
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -88,6 +90,7 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
+          {/* <Route path="/requirements" component={AdminRequirements} /> */}
           <Route path="/pagenotfound" component={PageNotFound} />
           <Route path="/workouts" component={Workouts} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
