@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const { User } = require("../models/userModel");
-const admin =require("../middleware/admin");
+const admin = require("../middleware/admin");
 
 router.post("/register", async (req, res) => {
   try {
@@ -106,7 +106,7 @@ router.post("/register", async (req, res) => {
       address,
     });
 
-    const saveUser = await newUser.save();
+    const saveUser = newUser.save();
     res.json(saveUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -204,19 +204,19 @@ router.get("/get", auth, async (req, res) => {
 
 //get logged in user
 router.get("/getUser", auth, async (req, res) => {
-  await User.findById(req.user,(err, doc) => {
+  await User.findById(req.user, (err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
 });
 //get all employees
-router.get("/get/employee", auth,admin, async (req, res) => {
-  let employee=[];
- const users=await User.find((err) => {
+router.get("/get/employee", auth, admin, async (req, res) => {
+  let employee = [];
+  const users = await User.find((err) => {
     if (err) res.status(400).send(err);
   });
-  users.map(user=>{
-    if(user.role!="admin" && user.role!="user"){
+  users.map((user) => {
+    if (user.role != "admin" && user.role != "user") {
       employee.push(user);
     }
   });
@@ -224,10 +224,9 @@ router.get("/get/employee", auth,admin, async (req, res) => {
 });
 
 //delete an employee
-router.delete("/delete/employee/:id",auth,admin, async (req, res) => {
-   await User.findByIdAndDelete({ _id: req.params.id });
+router.delete("/delete/employee/:id", auth, admin, async (req, res) => {
+  await User.findByIdAndDelete({ _id: req.params.id });
 });
-
 
 //add to Cart
 router.post("/addToCart/:myQuantity", auth, async (req, res) => {
