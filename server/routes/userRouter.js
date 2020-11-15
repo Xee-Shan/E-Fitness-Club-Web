@@ -4,6 +4,16 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const { User } = require("../models/userModel");
 const admin = require("../middleware/admin");
+const nodemailer = require("nodemailer");
+
+let smtpTransport = nodemailer.createTransport({
+  service: "Gmail",
+  port: 465,
+  auth: {
+    user: "efitnessclub7@gmail.com",
+    pass: "efitness",
+  },
+});
 
 router.post("/register", async (req, res) => {
   try {
@@ -106,7 +116,14 @@ router.post("/register", async (req, res) => {
       address,
     });
 
-    const saveUser = newUser.save();
+    const saveUser = newUser.save().then((user) => {
+      smtpTransport.sendMail({
+        to: user.email,
+        from: "efitnessclub7@gmail.com",
+        subject: "Account Signup Success",
+        html: `WELCOME TO E-FTINESS CLUB`,
+      });
+    });
     res.json(saveUser);
   } catch (err) {
     res.status(500).json({ error: err.message });

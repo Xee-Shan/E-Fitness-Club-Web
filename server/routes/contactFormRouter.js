@@ -5,9 +5,6 @@ const nodemailer = require("nodemailer");
 router.post("/form", (req, res) => {
   let { name, email, subject, message } = req.body;
 
-  if (!name || !email || !subject || !message)
-    return res.status(400).json({ msg: "Not all fields have been entered" });
-
   let smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     port: 465,

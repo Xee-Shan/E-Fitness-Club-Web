@@ -10,7 +10,6 @@ import {
   MDBContainer,
 } from "mdbreact";
 import Axios from "axios";
-import ErrorNotice from "../error/ErrorNotice";
 
 const Contactform = () => {
   const [name, setName] = useState([""]);
@@ -18,7 +17,7 @@ const Contactform = () => {
   const [subject, setSubject] = useState([""]);
   const [message, setMessage] = useState([""]);
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState();
+
   const onChangeName = (e) => {
     setName(e.target.value);
   };
@@ -40,11 +39,6 @@ const Contactform = () => {
       subject: subject,
       message: message,
     };
-
-    if (data === "") {
-      window.Error("Enter fields");
-    }
-
     Axios.post("http://localhost:5000/contact/form", data)
       .then((res) => {
         setSent(true);
@@ -76,12 +70,6 @@ const Contactform = () => {
                     <MDBIcon icon="envelope" /> Write to us:
                   </h2>
                 </div>
-                {error && (
-                  <ErrorNotice
-                    message={error}
-                    clearError={() => setError(undefined)}
-                  />
-                )}
 
                 <div>
                   <MDBInput
