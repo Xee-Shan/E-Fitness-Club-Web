@@ -9,13 +9,16 @@ import {
   MDBInput,
   MDBContainer,
 } from "mdbreact";
+import Axios from "axios";
+import ErrorNotice from "../error/ErrorNotice";
 
 const Contactform = () => {
   const [name, setName] = useState([""]);
   const [email, setEmail] = useState([""]);
   const [subject, setSubject] = useState([""]);
   const [message, setMessage] = useState([""]);
-
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState();
   const onChangeName = (e) => {
     setName(e.target.value);
   };
@@ -31,7 +34,33 @@ const Contactform = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, subject, message);
+    let data = {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+    };
+
+    if (data === "") {
+      window.Error("Enter fields");
+    }
+
+    Axios.post("http://localhost:5000/contact/form", data)
+      .then((res) => {
+        setSent(true);
+        resetForm();
+        window.alert("Message Sent");
+      })
+      .catch(() => {
+        console.log("Message Not Sent");
+      });
+  };
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
   };
 
   return (
@@ -47,6 +76,12 @@ const Contactform = () => {
                     <MDBIcon icon="envelope" /> Write to us:
                   </h2>
                 </div>
+                {error && (
+                  <ErrorNotice
+                    message={error}
+                    clearError={() => setError(undefined)}
+                  />
+                )}
 
                 <div>
                   <MDBInput

@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
     "chatServer": "nodemon index2.js",
     "start": "concurrently \"npm:server\" \"npm:chatServer\""
   },
