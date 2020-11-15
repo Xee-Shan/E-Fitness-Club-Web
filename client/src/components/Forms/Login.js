@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../context/userContext";
@@ -21,6 +21,10 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
+
+  const reset = () => {
+    history.push("/reset/password");
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -52,13 +56,20 @@ const Login = () => {
   return (
     <>
       <Navbar />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <MDBContainer>
         <MDBRow>
-          <MDBCol>
+          <MDBCol md="2"></MDBCol>
+          <MDBCol md="8">
             <MDBCard>
               <MDBCardBody>
                 <form>
-                  <p className="h1 text-center mb-4">Login</p>
+                  <p className="h3 text-center mb-4">Login</p>
                   {error && (
                     <ErrorNotice
                       message={error}
@@ -80,12 +91,16 @@ const Login = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <MDBBtn onClick={submit}>Login</MDBBtn>
+                    <Fragment>
+                      <MDBBtn onClick={submit}>Login</MDBBtn>
+                      <MDBBtn onClick={reset}>Reset</MDBBtn>
+                    </Fragment>
                   </div>
                 </form>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
+          <MDBCol md="2"></MDBCol>
         </MDBRow>
       </MDBContainer>
     </>

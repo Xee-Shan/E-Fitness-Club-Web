@@ -50,6 +50,9 @@ import AddWorkout from "./trainer/Components/Training Program Details/Workout De
 import EditSchedule from "./trainer/EditSchedule";
 import EditWorkout from "./trainer/EditWorkout";
 import UserProfile from "./User/UserProfile";
+import ResetPassword from "./components/Forms/Reset";
+import NewPassword from "./components/Forms/NewPassword";
+
 // import AdminRequirements from "./components/pages/adminRequirements"
 
 const App = () => {
@@ -147,6 +150,9 @@ const App = () => {
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
           <Route path="/user/profile" component={UserProfile} />
+          <Route path="/reset/password" component={ResetPassword} />
+          <Route path="/new/password" component={NewPassword} />
+
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>

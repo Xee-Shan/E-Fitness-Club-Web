@@ -61,11 +61,12 @@ const Register = () => {
       <Navbar />
       <MDBContainer>
         <MDBRow>
-          <MDBCol>
+          <MDBCol md="2"></MDBCol>
+          <MDBCol md="8">
             <MDBCard>
               <MDBCardBody>
                 <form>
-                  <p className="h1 text-center mb-4">Register</p>
+                  <p className="h3 text-center mb-4">Register</p>
                   {error && (
                     <ErrorNotice
                       message={error}
@@ -133,6 +134,7 @@ const Register = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
+          <MDBCol md="2"></MDBCol>
         </MDBRow>
       </MDBContainer>
     </>

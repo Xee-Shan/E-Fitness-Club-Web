@@ -5,6 +5,7 @@ const auth = require("../middleware/auth");
 const { User } = require("../models/userModel");
 const admin = require("../middleware/admin");
 const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 let smtpTransport = nodemailer.createTransport({
   service: "Gmail",
@@ -46,18 +47,6 @@ router.post("/register", async (req, res) => {
 
     var valid = emailRegex.test(email);
     if (!valid) res.status(400).json({ msg: "Please enter correct email." });
-
-    var parts = email.split("@");
-
-    if (parts[0].length > 64) return false;
-
-    var domainParts = parts[1].split(".");
-    if (
-      domainParts.some(function (part) {
-        return part.length > 63;
-      })
-    )
-      return false;
 
     const existingUser = await User.findOne({ email: email });
     if (existingUser)
@@ -155,18 +144,6 @@ router.post("/login", async (req, res) => {
     var valid = emailRegex.test(email);
     if (!valid) res.status(400).json({ msg: "Please enter correct email." });
 
-    var parts = email.split("@");
-
-    if (parts[0].length > 64) return false;
-
-    var domainParts = parts[1].split(".");
-    if (
-      domainParts.some(function (part) {
-        return part.length > 63;
-      })
-    )
-      return false;
-
     const user = await User.findOne({ email: email });
     if (!user)
       return res
@@ -190,10 +167,34 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//Reset Password
+router.post("/reset", async (req, res) => {
+  let data = req.body;
+  var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+  if (!data.email) {
+    return res.status(400).json({ msg: "Please Enter your Email." });
+  }
+
+  var valid = emailRegex.test(data.email);
+  if (!valid) res.status(400).json({ msg: "Please enter correct email." });
+
+  const existingUser = await User.findOne({ email: data.email });
+  if (!existingUser)
+    return res.status(400).json({ msg: "No account with this email exists." });
+
+  smtpTransport.sendMail({
+    to: data.email,
+    from: "efitnessclub7@gmail.com",
+    subject: "Password Reset Link",
+    html: `Following is Your Password Reset Link<br/>
+          <a href="http://localhost:3000/new/password">Link</a>`,
+  });
+});
+
 router.delete("/delete", auth, async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.user);
-
     res.json(deletedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
