@@ -9,6 +9,10 @@ import {
   MDBNavLink,
   MDBBadge,
   MDBBtn,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
 } from "mdbreact";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -74,19 +78,29 @@ const Navbar = () => {
           <>
             <MDBNavItem>
               <MDBNavLink to="/user/cart">
-                {" "}
                 <MDBBadge color="danger" className="ml-2">
                   {localStorage.getItem("item-count")}
                 </MDBBadge>
-                <FaShoppingCart color="black" style={{ width: "150%" }} />
+                <FaShoppingCart color="black" />
               </MDBNavLink>
             </MDBNavItem>
-            &nbsp;&nbsp;
-            <MDBNavItem>
-              <MDBBtn onClick={logout} className="pink lighten-2">
-                Log out
-              </MDBBtn>
-            </MDBNavItem>
+
+            <MDBDropdown className="pink lighten-2">
+              <MDBDropdownToggle caret>settings</MDBDropdownToggle>
+              <MDBDropdownMenu basic>
+                <MDBDropdownItem>
+                  <MDBNavLink to="/user/profile" style={{ color: "black" }}>
+                    Profile
+                  </MDBNavLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem divider />
+                <MDBDropdownItem>
+                  <MDBBtn size="sm" onClick={logout}>
+                    Logout
+                  </MDBBtn>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
           </>
         ) : (
           <>

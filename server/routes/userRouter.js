@@ -116,15 +116,28 @@ router.post("/register", async (req, res) => {
       address,
     });
 
-    const saveUser = newUser.save().then((user) => {
-      smtpTransport.sendMail({
-        to: user.email,
-        from: "efitnessclub7@gmail.com",
-        subject: "Account Signup Success",
-        html: `WELCOME TO E-FTINESS CLUB`,
+    if (role === "user") {
+      const saveUser = newUser.save().then((user) => {
+        smtpTransport.sendMail({
+          to: user.email,
+          from: "efitnessclub7@gmail.com",
+          subject: "Account Signup Success",
+          html: `WELCOME TO E-FTINESS CLUB`,
+        });
       });
-    });
-    res.json(saveUser);
+      res.json(saveUser);
+    } else {
+      const saveEmployee = newUser.save().then((user) => {
+        smtpTransport.sendMail({
+          to: user.email,
+          from: "efitnessclub7@gmail.com",
+          subject: "Account Credentials",
+          html: `Welcome ${user.name} your role in our website is ${user.role} 
+          Your User Name is ${user.userName} and your password is ${user.password}`,
+        });
+        res.json(saveEmployee);
+      });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -226,6 +239,7 @@ router.get("/getUser", auth, async (req, res) => {
     res.status(200).send(doc);
   });
 });
+
 //get all employees
 router.get("/get/employee", auth, admin, async (req, res) => {
   let employee = [];

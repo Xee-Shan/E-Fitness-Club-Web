@@ -49,6 +49,7 @@ import ViewDetail from "./trainer/Components/Training Program Details/View Detai
 import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
 import EditSchedule from "./trainer/EditSchedule";
 import EditWorkout from "./trainer/EditWorkout";
+import UserProfile from "./User/UserProfile";
 // import AdminRequirements from "./components/pages/adminRequirements"
 
 const App = () => {
@@ -145,6 +146,7 @@ const App = () => {
           <Route path="/doctor/home" component={Doctor} />
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
+          <Route path="/user/profile" component={UserProfile} />
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
