@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
+import Axios from "axios";
+import { useParams } from "react-router-dom";
 import {
   MDBContainer,
   MDBRow,
@@ -11,6 +13,27 @@ import {
 } from "mdbreact";
 
 const NewPassword = () => {
+  const [password, setPassword] = useState();
+  const { token } = useParams();
+
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const submit = async (e) => {
+    try {
+      e.preventDefault();
+      const data = {
+        password: password,
+        token: token,
+      };
+      console.log(token);
+      await Axios.post("http://localhost:5000/users/new/password", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -33,17 +56,13 @@ const NewPassword = () => {
                       label="Enter Password"
                       icon="lock"
                       type="password"
+                      value={password}
+                      onChange={onChangePassword}
                     />
                   </div>
-                  <div className="grey-text">
-                    <MDBInput
-                      label="Re-Type Password"
-                      icon="lock"
-                      type="password"
-                    />
-                  </div>
+
                   <div className="text-center">
-                    <MDBBtn>Submit</MDBBtn>
+                    <MDBBtn onClick={submit}>Update Password</MDBBtn>
                   </div>
                 </form>
               </MDBCardBody>

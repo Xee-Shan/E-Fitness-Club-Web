@@ -151,8 +151,7 @@ const App = () => {
           <Route path="/join" component={Join} />
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/reset/password" component={ResetPassword} />
-          <Route path="/new/password" component={NewPassword} />
-
+          <Route path="/new/password/:token" component={NewPassword} />
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
