@@ -170,27 +170,58 @@ router.post("/login", async (req, res) => {
 
 //Reset Password
 router.post("/reset", async (req, res) => {
-  let data = req.body;
-  var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
-  if (!data.email) {
-    return res.status(400).json({ msg: "Please Enter your Email." });
-  }
-
-  var valid = emailRegex.test(data.email);
-  if (!valid) res.status(400).json({ msg: "Please enter correct email." });
-
-  const existingUser = await User.findOne({ email: data.email });
-  if (!existingUser)
-    return res.status(400).json({ msg: "No account with this email exists." });
-
-  smtpTransport.sendMail({
-    to: data.email,
-    from: "efitnessclub7@gmail.com",
-    subject: "Password Reset Link",
-    html: `Following is Your Password Reset Link<br/>
-          <a href="http://localhost:3000/new/password">Link</a>`,
+  let { email } = req.body;
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.log(err);
+    }
+    const token = buffer.toString("hex");
+    User.findOne({ email: email }).then((user) => {
+      if (!user) {
+        return res
+          .status(400)
+          .json({ error: "User Do Not Exist With This E-mail" });
+      }
+      user.resetToken = token;
+      user.expireToken = Date() + 3600000;
+      user.save().then((result) => {
+        smtpTransport.sendMail({
+          to: user.email,
+          from: "efitnessclub7@gmail.com",
+          subject: "Password Reset",
+          html: `<p>You requested for reset password</p>
+          <h5>Click on the <a href="http://localhost:3000/new/password/${token}">Link</a> to Reset Your Password</h5>
+          `,
+        });
+        res.json({ message: "Check your E-mail" });
+      });
+    });
   });
+});
+
+//New Password
+router.post("/new/password", async (req, res) => {
+  const { password, token } = req.body;
+
+  const user = await User.findOne({
+    resetToken: token,
+    //expireToken: { $gt: Date.now() },
+  });
+  console.log(user);
+  console.log(token);
+  /*.then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "Try again session expired" });
+      }
+      bcrypt.hash(password, 12).then((hashpassword) => {
+        user.password = hashpassword;
+        user.resetToken = undefined;
+        user.expireToken = undefined;
+        user.save().then((saveUser) => {
+          res.json({ message: "password updated success" });
+        });
+      });
+    })*/
 });
 
 router.delete("/delete", auth, async (req, res) => {

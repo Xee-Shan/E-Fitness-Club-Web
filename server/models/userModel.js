@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema({
   phoneNumber: { type: Number, required: true, unique: true },
   address: { type: String, required: true },
   role: { type: String, default: "user" },
+  resetToken: { type: String },
+  expireToken: { type: Date },
 
   cart: {
     type: Array,

@@ -23,11 +23,10 @@ const ResetPassword = () => {
   const submit = async (e) => {
     try {
       e.preventDefault();
-      const data = {
+      let data = {
         email: email,
       };
       await Axios.post("http://localhost:5000/users/reset", data);
-      window.alert("Check Your E-mail");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
