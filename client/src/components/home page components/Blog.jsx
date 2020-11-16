@@ -16,7 +16,7 @@ const Blog = () => {
       <MDBCard className="my-5 px-5 pb-5">
         <MDBCardBody className="text-center">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            Recent posts
+            Services We provide
           </h2>
           <p className="text-center w-responsive mx-auto mb-5">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -55,9 +55,6 @@ const Blog = () => {
                 nihil impedit quo minus id quod maxime placeat facere possimus
                 voluptas.
               </p>
-              <MDBBtn color="pink" rounded size="md">
-                Read more
-              </MDBBtn>
             </MDBCol>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
@@ -88,9 +85,6 @@ const Blog = () => {
                 At vero eos et accusamus et iusto odio dignissimos ducimus qui
                 blanditiis voluptatum deleniti atque corrupti quos dolores.
               </p>
-              <MDBBtn color="deep-orange" rounded size="md">
-                Read more
-              </MDBBtn>
             </MDBCol>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
@@ -121,9 +115,6 @@ const Blog = () => {
                 Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
                 aut fugit, sed quia consequuntur magni dolores eos qui ratione.
               </p>
-              <MDBBtn color="info" rounded size="md">
-                Read more
-              </MDBBtn>
             </MDBCol>
           </MDBRow>
         </MDBCardBody>

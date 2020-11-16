@@ -54,7 +54,6 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 
-// import AdminRequirements from "./components/pages/adminRequirements"
 
 const App = () => {
   const [userData, setUserData] = useState({

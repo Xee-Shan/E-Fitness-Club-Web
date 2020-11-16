@@ -9,9 +9,7 @@ const Features = () => {
           Why is it so great?
         </h2>
         <p className="lead grey-text w-responsive text-center mx-auto mb-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam.
+        E-Fitness Club is a site in which user can easily contact with doctor and can easily talk about their medicine. We also have E-Commerece system through which user can easily avail all the equipment about their fitness in just one click. User can view diet Plans, workouts and Recipes that he needs and can also check his/her body mass index. so can start his/her training and diet according to his/her requirements  
         </p>
 
         <MDBRow>
@@ -25,11 +23,9 @@ const Features = () => {
                 />
               </MDBCol>
               <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">International</h5>
+                <h5 className="font-weight-bold mb-3">USER MANAGEMENT</h5>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                We use user management system to manage all the user that uses our site to stay fit in their lives and to enjoy good health.
                 </p>
               </MDBCol>
             </MDBRow>
@@ -38,11 +34,9 @@ const Features = () => {
                 <MDBIcon icon="flask" size="2x" className="deep-purple-text" />
               </MDBCol>
               <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">Experimental</h5>
+                <h5 className="font-weight-bold mb-3">HEALTH AND CARE</h5>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                Health and care system is the most important system in our site through which user can directly contact the doctor about their medicines  and queries.
                 </p>
               </MDBCol>
             </MDBRow>
@@ -55,11 +49,9 @@ const Features = () => {
                 />
               </MDBCol>
               <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">Relaxing</h5>
+                <h5 className="font-weight-bold mb-3">NUTRITION AND DIET</h5>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                It will provide the recommended nutrition guide that user need for their diet plan. This portal will ensure your complete health and diet.
                 </p>
               </MDBCol>
             </MDBRow>
@@ -77,11 +69,9 @@ const Features = () => {
                 <MDBIcon icon="heart" size="2x" className="deep-purple-text" />
               </MDBCol>
               <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">Beloved</h5>
+                <h5 className="font-weight-bold mb-3">E-COMMERCE </h5>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+               This system will help the user to get all the necessary equipment's  that are required for their fitness like treadmill, dumbbells etc.
                 </p>
               </MDBCol>
             </MDBRow>
@@ -90,24 +80,9 @@ const Features = () => {
                 <MDBIcon icon="bolt" size="2x" className="deep-purple-text" />
               </MDBCol>
               <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">Rapid</h5>
+                <h5 className="font-weight-bold mb-3">EXERCISE AND TRAINING</h5>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
-                </p>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow className="mb-3">
-              <MDBCol size="2">
-                <MDBIcon icon="magic" size="2x" className="deep-purple-text" />
-              </MDBCol>
-              <MDBCol size="10">
-                <h5 className="font-weight-bold mb-3">Magical</h5>
-                <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                In this portal user will provide a complete workout and exercise videos, pictures and posts according to the trainee’s needs.
                 </p>
               </MDBCol>
             </MDBRow>
