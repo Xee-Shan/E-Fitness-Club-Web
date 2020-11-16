@@ -16,6 +16,7 @@ export default function AddEmployee() {
     const [phoneNumber, setPhoneNumber] = useState();
     const [address, setAddress] = useState();
     const [role,setRole]=useState();
+    const [duplicatePassword,setDuplicatePassword]=useState();
     const [error, setError] = useState();
     const history = useHistory();
   
@@ -33,6 +34,7 @@ export default function AddEmployee() {
           role,
           phoneNumber,
           address,
+          duplicatePassword,
         };
         await Axios.post("http://localhost:5000/users/register", newUser);
         /*const loginRes = await Axios.post("http://localhost:5000/users/login", {
@@ -93,7 +95,10 @@ export default function AddEmployee() {
                         label="Your password"
                         icon="lock"
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>{ 
+                          setPassword(e.target.value)
+                          setDuplicatePassword(e.target.value)
+                        }}
                       />
                       <MDBInput
                         label="Confirm Your Password"

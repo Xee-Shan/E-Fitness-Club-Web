@@ -18,6 +18,7 @@ let smtpTransport = nodemailer.createTransport({
 
 router.post("/register", async (req, res) => {
   try {
+    const duplicatePassword=req.body.duplicatePassword;
     let {
       name,
       email,
@@ -27,7 +28,7 @@ router.post("/register", async (req, res) => {
       gender,
       phoneNumber,
       role,
-      address,
+      address
     } = req.body;
     var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
@@ -122,7 +123,7 @@ router.post("/register", async (req, res) => {
           from: "efitnessclub7@gmail.com",
           subject: "Account Credentials",
           html: `Welcome ${user.name} your role in our website is ${user.role} 
-          Your User Name is ${user.userName} and your password is ${user.password}`,
+          Your User Name is ${user.userName} and your password is ${duplicatePassword}`,
         });
         res.json(saveEmployee);
       });
