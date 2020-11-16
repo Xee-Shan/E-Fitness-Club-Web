@@ -8,7 +8,8 @@ import Contact from "./components/pages/Contact";
 import Bmi from "./components/pages/Bmi";
 import PageNotFound from "./components/pages/PageNotFound";
 import Workouts from "./components/pages/Workouts";
-import DietPlan from "./components/pages/Recipes";
+import UserRecipes from "./User/Nutritionist/Recipes/Recipies";
+import DietPlan from "./components/pages/DietPlans";
 import Shop from "./components/pages/Shop";
 import Login from "./components/Forms/Login";
 import Register from "./components/Forms/Register";
@@ -30,6 +31,9 @@ import CreateRecipe from "./Nutrition/Recipes/createRecipe";
 import UpdateRecipe from "./Nutrition/Recipes/updateRecipe";
 import Recipe from "./Nutrition/Recipes/Recipe";
 import NutritionistLogin from "./Nutrition/nutritionloginform";
+import NutritionistDashboard from "./Nutrition/Dashboard";
+import DietPlans from "./Nutrition/DietPlans/dietPlans";
+import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
 import UnderWeight from "./User/Nutritionist/DietPlans/underWeightDietPlan";
 import Obese from "./User/Nutritionist/DietPlans/obeseDiet";
 import Normal from "./User/Nutritionist/DietPlans/normal";
@@ -41,9 +45,6 @@ import Chat from "./Chat System/Chat/Chat";
 import Join from "./Chat System/Join/Join";
 import Doctor from "./Doctor/Home";
 import ProgramDetail from "./User/Training System/ProgramDetail";
-import NutritionistDashboard from "./Nutrition/Dashboard";
-import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
-import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import AddSchedule from "./trainer/Components/Training Program Details/Schedule Details/AddSchedule";
 import ViewDetail from "./trainer/Components/Training Program Details/View Details/ViewDetail";
 import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
@@ -94,14 +95,14 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
-          {/* <Route path="/requirements" component={AdminRequirements} /> */}
           <Route path="/pagenotfound" component={PageNotFound} />
           <Route path="/workouts" component={Workouts} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
           <Route path="/dietplans/obese" component={Obese} />
           <Route path="/dietplans/normal" component={Normal} />
           <Route path="/dietplans/overweight" component={OverWieght} />
-          <Route path="/dietplans" component={DietPlan} />
+          <Route path="/user/dietplans" component={DietPlan} />
+          <Route path="/user/recipes" component={UserRecipes} />
           <Route path="/shop" component={Shop} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

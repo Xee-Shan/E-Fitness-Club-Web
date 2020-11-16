@@ -46,7 +46,10 @@ const Navbar = () => {
               <MDBNavLink to="/user/program">WORKOUTS</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/dietplans">DIET PLANS</MDBNavLink>
+              <MDBNavLink to="/user/dietplans">DIET PLANS</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/user/recipes">RECIPIES </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/user/product">SHOP</MDBNavLink>

@@ -11,19 +11,19 @@ import {
   MDBCardText,
   MDBContainer,
 } from "mdbreact";
-import Navbar from "../../components/navbar/Navbar";
-import history from "../../history/History";
+import Navbar from "../../../components/navbar/Navbar";
+import history from "../../../history/History";
 
-const Program = () => {
-  const [program, setProgram] = useState([]);
+const Recipe = () => {
+  const [recipe, setRecipe] = useState([]);
 
   const fetchData = async () => {
-    const response = await Axios.get("http://localhost:5000/training/get");
-    setProgram(response.data);
+    const response = await Axios.get("http://localhost:5000/recipes/get");
+    setRecipe(response.data);
   };
   
   const btnClicked = (id) => {
-    history.push("/user/programdetail/" + id);
+    history.push("/user/recipedetail/" + id);
   };
 
   useEffect(() => {
@@ -34,28 +34,27 @@ const Program = () => {
     <>
       <Navbar />
       <br />
-      <p className="h1 text-center mb-4">Men Workout Plans </p>
+      <p className="h1 text-center mb-4">Recipes</p>
       <br />
       <MDBContainer className="text-center">
         <MDBRow>
-          {program?.length === 0 ? (
+          {recipe?.length === 0 ? (
             <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
           ) : (
-            program?.map((program, i) => (
+            recipe?.map((recipe, i) => (
               <MDBCol md="4" key={i}>
                 <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
                     className="img-fluid"
-                    src={"http://localhost:5000/" + program.imageName}
+                    src={"http://localhost:5000/" + recipe.imageName}
                     waves
                   />
                   <MDBCardBody>
-                    <MDBCardTitle>{program.title}</MDBCardTitle>
+                    <MDBCardTitle>{recipe.name}</MDBCardTitle>
                     <MDBCardText>
-                      Target Areas: {program.targetArea}
+                      Type: {recipe.type}
                     </MDBCardText>
-                    <MDBCardText>Equipments: {program.equipment}</MDBCardText>
-                    <MDBBtn onClick={() => btnClicked(program._id)}>
+                    <MDBBtn onClick={() => btnClicked(recipe._id)}>
                       Details
                     </MDBBtn>
                   </MDBCardBody>
@@ -69,4 +68,4 @@ const Program = () => {
   );
 };
 
-export default Program;
+export default Recipe;
