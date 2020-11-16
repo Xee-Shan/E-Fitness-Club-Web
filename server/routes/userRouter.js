@@ -183,7 +183,7 @@ router.post("/reset", async (req, res) => {
           .json({ error: "User Do Not Exist With This E-mail" });
       }
       user.resetToken = token;
-      user.expireToken = Date() + 3600000;
+      user.expireToken = Date.now() + 3600000;
       user.save().then((result) => {
         smtpTransport.sendMail({
           to: user.email,
@@ -205,23 +205,21 @@ router.post("/new/password", async (req, res) => {
 
   const user = await User.findOne({
     resetToken: token,
-    //expireToken: { $gt: Date.now() },
-  });
-  console.log(user);
-  console.log(token);
-  /*.then((user) => {
-      if (!user) {
-        return res.status(400).json({ error: "Try again session expired" });
-      }
-      bcrypt.hash(password, 12).then((hashpassword) => {
-        user.password = hashpassword;
-        user.resetToken = undefined;
-        user.expireToken = undefined;
-        user.save().then((saveUser) => {
-          res.json({ message: "password updated success" });
-        });
+    expireToken: { $gt: Date.now() },
+  }).then((user) => {
+    if (!user) {
+      console.log("sasasasa");
+      //return res.status(400).json({ error: "Try again session expired" });
+    }
+    bcrypt.hash(password, 12).then((hashpassword) => {
+      user.password = hashpassword;
+      user.resetToken = undefined;
+      user.expireToken = undefined;
+      user.save().then((saveUser) => {
+        res.json({ message: "password updated success" });
       });
-    })*/
+    });
+  });
 });
 
 router.delete("/delete", auth, async (req, res) => {
