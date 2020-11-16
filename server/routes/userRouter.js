@@ -18,7 +18,6 @@ let smtpTransport = nodemailer.createTransport({
 
 router.post("/register", async (req, res) => {
   try {
-    const duplicatePassword=req.body.duplicatePassword;
     let {
       name,
       email,
@@ -28,7 +27,7 @@ router.post("/register", async (req, res) => {
       gender,
       phoneNumber,
       role,
-      address
+      address,
     } = req.body;
     var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
@@ -92,6 +91,7 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "An account with this phone number already exists." });
 
+    let duplicatePassword = password;
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
