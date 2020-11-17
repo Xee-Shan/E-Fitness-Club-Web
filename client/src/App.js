@@ -51,6 +51,7 @@ import EditWorkout from "./trainer/EditWorkout";
 import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
+import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
 
 const App = () => {
   const [userData, setUserData] = useState({

@@ -5,11 +5,11 @@ const Footer = () => {
   return (
     <MDBFooter color="blue" className="text-center font-small darken-2">
       <div className="pt-4">
-        <MDBBtn outline color="white" tag="a" href="/login" target="_blank">
+        <MDBBtn outline color="white" tag="a" href="/login">
           Login
           <MDBIcon icon="user" className="ml-2" />
         </MDBBtn>
-        <MDBBtn outline color="white" tag="a" href="/register" target="_blank">
+        <MDBBtn outline color="white" tag="a" href="/register">
           Register
           <MDBIcon icon="registered" className="ml-2" />
         </MDBBtn>
