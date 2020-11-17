@@ -10,9 +10,7 @@ const TeamPage = () => {
             Our amazing team
           </h2>
           <p className="grey-text w-responsive mx-auto mb-5">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-            error amet numquam iure provident voluptate esse quasi, veritatis
-            totam voluptas nostrum quisquam eum porro a pariatur veniam.
+              Our amazing team consits of web developers , designers and front end develpers. We have done 60+ satisfied projects and are willing to get more and more.  
           </p>
           <MDBRow className="text-md-left">
             <MDBCol lg="6" md="12" className="mb-5">
@@ -102,7 +100,7 @@ const TeamPage = () => {
             <MDBCol lg="6" md="12" className="mb-5">
               <MDBCol md="4" lg="6" className="float-left">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
+                  src="https://scontent.flhe13-1.fna.fbcdn.net/v/t1.0-9/16602841_1114034188706147_5470258682028639371_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_eui2=AeH8mXt9pstNDulH6Zn_KyaY2CnGN3FWZFzYKcY3cVZkXBMfrPW8Fz9Zf12Apsdbc1QuMG2CTwU-J7q8pbYDA_Pf&_nc_ohc=dCsvJlZT5BYAX98v3Qn&_nc_ht=scontent.flhe13-1.fna&oh=851f4593054d445541d48e5d013493d6&oe=5FDA4FD1"
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
                   tag="img"
                   alt="Sample avatar"
@@ -114,8 +112,7 @@ const TeamPage = () => {
                   Front end Developer
                 </h6>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                  eos id officiis hic tenetur.
+                  He is an motivated front end developer and has done 30+ satisfied projects with teh rating of about four and half.  
                 </p>
                 <a
                   href="https://www.facebook.com/"
@@ -137,36 +134,6 @@ const TeamPage = () => {
                   className="p-2 fa-lg ins-ic"
                 >
                   <MDBIcon fab icon="instagram" />
-                </a>
-              </MDBCol>
-            </MDBCol>
-
-            <MDBCol lg="6" md="12" className="mb-5">
-              <MDBCol md="4" lg="6" className="float-left">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg"
-                  className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
-                  tag="img"
-                  alt="Sample avatar"
-                />
-              </MDBCol>
-              <MDBCol md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Sarah Melyah</h4>
-                <h6 className="font-weight-bold grey-text mb-3">
-                  Front-end Developer
-                </h6>
-                <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                  eos id officiis hic tenetur.
-                </p>
-                <a href="#!" className="p-2 fa-lg gplus-ic">
-                  <MDBIcon fab icon="google-plus-g" />
-                </a>
-                <a href="#!" className="p-2 fa-lg li-ic">
-                  <MDBIcon fab icon="linkedin-in" />
-                </a>
-                <a href="#!" className="p-2 fa-lg email-ic">
-                  <MDBIcon icon="envelope" />
                 </a>
               </MDBCol>
             </MDBCol>
