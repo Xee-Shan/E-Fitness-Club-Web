@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
+import {FaUserAlt} from "react-icons/fa";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -13,6 +14,7 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
+  MDBIcon,
 } from "mdbreact";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -91,8 +93,8 @@ const Navbar = () => {
               </MDBNavLink>
             </MDBNavItem>
 
-            <MDBDropdown className="pink lighten-2">
-              <MDBDropdownToggle caret>settings</MDBDropdownToggle>
+            <MDBDropdown>
+              <MDBDropdownToggle ><FaUserAlt /></MDBDropdownToggle>
               <MDBDropdownMenu basic>
                 <MDBDropdownItem>
                   <MDBNavLink to="/user/profile" style={{ color: "black" }}>

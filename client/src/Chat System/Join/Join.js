@@ -28,7 +28,7 @@ export default function SignIn() {
         </div>
         <br />
         <div style={{ color: "white" }}>
-          <h3><MdPerson /><img src={onlineIcon} alt="online" /> Doctor available from 9-11pm </h3>
+          <h3><MdPerson /><img src={onlineIcon} style={{height:"10px"}} alt="online" /> Join Chat to see whether Doctor is online </h3>
           </div>
         <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
           <button className={`${styles.button} ${styles.mt - 20}`} type="submit">Begin Chat</button>

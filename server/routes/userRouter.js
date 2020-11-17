@@ -171,6 +171,17 @@ router.post("/login", async (req, res) => {
 //Reset Password
 router.post("/reset", async (req, res) => {
   let { email } = req.body;
+  var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+  if (!email) {
+    return res.status(400).json({ msg: "Please enter your email." });
+  }
+
+  var valid = emailRegex.test(email);
+  if (!valid) {
+    return res.status(400).json({ msg: "Please enter correct email." });
+  }
+
   crypto.randomBytes(32, (err, buffer) => {
     if (err) {
       console.log(err);
@@ -180,7 +191,7 @@ router.post("/reset", async (req, res) => {
       if (!user) {
         return res
           .status(400)
-          .json({ error: "User Do Not Exist With This E-mail" });
+          .json({ msg: "User do not exist with this email." });
       }
       user.resetToken = token;
       user.expireToken = Date.now() + 3600000;
@@ -193,7 +204,7 @@ router.post("/reset", async (req, res) => {
           <h5>Click on the <a href="http://localhost:3000/new/password/${token}">Link</a> to Reset Your Password</h5>
           `,
         });
-        res.json({ message: "Check your E-mail" });
+        res.json({ message: "Check your email." });
       });
     });
   });
@@ -202,24 +213,26 @@ router.post("/reset", async (req, res) => {
 //New Password
 router.post("/new/password", async (req, res) => {
   const { password, token } = req.body;
-
-  const user = await User.findOne({
+  await User.findOne({
     resetToken: token,
     expireToken: { $gt: Date.now() },
-  }).then((user) => {
-    if (!user) {
-      console.log("sasasasa");
-      //return res.status(400).json({ error: "Try again session expired" });
-    }
-    bcrypt.hash(password, 12).then((hashpassword) => {
-      user.password = hashpassword;
-      user.resetToken = undefined;
-      user.expireToken = undefined;
-      user.save().then((saveUser) => {
-        res.json({ message: "password updated success" });
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "Try again session expired" });
+      }
+      bcrypt.hash(password, 12).then((hashpassword) => {
+        user.password = hashpassword;
+        user.resetToken = undefined;
+        user.expireToken = undefined;
+        user.save().then((saveUser) => {
+          res.json({ message: "password updated success" });
+        });
       });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 });
 
 router.delete("/delete", auth, async (req, res) => {

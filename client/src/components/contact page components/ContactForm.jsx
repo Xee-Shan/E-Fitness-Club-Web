@@ -10,13 +10,14 @@ import {
   MDBContainer,
 } from "mdbreact";
 import Axios from "axios";
+import ErrorNotice from "../error/ErrorNotice";
 
 const Contactform = () => {
-  const [name, setName] = useState([""]);
-  const [email, setEmail] = useState([""]);
-  const [subject, setSubject] = useState([""]);
-  const [message, setMessage] = useState([""]);
-  const [sent, setSent] = useState(false);
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [subject, setSubject] = useState();
+  const [message, setMessage] = useState();
+  const [error, setError] = useState();
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -31,30 +32,19 @@ const Contactform = () => {
     setMessage(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let data = {
-      name: name,
-      email: email,
-      subject: subject,
-      message: message,
-    };
-    Axios.post("http://localhost:5000/contact/form", data)
-      .then((res) => {
-        setSent(true);
-        resetForm();
-        window.alert("Message Sent");
-      })
-      .catch(() => {
-        console.log("Message Not Sent");
-      });
-  };
-
-  const resetForm = () => {
-    setName("");
-    setEmail("");
-    setSubject("");
-    setMessage("");
+    try {
+      let data = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+      };
+      await Axios.post("http://localhost:5000/contact/form", data);
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
+    }
   };
 
   return (
@@ -70,7 +60,12 @@ const Contactform = () => {
                     <MDBIcon icon="envelope" /> Write to us:
                   </h2>
                 </div>
-
+                {error && (
+                  <ErrorNotice
+                    message={error}
+                    clearError={() => setError(undefined)}
+                  />
+                )}
                 <div>
                   <MDBInput
                     icon="user"

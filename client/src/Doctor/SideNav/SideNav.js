@@ -10,7 +10,13 @@ import { MDBBtn } from "mdbreact";
 import history from "../../history/History";
 import axios from "axios";
 import DoctorAuth from "../../auth/DoctorAuth";
-
+import {
+  MDBNavLink,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+} from "mdbreact";
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -38,7 +44,23 @@ SidebarData[1].path=`/chat?name=${userName}&room=${room}`;
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <h2 style={{fontFamily:"mono space",color:"white"}}>{userName} <FaUserAlt /></h2>
+          <MDBDropdown style={{backgroundColor:"#060B26"}}>
+              <MDBDropdownToggle style={{backgroundColor:"#060B26"}} ><FaUserAlt /></MDBDropdownToggle>
+              <MDBDropdownMenu basic>
+                <MDBDropdownItem>
+                  <MDBNavLink to="/user/profile" style={{ color: "black" }}>
+                    Profile
+                  </MDBNavLink>
+                  <b>{userName}</b>
+                </MDBDropdownItem>
+                <MDBDropdownItem divider />
+                <MDBDropdownItem>
+                  <MDBBtn size="sm" onClick={logout}>
+                    Logout
+                  </MDBBtn>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"} >
           <ul className="nav-menu-items" onClick={showSidebar}>
