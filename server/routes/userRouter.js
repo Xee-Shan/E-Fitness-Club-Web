@@ -213,24 +213,26 @@ router.post("/reset", async (req, res) => {
 //New Password
 router.post("/new/password", async (req, res) => {
   const { password, token } = req.body;
-
-  const user = await User.findOne({
+  await User.findOne({
     resetToken: token,
     expireToken: { $gt: Date.now() },
-  }).then((user) => {
-    if (!user) {
-      console.log("sasasasa");
-      //return res.status(400).json({ error: "Try again session expired" });
-    }
-    bcrypt.hash(password, 12).then((hashpassword) => {
-      user.password = hashpassword;
-      user.resetToken = undefined;
-      user.expireToken = undefined;
-      user.save().then((saveUser) => {
-        res.json({ message: "password updated success" });
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "Try again session expired" });
+      }
+      bcrypt.hash(password, 12).then((hashpassword) => {
+        user.password = hashpassword;
+        user.resetToken = undefined;
+        user.expireToken = undefined;
+        user.save().then((saveUser) => {
+          res.json({ message: "password updated success" });
+        });
       });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 });
 
 router.delete("/delete", auth, async (req, res) => {

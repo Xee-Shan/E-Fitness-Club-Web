@@ -13,6 +13,7 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
+  MDBIcon,
 } from "mdbreact";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -91,8 +92,8 @@ const Navbar = () => {
               </MDBNavLink>
             </MDBNavItem>
 
-            <MDBDropdown className="pink lighten-2">
-              <MDBDropdownToggle caret>settings</MDBDropdownToggle>
+            <MDBDropdown>
+              <MDBDropdownToggle caret>options</MDBDropdownToggle>
               <MDBDropdownMenu basic>
                 <MDBDropdownItem>
                   <MDBNavLink to="/user/profile" style={{ color: "black" }}>
