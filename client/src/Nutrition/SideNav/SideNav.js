@@ -15,7 +15,7 @@ function Navbar() {
 
   const logout = () => {
     localStorage.setItem("auth-token", "");
-    history.push("/nutrition/login");
+    history.push("/nutritionist/login");
   };
 
   return (

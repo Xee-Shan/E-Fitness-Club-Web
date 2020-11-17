@@ -53,6 +53,7 @@ import EditWorkout from "./trainer/EditWorkout";
 import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
+import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
 
 
 const App = () => {
@@ -102,6 +103,7 @@ const App = () => {
           <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
+          <Route path="/user/recipedetail" component={RecipeDetail} />
           <Route path="/shop" component={Shop} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

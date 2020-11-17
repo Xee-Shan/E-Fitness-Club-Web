@@ -1,3 +1,5 @@
+import BMI from "../home page components/Images/BMI.png"
+import BLOG from "../home page components/Images/Blog.jpg"
 import React from "react";
 import {
   MDBRow,
@@ -7,7 +9,6 @@ import {
   MDBMask,
   MDBIcon,
   MDBView,
-  MDBBtn
 } from "mdbreact";
 
 const Blog = () => {
@@ -19,101 +20,66 @@ const Blog = () => {
             Services We provide
           </h2>
           <p className="text-center w-responsive mx-auto mb-5">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            We provide quality services to the user like the live chat with the doctor and body mass index and blogs which help them in achiving their goals related to their fitness.
           </p>
           <MDBRow>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaVQjATNELyuRd7M0gTntI0jKatdlWSO79-Q&usqp=CAU"
+                  height="310px"
                   alt=""
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
               <a href="#!" className="pink-text">
-                <h6 className="font-weight-bold mb-3">
+                <h4 className="font-weight-bold mb-3">
                   <MDBIcon icon="map" className="pr-2" />
-                  Adventure
-                </h6>
+                  Live Chat
+                </h4>
               </a>
-              <h4 className="font-weight-bold mb-3">
-                <strong>Title of the news</strong>
-              </h4>
-              <p>
-                by{" "}
-                <a href="#!" className="font-weight-bold">
-                  Billy Forester
-                </a>
-                , 15/07/2018
-              </p>
               <p className="dark-grey-text">
-                Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                nihil impedit quo minus id quod maxime placeat facere possimus
-                voluptas.
+                Live Chat is the most important feature of our site in which the user can chat with the doctor directly and can doctor can take the queries of the users.
               </p>
             </MDBCol>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                  alt=""
+                  src={BMI}
+                  alt="BMI image"
+                  style={{height:"180px" ,width:"300px"}}
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
               <a href="#!" className="deep-orange-text">
-                <h6 className="font-weight-bold mb-3">
+                <h4 className="font-weight-bold mb-3">
                   <MDBIcon icon="graduation-cap" className="pr-2" />
-                  Education
-                </h6>
+                  BMI
+                </h4>
               </a>
-              <h4 className="font-weight-bold mb-3">
-                <strong>Title of the news</strong>
-              </h4>
-              <p>
-                by{" "}
-                <a href="#!" className="font-weight-bold">
-                  Billy Forester
-                </a>
-                , 13/07/2018
-              </p>
               <p className="dark-grey-text">
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                blanditiis voluptatum deleniti atque corrupti quos dolores.
+                BMI is one of the important feature of our site in which user can calculate his/her body mass index and can carry out diet plans accordingly.
               </p>
             </MDBCol>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src="https://mdbootstrap.com/img/Photos/Others/images/13.jpg"
-                  alt=""
+                  src={BLOG}
+                  alt="Blog Image"
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
               <a href="#!" className="blue-text">
-                <h6 className="font-weight-bold mb-3">
+                <h4 className="font-weight-bold mb-3">
                   <MDBIcon icon="fire" className="pr-2" />
-                  Culture
-                </h6>
+                  Blog
+                </h4>
               </a>
-              <h4 className="font-weight-bold mb-3">
-                <strong>Title of the news</strong>
-              </h4>
-              <p>
-                by{" "}
-                <a href="#!" className="font-weight-bold">
-                  Billy Forester
-                </a>
-                , 11/07/2018
-              </p>
               <p className="dark-grey-text">
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit, sed quia consequuntur magni dolores eos qui ratione.
+                A Blog is one of the biggest feature of our site in which user is provided by the blogs written by our trainers and nutritionist.
               </p>
             </MDBCol>
           </MDBRow>
