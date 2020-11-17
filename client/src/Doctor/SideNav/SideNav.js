@@ -5,14 +5,8 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./SideNav.css";
 import { IconContext } from "react-icons";
-import { FaUserAlt } from "react-icons/fa";
-<<<<<<< Updated upstream
 import { MDBBtn, MDBIcon } from "mdbreact";
 import history from "../../history/History";
-=======
-import { MDBBtn } from "mdbreact";
-import { useHistory } from "react-router-dom";
->>>>>>> Stashed changes
 import axios from "axios";
 import DoctorAuth from "../../auth/DoctorAuth";
 import {
@@ -28,11 +22,6 @@ function Navbar() {
   const [userName, setUserName] = useState("");
   const [room] = useState("hospital room");
 
-<<<<<<< Updated upstream
-=======
-  const history = useHistory();
-
->>>>>>> Stashed changes
   useEffect(() => {
     axios
       .get("http://localhost:5000/users/getUser", {
@@ -57,7 +46,6 @@ function Navbar() {
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-<<<<<<< Updated upstream
           <MDBDropdown>
             <MDBDropdownToggle color="#060B26">
               <MDBIcon far icon="user" size="2x" className="cyan-text" />
@@ -78,11 +66,6 @@ function Navbar() {
               </MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
-=======
-          <h2 style={{ fontFamily: "mono space", color: "white" }}>
-            {userName} <FaUserAlt />
-          </h2>
->>>>>>> Stashed changes
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>

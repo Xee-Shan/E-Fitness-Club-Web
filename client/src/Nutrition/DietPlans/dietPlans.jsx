@@ -4,7 +4,7 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 // import { useDispatch } from "react-redux";
 import axios from "axios";
 // import { updateProduct } from "../../actions/productAction";
-import history, { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SideNav from "../SideNav/SideNav";
 // import { DietPlan } from "../../../../server/models/dietPlan";
 
