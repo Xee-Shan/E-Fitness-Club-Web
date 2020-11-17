@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import history from "../../history/History";
+import history, { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";
@@ -13,6 +13,8 @@ const CreateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState();
+
+  const history = useHistory();
 
   const onChangeName = (e) => {
     setName(e.target.value);

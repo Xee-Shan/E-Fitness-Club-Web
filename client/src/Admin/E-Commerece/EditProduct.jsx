@@ -3,17 +3,19 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Admin from "../../auth/Admin";
-import history from "../../history/History";
+import history, { useHistory } from "react-router-dom";
 
 export default function EditProduct() {
   const product = useSelector((state) => state.product.newProduct);
-  
+
   const [name, setName] = useState(product.name);
   const [brand, setBrand] = useState(product.brand);
   const [price, setPrice] = useState(product.price);
   const [quantity, setQuantity] = useState(product.quantity);
   const [description, setDescription] = useState(product.description);
   const [category, setCategory] = useState(product.category);
+
+  const history = useHistory();
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -43,7 +45,9 @@ export default function EditProduct() {
       price: price,
       category: category,
     };
-    axios.put("http://localhost:5000/products/update/" + id, product,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
+    axios.put("http://localhost:5000/products/update/" + id, product, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    });
     history.push("/admin/product");
   };
   return (
@@ -58,7 +62,11 @@ export default function EditProduct() {
               </label>
               <MDBRow className="mb-4">
                 <MDBCol md="6">
-                  <img src={"http://localhost:5000/"+product.imageName} className="img-fluid" alt="" />
+                  <img
+                    src={"http://localhost:5000/" + product.imageName}
+                    className="img-fluid"
+                    alt=""
+                  />
                 </MDBCol>
               </MDBRow>
               <br />

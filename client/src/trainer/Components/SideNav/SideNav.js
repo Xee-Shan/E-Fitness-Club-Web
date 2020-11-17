@@ -5,10 +5,12 @@ import { SidebarData } from "./SidebarData";
 import "./SideNav.css";
 import { IconContext } from "react-icons";
 import { MDBBtn } from "mdbreact";
-import history from "../../../history/History";
+import { useHistory } from "react-router-dom";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+
+  const history = useHistory();
 
   const showSidebar = () => setSidebar(!sidebar);
 

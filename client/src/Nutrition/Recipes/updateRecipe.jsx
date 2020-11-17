@@ -138,7 +138,7 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
-import history from "../../history/History";
+import { useHistory } from "react-router-dom";
 
 const UpdateRecipe = () => {
   let [name, setName] = useState("");
@@ -147,6 +147,8 @@ const UpdateRecipe = () => {
   let [method, setMethod] = useState("");
   let [description, setDescription] = useState("");
   let [image, setImage] = useState();
+
+  const history = useHistory();
 
   const onChangeName = (e) => {
     setName(e.target.value);

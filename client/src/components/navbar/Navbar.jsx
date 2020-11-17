@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
-import {FaUserAlt} from "react-icons/fa";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -94,7 +93,7 @@ const Navbar = () => {
             </MDBNavItem>
 
             <MDBDropdown>
-              <MDBDropdownToggle ><FaUserAlt /></MDBDropdownToggle>
+              <MDBDropdownToggle caret>Options</MDBDropdownToggle>
               <MDBDropdownMenu basic>
                 <MDBDropdownItem>
                   <MDBNavLink to="/user/profile" style={{ color: "black" }}>

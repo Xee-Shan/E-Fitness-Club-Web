@@ -2,14 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "../components/navbar/Navbar";
 import Axios from "axios";
 import { useState } from "react";
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody,
-} from "mdbreact";
+import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
 
 const UserProfile = () => {
   const [user, setUser] = useState();
