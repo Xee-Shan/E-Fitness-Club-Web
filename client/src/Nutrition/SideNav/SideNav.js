@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./SideNav.css";
 import { IconContext } from "react-icons";
 import { MDBBtn } from "mdbreact";
-import history from "../../history/History";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+
+  const history = useHistory();
 
   const showSidebar = () => setSidebar(!sidebar);
 

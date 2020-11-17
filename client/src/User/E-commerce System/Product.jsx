@@ -9,11 +9,14 @@ import {
   MDBIcon,
   MDBView,
 } from "mdbreact";
-import history from "../../history/History";
 import Navbar from "../../components/navbar/Navbar";
+import { useHistory } from "react-router-dom";
 
 export default function Product() {
   const [product, setProduct] = useState();
+
+  const history = useHistory();
+
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/products/get", {

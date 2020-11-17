@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import history from "../history/History";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const UserAuth = (props) => {
+  const history = useHistory();
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
     if (token === "") {

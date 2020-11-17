@@ -8,10 +8,12 @@ import {
   MDBTableBody,
   MDBContainer,
 } from "mdbreact";
-import history from "../../../../history/History";
+import { useHistory } from "react-router-dom";
 
 const View = (props) => {
   const [data, setData] = useState([]);
+
+  const history = useHistory();
 
   const fetchProgramDetail = async () => {
     const res = await Axios.get(

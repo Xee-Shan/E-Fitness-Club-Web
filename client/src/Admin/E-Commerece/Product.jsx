@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MDBBtn } from "mdbreact";
-import { MDBTable, MDBTableBody, MDBTableHead,MDBContainer } from "mdbreact";
+import { MDBTable, MDBTableBody, MDBTableHead, MDBContainer } from "mdbreact";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { updateProduct } from "../../actions/productAction";
-import history from "../../history/History";
+import { useHistory } from "react-router-dom";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
 
 export default function Product() {
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -34,7 +35,7 @@ export default function Product() {
   };
   return (
     <Admin>
-      <SideNav/>
+      <SideNav />
       <MDBContainer>
         <h2>List of Products : </h2>
         {product.length === 0 ? (

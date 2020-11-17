@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
+import history from "./history/History";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import Axios from "axios";
-import history from "../src/history/History";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Bmi from "./components/pages/Bmi";
 import PageNotFound from "./components/pages/PageNotFound";
-import Workouts from "./components/pages/Workouts";
 import UserRecipes from "./User/Nutritionist/Recipes/Recipies";
 import DietPlan from "./components/pages/DietPlans";
-import Shop from "./components/pages/Shop";
 import Login from "./components/Forms/Login";
 import Register from "./components/Forms/Register";
 import Product from "./Admin/E-Commerece/Product";
@@ -54,7 +52,6 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 
-
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -95,14 +92,12 @@ const App = () => {
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
           <Route path="/pagenotfound" component={PageNotFound} />
-          <Route path="/workouts" component={Workouts} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
           <Route path="/dietplans/obese" component={Obese} />
           <Route path="/dietplans/normal" component={Normal} />
           <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
-          <Route path="/shop" component={Shop} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />

@@ -12,16 +12,18 @@ import {
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../../components/navbar/Navbar";
-import history from "../../history/History";
+import { useHistory } from "react-router-dom";
 
 const Program = () => {
   const [program, setProgram] = useState([]);
+
+  const history = useHistory();
 
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/training/get");
     setProgram(response.data);
   };
-  
+
   const btnClicked = (id) => {
     history.push("/user/programdetail/" + id);
   };

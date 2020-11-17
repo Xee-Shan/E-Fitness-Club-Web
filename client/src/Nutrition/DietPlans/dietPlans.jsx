@@ -4,15 +4,16 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 // import { useDispatch } from "react-redux";
 import axios from "axios";
 // import { updateProduct } from "../../actions/productAction";
-import history from "../../history/History";
-import SideNav from "../SideNav/SideNav" 
+import history, { useHistory } from "react-router-dom";
+import SideNav from "../SideNav/SideNav";
 // import { DietPlan } from "../../../../server/models/dietPlan";
 
 export default function Recipe() {
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   const [dietPlan, setDietPlan] = useState();
+  const history = useHistory();
+
   useEffect(() => {
-  
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/dietPlan/get");
       setDietPlan(response.data);
@@ -22,12 +23,14 @@ export default function Recipe() {
   }, []);
 
   function handleDelete(id) {
-    const value = window.confirm("Are you sure you want to delete this Diet Plan ?");
+    const value = window.confirm(
+      "Are you sure you want to delete this Diet Plan ?"
+    );
     if (value === true) {
-    axios.delete("http://localhost:5000/dietPlan/delete/" + id);
-    window.location.reload();
+      axios.delete("http://localhost:5000/dietPlan/delete/" + id);
+      window.location.reload();
+    }
   }
-}
 
   const handleEdit = (product) => {
     // dispatch(updateProduct(product));
@@ -35,8 +38,8 @@ export default function Recipe() {
   };
   return (
     <div>
-      <SideNav/>
-      <br/>
+      <SideNav />
+      <br />
       <h2>List of Diet Plans : </h2>
       {dietPlan?.length === 0 ? (
         <div>NOTHING TO DISPLAY YET...</div>

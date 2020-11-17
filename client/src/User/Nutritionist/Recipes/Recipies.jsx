@@ -12,16 +12,16 @@ import {
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../../../components/navbar/Navbar";
-import history from "../../../history/History";
+import { useHistory } from "react-router-dom";
 
 const Recipe = () => {
   const [recipe, setRecipe] = useState([]);
-
+  const history = useHistory();
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/recipes/get");
     setRecipe(response.data);
   };
-  
+
   const btnClicked = (id) => {
     history.push("/user/recipedetail/" + id);
   };
@@ -51,9 +51,7 @@ const Recipe = () => {
                   />
                   <MDBCardBody>
                     <MDBCardTitle>{recipe.name}</MDBCardTitle>
-                    <MDBCardText>
-                      Type: {recipe.type}
-                    </MDBCardText>
+                    <MDBCardText>Type: {recipe.type}</MDBCardText>
                     <MDBBtn onClick={() => btnClicked(recipe._id)}>
                       Details
                     </MDBBtn>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Axios from "axios";
 import Navbar from "../navbar/Navbar";
 import ErrorNotice from "../error/ErrorNotice";
-
 import {
   MDBContainer,
   MDBRow,
