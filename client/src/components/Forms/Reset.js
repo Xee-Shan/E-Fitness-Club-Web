@@ -48,13 +48,13 @@ const ResetPassword = () => {
             <MDBCard>
               <MDBCardBody>
                 <form>
+                  <p className="h3 text-center mb-4">Reset Password</p>
                   {error && (
                     <ErrorNotice
                       message={error}
                       clearError={() => setError(undefined)}
                     />
                   )}
-                  <p className="h3 text-center mb-4">Reset Password</p>
                   <div className="grey-text">
                     <MDBInput
                       label="Type your email"
