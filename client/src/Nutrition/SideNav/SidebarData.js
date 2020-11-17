@@ -1,5 +1,5 @@
 import React from "react";
-// import * as FaIcons from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 
@@ -13,7 +13,7 @@ export const SidebarData = [
   {
     title: "Add Diet Plans",
     path: "/nutritionist/create/dietPlan",
-    icon: <IoIcons.IoIosPaper />,
+    icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },
   {
@@ -25,7 +25,7 @@ export const SidebarData = [
   {
     title: "Add Recipies",
     path: "/nutritionist/create/recipe",
-    icon: <IoIcons.IoIosPaper />,
+    icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },
   {

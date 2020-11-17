@@ -2,27 +2,6 @@ const express = require("express");
 const { DietPlan } = require("../models/dietPlan");
 const router = express.Router();
 
-// const multer = require("multer");
-// const fs = require("fs");
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "uploadImages/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-//   fileFilter: function (req, file, cb) {
-//     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-//       cb(null, true);
-//     } else {
-//       cb(null, false);
-//     }
-//   },
-// });
-
-// const upload = multer({ storage: storage });
-
 //create Diet Plan
 
 router.post("/create", async (req, res) => {
@@ -31,9 +10,6 @@ router.post("/create", async (req, res) => {
     userType: req.body.userType,
     dietType: req.body.dietType,
     diet: req.body.diet,
-    // description: req.body.description,
-    // imageName: req.file.originalname,
-    // imagePath: req.file.path,
   });
   console.log(dietPlan);
   await dietPlan.save((err) => {
@@ -53,7 +29,6 @@ router.get("/get", async (req, res) => {
 //delete Diet Plan
 router.delete("/delete/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndDelete({ _id: req.params.id });
-    // console.log("file deleted from directory");
   });
 
 //update Diet Plan
@@ -63,7 +38,6 @@ router.put("/update/:id", async (req, res) => {
   dietPlan.userType = req.body.userType;
   dietPlan.dietType = req.body.dietType;
   dietPlan.diet = req.body.diet;
-//   recipe.description = req.body.description;
 
   await dietPlan.save();
 });
