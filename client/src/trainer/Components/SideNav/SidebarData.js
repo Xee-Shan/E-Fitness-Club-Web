@@ -26,4 +26,16 @@ export const SidebarData = [
     icon: <FaIcons.FaList />,
     cName: "nav-text",
   },
+  {
+    title: "Add Blog",
+    path: "/trainer/createblog",
+    icon: <FaIcons.FaPlusCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "All Blogs",
+    path: "/trainer/getblog",
+    icon: <FaIcons.FaTable />,
+    cName: "nav-text",
+  },
 ];

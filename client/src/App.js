@@ -52,6 +52,11 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
+import BlogDetail from "./components/Blog/BlogDetails";
+import CreateBlog from "./trainer/Components/Blog/CreateBlog";
+import GetBlog from "./trainer/Components/Blog/GetBlog";
+import Content from "./trainer/Components/Blog/Content";
+import Blogs from "./User/Blogs/Blog";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -92,6 +97,7 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
+          <Route path="/blogDetails" component={BlogDetail} />
           <Route path="/pagenotfound" component={PageNotFound} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
           <Route path="/dietplans/obese" component={Obese} />
@@ -99,6 +105,7 @@ const App = () => {
           <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
+          <Route path="/user/recipes" component={RecipeDetail} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />
@@ -148,6 +155,11 @@ const App = () => {
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/reset/password" component={ResetPassword} />
           <Route path="/new/password/:token" component={NewPassword} />
+          <Route path="/trainer/createblog" component={CreateBlog} />
+          <Route path="/trainer/getblog" component={GetBlog} />
+          <Route path="/user/blog" component={Blogs} />
+          <Route path="/trainer/addcontent/:id" component={Content} />
+
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
