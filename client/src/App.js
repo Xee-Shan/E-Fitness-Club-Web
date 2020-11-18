@@ -52,14 +52,11 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
-<<<<<<< Updated upstream
 import BlogDetail from "./components/Blog/BlogDetails";
-=======
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
 import Content from "./trainer/Components/Blog/Content";
 import Blogs from "./User/Blogs/Blog";
->>>>>>> Stashed changes
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -158,17 +155,10 @@ const App = () => {
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/reset/password" component={ResetPassword} />
           <Route path="/new/password/:token" component={NewPassword} />
-<<<<<<< Updated upstream
-          {/*<Route path="/trainer/createblog" component={CreateBlog}>*/}
-
-          {/*<Route path="/trainer/getblog" component={GetBlog} />*/}
-          {/*<Route path="/user/blog" component={Blogs} />*/}
-=======
           <Route path="/trainer/createblog" component={CreateBlog} />
           <Route path="/trainer/getblog" component={GetBlog} />
-          <Route path="/trainer/addcontent/:id" component={Content} />
           <Route path="/user/blog" component={Blogs} />
->>>>>>> Stashed changes
+          <Route path="/trainer/addcontent/:id" component={Content} />
 
           <Redirect to="/pagenotfound" />
         </Switch>

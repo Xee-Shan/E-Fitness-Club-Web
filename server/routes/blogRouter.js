@@ -36,11 +36,10 @@ router.post("/create", async (req, res) => {
 });
 
 //create Content
-router.post("/create/content", async (req, res) => {
-  const blog = new Blog(req.body);
-  console.log(blog);
-  await blog.save((err) => {
-    if (err) return res.status(400).json({ success: false, err });
+router.post("/create/content", (req, res) => {
+  let blog = new Blog({ content: req.body.content });
+  blog.save((err) => {
+    if (err) return res.json({ success: false, err });
     return res.status(200).json({ success: true });
   });
 });
