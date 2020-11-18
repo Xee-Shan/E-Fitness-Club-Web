@@ -45,6 +45,13 @@ export default function Employee() {
 
                   <td className="text-center">
                     <MDBBtn
+                      color="warning"
+                      size="sm"
+                      href={"/trainer/addcontent/" + data._id}
+                    >
+                      Content
+                    </MDBBtn>
+                    <MDBBtn
                       color="danger"
                       size="sm"
                       onClick={() => handleDelete(data._id)}

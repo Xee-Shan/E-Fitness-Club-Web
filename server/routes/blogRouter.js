@@ -4,36 +4,58 @@ const multer = require("multer");
 const fs = require("fs");
 const { Blog } = require("../models/blogModel");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploadImages/");
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
   },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
   },
-  fileFilter: function (req, file, cb) {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      cb(null, true);
-    } else {
-      cb(null, false);
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    if (ext !== ".jpg" && ext !== ".png" && ext !== ".mp4") {
+      return cb(res.status(400).end("only jpg, png, mp4 is allowed"), false);
     }
+    cb(null, true);
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }).single("file");
 
 //Create Blog
-router.post("/create", upload.single("image"), async (req, res) => {
+router.post("/create", async (req, res) => {
   const blog = new Blog({
     title: req.body.title,
-    author: req.body.author,
-    content: req.body.content,
     imageName: req.file.originalname,
     imagePath: req.file.path,
   });
   await blog.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
+  });
+});
+
+//create Content
+router.post("/create/content", async (req, res) => {
+  const blog = new Blog(req.body);
+  console.log(blog);
+  await blog.save((err) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
+});
+
+//upload Files
+router.post("/uploadfiles", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    return res.json({
+      success: true,
+      url: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
   });
 });
 
@@ -66,7 +88,6 @@ router.delete("/delete/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   const blog = await Blog.findByIdAndUpdate({ _id: req.params.id });
   blog.title = req.body.title;
-  blog.author = req.body.author;
   blog.content = req.body.content;
   blog.publish = req.body.publish;
   await blog.save();
