@@ -39,16 +39,24 @@ export default function Product() {
         ) : (
           product?.map((product, i) => (
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
-              <MDBView className="overlay rounded z-depth-1" waves>
+              <MDBView className="overlay rounded z-depth-1">
                 <div>
                   <img
                     src={"http://localhost:5000/" + product.imageName}
                     alt=""
                     className="img-fluid"
+                    style={{
+                      maxHeight: "25vw",
+                      minHeight: "25vw",
+                      maxWidth:"25vw",
+                      minWidth: "25vw"
+                    }}
                   />
                 </div>
               </MDBView>
-              <MDBCardBody className="pb-0">
+              <MDBCardBody className="pb-0" style={{
+              
+              boxSizing: "border-box",}}>
                 <h4 className="font-weight-bold my-3">{product.name}</h4>
                 <p className="grey-text">{product.brand}</p>
                 <b>${product.price}</b>
