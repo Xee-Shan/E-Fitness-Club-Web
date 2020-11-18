@@ -39,3 +39,4 @@ app.use("/recipes", require("./routes/recipe"));
 app.use("/dietPlan", require("./routes/dietPlan"));
 app.use("/training", require("./routes/trainingRouter"));
 app.use("/contact", require("./routes/contactFormRouter"));
+app.use("/blog", require("./routes/blogRouter"));

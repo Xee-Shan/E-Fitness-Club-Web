@@ -151,6 +151,10 @@ const App = () => {
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/reset/password" component={ResetPassword} />
           <Route path="/new/password/:token" component={NewPassword} />
+          <Route path="/trainer/createblog" component={CreateBlog} />
+          <Route path="/trainer/getblog" component={GetBlog} />
+          <Route path="/user/blog" component={Blogs} />
+
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
