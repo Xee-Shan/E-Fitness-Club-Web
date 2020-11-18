@@ -45,17 +45,17 @@ router.post("/create/content", (req, res) => {
 });
 
 //upload Files
-router.post("/uploadfiles", upload.single("image"),(req, res) => {
+router.post("/uploadfiles", upload.single("image"), (req, res) => {
   /*upload(req, res, (err) => {
     if (err) {
       return res.json({ success: false, err });
     }*/
-    return res.json({
-      success: true,
-      url: res.req.file.imagePath,
-      fileName: res.req.file.imageName,
-    });
+  return res.json({
+    success: true,
+    url: res.req.file.imagePath,
+    fileName: res.req.file.imageName,
   });
+});
 
 //Get Blog
 router.get("/get", async (req, res) => {
