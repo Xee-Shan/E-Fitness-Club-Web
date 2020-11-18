@@ -6,7 +6,7 @@ const { Blog } = require("../models/blogModel");
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploadImages/");
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}_${file.originalname}`);
