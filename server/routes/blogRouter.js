@@ -4,26 +4,26 @@ const multer = require("multer");
 const fs = require("fs");
 const { Blog } = require("../models/blogModel");
 
-let storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
     cb(null, "uploadImages/");
   },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
   },
-  fileFilter: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    if (ext !== ".jpg" && ext !== ".png" && ext !== ".mp4") {
-      return cb(res.status(400).end("only jpg, png, mp4 is allowed"), false);
+  fileFilter: function (req, file, cb) {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      cb(null, true);
+    } else {
+      cb(null, false);
     }
-    cb(null, true);
   },
 });
 
-const upload = multer({ storage: storage }).single("file");
+const upload = multer({ storage: storage });
 
 //Create Blog
-router.post("/create", async (req, res) => {
+router.post("/create", upload.single("image"), async (req, res) => {
   const blog = new Blog({
     title: req.body.title,
     imageName: req.file.originalname,
@@ -52,8 +52,8 @@ router.post("/uploadfiles", (req, res) => {
     }
     return res.json({
       success: true,
-      url: res.req.file.path,
-      fileName: res.req.file.filename,
+      url: res.req.file.imagePath,
+      fileName: res.req.file.imageName,
     });
   });
 });
