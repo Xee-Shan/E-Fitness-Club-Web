@@ -35,7 +35,7 @@ router.post("/create", upload.single("image"), auth,admin,async (req, res) => {
     description: req.body.description,
     category: req.body.category,
     imageName: req.file.originalname,
-    imagePath: req.file.path,
+    imagePath: req.file.path
   });
   await product.save((err) => {
     if (err) return res.status(400).json({ success: false, err });

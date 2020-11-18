@@ -284,6 +284,7 @@ router.get("/getUser", auth, async (req, res) => {
   });
 });
 
+
 //get all employees
 router.get("/get/employee", auth, admin, async (req, res) => {
   let employee = [];
@@ -302,6 +303,9 @@ router.get("/get/employee", auth, admin, async (req, res) => {
 router.delete("/delete/employee/:id", auth, admin, async (req, res) => {
   await User.findByIdAndDelete({ _id: req.params.id });
 });
+
+
+
 
 //add to Cart
 router.post("/addToCart/:myQuantity", auth, async (req, res) => {
