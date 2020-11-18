@@ -52,6 +52,9 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
+import CreateBlog from "./trainer/Components/Blog/CreateBlog";
+import GetBlog from "./trainer/Components/Blog/GetBlog";
+import Blogs from "./User/Blogs/Blog";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -148,6 +151,10 @@ const App = () => {
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/reset/password" component={ResetPassword} />
           <Route path="/new/password/:token" component={NewPassword} />
+          <Route path="/trainer/createblog" component={CreateBlog} />
+          <Route path="/trainer/getblog" component={GetBlog} />
+          <Route path="/user/blog" component={Blogs} />
+
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
