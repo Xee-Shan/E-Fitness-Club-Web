@@ -61,6 +61,9 @@ const Navbar = () => {
             <MDBNavItem>
               <MDBNavLink to="/bmi">BMI</MDBNavLink>
             </MDBNavItem>
+            {/* <MDBNavItem>
+              <MDBNavLink to="/blog">BLOG</MDBNavLink>
+            </MDBNavItem> */}
           </>
         ) : (
           <>
@@ -76,6 +79,9 @@ const Navbar = () => {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/bmi">BMI</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/blogDetails">BLOG</MDBNavLink>
             </MDBNavItem>
           </>
         )}

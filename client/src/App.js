@@ -52,6 +52,7 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
+import BlogDetail from "./components/Blog/BlogDetails";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -92,6 +93,7 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
+          <Route path="/blogDetails" component={BlogDetail} />
           <Route path="/pagenotfound" component={PageNotFound} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
           <Route path="/dietplans/obese" component={Obese} />
@@ -99,6 +101,7 @@ const App = () => {
           <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
+          <Route path="/user/recipes" component={RecipeDetail} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />
