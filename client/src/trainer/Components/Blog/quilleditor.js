@@ -313,11 +313,11 @@ class QuillEditor extends React.Component {
         if (response.data.success) {
           const quill = this.reactQuillRef.getEditor();
           quill.focus();
-
+          console.log(response.data.url);
           let range = quill.getSelection();
           let position = range ? range.index : 0;
           quill.insertEmbed(position, "video", {
-            src: "http://localhost:5000/" + response.data.url,
+            src: "http://localhost:5000/" + response.data.fileName,
             title: response.data.fileName,
           });
           quill.setSelection(position + 1);
