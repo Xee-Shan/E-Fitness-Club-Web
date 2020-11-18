@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./SideNav.css";
 import { IconContext } from "react-icons";
+import { FaUserAlt } from "react-icons/fa";
 import { MDBBtn, MDBIcon } from "mdbreact";
 import history from "../../history/History";
 import axios from "axios";
