@@ -10,6 +10,11 @@ const CreatePrograms = () => {
   const [image, setImage] = useState();
   const [content, setContent] = useState("");
 
+  const onChangeEditor = (event, editor) => {
+    const data = editor.getData();
+    setContent(data);
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -62,10 +67,7 @@ const CreatePrograms = () => {
                 <CKEditor
                   editor={ClassicEditor}
                   data={content}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setContent(data);
-                  }}
+                  onChange={onChangeEditor}
                 />
               </div>
               <br />

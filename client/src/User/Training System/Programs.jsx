@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import {
-  MDBRow,
-  MDBCol,
-  MDBCardBody,
-  MDBBtn,
-  MDBCard,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBContainer,
-} from "mdbreact";
+import GetPrograms from "./GetPrograms";
 import Navbar from "../../components/navbar/Navbar";
-import { useHistory } from "react-router-dom";
+import Pagination from "../Pagination/ProgramsPagination";
+import { MDBContainer } from "mdbreact";
 
 const Program = () => {
   const [program, setProgram] = useState([]);
-
-  const history = useHistory();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [programsPerPage] = useState(3);
 
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/training/get");
     setProgram(response.data);
   };
 
-  const btnClicked = (id) => {
-    history.push("/user/programdetail/" + id);
+  const indexOfLastProgram = currentPage * programsPerPage;
+  const indexOfFirstProgram = indexOfLastProgram - programsPerPage;
+  const currentPrograms = program.slice(
+    indexOfFirstProgram,
+    indexOfLastProgram
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
@@ -38,35 +36,14 @@ const Program = () => {
       <br />
       <p className="h1 text-center mb-4">Men Workout Plans </p>
       <br />
-      <MDBContainer className="text-center">
-        <MDBRow>
-          {program?.length === 0 ? (
-            <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
-          ) : (
-            program?.map((program, i) => (
-              <MDBCol md="4" key={i}>
-                <MDBCard style={{ width: "22rem" }}>
-                  <MDBCardImage
-                    className="img-fluid"
-                    src={"http://localhost:5000/" + program.imageName}
-                    waves
-                  />
-                  <MDBCardBody>
-                    <MDBCardTitle>{program.title}</MDBCardTitle>
-                    <MDBCardText>
-                      Target Areas: {program.targetArea}
-                    </MDBCardText>
-                    <MDBCardText>Equipments: {program.equipment}</MDBCardText>
-                    <MDBBtn onClick={() => btnClicked(program._id)}>
-                      Details
-                    </MDBBtn>
-                  </MDBCardBody>
-                </MDBCard>
-                <br />
-              </MDBCol>
-            ))
-          )}
-        </MDBRow>
+      <GetPrograms program={currentPrograms} />
+      <br />
+      <MDBContainer>
+        <Pagination
+          programsPerPage={programsPerPage}
+          totalPrograms={program.length}
+          paginate={paginate}
+        />
       </MDBContainer>
     </>
   );

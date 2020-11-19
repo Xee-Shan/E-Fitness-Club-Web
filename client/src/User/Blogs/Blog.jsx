@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import {
-  MDBRow,
-  MDBCol,
-  MDBCardBody,
-  MDBBtn,
-  MDBCard,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBContainer,
-} from "mdbreact";
 import Navbar from "../../components/navbar/Navbar";
-import { useHistory } from "react-router-dom";
+import GetBlogs from "./GetBlogs";
+import Pagination from "../Pagination/BlogsPagination";
+import { MDBContainer } from "mdbreact";
 
-const Program = () => {
+const Blog = () => {
   const [blog, setBlog] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [blogsPerpage] = useState(3);
 
-  const history = useHistory();
+  const indexOfLastBlog = currentPage * blogsPerpage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerpage;
+  const currentBlogs = blog.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/blog/get");
     console.log(response.data);
     setBlog(response.data);
-  };
-
-  const btnClicked = (id) => {
-    history.push("/user/blogdetail/" + id);
   };
 
   useEffect(() => {
@@ -36,37 +32,19 @@ const Program = () => {
     <>
       <Navbar />
       <br />
-      <p className="h1 text-center mb-4">All Blogs </p>
+      <p className="h1 text-center">All Blogs</p>
       <br />
-      <MDBContainer className="text-center">
-        <MDBRow>
-          {blog?.length === 0 ? (
-            <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
-          ) : (
-            blog?.map((data, i) => (
-              <MDBCol md="4" key={i}>
-                <MDBCard style={{ width: "22rem" }}>
-                  <MDBCardImage
-                    className="img-fluid"
-                    src={"http://localhost:5000/" + data.imageName}
-                    waves
-                  />
-                  <MDBCardBody>
-                    <MDBCardTitle>{data.title}</MDBCardTitle>
-
-                    <MDBBtn onClick={() => btnClicked(data._id)}>
-                      Details
-                    </MDBBtn>
-                  </MDBCardBody>
-                </MDBCard>
-                <br />
-              </MDBCol>
-            ))
-          )}
-        </MDBRow>
+      <GetBlogs blog={currentBlogs} />
+      <br />
+      <MDBContainer>
+        <Pagination
+          blogsPerPage={blogsPerpage}
+          totalBlogs={blog.length}
+          paginate={paginate}
+        />
       </MDBContainer>
     </>
   );
 };
 
-export default Program;
+export default Blog;
