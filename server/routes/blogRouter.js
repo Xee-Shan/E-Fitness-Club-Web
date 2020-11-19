@@ -28,32 +28,11 @@ router.post("/create", upload.single("image"), async (req, res) => {
     title: req.body.title,
     imageName: req.file.originalname,
     imagePath: req.file.path,
+    content: req.body.content,
   });
   await blog.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
-  });
-});
-
-//create Content
-router.post("/create/content", (req, res) => {
-  let blog = new Blog({ content: req.body.content });
-  blog.save((err) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({ success: true });
-  });
-});
-
-//upload Files
-router.post("/uploadfiles", upload.single("image"), (req, res) => {
-  /*upload(req, res, (err) => {
-    if (err) {
-      return res.json({ success: false, err });
-    }*/
-  return res.json({
-    success: true,
-    url: res.req.file.imagePath,
-    fileName: res.req.file.imageName,
   });
 });
 

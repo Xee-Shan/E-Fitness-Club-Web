@@ -55,8 +55,8 @@ import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
 import BlogDetail from "./components/Blog/BlogDetails";
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
-import Content from "./trainer/Components/Blog/Content";
 import Blogs from "./User/Blogs/Blog";
+import BlogDetails from "./User/Blogs/BlogDetail";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -158,7 +158,7 @@ const App = () => {
           <Route path="/trainer/createblog" component={CreateBlog} />
           <Route path="/trainer/getblog" component={GetBlog} />
           <Route path="/user/blog" component={Blogs} />
-          <Route path="/trainer/addcontent/:id" component={Content} />
+          <Route path="/user/blogdetail/:id" component={BlogDetails} />
 
           <Redirect to="/pagenotfound" />
         </Switch>

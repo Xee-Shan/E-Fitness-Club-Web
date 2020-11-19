@@ -25,7 +25,8 @@ export default function Employee() {
       <SideNav />
       <MDBContainer>
         <br />
-        <h2>List of Blogs : </h2>
+        <p className=" h1 text-center">Blog List </p>
+        <br />
         {blog?.length === 0 ? (
           <h2>No Blog added yet...</h2>
         ) : (
@@ -44,13 +45,6 @@ export default function Employee() {
                   <td className="text-center">{data.title}</td>
 
                   <td className="text-center">
-                    <MDBBtn
-                      color="warning"
-                      size="sm"
-                      href={"/trainer/addcontent/" + data._id}
-                    >
-                      Content
-                    </MDBBtn>
                     <MDBBtn
                       color="danger"
                       size="sm"

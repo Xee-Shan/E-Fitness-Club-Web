@@ -8,7 +8,6 @@ import {
   MDBCard,
   MDBCardImage,
   MDBCardTitle,
-  MDBCardText,
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../../components/navbar/Navbar";
@@ -21,11 +20,12 @@ const Program = () => {
 
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/blog/get");
+    console.log(response.data);
     setBlog(response.data);
   };
 
   const btnClicked = (id) => {
-    history.push("/user/programdetail/" + id);
+    history.push("/user/blogdetail/" + id);
   };
 
   useEffect(() => {
@@ -54,9 +54,12 @@ const Program = () => {
                   <MDBCardBody>
                     <MDBCardTitle>{data.title}</MDBCardTitle>
 
-                    <MDBBtn onClick={() => btnClicked()}>Details</MDBBtn>
+                    <MDBBtn onClick={() => btnClicked(data._id)}>
+                      Details
+                    </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
+                <br />
               </MDBCol>
             ))
           )}
