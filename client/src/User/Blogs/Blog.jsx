@@ -3,7 +3,7 @@ import Axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import GetBlogs from "./GetBlogs";
 import Pagination from "../Pagination/BlogsPagination";
-import { MDBContainer } from "mdbreact";
+import { MDBCol, MDBContainer, MDBInput, MDBRow } from "mdbreact";
 
 const Blog = () => {
   const [blog, setBlog] = useState([]);
@@ -20,7 +20,6 @@ const Blog = () => {
 
   const fetchData = async () => {
     const response = await Axios.get("http://localhost:5000/blog/get");
-    console.log(response.data);
     setBlog(response.data);
   };
 
