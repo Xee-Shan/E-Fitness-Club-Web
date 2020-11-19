@@ -52,7 +52,7 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
-import BlogDetail from "./components/Blog/BlogDetails";
+
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
 import Blogs from "./User/Blogs/Blog";
@@ -97,7 +97,6 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
-          <Route path="/blogDetails" component={BlogDetail} />
           <Route path="/pagenotfound" component={PageNotFound} />
           <Route path="/dietplans/underWeight" component={UnderWeight} />
           <Route path="/dietplans/obese" component={Obese} />
