@@ -83,9 +83,6 @@ const Navbar = () => {
             <MDBNavItem>
               <MDBNavLink to="/bmi">BMI</MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/blogDetails">BLOG</MDBNavLink>
-            </MDBNavItem>
           </>
         )}
       </MDBNavbarNav>

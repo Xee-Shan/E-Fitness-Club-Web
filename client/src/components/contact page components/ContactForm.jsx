@@ -41,7 +41,15 @@ const Contactform = () => {
         subject: subject,
         message: message,
       };
-      await Axios.post("http://localhost:5000/contact/form", data);
+      await Axios.post("http://localhost:5000/contact/form", data).then(
+        (res) => {
+          if (res.data.success) {
+            console.log("hello world");
+            window.alert("Message Sent");
+            window.location.reload();
+          }
+        }
+      );
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }

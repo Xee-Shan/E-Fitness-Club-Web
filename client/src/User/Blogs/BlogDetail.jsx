@@ -29,7 +29,6 @@ const BlogDetail = (props) => {
             <img
               src={"http://localhost:5000/" + blog?.imageName}
               className="img-fluid z-depth-1"
-              alt=""
             />
           </MDBCol>
         </MDBRow>
