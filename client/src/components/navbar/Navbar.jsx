@@ -14,7 +14,6 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBIcon,
 } from "mdbreact";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -75,7 +74,6 @@ const Navbar = () => {
            <MDBDropdownMenu basic>
                 <MDBDropdownItem header>Categories</MDBDropdownItem>
               {category.map((data,i)=>{
-                console.log(data);
                return(
                 
                <MDBDropdownItem key={i}><a href={"/user/productCategory/"+data.category}>{data.category}</a></MDBDropdownItem>
