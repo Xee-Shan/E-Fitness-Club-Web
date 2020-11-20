@@ -7,7 +7,6 @@ import { updateProduct } from "../../actions/productAction";
 import { useHistory } from "react-router-dom";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
-import { MDBCol, MDBInput } from "mdbreact";
 
 export default function Product() {
   const dispatch = useDispatch();
@@ -45,15 +44,6 @@ export default function Product() {
         {product.length === 0 ? (
           <h2>No Products yet...</h2>
         ) : (
-          <>
-          <MDBCol md="3">
-          <MDBInput
-            type="text"
-            label="Search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
-        </MDBCol>
           <MDBTable bordered>
             <MDBTableHead color="primary-color" textWhite>
               <tr>
@@ -90,7 +80,6 @@ export default function Product() {
               </MDBTableBody>
             ))}
           </MDBTable>
-          </>
         )}
       </MDBContainer>
     </Admin>
