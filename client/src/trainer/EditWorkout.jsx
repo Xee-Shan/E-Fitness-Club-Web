@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { MDBBtn } from "mdbreact";
+import TrainerAuth from "../auth/TrainerAuth";
 
 export default function EditSchedule(props) {
   const [exercise, setExercise] = useState();
@@ -38,43 +39,45 @@ export default function EditSchedule(props) {
     );
   };
   return (
-    <div>
-      <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-        Exercise
-      </label>
-      <input
-        type="text"
-        value={exercise}
-        onChange={(e) => setExercise(e.target.value)}
-        id="defaultFormRegisterNameEx"
-        className="form-control"
-        required
-      />
-      <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-        Sets
-      </label>
-      <input
-        type="text"
-        value={sets}
-        onChange={(e) => setSets(e.target.value)}
-        id="defaultFormRegisterNameEx"
-        className="form-control"
-        required
-      />
-      <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-        Reps
-      </label>
-      <input
-        type="text"
-        value={reps}
-        onChange={(e) => setReps(e.target.value)}
-        id="defaultFormRegisterNameEx"
-        className="form-control"
-        required
-      />
-      <MDBBtn onClick={edit} color="unique" type="submit">
-        Edit
-      </MDBBtn>
-    </div>
+    <TrainerAuth>
+      <div>
+        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+          Exercise
+        </label>
+        <input
+          type="text"
+          value={exercise}
+          onChange={(e) => setExercise(e.target.value)}
+          id="defaultFormRegisterNameEx"
+          className="form-control"
+          required
+        />
+        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+          Sets
+        </label>
+        <input
+          type="text"
+          value={sets}
+          onChange={(e) => setSets(e.target.value)}
+          id="defaultFormRegisterNameEx"
+          className="form-control"
+          required
+        />
+        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+          Reps
+        </label>
+        <input
+          type="text"
+          value={reps}
+          onChange={(e) => setReps(e.target.value)}
+          id="defaultFormRegisterNameEx"
+          className="form-control"
+          required
+        />
+        <MDBBtn onClick={edit} color="unique" type="submit">
+          Edit
+        </MDBBtn>
+      </div>
+    </TrainerAuth>
   );
 }

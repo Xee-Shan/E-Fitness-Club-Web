@@ -4,6 +4,7 @@ import SideNav from "../SideNav/SideNav";
 import GetTrainee from "./GetTrainee";
 import Pagination from "../Pagination/traineePagnation";
 import { MDBCol, MDBContainer, MDBInput } from "mdbreact";
+import TrainerAuth from '../../../auth/TrainerAuth';
 
 const Program = () => {
   const [trainee, setTrainee] = useState([]);
@@ -41,6 +42,7 @@ const Program = () => {
   };
 
   return (
+    <TrainerAuth>
     <>
       <SideNav />
       <br />
@@ -64,6 +66,7 @@ const Program = () => {
         />
       </MDBContainer>
     </>
+    </TrainerAuth>
   );
 };
 

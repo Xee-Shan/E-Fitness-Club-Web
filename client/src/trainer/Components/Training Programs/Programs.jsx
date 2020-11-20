@@ -4,6 +4,7 @@ import SideNav from "../SideNav/SideNav";
 import GetPrograms from "./GetPrograms";
 import Pagination from "../Pagination/ProgramPagination";
 import { MDBCol, MDBContainer, MDBInput } from "mdbreact";
+import TrainerAuth from "../../../auth/TrainerAuth";
 
 const Program = () => {
   const [program, setProgram] = useState([]);
@@ -42,28 +43,30 @@ const Program = () => {
   };
 
   return (
-    <>
-      <SideNav />
-      <br />
-      <MDBContainer>
-        <p className="h1 text-center mb-4">Program List</p>
-        <MDBCol md="3">
-          <MDBInput
-            type="text"
-            label="Search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
-        </MDBCol>
+    <TrainerAuth>
+      <>
+        <SideNav />
         <br />
-        <GetPrograms program={search(currentprograms)} />
-        <Pagination
-          programPerPage={programPerpage}
-          totalPrograms={program.length}
-          paginate={paginate}
-        />
-      </MDBContainer>
-    </>
+        <MDBContainer>
+          <p className="h1 text-center mb-4">Program List</p>
+          <MDBCol md="3">
+            <MDBInput
+              type="text"
+              label="Search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </MDBCol>
+          <br />
+          <GetPrograms program={search(currentprograms)} />
+          <Pagination
+            programPerPage={programPerpage}
+            totalPrograms={program.length}
+            paginate={paginate}
+          />
+        </MDBContainer>
+      </>
+    </TrainerAuth>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
 import SideNav from "../../SideNav/SideNav";
+import TrainerAuth from "../../../../auth/TrainerAuth";
 
 const AddWorkout = (props) => {
   const [inputFields, setInputFields] = useState([
@@ -35,57 +36,59 @@ const AddWorkout = (props) => {
   };
 
   return (
-    <>
-      <SideNav />
-      <br />
-      <MDBContainer>
-        <h1>Add Complete Workout</h1>
-        <form>
-          {inputFields.map((inputField, index) => (
-            <div key={index}>
-              <MDBRow>
-                <MDBCol md="3">
-                  <MDBInput
-                    name="exerciseName"
-                    type="text"
-                    label="Exercise Name"
-                    value={inputField.exerciseName}
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
-                </MDBCol>
-                <MDBCol md="3">
-                  <MDBInput
-                    name="sets"
-                    type="text"
-                    label="Enter Sets"
-                    value={inputField.sets}
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
-                </MDBCol>
-                <MDBCol md="3">
-                  <MDBInput
-                    name="reps"
-                    type="text"
-                    label="Enter Reps"
-                    value={inputField.reps}
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
-                </MDBCol>
-                <MDBCol md="3">
-                  <MDBBtn onClick={() => handleRemoveFields(index)} size="sm">
-                    -
-                  </MDBBtn>
-                  <MDBBtn onClick={() => handleAddFields()} size="sm">
-                    +
-                  </MDBBtn>
-                </MDBCol>
-              </MDBRow>
-            </div>
-          ))}
-          <MDBBtn onClick={handleSubmit}>Send</MDBBtn>
-        </form>
-      </MDBContainer>
-    </>
+    <TrainerAuth>
+      <>
+        <SideNav />
+        <br />
+        <MDBContainer>
+          <h1>Add Complete Workout</h1>
+          <form>
+            {inputFields.map((inputField, index) => (
+              <div key={index}>
+                <MDBRow>
+                  <MDBCol md="3">
+                    <MDBInput
+                      name="exerciseName"
+                      type="text"
+                      label="Exercise Name"
+                      value={inputField.exerciseName}
+                      onChange={(event) => handleChangeInput(index, event)}
+                    />
+                  </MDBCol>
+                  <MDBCol md="3">
+                    <MDBInput
+                      name="sets"
+                      type="text"
+                      label="Enter Sets"
+                      value={inputField.sets}
+                      onChange={(event) => handleChangeInput(index, event)}
+                    />
+                  </MDBCol>
+                  <MDBCol md="3">
+                    <MDBInput
+                      name="reps"
+                      type="text"
+                      label="Enter Reps"
+                      value={inputField.reps}
+                      onChange={(event) => handleChangeInput(index, event)}
+                    />
+                  </MDBCol>
+                  <MDBCol md="3">
+                    <MDBBtn onClick={() => handleRemoveFields(index)} size="sm">
+                      -
+                    </MDBBtn>
+                    <MDBBtn onClick={() => handleAddFields()} size="sm">
+                      +
+                    </MDBBtn>
+                  </MDBCol>
+                </MDBRow>
+              </div>
+            ))}
+            <MDBBtn onClick={handleSubmit}>Send</MDBBtn>
+          </form>
+        </MDBContainer>
+      </>
+    </TrainerAuth>
   );
 };
 

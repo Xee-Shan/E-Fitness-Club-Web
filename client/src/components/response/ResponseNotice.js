@@ -1,8 +1,8 @@
 import React from "react";
 import Styles from "../../styles/styles.module.css";
-import { MDBBtn } from "mdbreact";
+import { MDBBtn, MDBAlert, MDBContainer } from "mdbreact";
 
-const ErrorNotice = (props) => {
+const ResponseNotice = (props) => {
   return (
     <div className={Styles.error}>
       <span>{props.message}</span>
@@ -13,4 +13,4 @@ const ErrorNotice = (props) => {
   );
 };
 
-export default ErrorNotice;
+export default ResponseNotice;

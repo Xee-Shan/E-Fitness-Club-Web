@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
+import ErrorNotice from "../error/ErrorNotice";
+import ResponseNotice from "../response/ResponseNotice";
 import {
   MDBContainer,
   MDBRow,
@@ -15,6 +17,8 @@ import {
 const NewPassword = () => {
   const [password, setPassword] = useState();
   const { token } = useParams();
+  const [error, setError] = useState();
+  const [response, setResponse] = useState();
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
@@ -28,9 +32,15 @@ const NewPassword = () => {
         token: token,
       };
       console.log(token);
-      await Axios.post("http://localhost:5000/users/new/password", data);
-    } catch (error) {
-      console.log(error);
+      await Axios.post("http://localhost:5000/users/new/password", data).then(
+        (res) => {
+          if (res.data.msg) {
+            setResponse(res.data.msg);
+          }
+        }
+      );
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -44,6 +54,7 @@ const NewPassword = () => {
       <br />
       <br />
       <MDBContainer>
+        {response && <ResponseNotice message={response} />}
         <MDBRow>
           <MDBCol md="2"></MDBCol>
           <MDBCol md="8">
@@ -51,6 +62,12 @@ const NewPassword = () => {
               <MDBCardBody>
                 <form>
                   <p className="h3 text-center mb-4">Create New Password</p>
+                  {error && (
+                    <ErrorNotice
+                      message={error}
+                      clearError={() => setError(undefined)}
+                    />
+                  )}
                   <div className="grey-text">
                     <MDBInput
                       label="Enter Password"

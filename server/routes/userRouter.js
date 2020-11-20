@@ -43,45 +43,45 @@ router.post("/register", async (req, res) => {
       !phoneNumber ||
       !address
     )
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+      return res.status(400).json({ msg: "Not all fields have been entered" });
 
     var valid = emailRegex.test(email);
-    if (!valid) res.status(400).json({ msg: "Please enter correct email." });
+    if (!valid) res.status(400).json({ msg: "Please enter correct email" });
 
     const existingUser = await User.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
+        .json({ msg: "An account with this email already exists" });
 
     if (userName.length > 10)
       return res.status(400).json({
-        msg: "The username needs to be less than or equal to 10 character.",
+        msg: "The username needs to be less than or equal to 10 character",
       });
 
     const existingUserName = await User.findOne({ userName: userName });
     if (existingUserName)
       return res
         .status(400)
-        .json({ msg: "An Account with this username already exists." });
+        .json({ msg: "An Account with this username already exists" });
 
     if (password.length < 5)
       return res
         .status(400)
-        .json({ msg: "The password needs to be at least 5 characters long." });
+        .json({ msg: "The password needs to be at least 5 characters long" });
 
     if (password !== passwordCheck)
       return res
         .status(400)
-        .json({ msg: "Enter the same password twice for verification." });
+        .json({ msg: "Enter the same password twice for verification" });
 
     if (gender !== "Male" && gender !== "Female")
-      return res.status(400).json({ msg: "Please select correct gender." });
+      return res.status(400).json({ msg: "Please select correct gender" });
 
     if (phoneNumber.length !== 11)
       return res
         .status(400)
-        .json({ msg: "The phone number needs to be 11 digits long." });
+        .json({ msg: "The phone number needs to be 11 digits long" });
 
     const existingPhoneNumber = await User.findOne({
       phoneNumber: phoneNumber,
@@ -89,7 +89,7 @@ router.post("/register", async (req, res) => {
     if (existingPhoneNumber)
       return res
         .status(400)
-        .json({ msg: "An account with this phone number already exists." });
+        .json({ msg: "An account with this phone number already exists" });
 
     let duplicatePassword = password;
     const salt = await bcrypt.genSalt();
@@ -140,19 +140,19 @@ router.post("/login", async (req, res) => {
   //validate
   try {
     if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+      return res.status(400).json({ msg: "Not all fields have been entered" });
 
     var valid = emailRegex.test(email);
-    if (!valid) res.status(400).json({ msg: "Please enter correct email." });
+    if (!valid) res.status(400).json({ msg: "Please enter correct email" });
 
     const user = await User.findOne({ email: email });
     if (!user)
       return res
         .status(400)
-        .json({ msg: "No account with this email has been registered." });
+        .json({ msg: "No account with this email has been registered" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials.." });
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id }, process.env.jwt_Secret);
     res.json({
@@ -174,12 +174,12 @@ router.post("/reset", async (req, res) => {
   var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
   if (!email) {
-    return res.status(400).json({ msg: "Please enter your email." });
+    return res.status(400).json({ msg: "Please enter your email" });
   }
 
   var valid = emailRegex.test(email);
   if (!valid) {
-    return res.status(400).json({ msg: "Please enter correct email." });
+    return res.status(400).json({ msg: "Please enter correct email" });
   }
 
   crypto.randomBytes(32, (err, buffer) => {
@@ -191,7 +191,7 @@ router.post("/reset", async (req, res) => {
       if (!user) {
         return res
           .status(400)
-          .json({ msg: "User do not exist with this email." });
+          .json({ msg: "User do not exist with this email" });
       }
       user.resetToken = token;
       user.expireToken = Date.now() + 3600000;
@@ -204,7 +204,7 @@ router.post("/reset", async (req, res) => {
           <h5>Click on the <a href="http://localhost:3000/new/password/${token}">Link</a> to Reset Your Password</h5>
           `,
         });
-        res.json({ message: "Check your email." });
+        res.json({ msg: "Check your email" });
       });
     });
   });
@@ -213,20 +213,23 @@ router.post("/reset", async (req, res) => {
 //New Password
 router.post("/new/password", async (req, res) => {
   const { password, token } = req.body;
+  if (!password) {
+    res.status(400).json({ msg: "Please enter your new password" });
+  }
   await User.findOne({
     resetToken: token,
     expireToken: { $gt: Date.now() },
   })
     .then((user) => {
       if (!user) {
-        return res.status(400).json({ error: "Try again session expired" });
+        return res.status(400).json({ msg: "Try again session expired" });
       }
       bcrypt.hash(password, 12).then((hashpassword) => {
         user.password = hashpassword;
         user.resetToken = undefined;
         user.expireToken = undefined;
         user.save().then((saveUser) => {
-          res.json({ message: "password updated success" });
+          res.json({ msg: "Your password is updated" });
         });
       });
     })
@@ -284,7 +287,6 @@ router.get("/getUser", auth, async (req, res) => {
   });
 });
 
-
 //get all employees
 router.get("/get/employee", auth, admin, async (req, res) => {
   let employee = [];
@@ -303,9 +305,6 @@ router.get("/get/employee", auth, admin, async (req, res) => {
 router.delete("/delete/employee/:id", auth, admin, async (req, res) => {
   await User.findByIdAndDelete({ _id: req.params.id });
 });
-
-
-
 
 //add to Cart
 router.post("/addToCart/:myQuantity", auth, async (req, res) => {

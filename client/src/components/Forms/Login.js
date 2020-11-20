@@ -13,11 +13,13 @@ import {
   MDBCardBody,
 } from "mdbreact";
 import Navbar from "../navbar/Navbar";
+import ResponseNotice from "../response/ResponseNotice";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
+  const [response, setResponse] = useState();
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -34,19 +36,46 @@ const Login = () => {
         "http://localhost:5000/users/login",
         loginUser
       );
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
-      localStorage.setItem("auth-token", loginRes.data.token);
+
       if (loginRes.data.user.role === "admin") {
-        history.push("/admin/product");
+        setUserData({
+          token: undefined,
+          user: undefined,
+        });
+        setResponse("You are not Authorized");
       }
-      if (loginRes.data.user.role === "user") {
-        history.push("/user/product");
+
+      if (loginRes.data.user.role === "trainer") {
+        setUserData({
+          token: undefined,
+          user: undefined,
+        });
+        setResponse("You are not Authorized");
       }
+
+      if (loginRes.data.user.role === "Nutritionist") {
+        setUserData({
+          token: undefined,
+          user: undefined,
+        });
+        setResponse("You are not Authorized");
+      }
+
       if (loginRes.data.user.role === "physiatrist") {
-        history.push("/doctor/home");
+        setUserData({
+          token: undefined,
+          user: undefined,
+        });
+        setResponse("You are not Authorized");
+      }
+
+      if (loginRes.data.user.role === "user") {
+        setUserData({
+          token: loginRes.data.token,
+          user: loginRes.data.user,
+        });
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/user/program");
       }
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
@@ -62,6 +91,7 @@ const Login = () => {
       <br />
       <br />
       <br />
+
       <MDBContainer>
         <MDBRow>
           <MDBCol md="2"></MDBCol>
@@ -70,6 +100,12 @@ const Login = () => {
               <MDBCardBody>
                 <form>
                   <p className="h3 text-center mb-4">Login</p>
+                  {response && (
+                    <ResponseNotice
+                      message={response}
+                      clearError={() => setResponse(undefined)}
+                    />
+                  )}
                   {error && (
                     <ErrorNotice
                       message={error}

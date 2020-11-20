@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import Navbar from "../navbar/Navbar";
 import ErrorNotice from "../error/ErrorNotice";
+import ResponseNotice from "../response/ResponseNotice";
 import {
   MDBContainer,
   MDBRow,
@@ -15,6 +16,7 @@ import {
 const ResetPassword = () => {
   const [email, setEmail] = useState();
   const [error, setError] = useState();
+  const [response, setResponse] = useState();
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -26,7 +28,11 @@ const ResetPassword = () => {
       let data = {
         email: email,
       };
-      await Axios.post("http://localhost:5000/users/reset", data);
+      await Axios.post("http://localhost:5000/users/reset", data).then(
+        (res) => {
+          if (res.data.msg) setResponse(res.data.msg);
+        }
+      );
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
@@ -42,6 +48,7 @@ const ResetPassword = () => {
       <br />
       <br />
       <MDBContainer>
+        {response && <ResponseNotice message={response} />}
         <MDBRow>
           <MDBCol md="2"></MDBCol>
           <MDBCol md="8">
