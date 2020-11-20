@@ -8,7 +8,7 @@ import Contact from "./components/pages/Contact";
 import Bmi from "./components/pages/Bmi";
 import PageNotFound from "./components/pages/PageNotFound";
 import UserRecipes from "./User/Nutritionist/Recipes/Recipies";
-import DietPlan from "./components/pages/DietPlans";
+import DietPlan from "./User/Nutritionist/DietPlans/dietPlan";
 import Login from "./components/Forms/Login";
 import Register from "./components/Forms/Register";
 import Product from "./Admin/E-Commerece/Product";
@@ -115,7 +115,10 @@ const App = () => {
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
-          <Route path="/user/productCategory/:category" component={ProductCategory} />
+          <Route
+            path="/user/productCategory/:category"
+            component={ProductCategory}
+          />
           {/*<Route path="/auth" component={UserAuth} />*/}
           <Route path="/nutritionist/create/recipe" component={CreateRecipe} />
           <Route path="/nutritionist/update/recipe" component={UpdateRecipe} />

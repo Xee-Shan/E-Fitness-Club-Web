@@ -1,4 +1,4 @@
-import React, { useContext,useEffect,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
@@ -33,24 +33,24 @@ const Navbar = () => {
     history.push("/");
   };
 
+  const [category, setCategories] = useState([]);
 
-  const [category,setCategories]=useState([]);
-
-  useEffect(()=>{
+  useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/products/get/category", {
-        headers: { "x-auth-token": localStorage.getItem("auth-token") },
-      });
+      const response = await axios.get(
+        "http://localhost:5000/products/get/category",
+        {
+          headers: { "x-auth-token": localStorage.getItem("auth-token") },
+        }
+      );
       setCategories(response.data);
     }
     fetchData();
-  },[]);
+  }, []);
   return (
     <MDBNavbar color="pink accent-2" dark expand="md">
       <MDBNavbarBrand>
-        <MDBNavLink to="/">
-          <strong className="white-text">E-Fitness Club</strong>
-        </MDBNavLink>
+        <strong className="white-text">E-Fitness Club</strong>
       </MDBNavbarBrand>
 
       <MDBNavbarNav left>
@@ -66,6 +66,7 @@ const Navbar = () => {
               <MDBNavLink to="/user/recipes">RECIPIES </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
+<<<<<<< Updated upstream
             {category.length===0?null:(
             <MDBDropdown>
             <MDBDropdownToggle caret color="primary">
@@ -87,16 +88,36 @@ const Navbar = () => {
               </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
+=======
+              {category.length === 0 ? null : (
+                <MDBDropdown>
+                  <MDBDropdownToggle caret color="primary">
+                    <a href="/user/product">SHOP</a>
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu basic>
+                    <MDBDropdownItem header>Categories</MDBDropdownItem>
+                    {category.map((data, i) => {
+                      console.log(data);
+                      return (
+                        <MDBDropdownItem key={i}>
+                          <a href={"/user/productCategory/" + data.category}>
+                            {data.category}
+                          </a>
+                        </MDBDropdownItem>
+                      );
+                    })}
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              )}
+>>>>>>> Stashed changes
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/bmi">BMI</MDBNavLink>
+              <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
             </MDBNavItem>
+
             <MDBNavItem>
               <MDBNavLink to="/user/blog">BLOGS</MDBNavLink>
             </MDBNavItem>
-            {/* <MDBNavItem>
-              <MDBNavLink to="/blog">BLOG</MDBNavLink>
-            </MDBNavItem> */}
           </>
         ) : (
           <>

@@ -4,6 +4,7 @@ import GetPrograms from "./GetPrograms";
 import Navbar from "../../components/navbar/Navbar";
 import Pagination from "../Pagination/ProgramsPagination";
 import { MDBContainer } from "mdbreact";
+import UserAuth from "../../auth/UserAuth";
 
 const Program = () => {
   const [program, setProgram] = useState([]);
@@ -31,21 +32,23 @@ const Program = () => {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <br />
-      <p className="h1 text-center mb-4">Men Workout Plans </p>
-      <br />
-      <GetPrograms program={currentPrograms} />
-      <br />
-      <MDBContainer>
-        <Pagination
-          programsPerPage={programsPerPage}
-          totalPrograms={program.length}
-          paginate={paginate}
-        />
-      </MDBContainer>
-    </>
+    <UserAuth>
+      <>
+        <Navbar />
+        <br />
+        <p className="h1 text-center mb-4">Men Workout Plans </p>
+        <br />
+        <GetPrograms program={currentPrograms} />
+        <br />
+        <MDBContainer>
+          <Pagination
+            programsPerPage={programsPerPage}
+            totalPrograms={program.length}
+            paginate={paginate}
+          />
+        </MDBContainer>
+      </>
+    </UserAuth>
   );
 };
 

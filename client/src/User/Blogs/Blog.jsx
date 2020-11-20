@@ -3,7 +3,8 @@ import Axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import GetBlogs from "./GetBlogs";
 import Pagination from "../Pagination/BlogsPagination";
-import { MDBCol, MDBContainer, MDBInput, MDBRow } from "mdbreact";
+import { MDBContainer } from "mdbreact";
+import UserAuth from "../../auth/UserAuth";
 
 const Blog = () => {
   const [blog, setBlog] = useState([]);
@@ -28,21 +29,23 @@ const Blog = () => {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <br />
-      <p className="h1 text-center">All Blogs</p>
-      <br />
-      <GetBlogs blog={currentBlogs} />
-      <br />
-      <MDBContainer>
-        <Pagination
-          blogsPerPage={blogsPerpage}
-          totalBlogs={blog.length}
-          paginate={paginate}
-        />
-      </MDBContainer>
-    </>
+    <UserAuth>
+      <>
+        <Navbar />
+        <br />
+        <p className="h1 text-center">All Blogs</p>
+        <br />
+        <GetBlogs blog={currentBlogs} />
+        <br />
+        <MDBContainer>
+          <Pagination
+            blogsPerPage={blogsPerpage}
+            totalBlogs={blog.length}
+            paginate={paginate}
+          />
+        </MDBContainer>
+      </>
+    </UserAuth>
   );
 };
 
