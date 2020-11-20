@@ -66,7 +66,7 @@ const Navbar = () => {
               <MDBNavLink to="/user/recipes">RECIPIES </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-            {category.length===0?null:(
+            {category.length===0?<MDBNavLink to="/user/product">SHOP</MDBNavLink>:(
             <MDBDropdown>
             <MDBDropdownToggle caret color="primary">
            <a href="/user/product">SHOP</a>
