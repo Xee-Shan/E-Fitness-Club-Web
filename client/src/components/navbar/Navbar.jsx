@@ -66,29 +66,6 @@ const Navbar = () => {
               <MDBNavLink to="/user/recipes">RECIPIES </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-<<<<<<< Updated upstream
-            {category.length===0?null:(
-            <MDBDropdown>
-            <MDBDropdownToggle caret color="primary">
-           <a href="/user/product">SHOP</a>
-           </MDBDropdownToggle>
-           <MDBDropdownMenu basic>
-                <MDBDropdownItem header>Categories</MDBDropdownItem>
-              {category.map((data,i)=>{
-               return(
-                
-               <MDBDropdownItem key={i}><a href={"/user/productCategory/"+data.category}>{data.category}</a></MDBDropdownItem>
-               )
-              })
-            }
-                </MDBDropdownMenu>
-            </MDBDropdown>
-              )
-        }
-              </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
-=======
               {category.length === 0 ? null : (
                 <MDBDropdown>
                   <MDBDropdownToggle caret color="primary">
@@ -97,7 +74,6 @@ const Navbar = () => {
                   <MDBDropdownMenu basic>
                     <MDBDropdownItem header>Categories</MDBDropdownItem>
                     {category.map((data, i) => {
-                      console.log(data);
                       return (
                         <MDBDropdownItem key={i}>
                           <a href={"/user/productCategory/" + data.category}>
@@ -109,7 +85,9 @@ const Navbar = () => {
                   </MDBDropdownMenu>
                 </MDBDropdown>
               )}
->>>>>>> Stashed changes
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
