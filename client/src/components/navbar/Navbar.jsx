@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect,useState } from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import {
@@ -32,6 +33,19 @@ const Navbar = () => {
     localStorage.removeItem("item-count");
     history.push("/");
   };
+
+
+  const [category,setCategories]=useState([]);
+
+  useEffect(()=>{
+    async function fetchData() {
+      const response = await axios.get("http://localhost:5000/products/get/category", {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      });
+      setCategories(response.data);
+    }
+    fetchData();
+  },[]);
   return (
     <MDBNavbar color="pink accent-2" dark expand="md">
       <MDBNavbarBrand>
@@ -53,8 +67,26 @@ const Navbar = () => {
               <MDBNavLink to="/user/recipes">RECIPIES </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/user/product">SHOP</MDBNavLink>
-            </MDBNavItem>
+            {category.length===0?null:(
+            <MDBDropdown>
+            <MDBDropdownToggle caret color="primary">
+           <a href="/user/product">SHOP</a>
+           </MDBDropdownToggle>
+           <MDBDropdownMenu basic>
+                <MDBDropdownItem header>Categories</MDBDropdownItem>
+              {category.map((data,i)=>{
+                console.log(data);
+               return(
+                
+               <MDBDropdownItem key={i}><a href={"/user/productCategory/"+data.category}>{data.category}</a></MDBDropdownItem>
+               )
+              })
+            }
+                </MDBDropdownMenu>
+            </MDBDropdown>
+              )
+        }
+              </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
             </MDBNavItem>

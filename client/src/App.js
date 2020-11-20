@@ -52,6 +52,7 @@ import UserProfile from "./User/UserProfile";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
+import ProductCategory from "./User/E-commerce System/ProductCategory";
 
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
@@ -114,6 +115,7 @@ const App = () => {
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
+          <Route path="/user/productCategory/:category" component={ProductCategory} />
           {/*<Route path="/auth" component={UserAuth} />*/}
           <Route path="/nutritionist/create/recipe" component={CreateRecipe} />
           <Route path="/nutritionist/update/recipe" component={UpdateRecipe} />

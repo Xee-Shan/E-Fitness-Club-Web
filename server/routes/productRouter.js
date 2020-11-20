@@ -52,6 +52,27 @@ router.get("/get",auth, async (req, res) => {
   });
   
 });
+
+//get cateogries of Products
+router.get("/get/category",auth, async (req, res) => {
+
+  const category=await Product.find().select({category:1});
+  res.status(200).send(category);
+ 
+});
+
+
+
+//  get Product by category
+router.get("/get/productBy/:category",auth, async (req, res) => {
+
+  await Product.find({category:req.params.category},(err, doc) => {
+   if (err) res.status(400).send(err);
+   res.status(200).send(doc);
+ });
+ 
+});
+
 //get by Id
 router.get("/get/:id", async (req, res) => {
     await Product.findById(req.params.id).exec((err,doc)=>{
