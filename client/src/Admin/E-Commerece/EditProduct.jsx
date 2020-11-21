@@ -16,6 +16,7 @@ export default function EditProduct(props) {
   const [category, setCategory] = useState("");
   const [image,setImage]=useState();
   const [previewImage,setPreviewImage]=useState("");
+  const [cloudinaryId,setCloudinaryId]=useState("");
 
   
   useEffect(() => {
@@ -24,7 +25,6 @@ export default function EditProduct(props) {
       const response = await axios.get("http://localhost:5000/products/get/"+props.match.params.id, {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
-      console.log(response.data);
       setProductId(response.data._id);
       setName(response.data.name);
       setBrand(response.data.brand);
@@ -33,6 +33,7 @@ export default function EditProduct(props) {
       setDescription(response.data.description);
       setCategory(response.data.category);
       setPreviewImage(response.data.imageURL);
+      setCloudinaryId(response.data.cloudinary_id);
     }
     catch(err){
       console.log(err);
@@ -61,22 +62,28 @@ export default function EditProduct(props) {
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    setCloudinaryId("");
   };
   const onChangeCategory = (e) => {
     setCategory(e.target.value);
   };
 
   const btnClicked = (id) => {
-    const product = {
-      name: name,
-      brand: brand,
-      description: description,
-      quantity: quantity,
-      price: price,
-      category: category,
-    };
-    axios.put("http://localhost:5000/products/update/" + id, product, {
-      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    const formData=new FormData();
+    formData.append("image",image);
+    formData.append("description",description);
+    formData.append("name",name);
+    formData.append("category",category);
+    formData.append("price",price);
+    formData.append("quantity",quantity);
+    formData.append("brand",brand);
+    formData.append("cloudinary_id",cloudinaryId);
+
+    axios.put("http://localhost:5000/products/update/" + id, formData, {
+      headers: {
+         "x-auth-token": localStorage.getItem("auth-token"),
+         //'Content-Type': 'application/x-www-form-urlencoded'
+      }
     });
     history.push("/admin/product");
   };

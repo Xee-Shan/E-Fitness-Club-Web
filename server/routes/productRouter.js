@@ -110,9 +110,15 @@ router.delete("/delete/:id",auth,admin, async (req, res) => {
 });
 
 //update product
-router.put("/update/:id",auth,admin, async (req, res) => {
-  
+router.put("/update/:id",auth,admin,upload.single("image"), async (req, res) => {
+  try{
   const product = await Product.findByIdAndUpdate({ _id: req.params.id });
+  if(req.body.cloudinary_id===""){
+  await cloudinary.uploader.destroy(product.cloudinary_id);
+  const result= await cloudinary.uploader.upload(req.file.path);
+  product.imageURL=result.secure_url,
+  product.cloudinary_id=result.public_id
+  }
   product.name = req.body.name;
   product.brand = req.body.brand;
   product.category = req.body.category;
@@ -121,6 +127,9 @@ router.put("/update/:id",auth,admin, async (req, res) => {
   product.description = req.body.description;
 
   await product.save();
+  }catch(err){
+    console.log(err);
+  }
 });
 
 
