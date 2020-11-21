@@ -54,7 +54,12 @@ router.get("/get/:id", async (req, res) => {
 
 //Delete Blog by id
 router.delete("/delete/:id", async (req, res) => {
-  const blog = await Blog.findByIdAndDelete({ _id: req.params.id });
+  const blog = await Blog.findByIdAndDelete({ _id: req.params.id }).exec(
+    (err, doc) => {
+      if (err) res.status(400).send(err);
+      res.status(200).send(doc);
+    }
+  );
   fs.unlink(blog.imagePath, (err) => {
     if (err) console.log(err);
     console.log("file deleted from directory");
@@ -66,7 +71,7 @@ router.put("/update/:id", async (req, res) => {
   const blog = await Blog.findByIdAndUpdate({ _id: req.params.id });
   blog.title = req.body.title;
   blog.content = req.body.content;
-  blog.publish = req.body.publish;
+  blog.imageName = req.body.imageName;
   await blog.save();
   return res.send(blog);
 });

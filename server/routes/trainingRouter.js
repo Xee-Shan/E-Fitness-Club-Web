@@ -57,8 +57,12 @@ router.get("/get/:id", async (req, res) => {
 
 //Delete Training Program
 router.delete("/delete/:id", async (req, res) => {
-  console.log(req.params.id);
-  const training = await Training.findByIdAndDelete({ _id: req.params.id });
+  const training = await Training.findByIdAndDelete({
+    _id: req.params.id,
+  }).exec((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
   fs.unlink(training.imagePath, (err) => {
     if (err) console.log(err);
     console.log("file deleted from directory");

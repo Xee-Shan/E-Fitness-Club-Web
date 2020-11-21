@@ -1,14 +1,23 @@
 import React from "react";
 import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from "mdbreact";
 import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const GetPrograms = ({ program }) => {
+  const history = useHistory();
+
   const deleteProgram = async (id) => {
-    const value = window.confirm("Are you sure you want to delete program ?");
-    if (value === true) {
-      await Axios.delete("http://localhost:5000/training/delete/" + id);
-      window.location.reload();
-    }
+    await Axios.delete("http://localhost:5000/training/delete/" + id).then(
+      (res) => {
+        if (res) {
+          window.location.reload();
+        }
+      }
+    );
+  };
+
+  const editProgram = async (id) => {
+    history.push("/trainer/edit/program/" + id);
   };
 
   return (
@@ -32,7 +41,11 @@ const GetPrograms = ({ program }) => {
             <td className="text-center">{program.targetArea}</td>
             <td className="text-center">{program.equipment}</td>
             <td className="text-center">
-              <MDBBtn color="warning" size="sm">
+              <MDBBtn
+                color="warning"
+                size="sm"
+                onClick={() => editProgram(program._id)}
+              >
                 Edit
               </MDBBtn>
               <MDBBtn
