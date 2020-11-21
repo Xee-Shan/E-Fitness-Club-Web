@@ -39,34 +39,38 @@ const Login = () => {
 
       if (loginRes.data.user.role === "admin") {
         setUserData({
-          token: undefined,
-          user: undefined,
+          token: loginRes.data.token,
+          user: loginRes.data.user,
         });
-        setResponse("You are not Authorized");
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/admin/product");
       }
 
       if (loginRes.data.user.role === "trainer") {
         setUserData({
-          token: undefined,
-          user: undefined,
+          token: loginRes.data.token,
+          user: loginRes.data.user,
         });
-        setResponse("You are not Authorized");
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/trainer/dashboard");
       }
 
-      if (loginRes.data.user.role === "Nutritionist") {
+      if (loginRes.data.user.role === "nutritionist") {
         setUserData({
-          token: undefined,
-          user: undefined,
+          token: loginRes.data.token,
+          user: loginRes.data.user,
         });
-        setResponse("You are not Authorized");
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/nutritionist/dashboard");
       }
 
       if (loginRes.data.user.role === "physiatrist") {
         setUserData({
-          token: undefined,
-          user: undefined,
+          token: loginRes.data.token,
+          user: loginRes.data.user,
         });
-        setResponse("You are not Authorized");
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/doctor/home");
       }
 
       if (loginRes.data.user.role === "user") {
