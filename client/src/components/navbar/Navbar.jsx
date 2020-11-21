@@ -15,7 +15,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
 } from "mdbreact";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaBackspace, FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   const { userData, setUserData } = useContext(UserContext);

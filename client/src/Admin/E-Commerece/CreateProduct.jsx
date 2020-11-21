@@ -13,6 +13,7 @@ const CreateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState();
+  const [previewImage,setPreviewImage]=useState("");
 
   const history = useHistory();
 
@@ -148,11 +149,13 @@ const CreateProduct = () => {
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Uplaod Image
               </label>
+              <img src={previewImage} alt=""/>
               <input
                 type="file"
                 accept=".jpeg, .jpg, .png"
                 name="file"
                 onChange={onChangeImage}
+                onChange={(e)=>setPreviewImage(URL.createObjectURL(e.target.files[0]))}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}
