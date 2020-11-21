@@ -20,7 +20,6 @@ import UserProduct from "./User/E-commerce System/Product";
 import ProductDetail from "./User/E-commerce System/ProductDetail";
 import CartPage from "./User/E-commerce System/CartPage";
 import Order from "./Admin/E-Commerece/Order";
-import TrainerLoginForm from "./trainer/Components/Form/TrainerLoginForm";
 import TrainerDashboard from "./trainer/Dashboard";
 import UserProgram from "./User/Training System/Programs";
 import Programs from "./trainer/Components/Training Programs/Programs";
@@ -134,7 +133,6 @@ const App = () => {
             component={CreateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
-          <Route path="/trainer/login" component={TrainerLoginForm} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
@@ -166,7 +164,6 @@ const App = () => {
           <Route path="/trainer/editblog/:id" component={EditBlog} />
           <Route path="/user/blog" component={Blogs} />
           <Route path="/user/blogdetail/:id" component={BlogDetails} />
-
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>

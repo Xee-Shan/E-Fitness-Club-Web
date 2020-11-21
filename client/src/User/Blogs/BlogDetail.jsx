@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import UserAuth from "./../../auth/UserAuth";
 
 const BlogDetail = (props) => {
   const [blog, setBlog] = useState();
@@ -18,24 +19,26 @@ const BlogDetail = (props) => {
     fetchData();
   }, []);
   return (
-    <>
-      <Navbar />
-      <MDBContainer>
-        <br />
-        <p className="h1 text-center">{blog?.title}</p>
-        <br />
-        <MDBRow>
-          <MDBCol md="12" className="mb-3">
-            <img
-              src={"http://localhost:5000/" + blog?.imageName}
-              className="img-fluid z-depth-1"
-            />
-          </MDBCol>
-        </MDBRow>
-        <br />
-        <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
-      </MDBContainer>
-    </>
+    <UserAuth>
+      <>
+        <Navbar />
+        <MDBContainer>
+          <br />
+          <p className="h1 text-center">{blog?.title}</p>
+          <br />
+          <MDBRow>
+            <MDBCol md="12" className="mb-3">
+              <img
+                src={"http://localhost:5000/" + blog?.imageName}
+                className="img-fluid z-depth-1"
+              />
+            </MDBCol>
+          </MDBRow>
+          <br />
+          <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
+        </MDBContainer>
+      </>
+    </UserAuth>
   );
 };
 
