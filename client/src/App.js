@@ -14,6 +14,7 @@ import Register from "./components/Forms/Register";
 import Product from "./Admin/E-Commerece/Product";
 import CreateProduct from "./Admin/E-Commerece/CreateProduct";
 import CreateProgram from "./trainer/Components/Training Programs/CreatePrograms";
+import EditProgram from "./trainer/Components/Training Programs/EditProgram";
 import EditProduct from "./Admin/E-Commerece/EditProduct";
 import UserProduct from "./User/E-commerce System/Product";
 import ProductDetail from "./User/E-commerce System/ProductDetail";
@@ -53,9 +54,9 @@ import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
 import ProductCategory from "./User/E-commerce System/ProductCategory";
-
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
+import EditBlog from "./trainer/Components/Blog/EditBlog";
 import Blogs from "./User/Blogs/Blog";
 import BlogDetails from "./User/Blogs/BlogDetail";
 
@@ -137,6 +138,7 @@ const App = () => {
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
+          <Route path="/trainer/edit/program/:id" component={EditProgram} />
           <Route path="/trainer/add/schedule/:id" component={AddSchedule} />
           <Route path="/trainer/add/workout/:id" component={AddWorkout} />
           <Route path="/trainer/view/program/:id" component={ViewDetail} />
@@ -161,6 +163,7 @@ const App = () => {
           <Route path="/new/password/:token" component={NewPassword} />
           <Route path="/trainer/createblog" component={CreateBlog} />
           <Route path="/trainer/getblog" component={GetBlog} />
+          <Route path="/trainer/editblog/:id" component={EditBlog} />
           <Route path="/user/blog" component={Blogs} />
           <Route path="/user/blogdetail/:id" component={BlogDetails} />
 

@@ -5,11 +5,13 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import TrainerAuth from "../../../auth/TrainerAuth";
+import { useHistory } from "react-router-dom";
 
 const CreatePrograms = () => {
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
   const [content, setContent] = useState("");
+  const history = useHistory();
 
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
@@ -23,9 +25,8 @@ const CreatePrograms = () => {
     formData.append("image", image);
     formData.append("content", content);
     Axios.post("http://localhost:5000/blog/create", formData).then((res) => {
-      if (res.data.success) {
-        window.alert("Blog Added");
-        window.location.reload();
+      if (res) {
+        history.push("/trainer/getblog");
       } else alert("Error occured");
     });
   };

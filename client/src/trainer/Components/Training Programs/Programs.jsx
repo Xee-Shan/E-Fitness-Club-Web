@@ -19,7 +19,7 @@ const Program = () => {
 
   useEffect(() => {
     fetchPrograms();
-  }, [program]);
+  }, []);
 
   const indexOfLastProgram = currentPage * programPerpage;
   const indexOfFirstProgram = indexOfLastProgram - programPerpage;

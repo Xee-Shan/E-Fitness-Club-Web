@@ -3,6 +3,7 @@ import Axios from "axios";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import TrainerAuth from "../../../auth/TrainerAuth";
+import { useHistory } from "react-router-dom";
 
 const CreatePrograms = () => {
   const [programId, setProgramId] = useState("");
@@ -11,6 +12,7 @@ const CreatePrograms = () => {
   const [equipment, setEquipment] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState();
+  const history = useHistory();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -25,9 +27,8 @@ const CreatePrograms = () => {
 
     Axios.post("http://localhost:5000/training/create", formData).then(
       (res) => {
-        if (res.data.success) {
-          window.alert("Program Added");
-          window.location.reload();
+        if (res) {
+          history.push("/trainer/program");
         } else alert("Error occured");
       }
     );
