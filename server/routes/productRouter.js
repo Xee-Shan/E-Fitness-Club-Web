@@ -1,32 +1,36 @@
 const express = require("express");
 const { Product } = require("../models/productModel");
 const router = express.Router();
-const multer = require("multer");
+// const multer = require("multer");
 const fs = require("fs");
 const auth=require("../middleware/auth");
 const admin=require("../middleware/admin");
+const upload=require("../utils/multer");
+const cloudinary=require("../utils/cloudinary");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploadImages/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-  fileFilter: function (req, file, cb) {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  },
-});
 
-const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "uploadImages/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+//   fileFilter: function (req, file, cb) {
+//     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+//       cb(null, true);
+//     } else {
+//       cb(null, false);
+//     }
+//   },
+// });
+
+// const upload = multer({ storage: storage });
 
 //create product
 router.post("/create", upload.single("image"), auth,admin,async (req, res) => {
-  console.log(req.file);
+  try{
+  const result= await cloudinary.uploader.upload(req.file.path);
   const product = new Product({
     name: req.body.name,
     brand: req.body.brand,
@@ -34,13 +38,17 @@ router.post("/create", upload.single("image"), auth,admin,async (req, res) => {
     quantity: req.body.quantity,
     description: req.body.description,
     category: req.body.category,
-    imageName: req.file.originalname,
-    imagePath: req.file.path
+    imageURL: result.secure_url,
+    cloudinary_id: result.public_id
   });
   await product.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
   });
+}
+catch(err){
+  console.log(err);
+}
 });
 
 //get product
@@ -65,11 +73,15 @@ router.get("/get/category",auth, async (req, res) => {
 
 //  get Product by category
 router.get("/get/productBy/:category",auth, async (req, res) => {
-
+try{
   await Product.find({category:req.params.category},(err, doc) => {
    if (err) res.status(400).send(err);
    res.status(200).send(doc);
  });
+}
+catch(err){
+  console.log(err);
+}
  
 });
 
@@ -83,11 +95,18 @@ router.get("/get/:id", async (req, res) => {
 
 //delete product
 router.delete("/delete/:id",auth,admin, async (req, res) => {
-  const product = await Product.findByIdAndDelete({ _id: req.params.id });
-  fs.unlink(product.imagePath, (err) => {
-    if (err) console.log(err);
-    console.log("file deleted from directory");
-  });
+  try{
+   const product=await Product.findByIdAndDelete({ _id: req.params.id });
+   await cloudinary.uploader.destroy(product.cloudinary_id);
+  }
+  catch(err){
+    console.log(err);
+  }
+
+  // fs.unlink(product.imagePath, (err) => {
+  //   if (err) console.log(err);
+  //   console.log("file deleted from directory");
+  // });
 });
 
 //update product

@@ -10,7 +10,6 @@ export default function ProductDetail(props) {
   const [product, setProduct] = useState({});
   const [orderedQuantity, setOrderedQuantity] = useState(0);
   const [myQuantity, setMyQuantity] = useState(1);
-  const [imageURL, setImageURL] = useState("");
 
   const history = useHistory();
 
@@ -20,7 +19,6 @@ export default function ProductDetail(props) {
         .get("http://localhost:5000/products/get/" + props.match.params.id)
         .then((res) => {
           setProduct(res.data);
-          setImageURL("http://localhost:5000/" + res.data.imageName);
         });
     }
     fetchData();
@@ -103,7 +101,7 @@ export default function ProductDetail(props) {
           <MDBCol md="6">
             <MDBRow className="mb-4">
               <MDBCol md="8">
-                <img src={imageURL} className="img-fluid" alt="product" />
+                <img src={product?.imageURL} className="img-fluid" alt="product" />
               </MDBCol>
             </MDBRow>
           </MDBCol>

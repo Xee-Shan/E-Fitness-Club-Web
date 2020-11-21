@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { MDBBtn } from "mdbreact";
 import { MDBTable, MDBTableBody, MDBTableHead, MDBContainer } from "mdbreact";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import axios from "axios";
-import { updateProduct } from "../../actions/productAction";
+// import { updateProduct } from "../../actions/productAction";
 import { useHistory } from "react-router-dom";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
 
 export default function Product() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
   const history = useHistory();
 
@@ -29,11 +29,10 @@ export default function Product() {
     });
   }
   const handleEdit = (product) => {
-    dispatch(updateProduct(product));
+    // dispatch(updateProduct(product));
     //window.location.href = "http://localhost:3000/admin/edit/product";
-    history.push("/admin/edit/product");
+    history.push("/admin/edit/product/"+product._id);
   };
-
 
 
   return (

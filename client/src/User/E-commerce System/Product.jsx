@@ -13,7 +13,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { useHistory } from "react-router-dom";
 
 export default function Product() {
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState([]);
 
   const history = useHistory();
 
@@ -42,7 +42,7 @@ export default function Product() {
               <MDBView className="overlay rounded z-depth-1">
                 <div>
                   <img
-                    src={"http://localhost:5000/" + product.imageName}
+                    src={product.imageURL}
                     alt=""
                     className="img-fluid"
                     style={{

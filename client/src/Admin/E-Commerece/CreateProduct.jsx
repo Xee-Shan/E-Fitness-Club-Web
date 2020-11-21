@@ -37,10 +37,10 @@ const CreateProduct = () => {
   };
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
+    setPreviewImage(URL.createObjectURL(e.target.files[0]));
   };
   const btnClicked = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("name", name);
     formData.append("brand", brand);
@@ -155,7 +155,6 @@ const CreateProduct = () => {
                 accept=".jpeg, .jpg, .png"
                 name="file"
                 onChange={onChangeImage}
-                onChange={(e)=>setPreviewImage(URL.createObjectURL(e.target.files[0]))}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}

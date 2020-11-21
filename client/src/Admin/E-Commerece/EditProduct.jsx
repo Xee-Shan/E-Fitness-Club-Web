@@ -1,19 +1,45 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import axios from "axios";
 import Admin from "../../auth/Admin";
-import history, { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-export default function EditProduct() {
-  const product = useSelector((state) => state.product.newProduct);
+export default function EditProduct(props) {
+  // const product = useSelector((state) => state.product.newProduct);
+  const [productId, setProductId] = useState();
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [image,setImage]=useState();
+  const [previewImage,setPreviewImage]=useState("");
 
-  const [name, setName] = useState(product.name);
-  const [brand, setBrand] = useState(product.brand);
-  const [price, setPrice] = useState(product.price);
-  const [quantity, setQuantity] = useState(product.quantity);
-  const [description, setDescription] = useState(product.description);
-  const [category, setCategory] = useState(product.category);
+  
+  useEffect(() => {
+    async function fetchData() {
+      try{
+      const response = await axios.get("http://localhost:5000/products/get/"+props.match.params.id, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      });
+      console.log(response.data);
+      setProductId(response.data._id);
+      setName(response.data.name);
+      setBrand(response.data.brand);
+      setPrice(response.data.price);
+      setQuantity(response.data.quantity);
+      setDescription(response.data.description);
+      setCategory(response.data.category);
+      setPreviewImage(response.data.imageURL);
+    }
+    catch(err){
+      console.log(err);
+    }
+    }
+    fetchData();
+  }, []);
 
   const history = useHistory();
 
@@ -31,6 +57,10 @@ export default function EditProduct() {
   };
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
+  };
+  const onChangeImage = (e) => {
+    setImage(e.target.files[0]);
+    setPreviewImage(URL.createObjectURL(e.target.files[0]));
   };
   const onChangeCategory = (e) => {
     setCategory(e.target.value);
@@ -58,19 +88,6 @@ export default function EditProduct() {
             <form>
               <p className="h4 text-center mb-4">Edit Product</p>
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Image
-              </label>
-              <MDBRow className="mb-4">
-                <MDBCol md="6">
-                  <img
-                    src={"http://localhost:5000/" + product.imageName}
-                    className="img-fluid"
-                    alt=""
-                  />
-                </MDBCol>
-              </MDBRow>
-              <br />
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Name
               </label>
               <input
@@ -94,6 +111,18 @@ export default function EditProduct() {
                 required
               />
               <br />
+              <img src={previewImage} alt=""/>
+              <input
+                type="file"
+                accept=".jpeg, .jpg, .png"
+                name="file"
+                onChange={onChangeImage}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                style={{ borderStyle: "none" }}
+                required
+              />
+              <br/>
               <select
                 className="browser-default custom-select"
                 onChange={onChangeCategory}
@@ -149,7 +178,7 @@ export default function EditProduct() {
               <br />
               <div className="text-center mt-4">
                 <MDBBtn
-                  onClick={() => btnClicked(product._id)}
+                  onClick={() => btnClicked(productId)}
                   color="unique"
                   type="submit"
                 >

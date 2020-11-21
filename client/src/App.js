@@ -110,7 +110,7 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />
           <Route path="/admin/create/product" component={CreateProduct} />
-          <Route path="/admin/edit/product" component={EditProduct} />
+          <Route path="/admin/edit/product/:id" component={EditProduct} />
           <Route path="/admin/order" component={Order} />
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
