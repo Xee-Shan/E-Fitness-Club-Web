@@ -39,7 +39,7 @@ const Navbar = () => {
     fetchData();
   }, []);*/
   return (
-    <MDBNavbar color="pink accent-2" dark expand="md">
+    <MDBNavbar color="blue-gradient" dark expand="md">
       <MDBNavbarBrand>
         <MDBNavLink to="/">
           <strong className="white-text">E-Fitness Club</strong>
@@ -58,12 +58,12 @@ const Navbar = () => {
       </MDBNavbarNav>
       <MDBNavbarNav right>
         <MDBNavItem>
-          <MDBBtn onClick={login} className="pink lighten-2">
+          <MDBBtn onClick={login} outline color="white">
             Log in
           </MDBBtn>
         </MDBNavItem>
         <MDBNavItem>
-          <MDBBtn onClick={register} className="pink lighten-2">
+          <MDBBtn onClick={register} outline color="white">
             Register
           </MDBBtn>
         </MDBNavItem>

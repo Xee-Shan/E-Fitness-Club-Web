@@ -3,13 +3,16 @@ import { MDBFooter, MDBBtn, MDBIcon } from "mdbreact";
 
 const Footer = () => {
   return (
-    <MDBFooter color="blue" className="text-center font-small darken-2">
+    <MDBFooter
+      color="blue-gradient"
+      className="text-center font-small darken-2"
+    >
       <div className="pt-4">
-        <MDBBtn outline color="white" tag="a" href="/login">
+        <MDBBtn outline color="white" href="/login" size="sm">
           Login
           <MDBIcon icon="user" className="ml-2" />
         </MDBBtn>
-        <MDBBtn outline color="white" tag="a" href="/register">
+        <MDBBtn outline color="white" href="/register" size="sm">
           Register
           <MDBIcon icon="registered" className="ml-2" />
         </MDBBtn>

@@ -119,7 +119,12 @@ const Contactform = () => {
                   />
                 </div>
                 <div className="text-center">
-                  <MDBBtn color="blue" onClick={handleSubmit}>
+                  <MDBBtn
+                    onClick={handleSubmit}
+                    className="blue-gradient"
+                    outline
+                    color="white"
+                  >
                     Submit
                   </MDBBtn>
                 </div>

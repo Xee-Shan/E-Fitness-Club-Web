@@ -152,7 +152,12 @@ export default function BMICalculator() {
           <small className={styles.small}>{weightErr}</small>
           <br />
           <br />
-          <MDBBtn gradient="peach" className={styles.button} onClick={onClick}>
+          <MDBBtn
+            className="blue-gradient"
+            onClick={onClick}
+            outline
+            color="white"
+          >
             Calculate
           </MDBBtn>
         </form>

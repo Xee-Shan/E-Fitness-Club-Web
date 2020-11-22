@@ -126,7 +126,12 @@ const Register = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <MDBBtn onClick={submit} color="primary">
+                    <MDBBtn
+                      onClick={submit}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
                       Register
                     </MDBBtn>
                   </div>

@@ -132,8 +132,22 @@ const Login = () => {
                   </div>
                   <div className="text-center">
                     <Fragment>
-                      <MDBBtn onClick={submit}>Login</MDBBtn>
-                      <MDBBtn onClick={reset}>Reset</MDBBtn>
+                      <MDBBtn
+                        onClick={submit}
+                        className="blue-gradient "
+                        outline
+                        color="white"
+                      >
+                        Login
+                      </MDBBtn>
+                      <MDBBtn
+                        onClick={reset}
+                        className="blue-gradient"
+                        outline
+                        color="white"
+                      >
+                        Reset
+                      </MDBBtn>
                     </Fragment>
                   </div>
                 </form>
