@@ -16,7 +16,7 @@ function Navbar() {
 
   const logout = () => {
     localStorage.removeItem("auth-token");
-    history.push("/trainer/login");
+    history.push("/login");
   };
 
   return (
