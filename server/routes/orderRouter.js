@@ -8,7 +8,7 @@ const admin=require("../middleware/admin");
 router.post("/placeOrder",auth,async(req,res)=>{
     const user=await User.findByIdAndUpdate(req.user);
     const order=new Order({
-    name:user.displayName,
+    name:user.name,
     email:user.email,
     phoneNumber:user.phoneNumber,
     address:user.address,

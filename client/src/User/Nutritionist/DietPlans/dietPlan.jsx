@@ -1,16 +1,16 @@
-import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow } from "mdbreact";
-import React, { Fragment } from "react";
-import underweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.44 PM.jpeg";
-import overweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.45 PM.jpeg";
-import normal from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM (1).jpeg";
-import obese from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM.jpeg";
-import history from "../../../history/History";
-import Navbar from "../../Navbar/Navbar";
-import UserAuth from "../../../auth/UserAuth";
-const DietPlan = () => {
-  function btnClicked() {
-    history.push("/dietplans/underWeight");
-  }
+// import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow } from "mdbreact";
+// import React, { Fragment } from "react";
+// import underweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.44 PM.jpeg";
+// import overweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.45 PM.jpeg";
+// import normal from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM (1).jpeg";
+// import obese from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM.jpeg";
+// import history from "../../../history/History";
+// import Navbar from "../../Navbar/Navbar";
+// import UserAuth from "../../../auth/UserAuth";
+// const DietPlan = () => {
+//   function btnClicked() {
+//     history.push("/dietplans/underWeight");
+//   }
 
   // const ProgramDetail = () => {
   //   const [dietplans, setDietplan] = useState({});
@@ -57,4 +57,4 @@ const DietPlan = () => {
   //   );
   // };
 };
-export default DietPlan;
+//export default DietPlan;

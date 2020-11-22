@@ -31,7 +31,6 @@ export default function ProductDetail(props) {
         { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
       );
       setOrderedQuantity(response.data.quantity);
-      console.log(response.data.quantity);
     }
     fetchData();
   }, [props.match.params.id]);
@@ -66,8 +65,6 @@ export default function ProductDetail(props) {
   };
 
   async function btnClicked(product) {
-    console.log(myQuantity);
-    console.log(product.quantity - orderedQuantity);
     if (
       myQuantity <= 0 ||
       myQuantity + itemCount > product.quantity - orderedQuantity

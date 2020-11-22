@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name:String,
-  email:String,
+  email:String, 
+  phoneNumber:String, 
+  address:String, 
   orderList:{
     type:Array,
     default:[]

@@ -23,7 +23,7 @@ export default function CartPage() {
         });
     }
     fetchData();
-  }, [orderedQuantity]);
+  }, [cart]);
 
   useEffect(() => {
     async function fetchData() {
@@ -87,8 +87,6 @@ export default function CartPage() {
       const item = cart.find(
         (arr) => arr.id === localStorage.getItem("item-id")
       );
-      console.log(item.quantity);
-      console.log(orderedQuantity);
       if (item.quantity <= product.quantity - orderedQuantity) {
         axios.post("http://localhost:5000/orders/placeOrder/", cart, {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
@@ -136,7 +134,7 @@ export default function CartPage() {
                     <td>{i + 1}</td>
                     <td>
                       <img
-                        src={"http://localhost:5000/" + cart.imageName}
+                        src={cart.imageURL}
                         className="rounded mx-auto d-block"
                         style={{ height: "100px" }}
                         alt="aligment"
