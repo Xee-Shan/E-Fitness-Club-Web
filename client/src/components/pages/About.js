@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <Intro />
+      <Intro /><br/>
       <Aboutus />
       <Team />
       <Footer />

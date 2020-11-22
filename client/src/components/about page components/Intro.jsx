@@ -7,7 +7,8 @@ const Intro = () => {
       style={{
         backgroundImage: `url(${Background})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "",
+        backgroundSize: "100% 100%",
+        minHeight:"500px"
       }}
     >
       <p className="h1 text-center">About</p>

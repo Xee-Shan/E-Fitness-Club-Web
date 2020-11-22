@@ -8,7 +8,7 @@ const About = () => {
           <h2 className="h1-responsive font-weight-bold my-5 text-center">
             About us
           </h2>
-          <p className="dark-grey-text mx-auto mb-5 w-75 text-center">
+          <p className="dark-grey-text mx-auto mb-5 w-75">
             When it comes to training and nutrition, there are 3 components that
             make results truly last. Individualization, education, and
             connection. That's why it’s our mission to provide world-class
