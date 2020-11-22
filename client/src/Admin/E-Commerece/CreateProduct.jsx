@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
-
+//jj
 const CreateProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
@@ -13,7 +13,7 @@ const CreateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState();
-  const [previewImage,setPreviewImage]=useState("");
+  const [previewImage, setPreviewImage] = useState("");
 
   const history = useHistory();
 
@@ -149,7 +149,7 @@ const CreateProduct = () => {
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Uplaod Image
               </label>
-              <img src={previewImage} alt=""/>
+              <img src={previewImage} alt="" />
               <input
                 type="file"
                 accept=".jpeg, .jpg, .png"
