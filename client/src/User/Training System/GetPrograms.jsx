@@ -30,7 +30,7 @@ const GetPrograms = ({ program }) => {
                 <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
                     className="img-fluid"
-                    src={"http://localhost:5000/" + program.imageName}
+                    src={program.imageURL}
                     waves
                   />
                   <MDBCardBody>

@@ -4,7 +4,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
-//jj
 const CreateProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const fs = require("fs");
+//const multer = require("multer");
+//const fs = require("fs");
 const { Training } = require("../models/trainingModel");
+const upload = require("../utils/multer");
+const cloudinary = require("../utils/cloudinary");
 
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploadImages/");
   },
@@ -20,18 +22,19 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }); */
 
 //Create Training Program
 router.post("/create", upload.single("image"), async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
   const training = new Training({
     programId: req.body.programId,
     title: req.body.title,
     targetArea: req.body.targetArea,
     equipment: req.body.equipment,
     description: req.body.description,
-    imageName: req.file.originalname,
-    imagePath: req.file.path,
+    imageURL: result.secure_url,
+    cloudinary_id: result.public_id,
   });
   await training.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -41,7 +44,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
 
 //Get Traning Program
 router.get("/get", async (req, res) => {
-  const training = await Training.find((err, doc) => {
+  await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
@@ -57,21 +60,25 @@ router.get("/get/:id", async (req, res) => {
 
 //Delete Training Program
 router.delete("/delete/:id", async (req, res) => {
-  const training = await Training.findByIdAndDelete({
-    _id: req.params.id,
-  }).exec((err, doc) => {
-    if (err) res.status(400).send(err);
-    res.status(200).send(doc);
-  });
-  fs.unlink(training.imagePath, (err) => {
-    if (err) console.log(err);
+  const training = await Training.findByIdAndDelete({ _id: req.params.id });
+  await cloudinary.uploader.destroy(training.cloudinary_id);
+  return res.send(training);
+
+  /*fs.unlink(training.imagePath, (err) => {
+    if (err) console.log(err); 
     console.log("file deleted from directory");
-  });
+  });*/
 });
 
 //Update Training Program
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", upload.single("image"), async (req, res) => {
   const training = await Training.findByIdAndUpdate({ _id: req.params.id });
+  if (req.body.cloudinary_id === "") {
+    await cloudinary.uploader.destroy(training.cloudinary_id);
+    const result = await cloudinary.uploader.upload(req.file.path);
+    (training.imageURL = result.secure_url),
+      (training.cloudinary_id = result.public_id);
+  }
   training.programId = req.body.programId;
   training.title = req.body.title;
   training.targetArea = req.body.targetArea;

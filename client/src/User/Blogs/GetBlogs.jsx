@@ -29,7 +29,7 @@ const GetBlogs = ({ blog }) => {
                 <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
                     className="img-fluid"
-                    src={"http://localhost:5000/" + data.imageName}
+                    src={data.imageURL}
                     waves
                   />
                   <MDBCardBody>

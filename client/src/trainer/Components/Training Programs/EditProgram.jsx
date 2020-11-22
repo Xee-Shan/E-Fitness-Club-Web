@@ -12,6 +12,9 @@ const EditProgram = () => {
   const [targetArea, setTargetArea] = useState("");
   const [equipment, setEquipment] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState("");
+  const [cloudinaryId, setCloudinaryId] = useState("");
 
   const getPrograms = async () => {
     await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
@@ -21,24 +24,29 @@ const EditProgram = () => {
         setTargetArea(res.data.targetArea);
         setEquipment(res.data.equipment);
         setDescription(res.data.description);
+        setPreviewImage(res.data.imageURL);
+        setCloudinaryId(res.data.cloudinary_id);
       }
     });
   };
 
   const submit = async (e) => {
     e.preventDefault();
-    const data = {
-      programId: programId,
-      title: title,
-      targetArea: targetArea,
-      equipment: equipment,
-      description: description,
-    };
-    await Axios.put("http://localhost:5000/training/update/" + id, data).then(
-      (res) => {
-        if (res) history.push("/trainer/program");
-      }
-    );
+    const formData = new FormData();
+    formData.append("programId", programId);
+    formData.append("title", title);
+    formData.append("targetArea", targetArea);
+    formData.append("equipment", equipment);
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("cloudinary_id", cloudinaryId);
+
+    await Axios.put(
+      "http://localhost:5000/training/update/" + id,
+      formData
+    ).then((res) => {
+      if (res) history.push("/trainer/program");
+    });
   };
 
   useEffect(() => {
@@ -88,6 +96,21 @@ const EditProgram = () => {
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                />
+                <img src={previewImage} alt="" />
+                <input
+                  type="file"
+                  accept=".jpeg, .jpg, .png"
+                  name="file"
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                    setCloudinaryId("");
+                  }}
+                  id="defaultFormRegisterNameEx"
+                  className="form-control"
+                  style={{ borderStyle: "none" }}
+                  required
                 />
               </div>
               <div className="text-center">

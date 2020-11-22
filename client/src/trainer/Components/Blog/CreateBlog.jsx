@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 const CreatePrograms = () => {
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState();
   const [content, setContent] = useState("");
   const history = useHistory();
 
@@ -54,11 +55,15 @@ const CreatePrograms = () => {
                   >
                     Uplaod Image
                   </label>
+                  <img src={previewImage} alt="" />
                   <input
                     type="file"
                     accept=".jpeg, .jpg, .png"
                     name="file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                    }}
                     id="defaultFormRegisterNameEx"
                     className="form-control"
                     style={{ borderStyle: "none" }}

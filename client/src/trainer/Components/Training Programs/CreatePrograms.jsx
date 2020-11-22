@@ -12,6 +12,8 @@ const CreatePrograms = () => {
   const [equipment, setEquipment] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState();
+
   const history = useHistory();
 
   const submit = async (e) => {
@@ -80,11 +82,15 @@ const CreatePrograms = () => {
                   >
                     Uplaod Image
                   </label>
+                  <img src={previewImage} alt="" />
                   <input
                     type="file"
                     accept=".jpeg, .jpg, .png"
                     name="file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                    }}
                     id="defaultFormRegisterNameEx"
                     className="form-control"
                     style={{ borderStyle: "none" }}

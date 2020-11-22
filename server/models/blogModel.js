@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const blogSchema = new mongoose.Schema({
   title: { type: String },
   content: { type: String },
-  imageName: { type: String },
-  imagePath: { type: String},
+  imageURL: { type: String },
+  cloudinary_id: { type: String },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);

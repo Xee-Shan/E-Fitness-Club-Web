@@ -28,10 +28,7 @@ const BlogDetail = (props) => {
           <br />
           <MDBRow>
             <MDBCol md="12" className="mb-3">
-              <img
-                src={"http://localhost:5000/" + blog?.imageName}
-                className="img-fluid z-depth-1"
-              />
+              <img src={blog?.imageURL} className="img-fluid z-depth-1" />
             </MDBCol>
           </MDBRow>
           <br />
