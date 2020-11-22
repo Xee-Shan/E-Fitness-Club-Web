@@ -11,6 +11,7 @@ import {
 } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
+import { FaWindows } from "react-icons/fa";
 
 export default function Employee() {
   const [employee, setEmployee] = useState([]);
@@ -34,10 +35,11 @@ export default function Employee() {
   }, []);
 
   async function handleDelete(id) {
-    await axios.delete("http://localhost:5000/users/delete/employee/" + id, {
+    axios.delete("http://localhost:5000/users/delete/employee/" + id, {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
-    setModal(false);
+    setModal(true);
+    window.location.reload();
   }
   return (
     <Admin>
