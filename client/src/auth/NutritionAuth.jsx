@@ -12,7 +12,7 @@ const NutritionAuth = (props) => {
     Axios.get("http://localhost:5000/users/getUser", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     }).then((res) => {
-      if (res.data.role != "nutritionist") {
+      if (res.data.role !== "nutritionist") {
         history.push("/login");
       }
     });
