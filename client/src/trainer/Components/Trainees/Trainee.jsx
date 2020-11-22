@@ -4,12 +4,12 @@ import SideNav from "../SideNav/SideNav";
 import GetTrainee from "./GetTrainee";
 import Pagination from "../Pagination/traineePagnation";
 import { MDBCol, MDBContainer, MDBInput } from "mdbreact";
-import TrainerAuth from '../../../auth/TrainerAuth';
+import TrainerAuth from "../../../auth/TrainerAuth";
 
 const Program = () => {
   const [trainee, setTrainee] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [traineePerPage] = useState(2);
+  const [traineePerPage] = useState(1);
   const [q, setQ] = useState("");
 
   const fetchPrograms = async () => {
@@ -43,29 +43,29 @@ const Program = () => {
 
   return (
     <TrainerAuth>
-    <>
-      <SideNav />
-      <br />
-      <MDBContainer>
-        <p className="h1 text-center mb-4">Trainee List</p>
-        <MDBCol md="3">
-          <MDBInput
-            type="text"
-            label="Search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
-        </MDBCol>
-
+      <>
+        <SideNav />
         <br />
-        <GetTrainee trainee={search(currentTrainee)} />
-        <Pagination
-          traineePerPage={traineePerPage}
-          totalTrainee={trainee.length}
-          paginate={paginate}
-        />
-      </MDBContainer>
-    </>
+        <MDBContainer>
+          <p className="h1 text-center mb-4">Trainee List</p>
+          <MDBCol md="3">
+            <MDBInput
+              type="text"
+              label="Search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </MDBCol>
+
+          <br />
+          <GetTrainee trainee={search(currentTrainee)} />
+          <Pagination
+            traineePerPage={traineePerPage}
+            totalTrainee={trainee.length}
+            paginate={paginate}
+          />
+        </MDBContainer>
+      </>
     </TrainerAuth>
   );
 };

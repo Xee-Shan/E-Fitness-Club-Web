@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import axios from "axios";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 
 export default function ProductDetail(props) {
@@ -101,7 +101,11 @@ export default function ProductDetail(props) {
           <MDBCol md="6">
             <MDBRow className="mb-4">
               <MDBCol md="8">
-                <img src={product?.imageURL} className="img-fluid" alt="product" />
+                <img
+                  src={product?.imageURL}
+                  className="img-fluid"
+                  alt="product"
+                />
               </MDBCol>
             </MDBRow>
           </MDBCol>

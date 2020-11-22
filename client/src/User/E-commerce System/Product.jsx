@@ -9,7 +9,7 @@ import {
   MDBIcon,
   MDBView,
 } from "mdbreact";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 
 export default function Product() {
@@ -48,15 +48,18 @@ export default function Product() {
                     style={{
                       maxHeight: "25vw",
                       minHeight: "25vw",
-                      maxWidth:"25vw",
-                      minWidth: "25vw"
+                      maxWidth: "25vw",
+                      minWidth: "25vw",
                     }}
                   />
                 </div>
               </MDBView>
-              <MDBCardBody className="pb-0" style={{
-              
-              boxSizing: "border-box",}}>
+              <MDBCardBody
+                className="pb-0"
+                style={{
+                  boxSizing: "border-box",
+                }}
+              >
                 <h4 className="font-weight-bold my-3">{product.name}</h4>
                 <p className="grey-text">{product.brand}</p>
                 <b>${product.price}</b>

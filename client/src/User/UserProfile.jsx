@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../User/Navbar/Navbar";
 import Axios from "axios";
 import { useState } from "react";
 import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
@@ -24,19 +24,49 @@ const UserProfile = () => {
     <UserAuth>
       <div>
         <Navbar />
-        <br/>
+        <br />
         <MDBContainer>
           <MDBRow>
             <MDBCol md="4"></MDBCol>
             <MDBCol>
               <ul style={{ listStyle: "none" }}>
                 <h3>
-                  <li><h3 style={{display:"inline"}}><strong>Name:   </strong></h3>{user?.name}</li>
-                  <li><h3 style={{display:"inline"}}><strong>User Name:   </strong></h3>{user?.userName}</li>
-                  <li><h3 style={{display:"inline"}}><strong>Email:   </strong></h3>{user?.email}</li>
-                  <li><h3 style={{display:"inline"}}><strong>Gender:   </strong></h3>{user?.gender}</li>
-                  <li><h3 style={{display:"inline"}}><strong>Phone #:   </strong></h3>{user?.phoneNumber}</li>
-                  <li><h3 style={{display:"inline"}}><strong>Address:   </strong></h3>{user?.address}</li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>Name: </strong>
+                    </h3>
+                    {user?.name}
+                  </li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>User Name: </strong>
+                    </h3>
+                    {user?.userName}
+                  </li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>Email: </strong>
+                    </h3>
+                    {user?.email}
+                  </li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>Gender: </strong>
+                    </h3>
+                    {user?.gender}
+                  </li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>Phone #: </strong>
+                    </h3>
+                    {user?.phoneNumber}
+                  </li>
+                  <li>
+                    <h3 style={{ display: "inline" }}>
+                      <strong>Address: </strong>
+                    </h3>
+                    {user?.address}
+                  </li>
                 </h3>
               </ul>
             </MDBCol>

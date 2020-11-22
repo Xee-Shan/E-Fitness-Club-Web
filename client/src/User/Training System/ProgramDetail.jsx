@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody } from "mdbreact";
 import UserAuth from "../../auth/UserAuth";
 
@@ -30,6 +30,7 @@ const ProgramDetail = (props) => {
         <MDBContainer>
           <br />
           <iframe
+            title="Hello"
             width="1100"
             height="400"
             src="https://www.youtube.com/embed/ZzOk6yH9bT8"

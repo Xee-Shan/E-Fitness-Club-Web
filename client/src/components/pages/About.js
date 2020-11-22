@@ -1,7 +1,7 @@
 import React from "react";
 import Intro from "../about page components/Intro";
+import Aboutus from "../about page components/about";
 import Team from "../about page components/Team";
-import Testimonials from "../about page components/Testimonials";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 
@@ -10,8 +10,8 @@ const About = () => {
     <>
       <Navbar />
       <Intro />
+      <Aboutus />
       <Team />
-      <Testimonials />
       <Footer />
     </>
   );
