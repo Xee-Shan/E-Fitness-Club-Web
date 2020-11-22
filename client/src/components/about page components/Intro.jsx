@@ -8,7 +8,7 @@ const Intro = () => {
         style={{
           textAlign: "center",
           color: "white",
-          paddingLeft:"50px",
+          paddingLeft:"80px",
           paddingTop:"430px",
           fontSize:"60px"
         }}
