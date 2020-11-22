@@ -8,11 +8,9 @@ const Intro = () => {
         backgroundImage: `url(${Background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
-        minHeight:"500px"
+        minHeight: "500px",
       }}
-    >
-      <p className="h1 text-center">About</p>
-    </div>
+    ></div>
   );
 };
 

@@ -8,7 +8,7 @@ const About = () => {
           <h2 className="h1-responsive font-weight-bold my-5 text-center">
             About us
           </h2>
-          <p className="dark-grey-text mx-auto mb-5 w-75">
+          <p className="dark-grey-text mx-auto mb-5 w-100">
             When it comes to training and nutrition, there are 3 components that
             make results truly last. Individualization, education, and
             connection. That's why it’s our mission to provide world-class
@@ -21,7 +21,7 @@ const About = () => {
           <MDBView hover rounded className="z-depth-1-half mb-4">
             <img
               className="img-fluid"
-              src="https://mdbootstrap.com/img/Photos/Others/images/86.jpg"
+              src="https://wallpapercave.com/wp/wp2861304.jpg"
               alt=""
             />
           </MDBView>
