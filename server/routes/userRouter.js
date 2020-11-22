@@ -90,7 +90,6 @@ router.post("/register", async (req, res) => {
       return res
         .status(400)
         .json({ msg: "An account with this phone number already exists" });
-
     let duplicatePassword = password;
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -309,6 +308,7 @@ router.delete("/delete/employee/:id", auth, admin, async (req, res) => {
 //add to Cart
 router.post("/addToCart/:myQuantity", auth, async (req, res) => {
   const myQuantity = Number(req.params.myQuantity);
+  console.log(req.body);
   User.findOne({ _id: req.user }, (err, userInfo) => {
     let duplicate = false;
     let flag = 0;
@@ -344,7 +344,7 @@ router.post("/addToCart/:myQuantity", auth, async (req, res) => {
               id: req.body._id,
               quantity: myQuantity,
               name: req.body.name,
-              imageName: req.body.imageName,
+              imageURL: req.body.imageURL,
               brand: req.body.brand,
               price: req.body.price,
               date: Date.now(),

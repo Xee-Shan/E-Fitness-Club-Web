@@ -41,6 +41,7 @@ export default function Product() {
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
               <MDBView className="overlay rounded z-depth-1">
                 <div>
+                 
                   <img
                     src={product.imageURL}
                     alt=""

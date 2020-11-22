@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import axios from "axios";
-import {MDBBtn,MDBContainer} from "mdbreact";
+import {MDBRow,MDBCol,MDBBtn,MDBContainer} from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import Admin from "../../auth/Admin";
 
@@ -28,18 +28,22 @@ export default function Order() {
             {
                 order?.length===0?<h3>No orders yet...</h3>
                 : order?.map((order,i)=>(
-                    <div key={i}>
+                    <div key={i} style={{border:"2px solid black"}}>
                     <div>
-                     <b> Consumer's Name :  {order.name} | Consumer's Email : {order.email}</b>
+                     <h3> Consumer's Name :  {order.name} | Consumer's Email : {order.email}| Consumer's Phone Number : {order.phoneNumber}| Consumer's Address : {order.address}</h3>
                     </div>
                    {order.orderList.map((item,j)=>{
                        return (<div key={j}>
+                            <MDBRow className="mb-4">
+          <MDBCol md="4">
+            <img src={item.imageURL} className="img-fluid" alt="product" />
+          </MDBCol>
+        </MDBRow>
                                 Product Name: {item.name} | Product Price : {item.price} | Product Quantity : {item.quantity}
                                  </div>   )
                    })}
                    <MDBBtn color="secondary" onClick={()=>handleDelivered(order._id)}style={{float:"right"}}>Delivered</MDBBtn>
                    <br/> <br/>
-                   <hr style={{border:"0.1px solid black"}}/>
                    
                     </div>
                 ))
