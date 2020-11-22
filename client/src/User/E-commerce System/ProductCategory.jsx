@@ -9,7 +9,7 @@ import {
   MDBIcon,
   MDBView,
 } from "mdbreact";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 
 export default function ProductCategory(props) {
@@ -19,9 +19,13 @@ export default function ProductCategory(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/products/get/productBy/"+props.match.params.category, {
-        headers: { "x-auth-token": localStorage.getItem("auth-token") },
-      });
+      const response = await axios.get(
+        "http://localhost:5000/products/get/productBy/" +
+          props.match.params.category,
+        {
+          headers: { "x-auth-token": localStorage.getItem("auth-token") },
+        }
+      );
       setProduct(response.data);
     }
     fetchData();
@@ -48,15 +52,18 @@ export default function ProductCategory(props) {
                     style={{
                       maxHeight: "25vw",
                       minHeight: "25vw",
-                      maxWidth:"25vw",
-                      minWidth: "25vw"
+                      maxWidth: "25vw",
+                      minWidth: "25vw",
                     }}
                   />
                 </div>
               </MDBView>
-              <MDBCardBody className="pb-0" style={{
-              
-              boxSizing: "border-box",}}>
+              <MDBCardBody
+                className="pb-0"
+                style={{
+                  boxSizing: "border-box",
+                }}
+              >
                 <h4 className="font-weight-bold my-3">{product.name}</h4>
                 <p className="grey-text">{product.brand}</p>
                 <b>${product.price}</b>

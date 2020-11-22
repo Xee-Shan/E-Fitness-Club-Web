@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./Join.module.css";
 import onlineIcon from "../../icons/onlineIcon.png";
 import { MdPerson } from "react-icons/all";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../../User/Navbar/Navbar";
 import UserAuth from "../../auth/UserAuth";
 
 export default function SignIn() {

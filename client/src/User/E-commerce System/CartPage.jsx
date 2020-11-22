@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MDBTable, MDBBtn, MDBTableBody, MDBTableHead } from "mdbreact";
 import axios from "axios";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import UserAuth from "../../auth/UserAuth";
 
 export default function CartPage() {

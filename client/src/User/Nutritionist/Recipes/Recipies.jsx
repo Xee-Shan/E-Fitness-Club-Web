@@ -11,7 +11,7 @@ import {
   MDBCardText,
   MDBContainer,
 } from "mdbreact";
-import Navbar from "../../../components/navbar/Navbar";
+import Navbar from "../../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 import UserAuth from "../../../auth/UserAuth";
 

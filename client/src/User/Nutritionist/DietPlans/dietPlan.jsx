@@ -5,7 +5,7 @@ import overweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.45 PM.jpeg";
 import normal from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM (1).jpeg";
 import obese from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM.jpeg";
 import history from "../../../history/History";
-import Navbar from "../../../components/navbar/Navbar";
+import Navbar from "../../Navbar/Navbar";
 import UserAuth from "../../../auth/UserAuth";
 const DietPlan = () => {
   function btnClicked() {

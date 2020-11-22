@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import GetPrograms from "./GetPrograms";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import Pagination from "../Pagination/ProgramsPagination";
 import { MDBContainer } from "mdbreact";
 import UserAuth from "../../auth/UserAuth";

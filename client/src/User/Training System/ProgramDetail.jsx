@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody } from "mdbreact";
 import UserAuth from "../../auth/UserAuth";
 
