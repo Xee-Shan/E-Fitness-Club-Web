@@ -1,5 +1,5 @@
 const express = require("express");
-const { DietPlan } = require("../models/dietPlan");
+const { DietPlan } = require("../models/dietPlanModel");
 const router = express.Router();
 
 //create Diet Plan

@@ -35,8 +35,8 @@ mongoose.connect(
 app.use("/users", require("./routes/userRouter"));
 app.use("/products", require("./routes/productRouter"));
 app.use("/orders", require("./routes/orderRouter"));
-app.use("/recipes", require("./routes/recipe"));
-app.use("/dietPlan", require("./routes/dietPlan"));
+app.use("/recipes", require("./routes/recipeRouter"));
+app.use("/dietPlan", require("./routes/dietPlanRouter"));
 app.use("/training", require("./routes/trainingRouter"));
 app.use("/contact", require("./routes/contactFormRouter"));
 app.use("/blog", require("./routes/blogRouter"));

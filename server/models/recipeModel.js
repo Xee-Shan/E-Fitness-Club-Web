@@ -6,8 +6,8 @@ const recipeSchema = {
   ingredients: String,
   description: String,
   method: String,
-  imageName: String,
-  imagePath: String,
+  imageURL:String,
+  cloudinary_id:String
 };
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
