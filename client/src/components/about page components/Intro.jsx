@@ -1,8 +1,8 @@
 import React from "react";
-
+import About from "./Images/About-us.jpg"
 const Intro = () => {
   return (
-    <div style={{ backgroundColor: "#1B4986", minHeight: "400px" }}>
+    <div style={{ backgroundImage: `url(${About})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" , minHeight: "400px" }}>
       <h1
         className="h1-responsive font-weight-bold"
         style={{
