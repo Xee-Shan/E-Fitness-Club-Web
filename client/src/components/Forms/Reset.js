@@ -72,7 +72,14 @@ const ResetPassword = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <MDBBtn onClick={submit}>Submit</MDBBtn>
+                    <MDBBtn
+                      onClick={submit}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
+                      Submit
+                    </MDBBtn>
                   </div>
                 </form>
               </MDBCardBody>

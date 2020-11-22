@@ -8,11 +8,11 @@ const About = () => {
           <h2 className="h1-responsive font-weight-bold my-5 text-center">
             About us
           </h2>
-          <p className="dark-grey-text mx-auto mb-5 w-100">
+          <p>
             When it comes to training and nutrition, there are 3 components that
             make results truly last. Individualization, education, and
-            connection. That's why it’s our mission to provide world-class
-            coaching, over the top education, and non-stop accountability, to
+            connection. That's why it’s our mission to provide world class
+            coaching, over the top education, and non stop accountability, to
             guarantee our clients achieve the results they came to us for AND
             understand how to sustain them after they’re gone.
           </p>

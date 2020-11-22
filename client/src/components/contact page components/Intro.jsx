@@ -19,9 +19,7 @@ const Intro = () => {
           textAlign: "center",
           color: "black",
         }}
-      >
-        Contact Us
-      </h1>
+      ></h1>
     </>
   );
 };

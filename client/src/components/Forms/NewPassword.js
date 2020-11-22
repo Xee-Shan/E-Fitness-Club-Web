@@ -79,7 +79,14 @@ const NewPassword = () => {
                   </div>
 
                   <div className="text-center">
-                    <MDBBtn onClick={submit}>Update Password</MDBBtn>
+                    <MDBBtn
+                      onClick={submit}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
+                      Update Password
+                    </MDBBtn>
                   </div>
                 </form>
               </MDBCardBody>

@@ -57,7 +57,6 @@ const Contactform = () => {
 
   return (
     <MDBContainer>
-      <br />
       <section>
         <MDBRow>
           <MDBCol>
@@ -133,8 +132,6 @@ const Contactform = () => {
           </MDBCol>
         </MDBRow>
       </section>
-      <br />
-      <br />
     </MDBContainer>
   );
 };
