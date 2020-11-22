@@ -12,7 +12,7 @@ const TrainerAuth = (props) => {
     Axios.get("http://localhost:5000/users/getUser", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     }).then((res) => {
-      if (res.data.role != "trainer") {
+      if (res.data.role !== "trainer") {
         history.push("/pagenotfound");
       }
     });
