@@ -16,23 +16,24 @@ const EditDietPlan = () => {
 //   const [description, setDescription] = useState("");
 
   const getDietPlan = async () => {
-    await Axios.get("http://localhost:5000/dietplans/get/" + id).then((res) => {
+  await Axios.get("http://localhost:5000/dietplans/get/" + id)
+    .then((res) => {
    if (res) {
         setDay(res.data.day);
-        setUsertype(res.data.usertype);
-        setDiettype(res.data.diettype);
+        setUsertype(res.data.userType);
+        setDiettype(res.data.dietType);
         setDiet(res.data.diet);
         // setDescription(res.data.description);
-      }
-    });
-  };
+     }
+   });
+};
 
   const submit = async (e) => {
     e.preventDefault();
     const data = {
       day: day,
-      usertype: usertype,
-      diettype: diettype,
+      userType: usertype,
+      dietType: diettype,
       diet: diet,
     //   description: description,
     };

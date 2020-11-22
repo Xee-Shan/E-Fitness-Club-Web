@@ -12,7 +12,7 @@ export default function Recipe() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/dietPlan/get");
+      const response = await axios.get("http://localhost:5000/dietplans/get");
       setDietPlan(response.data);
       console.log(dietPlan);
     }
@@ -24,7 +24,7 @@ export default function Recipe() {
       "Are you sure you want to delete this Diet Plan ?"
     );
     if (value === true) {
-      axios.delete("http://localhost:5000/dietPlan/delete/" + id);
+      axios.delete("http://localhost:5000/dietplans/delete/" + id);
       window.location.reload();
     }
   }

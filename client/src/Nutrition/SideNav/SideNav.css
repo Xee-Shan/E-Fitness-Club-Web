@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #060b26;
+  background-color: blue;
   height: 80px;
   display: flex-start;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 .nav-menu {
-  background-color: #060b26;
+  background-color: blue;
   width: 250px;
   height: 100vh;
   display: flex;

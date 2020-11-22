@@ -1,24 +1,20 @@
-// import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow } from "mdbreact";
-// import React, { Fragment } from "react";
-// import underweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.44 PM.jpeg";
-// import overweight from "../Images/WhatsApp Image 2020-10-14 at 4.29.45 PM.jpeg";
-// import normal from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM (1).jpeg";
-// import obese from "../Images/WhatsApp Image 2020-10-14 at 4.29.46 PM.jpeg";
-// import history from "../../../history/History";
+// import React  from "react";
 // import Navbar from "../../Navbar/Navbar";
 // import UserAuth from "../../../auth/UserAuth";
-// const DietPlan = () => {
-//   function btnClicked() {
-//     history.push("/dietplans/underWeight");
-//   }
+// import {MDBContainer,MDBTable,MDBTableBody,MDBTableHead} from "mdbreact"
+// import Axios from "axios"
+// import {useState,useEffect} from "react"
 
-// const ProgramDetail = () => {
+// const DietPlan = () => {
 //   const [dietplans, setDietplan] = useState({});
+
 
 //   const fetchData = async () => {
 //     const res = await Axios.get("http://localhost:5000/dietplans/get");
 //     setDietplan(res.data);
+//     console.log(dietplans);
 //   };
+
 
 //   useEffect(() => {
 //     fetchData();
