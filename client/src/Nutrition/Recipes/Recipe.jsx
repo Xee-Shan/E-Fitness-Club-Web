@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { MDBBtn } from "mdbreact";
-import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
-import { useDispatch } from "react-redux";
+import { MDBBtn, MDBContainer, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import axios from "axios";
-import { updateProduct } from "../../actions/productAction";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth" 
 
 
 export default function Recipe() {
-  const dispatch = useDispatch();
   let [recipe, setRecipe] = useState();
 
   const history = useHistory();
@@ -40,12 +36,12 @@ export default function Recipe() {
       <NutritionistAuth>
       <SideNav />
       <br />
+      <MDBContainer>
       <h2>List of Recipes : </h2>
       {recipe?.length === 0 ? (
-        <div>NOTHING TO DISPLAY YET...</div>
+        <h2>No recipes added yet...</h2>
       ) : (
-        recipe?.map((recipe, i) => (
-          <MDBTable key={i} bordered>
+      <MDBTable bordered>
             <MDBTableHead color="primary-color" textWhite>
               <tr>
                 <th>#</th>
@@ -53,18 +49,17 @@ export default function Recipe() {
                 <th>Type</th>
                 <th>Method</th>
                 <th>Ingredients</th>
-                <th>Description</th>
                 <th>Action</th>
               </tr>
             </MDBTableHead>
-            <MDBTableBody>
+            {recipe?.map((recipe, i) => (
+            <MDBTableBody key={i}>
               <tr>
                 <td>{i + 1}</td>
                 <td>{recipe.name}</td>
                 <td>{recipe.type}</td>
                 <td>{recipe.method}</td>
                 <td>{recipe.ingredients}</td>
-                <td>{recipe.description}</td>
                 <td>
                   <MDBBtn color="warning" onClick={() => handleEdit(recipe._id)}>
                     Edit
@@ -78,9 +73,10 @@ export default function Recipe() {
                 </td>
               </tr>
             </MDBTableBody>
+            ))}
           </MDBTable>
-        ))
       )}
+      </MDBContainer>
       </NutritionistAuth>
     </div>
   );

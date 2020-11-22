@@ -12,77 +12,48 @@ const DietPlan = () => {
     history.push("/dietplans/underWeight");
   }
 
-  function obeseClicked() {
-    history.push("/dietplans/obese");
-  }
+// const ProgramDetail = () => {
+//   const [dietplans, setDietplan] = useState({});
 
-  function normalClicked() {
-    history.push("/dietplans/normal");
-  }
+//   const fetchData = async () => {
+//     const res = await Axios.get("http://localhost:5000/dietplans/get");
+//     setDietplan(res.data);
+//   };
 
-  function overWeightClicked() {
-    history.push("/dietplans/overweight");
-  }
-  return (
-    <UserAuth>
-      <>
-        <Navbar />
-        <br />
-        <p className="h1 text-center">Diet Plans</p>
-        <br />
-        <Fragment>
-          <div className="container">
-            <br />
-            <MDBRow>
-              <MDBCol md="3">
-                <MDBCard>
-                  <img src={underweight} alt="" height="300" width="250" />
-                </MDBCard>
-                <MDBCardBody className="text-center">
-                  <MDBBtn gradient="peach" size="lg" onClick={btnClicked}>
-                    Under Weight
-                  </MDBBtn>
-                </MDBCardBody>
-              </MDBCol>
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
 
-              <MDBCol md="3">
-                <MDBCard>
-                  <img src={normal} alt="" height="300" width="250" />
-                </MDBCard>
-                <MDBCardBody className="text-center">
-                  <MDBBtn gradient="purple" size="lg" onClick={normalClicked}>
-                    Normal
-                  </MDBBtn>
-                </MDBCardBody>
-              </MDBCol>
-
-              <MDBCol md="3">
-                <MDBCard>
-                  <img src={overweight} alt="" height="300" width="250" />
-                </MDBCard>
-                <MDBCardBody className="text-center">
-                  <MDBBtn gradient="blue" size="lg" onClick={overWeightClicked}>
-                    Over Weight
-                  </MDBBtn>
-                </MDBCardBody>
-              </MDBCol>
-
-              <MDBCol md="3">
-                <MDBCard>
-                  <img src={obese} alt="" height="300" width="250" />
-                </MDBCard>
-                <MDBCardBody className="text-center">
-                  <MDBBtn gradient="aqua" size="lg" onClick={obeseClicked}>
-                    Obese
-                  </MDBBtn>
-                </MDBCardBody>
-              </MDBCol>
-            </MDBRow>
-          </div>
-        </Fragment>
-      </>
-    </UserAuth>
-  );
-};
-
-export default DietPlan;
+//   return (
+//     <UserAuth>
+//         <Navbar />
+//         <MDBContainer>
+//           <br />
+//           <p className="h2 text-center mb-4">Diet Plan Schedule</p>
+//           <MDBTable bordered striped small>
+//             <MDBTableHead color="black" textWhite>
+//               <tr>
+//                 <th className="text-center">Day</th>
+//                 <th className="text-center">Weight Type</th>
+//                 <th className="text-center">Meal Type</th>
+//                 <th className="text-center">Diet</th>
+//               </tr>
+//             </MDBTableHead>
+//             <MDBTableBody>
+//               {dietplans?.map((i) => {
+//                 return (
+//                   <tr key={i}>
+//                     <td className="text-center">{dietplans.day}</td>
+//                     <td className="text-center">{dietplans.userType}</td>
+//                     <td className="text-center">{dietplans.dietType}</td>
+//                     <td className="text-center">{dietplans.diet}</td>
+//                   </tr>
+//                 );
+//               })}
+//             </MDBTableBody>
+//           </MDBTable>
+//         </MDBContainer>
+//     </UserAuth>
+//   );
+// };
+ export default ProgramDetail;

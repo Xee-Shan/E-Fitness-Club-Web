@@ -1,37 +1,20 @@
 const express = require("express");
-const { Recipe } = require("../models/Recipe");
+const { Recipe } = require("../models/recipeModel");
 const router = express.Router();
-const multer = require("multer");
-const fs = require("fs");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploadImages/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-  fileFilter: function (req, file, cb) {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  },
-});
-
-const upload = multer({ storage: storage });
+const cloudinary = require("../utils/cloudinary");
+const upload = require("../utils/multer");
 
 //create recipe
 router.post("/create", upload.single("image"), async (req, res) => {
-  const recipe = new Recipe({
-    name: req.body.name,
-    type: req.body.type,
-    ingredients: req.body.ingredients,
-    method: req.body.method,
-    description: req.body.description,
-    imageName: req.file.originalname,
-    imagePath: req.file.path,
+    const result= await cloudinary.uploader.upload(req.file.path);
+    const recipe = new Recipe({
+      name: req.body.name,
+      type: req.body.type,
+      ingredients: req.body.ingredients,
+      method: req.body.method,
+      description: req.body.description,
+      imageURL: result.secure_url,
+      cloudinary_id: result.public_id
   });
   await recipe.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -39,9 +22,10 @@ router.post("/create", upload.single("image"), async (req, res) => {
   });
 });
 
+
 //get Recipe
 router.get("/get", async (req, res) => {
-  const recipe = await Recipe.find((err, doc) => {
+  await Recipe.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
@@ -58,21 +42,24 @@ router.get("/get/:id", async (req, res) => {
 //delete recipe
 router.delete("/delete/:id", async (req, res) => {
   const recipe = await Recipe.findByIdAndDelete({ _id: req.params.id });
-  fs.unlink(recipe.imagePath, (err) => {
-    if (err) console.log(err);
-    console.log("file deleted from directory");
-  });
+  await cloudinary.uploader.destroy(recipe.cloudinary_id);
+  return res.send(recipe);
 });
 
 //update Recipe
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", upload.single("image"), async (req, res) => {
   const recipe = await Recipe.findByIdAndUpdate({ _id: req.params.id });
+  if (req.body.cloudinary_id === "") {
+    await cloudinary.uploader.destroy(training.cloudinary_id);
+    const result = await cloudinary.uploader.upload(req.file.path);
+    (training.imageURL = result.secure_url),
+      (training.cloudinary_id = result.public_id);
+  }
   recipe.name = req.body.name;
   recipe.type = req.body.type;
   recipe.ingredients = req.body.ingredients;
   recipe.method = req.body.method;
   recipe.description = req.body.description;
-
   await recipe.save();
   return res.send(recipe);
 });

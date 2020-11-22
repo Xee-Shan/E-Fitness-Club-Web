@@ -32,10 +32,6 @@ import NutritionistDashboard from "./Nutrition/Dashboard";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
 import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan"
-import UnderWeight from "./User/Nutritionist/DietPlans/underWeightDietPlan";
-import Obese from "./User/Nutritionist/DietPlans/obeseDiet";
-import Normal from "./User/Nutritionist/DietPlans/normal";
-import OverWieght from "./User/Nutritionist/DietPlans/overWeight";
 import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
@@ -102,10 +98,6 @@ const App = () => {
           <Route path="/contact" component={Contact} />
           <Route path="/bmi" component={Bmi} />
           <Route path="/pagenotfound" component={PageNotFound} />
-          <Route path="/dietplans/underWeight" component={UnderWeight} />
-          <Route path="/dietplans/obese" component={Obese} />
-          <Route path="/dietplans/normal" component={Normal} />
-          <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
           <Route path="/user/recipedetail/:id" component={RecipeDetail} />
