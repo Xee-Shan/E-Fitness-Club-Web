@@ -3,6 +3,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
+import NutritionistAuth from "../../auth/NutritionAuth" 
+
 
 const CreateRecipe = () => {
   let [name, setName] = useState("");
@@ -52,6 +54,7 @@ const CreateRecipe = () => {
 
   return (
     <>
+    <NutritionistAuth>
       <SideNav />
       <br />
       <MDBContainer>
@@ -144,6 +147,7 @@ const CreateRecipe = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      </NutritionistAuth>
     </>
   );
 };

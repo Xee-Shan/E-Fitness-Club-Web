@@ -50,7 +50,9 @@ const Navbar = () => {
   return (
     <MDBNavbar color="pink accent-2" dark expand="md">
       <MDBNavbarBrand>
+        <MDBNavLink to="/">
         <strong className="white-text">E-Fitness Club</strong>
+        </MDBNavLink>
       </MDBNavbarBrand>
 
       <MDBNavbarNav left>
@@ -92,19 +94,11 @@ const Navbar = () => {
               <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
               <MDBNavLink to="/user/blog">BLOGS</MDBNavLink>
             </MDBNavItem>
           </>
         ) : (
           <>
-            <MDBNavItem>
-              <MDBNavLink to="/">HOME</MDBNavLink>
-            </MDBNavItem>
-
             <MDBNavItem>
               <MDBNavLink to="/about">ABOUT</MDBNavLink>
             </MDBNavItem>

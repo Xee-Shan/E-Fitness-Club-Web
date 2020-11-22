@@ -29,10 +29,10 @@ import UserContext from "./context/userContext";
 import CreateRecipe from "./Nutrition/Recipes/createRecipe";
 import UpdateRecipe from "./Nutrition/Recipes/updateRecipe";
 import Recipe from "./Nutrition/Recipes/Recipe";
-import NutritionistLogin from "./Nutrition/nutritionloginform";
 import NutritionistDashboard from "./Nutrition/Dashboard";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
+import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan"
 import UnderWeight from "./User/Nutritionist/DietPlans/underWeightDietPlan";
 import Obese from "./User/Nutritionist/DietPlans/obeseDiet";
 import Normal from "./User/Nutritionist/DietPlans/normal";
@@ -122,9 +122,8 @@ const App = () => {
           />
           {/*<Route path="/auth" component={UserAuth} />*/}
           <Route path="/nutritionist/create/recipe" component={CreateRecipe} />
-          <Route path="/nutritionist/update/recipe" component={UpdateRecipe} />
+          <Route path="/nutritionist/update/recipe/:id" component={UpdateRecipe} />
           <Route path="/nutritionist/recipe" component={Recipe} />
-          <Route path="/nutritionist/login" component={NutritionistLogin} />
           <Route
             path="/nutritionist/dashboard"
             component={NutritionistDashboard}
@@ -132,6 +131,10 @@ const App = () => {
           <Route
             path="/nutritionist/create/dietPlan"
             component={CreateDietPlan}
+          />
+          <Route
+            path="/nutritionist/update/dietPlan/:id"
+            component={UpdateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
           <Route path="/trainer/login" component={TrainerLoginForm} />

@@ -3,7 +3,6 @@ const { DietPlan } = require("../models/dietPlan");
 const router = express.Router();
 
 //create Diet Plan
-
 router.post("/create", async (req, res) => {
   const dietPlan = new DietPlan({
     day: req.body.day,
@@ -26,6 +25,14 @@ router.get("/get", async (req, res) => {
   });
 });
 
+//get diet plan by id
+router.get("/get/:id", async (req, res) => {
+  await DietPlan.findById(req.params.id).exec((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
+
 //delete Diet Plan
 router.delete("/delete/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndDelete({ _id: req.params.id });
@@ -40,6 +47,7 @@ router.put("/update/:id", async (req, res) => {
   dietPlan.diet = req.body.diet;
 
   await dietPlan.save();
+    return res.send(dietPlan);
 });
 
 module.exports = router;

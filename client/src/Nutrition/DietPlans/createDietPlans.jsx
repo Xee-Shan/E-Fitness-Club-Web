@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
+import NutritionistAuth from "../../auth/NutritionAuth" 
+
 
 const CreateDietPlan = () => {
   let [day, setDay] = useState("");
@@ -65,6 +67,7 @@ const CreateDietPlan = () => {
 
   return (
     <>
+    <NutritionistAuth>
       <SideNav />
       <br />
       <MDBContainer>
@@ -72,17 +75,14 @@ const CreateDietPlan = () => {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Add Diet Plans</p>
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Day
-              </label>
-              <input
+              <MDBInput
+                label="Day"
                 onChange={onChangeDay}
                 type="text"
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
               />
-              <br />
               <select
                 className="browser-default custom-select"
                 onChange={onChangeUserType}
@@ -136,6 +136,7 @@ const CreateDietPlan = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      </NutritionistAuth>
     </>
   );
 };

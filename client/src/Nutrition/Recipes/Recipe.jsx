@@ -6,6 +6,8 @@ import axios from "axios";
 import { updateProduct } from "../../actions/productAction";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
+import NutritionistAuth from "../../auth/NutritionAuth" 
+
 
 export default function Recipe() {
   const dispatch = useDispatch();
@@ -30,12 +32,12 @@ export default function Recipe() {
     }
   }
 
-  const handleEdit = (product) => {
-    dispatch(updateProduct(product));
-    history.push("/nutrition/update/recipe");
+  const handleEdit = (id) => {
+    history.push("/nutritionist/update/recipe/" +id);
   };
   return (
     <div>
+      <NutritionistAuth>
       <SideNav />
       <br />
       <h2>List of Recipes : </h2>
@@ -64,7 +66,7 @@ export default function Recipe() {
                 <td>{recipe.ingredients}</td>
                 <td>{recipe.description}</td>
                 <td>
-                  <MDBBtn color="warning" onClick={() => handleEdit(recipe)}>
+                  <MDBBtn color="warning" onClick={() => handleEdit(recipe._id)}>
                     Edit
                   </MDBBtn>
                   <MDBBtn
@@ -79,6 +81,7 @@ export default function Recipe() {
           </MDBTable>
         ))
       )}
+      </NutritionistAuth>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import SideNav from "../SideNav/SideNav";
 // import { DietPlan } from "../../../../server/models/dietPlan";
+import NutritionistAuth from "../../auth/NutritionAuth" 
 
 export default function Recipe() {
   //   const dispatch = useDispatch();
@@ -32,12 +33,12 @@ export default function Recipe() {
     }
   }
 
-  const handleEdit = (product) => {
-    // dispatch(updateProduct(product));
-    history.push("/nutrition/update/recipe");
+  const handleEdit = (id) => {
+    history.push("/nutritionist/update/dietPlan/" +id);
   };
   return (
     <div>
+      <NutritionistAuth>
       <SideNav />
       <br />
       <h2>List of Diet Plans : </h2>
@@ -66,7 +67,7 @@ export default function Recipe() {
                 <td>{dietPlan.diet}</td>
                 {/* <td>{recipe.description}</td> */}
                 <td>
-                  <MDBBtn color="warning" onClick={() => handleEdit(dietPlan)}>
+                  <MDBBtn color="warning" onClick={() => handleEdit(dietPlan._id)}>
                     Edit
                   </MDBBtn>
                   <MDBBtn
@@ -81,6 +82,7 @@ export default function Recipe() {
           </MDBTable>
         ))
       )}
+      </NutritionistAuth>
     </div>
   );
 }
