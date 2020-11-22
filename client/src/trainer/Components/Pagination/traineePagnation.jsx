@@ -21,7 +21,6 @@ const Pagination = ({ traineePerPage, totalTrainee, paginate }) => {
             >
               <a
                 onClick={() => paginate(number)}
-                href
                 className="page-link"
                 style={{ color: "#1E8BFF" }}
               >

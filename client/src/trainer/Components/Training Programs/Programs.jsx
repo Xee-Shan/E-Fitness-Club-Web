@@ -9,7 +9,7 @@ import TrainerAuth from "../../../auth/TrainerAuth";
 const Program = () => {
   const [program, setProgram] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [programPerpage] = useState(2);
+  const [programPerpage] = useState(1);
   const [q, setQ] = useState("");
 
   const fetchPrograms = async () => {
