@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
@@ -101,9 +101,8 @@ const Navbar = () => {
             <FaShoppingCart color="black" />
           </MDBNavLink>
         </MDBNavItem>
-
         <MDBDropdown>
-          <MDBDropdownToggle caret color="pink">
+          <MDBDropdownToggle color="pink">
             <FaUserAlt />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
@@ -113,11 +112,20 @@ const Navbar = () => {
               </MDBNavLink>
             </MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem>
-              <a size="sm" onClick={logout}>
-                Logout
-              </a>
-            </MDBDropdownItem>
+            <div onClick={logout}>
+              <MDBDropdownItem>
+                <a
+                  size="sm"
+                  href="/"
+                  style={{
+                    color: "white",
+                    backgroundColor: "#B41249",
+                  }}
+                >
+                  Logout
+                </a>
+              </MDBDropdownItem>
+            </div>
           </MDBDropdownMenu>
         </MDBDropdown>
       </MDBNavbarNav>

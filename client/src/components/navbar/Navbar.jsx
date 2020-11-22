@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "../../context/userContext";
+//import UserContext from "../../context/userContext";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -12,7 +11,7 @@ import {
 } from "mdbreact";
 
 const Navbar = () => {
-  const { userData, setUserData } = useContext(UserContext);
+  // const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
   const register = () => history.push("/register");
   const login = () => history.push("/login");

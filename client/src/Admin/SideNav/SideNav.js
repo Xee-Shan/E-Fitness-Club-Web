@@ -7,7 +7,6 @@ import "./SideNav.css";
 import { IconContext } from "react-icons";
 import { FaUserAlt } from "react-icons/fa";
 import { MDBBtn } from "mdbreact";
-import history from "react-router-dom";
 import axios from "axios";
 import Admin from "../../auth/Admin";
 

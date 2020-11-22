@@ -30,6 +30,7 @@ const ProgramDetail = (props) => {
         <MDBContainer>
           <br />
           <iframe
+            title="Hello"
             width="1100"
             height="400"
             src="https://www.youtube.com/embed/ZzOk6yH9bT8"
