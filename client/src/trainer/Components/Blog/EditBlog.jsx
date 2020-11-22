@@ -8,16 +8,21 @@ import Axios from "axios";
 
 const EditBlog = () => {
   const [title, setTitle] = useState();
-  const [image, setImage] = useState();
   const [content, setContent] = useState("");
+  const [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState("");
+  const [cloudinaryId, setCloudinaryId] = useState("");
+
   const history = useHistory();
   const { id } = useParams();
 
   const fetchBlog = async () => {
-    Axios.get("http://localhost:5000/blog/get/" + id).then((res) => {
+    await Axios.get("http://localhost:5000/blog/get/" + id).then((res) => {
       if (res) {
         setTitle(res.data.title);
         setContent(res.data.content);
+        setPreviewImage(res.data.imageURL);
+        setCloudinaryId(res.data.cloudinary_id);
       }
     });
   };
@@ -29,11 +34,13 @@ const EditBlog = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const data = {
-      title: title,
-      content: content,
-    };
-    await Axios.put("http://localhost:5000/blog/update/" + id, data).then(
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("image", image);
+    formData.append("content", content);
+    formData.append("cloudinary_id", cloudinaryId);
+
+    await Axios.put("http://localhost:5000/blog/update/" + id, formData).then(
       (res) => {
         if (res) {
           history.push("/trainer/getblog");
@@ -63,17 +70,16 @@ const EditBlog = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                <label
-                  htmlFor="defaultFormRegisterNameEx"
-                  className="grey-text"
-                >
-                  Uplaod Image
-                </label>
+                <img src={previewImage} alt="" />
                 <input
                   type="file"
                   accept=".jpeg, .jpg, .png"
                   name="file"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                    setCloudinaryId("");
+                  }}
                   id="defaultFormRegisterNameEx"
                   className="form-control"
                   style={{ borderStyle: "none" }}

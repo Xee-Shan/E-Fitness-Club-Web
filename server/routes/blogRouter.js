@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const fs = require("fs");
+//const multer = require("multer");
+//const fs = require("fs");
 const { Blog } = require("../models/blogModel");
+const upload = require("../utils/multer");
+const cloudinary = require("../utils/cloudinary");
 
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploadImages/");
   },
@@ -20,15 +22,16 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }); */
 
 //Create Blog
 router.post("/create", upload.single("image"), async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
   const blog = new Blog({
     title: req.body.title,
-    imageName: req.file.originalname,
-    imagePath: req.file.path,
     content: req.body.content,
+    imageURL: result.secure_url,
+    cloudinary_id: result.public_id,
   });
   await blog.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -54,24 +57,27 @@ router.get("/get/:id", async (req, res) => {
 
 //Delete Blog by id
 router.delete("/delete/:id", async (req, res) => {
-  const blog = await Blog.findByIdAndDelete({ _id: req.params.id }).exec(
-    (err, doc) => {
-      if (err) res.status(400).send(err);
-      res.status(200).send(doc);
-    }
-  );
-  fs.unlink(blog.imagePath, (err) => {
+  const blog = await Blog.findByIdAndDelete({ _id: req.params.id });
+  await cloudinary.uploader.destroy(blog.cloudinary_id);
+  return res.send(blog);
+
+  /*  fs.unlink(blog.imagePath, (err) => {
     if (err) console.log(err);
     console.log("file deleted from directory");
-  });
+  });*/
 });
 
 //Update Blog by id
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", upload.single("image"), async (req, res) => {
   const blog = await Blog.findByIdAndUpdate({ _id: req.params.id });
+  if (req.body.cloudinary_id === "") {
+    await cloudinary.uploader.destroy(blog.cloudinary_id);
+    const result = await cloudinary.uploader.upload(req.file.path);
+    (blog.imageURL = result.secure_url),
+      (blog.cloudinary_id = result.public_id);
+  }
   blog.title = req.body.title;
   blog.content = req.body.content;
-  blog.imageName = req.body.imageName;
   await blog.save();
   return res.send(blog);
 });
