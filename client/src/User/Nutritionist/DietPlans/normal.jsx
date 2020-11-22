@@ -1,11 +1,13 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React, { Fragment } from "react";
 import UserAuth from "../../../auth/UserAuth";
+import NavBar from "../../../components//navbar/Navbar"
 
 const Normal = () => {
   return (
     <UserAuth>
       <Fragment>
+      <NavBar/>
         <br />
         <h1 style={{ textAlign: "center" }}>Diet Plan For Normal</h1>
         <br />

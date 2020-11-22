@@ -105,7 +105,7 @@ const App = () => {
           <Route path="/dietplans/overweight" component={OverWieght} />
           <Route path="/user/dietplans" component={DietPlan} />
           <Route path="/user/recipes" component={UserRecipes} />
-          <Route path="/user/recipes" component={RecipeDetail} />
+          <Route path="/user/recipedetail/:id" component={RecipeDetail} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/admin/product" component={Product} />

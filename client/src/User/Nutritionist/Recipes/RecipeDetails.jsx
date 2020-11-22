@@ -25,6 +25,7 @@ const RecipeDetail = (props) => {
       <MDBContainer>
         <br />
         <h1 className="h1 text-center mb-4">{recipe.name}</h1>
+        <h3>Description :</h3>
         <p>{recipe.description}</p>
       </MDBContainer>
       <MDBContainer>
@@ -34,6 +35,13 @@ const RecipeDetail = (props) => {
           height="400"
           src={imgURL}
         ></img>
+        <h3>Type :</h3>
+        <p>{recipe.type}</p>
+        <h3>Ingredients :</h3>
+        <p>{recipe.ingredients}</p>
+        <h3>Method :</h3>
+        <p>{recipe.method}</p>
+
       </MDBContainer>
       {/* <MDBContainer>
         <br /> 
