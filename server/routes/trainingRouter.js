@@ -96,8 +96,12 @@ router.post("/add/detail/:id", async (req, res) => {
     detail.push(data);
   });
   training.exercise = detail;
-  await training.save((err) => {
-    if (err) res.status(400).send(err);
+  await training.save((err, doc) => {
+    if (err) {
+      return res.status(400).status.json({ msg: "Program Scheduled Added" });
+    } else {
+      return res.status(200).send(doc);
+    }
   });
 });
 
@@ -105,7 +109,7 @@ router.post("/add/detail/:id", async (req, res) => {
 router.get("/get/detail", async (req, res) => {
   const training = await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
-    res.status(200).send(doc);
+    res.status(200).send(training);
   });
 });
 
@@ -114,7 +118,13 @@ router.put("/edit/schedule/:id/:index", async (req, res) => {
   const training = await Training.findByIdAndUpdate({ _id: req.params.id });
   training.exercise[req.params.index] = req.body;
   training.markModified("exercise");
-  await training.save();
+  await training.save((err, doc) => {
+    if (err) {
+      return res.send(400).json({ msg: "Error Occured" });
+    } else {
+      return res.send(200).json({ msg: "Program Schedule updated" });
+    }
+  });
 });
 
 //Add Workout List
@@ -144,6 +154,7 @@ router.put("/edit/workout/:id/:index", async (req, res) => {
   training.workoutList[req.params.index] = req.body;
   training.markModified("workoutList");
   await training.save();
+  return res.send(training);
 });
 
 module.exports = router;

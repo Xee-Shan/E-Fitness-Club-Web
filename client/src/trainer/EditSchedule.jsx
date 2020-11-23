@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import { MDBBtn } from "mdbreact";
+import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import TrainerAuth from "../auth/TrainerAuth";
+import SideNav from "./Components/SideNav/SideNav";
+import { useParams, useHistory } from "react-router-dom";
+import ResponseNotice from "../components/response/ResponseNotice";
 
-export default function EditSchedule(props) {
+export default function EditSchedule() {
   const [day, setDay] = useState();
   const [area, setArea] = useState();
-  const [data, setData] = useState();
+  const [response, setResponse] = useState();
+  const history = useHistory();
+  const { id, index } = useParams();
 
   const fetchProgramDetail = async () => {
-    await Axios.get(
-      "http://localhost:5000/training/get/" + props.match.params.id
-    ).then((res) => {
-      setData(res.data);
-      setDay(res.data.exercise[props.match.params.index].day);
-      setArea(res.data.exercise[props.match.params.index].area);
+    await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
+      setDay(res.data.exercise[index].day);
+      setArea(res.data.exercise[index].area);
     });
   };
-
-  useEffect(() => {
-    fetchProgramDetail();
-  }, [props]);
 
   const edit = () => {
     const data = {
@@ -28,42 +26,74 @@ export default function EditSchedule(props) {
       area: area,
     };
     Axios.put(
-      "http://localhost:5000/training/edit/schedule/" +
-        props.match.params.id +
-        "/" +
-        props.match.params.index,
+      "http://localhost:5000/training/edit/schedule/" + id + "/" + index,
       data
-    );
+    ).then((res) => {
+      if (res.data.msg) {
+        setResponse(res.data.msg);
+      }
+    });
   };
+
+  useEffect(() => {
+    fetchProgramDetail();
+  }, []);
+
   return (
     <TrainerAuth>
-      <div>
-        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-          Day
-        </label>
-        <input
-          type="text"
-          value={day}
-          onChange={(e) => setDay(e.target.value)}
-          id="defaultFormRegisterNameEx"
-          className="form-control"
-          required
-        />
-        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-          Area
-        </label>
-        <input
-          type="text"
-          value={area}
-          onChange={(e) => setArea(e.target.value)}
-          id="defaultFormRegisterNameEx"
-          className="form-control"
-          required
-        />
-        <MDBBtn onClick={edit} color="unique" type="submit">
-          Edit
-        </MDBBtn>
-      </div>
+      <SideNav />
+      <br />
+      <br />
+      <br />
+      <br />
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="3"></MDBCol>
+          <MDBCol md="6">
+            <form>
+              <p className="h4 text-center mb-4">Update</p>
+              {response && (
+                <ResponseNotice
+                  message={response}
+                  clearResponse={() => setResponse(undefined)}
+                />
+              )}
+              <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
+                Day
+              </label>
+              <input
+                type="text"
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
+                id="defaultFormLoginEmailEx"
+                className="form-control"
+                required
+              />
+              <br />
+              <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
+                Area
+              </label>
+              <input
+                type="text"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+                id="defaultFormLoginPasswordEx"
+                className="form-control"
+                required
+              />
+              <div className="text-center mt-4">
+                <MDBBtn color="indigo" type="submit" onClick={edit}>
+                  Update
+                </MDBBtn>
+                <MDBBtn color="indigo" type="submit">
+                  Back
+                </MDBBtn>
+              </div>
+            </form>
+          </MDBCol>
+          <MDBCol md="3"></MDBCol>
+        </MDBRow>
+      </MDBContainer>
     </TrainerAuth>
   );
 }

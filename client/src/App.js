@@ -31,7 +31,7 @@ import Recipe from "./Nutrition/Recipes/Recipe";
 import NutritionistDashboard from "./Nutrition/Dashboard";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
-import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan"
+import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan";
 import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
@@ -64,28 +64,29 @@ const App = () => {
     user: undefined,
   });
 
+  const checkLoggedIn = async () => {
+    let token = localStorage.getItem("auth-token");
+    if (token === null) {
+      localStorage.setItem("auth-token", "");
+      token = "";
+    }
+    const tokenRes = await Axios.post(
+      "http://localhost:5000/users/tokenisvalid",
+      null,
+      { headers: { "x-auth-token": token } }
+    );
+    if (tokenRes.data) {
+      const userRes = await Axios.get("http://localhost:5000/users/", {
+        headers: { "x-auth-token": token },
+      });
+      setUserData({
+        token,
+        user: userRes.data,
+      });
+    }
+  };
+
   useEffect(() => {
-    const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
-      const tokenRes = await Axios.post(
-        "http://localhost:5000/users/tokenisvalid",
-        null,
-        { headers: { "x-auth-token": token } }
-      );
-      if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:5000/users/", {
-          headers: { "x-auth-token": token },
-        });
-        setUserData({
-          token,
-          user: userRes.data,
-        });
-      }
-    };
     checkLoggedIn();
   }, []);
 
@@ -116,7 +117,10 @@ const App = () => {
           />
           {/*<Route path="/auth" component={UserAuth} />*/}
           <Route path="/nutritionist/create/recipe" component={CreateRecipe} />
-          <Route path="/nutritionist/update/recipe/:id" component={UpdateRecipe} />
+          <Route
+            path="/nutritionist/update/recipe/:id"
+            component={UpdateRecipe}
+          />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route
             path="/nutritionist/dashboard"

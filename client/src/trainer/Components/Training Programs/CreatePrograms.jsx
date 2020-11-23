@@ -4,6 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import TrainerAuth from "../../../auth/TrainerAuth";
 import { useHistory } from "react-router-dom";
+import ErrorNotice from "../../../components/error/ErrorNotice";
 
 const CreatePrograms = () => {
   const [programId, setProgramId] = useState("");
@@ -13,11 +14,26 @@ const CreatePrograms = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState();
+  const [err, setErr] = useState();
 
   const history = useHistory();
 
+  const validate = () => {
+    if (
+      !programId ||
+      !title ||
+      !targetArea ||
+      !equipment ||
+      !description ||
+      !image
+    ) {
+      setErr("Please Enter All Fields");
+    }
+  };
+
   const submit = async (e) => {
     e.preventDefault();
+    validate();
 
     const formData = new FormData();
     formData.append("programId", programId);
@@ -45,6 +61,12 @@ const CreatePrograms = () => {
             <MDBCol>
               <form>
                 <p className="h1 text-center mb-4">Add Details</p>
+                {err && (
+                  <ErrorNotice
+                    message={err}
+                    clearError={() => setErr(undefined)}
+                  />
+                )}
                 <div className="grey-text">
                   <MDBInput
                     label="Program Id"

@@ -3,6 +3,7 @@ import { MDBBtn, MDBInput, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
+import ErrorNotice from "../../../components/error/ErrorNotice";
 
 const EditProgram = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const EditProgram = () => {
   const [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState("");
   const [cloudinaryId, setCloudinaryId] = useState("");
+  const [err, setErr] = useState();
 
   const getPrograms = async () => {
     await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
@@ -30,8 +32,14 @@ const EditProgram = () => {
     });
   };
 
+  const validate = () => {
+    if (!programId || !title || !targetArea || !equipment || !description)
+      setErr("Please Enter All Fields");
+  };
+
   const submit = async (e) => {
     e.preventDefault();
+    validate();
     const formData = new FormData();
     formData.append("programId", programId);
     formData.append("title", title);
@@ -61,6 +69,12 @@ const EditProgram = () => {
           <MDBCol>
             <form>
               <p className="h1 text-center mb-4">Edit Details</p>
+              {err && (
+                <ErrorNotice
+                  message={err}
+                  clearError={() => setErr(undefined)}
+                />
+              )}
               <div className="grey-text">
                 <MDBInput
                   label="Program Id"
@@ -125,5 +139,4 @@ const EditProgram = () => {
     </>
   );
 };
-
 export default EditProgram;

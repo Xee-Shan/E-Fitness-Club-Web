@@ -3,9 +3,12 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
 import SideNav from "../../SideNav/SideNav";
 import TrainerAuth from "../../../../auth/TrainerAuth";
+import { useParams, useHistory } from "react-router-dom";
 
-const AddDetail = (props) => {
+const AddDetail = () => {
   const [inputFields, setInputFields] = useState([{ day: "", area: "" }]);
+  const { id } = useParams();
+  const history = useHistory();
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
@@ -25,12 +28,14 @@ const AddDetail = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputFields);
     Axios.post(
-      "http://localhost:5000/training/add/detail/" + props.match.params.id,
+      "http://localhost:5000/training/add/detail/" + id,
       inputFields
-    );
-    alert("Program Schedule Added");
+    ).then((res) => {
+      if (res) {
+        history.push("/trainer/view/program/" + id);
+      }
+    });
   };
 
   return (
