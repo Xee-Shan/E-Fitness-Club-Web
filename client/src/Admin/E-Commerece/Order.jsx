@@ -13,7 +13,7 @@ export default function Order() {
              .then(res=>setOrder(res.data));            
           }
           fetchData();
-    },[order]);
+    },[order,localStorage.getItem("auth-token")]);
     async function handleDelivered(id){
         axios.delete("http://localhost:5000/orders/delete/"+id,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
         window.location.reload();
@@ -28,7 +28,8 @@ export default function Order() {
             {
                 order?.length===0?<h3>No orders yet...</h3>
                 : order?.map((order,i)=>(
-                    <div key={i} style={{border:"2px solid black"}}>
+                    <div key={i}>
+                    <MDBContainer style={{border:"1px solid black"}}>
                     <div>
                      <h3> Consumer's Name :  {order.name} | Consumer's Email : {order.email}| Consumer's Phone Number : {order.phoneNumber}| Consumer's Address : {order.address}</h3>
                     </div>
@@ -43,8 +44,10 @@ export default function Order() {
                                  </div>   )
                    })}
                    <MDBBtn color="secondary" onClick={()=>handleDelivered(order._id)}style={{float:"right"}}>Delivered</MDBBtn>
-                   <br/> <br/>
+                   <br/> <br/> <br/>
                    
+                    </MDBContainer>
+                    <br/>
                     </div>
                 ))
             }

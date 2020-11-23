@@ -40,7 +40,7 @@ export default function EditProduct(props) {
     }
     }
     fetchData();
-  }, []);
+  }, [localStorage.getItem("auth-token")]);
 
   const history = useHistory();
 
