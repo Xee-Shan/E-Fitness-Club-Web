@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
   try {
-    console.log("ksdfjldsj");
     const token = req.header("x-auth-token");
     if (!token)
       return res

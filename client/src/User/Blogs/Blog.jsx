@@ -20,7 +20,9 @@ const Blog = () => {
   };
 
   const fetchData = async () => {
-    const response = await Axios.get("http://localhost:5000/blog/get");
+    const response = await Axios.get("http://localhost:5000/blog/get",{
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    });
     setBlog(response.data);
   };
 

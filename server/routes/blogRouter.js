@@ -48,7 +48,12 @@ router.get("/get",auth, async (req, res) => {
     res.status(200).send(doc);
   });
 });
-
+router.get("/getAll",auth, async (req, res) => {
+  await Blog.find((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 //Get Blog by id
 router.get("/get/:id",auth, async (req, res) => {
   await Blog.findById(req.params.id).exec((err, doc) => {
