@@ -35,7 +35,12 @@ const GetBlogs = ({ blog }) => {
                   <MDBCardBody>
                     <MDBCardTitle>{data.title}</MDBCardTitle>
 
-                    <MDBBtn onClick={() => btnClicked(data._id)}>
+                    <MDBBtn
+                      onClick={() => btnClicked(data._id)}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
                       Details
                     </MDBBtn>
                   </MDBCardBody>
