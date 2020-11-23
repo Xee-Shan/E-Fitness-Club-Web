@@ -63,21 +63,24 @@ router.get("/get",auth, async (req, res) => {
 
 //get cateogries of Products
 router.get("/get/category",auth, async (req, res) => {
-  function diffArray(arr1, arr2) {
-    return arr1
-      .concat(arr2)
-      .filter(item => !arr1.includes(item) || !arr2.includes(item));
-  }
-  let arr1=[];
-  let arr2=[];
+  function remove_duplicates(arr) {
+    var obj = {};
+    var ret_arr = [];
+    for (var i = 0; i < arr.length; i++) {
+        obj[arr[i]] = true;
+    }
+    for (var key in obj) {
+        ret_arr.push(key);
+    }
+    return ret_arr;
+}
+  let arr=[];
   const category=await Product.find().select({category:1});
   category.map(data=>{
-    arr1.push(data.category);
-    arr2.push(data.category);
+    arr.push(data.category);
   });
-  console.log(diffArray(arr1,arr2));
   
-  res.status(200).send(category);
+  res.status(200).send(remove_duplicates(arr));
  
 });
 

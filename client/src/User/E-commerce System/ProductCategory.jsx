@@ -46,7 +46,7 @@ export default function ProductCategory(props) {
               <MDBView className="overlay rounded z-depth-1">
                 <div>
                   <img
-                    src={"http://localhost:5000/" + product.imageName}
+                    src={product.imageURL}
                     alt=""
                     className="img-fluid"
                     style={{

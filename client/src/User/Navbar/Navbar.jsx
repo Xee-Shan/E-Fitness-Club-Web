@@ -75,8 +75,8 @@ const Navbar = () => {
                 {category.map((data, i) => {
                   return (
                     <MDBDropdownItem key={i}>
-                      <a href={"/user/productCategory/" + data.category}>
-                        {data.category}
+                      <a href={"/user/productCategory/" + data}>
+                        {data}
                       </a>
                     </MDBDropdownItem>
                   );
