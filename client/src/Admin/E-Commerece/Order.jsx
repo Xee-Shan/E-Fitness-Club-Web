@@ -13,7 +13,7 @@ export default function Order() {
              .then(res=>setOrder(res.data));            
           }
           fetchData();
-    },[order,localStorage.getItem("auth-token")]);
+    },[order]);
     async function handleDelivered(id){
         axios.delete("http://localhost:5000/orders/delete/"+id,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
         window.location.reload();

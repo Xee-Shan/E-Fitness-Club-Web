@@ -32,7 +32,7 @@ export default function Employee() {
       setEmployee(response.data);
     }
     fetchData();
-  }, [localStorage.getItem("auth-token")]);
+  }, []);
 
   async function handleDelete(id) {
     axios.delete("http://localhost:5000/users/delete/employee/" + id, {

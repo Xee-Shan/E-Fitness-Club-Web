@@ -21,7 +21,7 @@ export default function Product() {
       setProduct(response.data);
     }
     fetchData();
-  }, [product,localStorage.getItem("auth-token")]);
+  }, [product]);
 
   async function handleDelete(id) {
     await axios.delete("http://localhost:5000/products/delete/" + id, {
