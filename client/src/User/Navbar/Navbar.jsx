@@ -45,7 +45,7 @@ const Navbar = () => {
     fetchData();
   }, []);
   return (
-    <MDBNavbar color="pink accent-2" dark expand="md">
+    <MDBNavbar color="blue-gradient" dark expand="md">
       <MDBNavbarBrand>
         <MDBNavLink to="/">
           <strong className="white-text">E-Fitness Club</strong>
@@ -75,9 +75,7 @@ const Navbar = () => {
                 {category.map((data, i) => {
                   return (
                     <MDBDropdownItem key={i}>
-                      <a href={"/user/productCategory/" + data}>
-                        {data}
-                      </a>
+                      <a href={"/user/productCategory/" + data}>{data}</a>
                     </MDBDropdownItem>
                   );
                 })}
@@ -102,7 +100,7 @@ const Navbar = () => {
           </MDBNavLink>
         </MDBNavItem>
         <MDBDropdown>
-          <MDBDropdownToggle color="pink">
+          <MDBDropdownToggle className="blue-gradient" outline color="white">
             <FaUserAlt />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
@@ -119,7 +117,7 @@ const Navbar = () => {
                   href="/"
                   style={{
                     color: "white",
-                    backgroundColor: "#B41249",
+                    backgroundColor: "#3351AB",
                   }}
                 >
                   Logout
