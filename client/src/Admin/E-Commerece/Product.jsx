@@ -13,6 +13,11 @@ export default function Product() {
   const [product, setProduct] = useState([]);
   const history = useHistory();
 
+  useEffect(()=>{
+    if(localStorage.getItem("auth-token")===undefined){
+      history.push("/login");
+    }
+  })
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/products/get", {
