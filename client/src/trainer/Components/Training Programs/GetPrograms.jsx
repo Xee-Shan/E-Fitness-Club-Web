@@ -7,13 +7,13 @@ const GetPrograms = ({ program }) => {
   const history = useHistory();
 
   const deleteProgram = async (id) => {
-    await Axios.delete("http://localhost:5000/training/delete/" + id).then(
-      (res) => {
-        if (res) {
-          window.location.reload();
-        }
+    await Axios.delete("http://localhost:5000/training/delete/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
+      if (res) {
+        window.location.reload();
       }
-    );
+    });
   };
 
   const editProgram = async (id) => {

@@ -14,7 +14,9 @@ export default function EditSchedule() {
   const { id, index } = useParams();
 
   const fetchProgramDetail = async () => {
-    await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
+    await Axios.get("http://localhost:5000/training/get/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       setDay(res.data.exercise[index].day);
       setArea(res.data.exercise[index].area);
     });
@@ -27,12 +29,9 @@ export default function EditSchedule() {
     };
     Axios.put(
       "http://localhost:5000/training/edit/schedule/" + id + "/" + index,
-      data
-    ).then((res) => {
-      if (res.data.msg) {
-        setResponse(res.data.msg);
-      }
-    });
+      data,
+      { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
+    );
   };
 
   useEffect(() => {
@@ -52,12 +51,6 @@ export default function EditSchedule() {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Update</p>
-              {response && (
-                <ResponseNotice
-                  message={response}
-                  clearResponse={() => setResponse(undefined)}
-                />
-              )}
               <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                 Day
               </label>

@@ -7,7 +7,9 @@ const GetTrainee = ({ trainee }) => {
     const value = window.confirm("Are you sure you want to delete trainee ?");
     if (value === true) {
       console.log(id);
-      await Axios.delete("http://localhost:5000/users/delete/" + id);
+      await Axios.delete("http://localhost:5000/users/delete/" + id, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      });
       window.location.reload();
     }
   };

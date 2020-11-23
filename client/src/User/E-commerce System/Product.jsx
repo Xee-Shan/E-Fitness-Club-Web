@@ -41,7 +41,6 @@ export default function Product() {
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
               <MDBView className="overlay rounded z-depth-1">
                 <div>
-                 
                   <img
                     src={product.imageURL}
                     alt=""
@@ -66,11 +65,10 @@ export default function Product() {
                 <b>${product.price}</b>
                 <br />
                 <MDBBtn
+                  className="blue-gradient"
                   onClick={() => btnClicked(product._id)}
-                  /*href={"/user/productDetail/"+product._id}*/ color="indigo"
-                  size="sm"
+                  /*href={"/user/productDetail/"+product._id}*/
                 >
-                  <MDBIcon far icon="clone" className="left" />
                   Details
                 </MDBBtn>
               </MDBCardBody>

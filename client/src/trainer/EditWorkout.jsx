@@ -13,7 +13,9 @@ export default function EditSchedule() {
   const { id, index } = useParams();
 
   const fetchProgramDetail = async () => {
-    await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
+    await Axios.get("http://localhost:5000/training/get/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       setExercise(res.data.workoutList[index].exerciseName);
       setSets(res.data.workoutList[index].sets);
       setReps(res.data.workoutList[index].reps);
@@ -32,7 +34,8 @@ export default function EditSchedule() {
     };
     Axios.put(
       "http://localhost:5000/training/edit/workout/" + id + "/" + index,
-      data
+      data,
+      { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
     );
   };
   return (

@@ -140,7 +140,12 @@ export default function ProductDetail(props) {
                 <h2>╸</h2>
               </button>
             </div>
-            <MDBBtn color="deep-orange" onClick={() => btnClicked(product)}>
+            <MDBBtn
+              className="blue-gradient"
+              onClick={() => btnClicked(product)}
+              outline
+              color="white"
+            >
               Add to Cart
             </MDBBtn>
           </MDBCol>

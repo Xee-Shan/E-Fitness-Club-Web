@@ -71,9 +71,11 @@ export default function ProductCategory(props) {
                 <MDBBtn
                   onClick={() => btnClicked(product._id)}
                   /*href={"/user/productDetail/"+product._id}*/ color="indigo"
+                  className="blue-gradient"
+                  outline
+                  color="white"
                   size="sm"
                 >
-                  <MDBIcon far icon="clone" className="left" />
                   Details
                 </MDBBtn>
               </MDBCardBody>

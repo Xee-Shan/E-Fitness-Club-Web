@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { MDBTable, MDBBtn, MDBTableBody, MDBTableHead } from "mdbreact";
+import {
+  MDBContainer,
+  MDBTable,
+  MDBBtn,
+  MDBTableBody,
+  MDBTableHead,
+} from "mdbreact";
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import UserAuth from "../../auth/UserAuth";
@@ -111,62 +117,65 @@ export default function CartPage() {
     <UserAuth>
       <div>
         <Navbar />
-        <h2>My Cart : </h2>
-        <br />
+        <MDBContainer>
+          <br />
+          <p className="h1 text-center">My Cart</p>
+          <br />
 
-        <MDBTable bordered>
-          <MDBTableHead color="primary-color" textWhite>
-            <tr>
-              <th>#</th>
-              <th>Product Image</th>
-              <th>Product Name</th>
-              <th>Product Brand</th>
-              <th>Product Quantity</th>
-              <th>Product Price</th>
-              <th>Action</th>
-            </tr>
-          </MDBTableHead>
-          {cart?.length === 0
-            ? null
-            : cart?.map((cart, i) => (
-                <MDBTableBody key={i}>
-                  <tr>
-                    <td>{i + 1}</td>
-                    <td>
-                      <img
-                        src={cart.imageURL}
-                        className="rounded mx-auto d-block"
-                        style={{ height: "100px" }}
-                        alt="aligment"
-                      />
-                    </td>
-                    <td>{cart.name}</td>
-                    <td>{cart.brand}</td>
-                    <td>{cart.quantity}</td>
-                    <td>{cart.price}</td>
-                    <td>
-                      <MDBBtn
-                        color="danger"
-                        onClick={() => handleRemove(cart.id)}
-                      >
-                        Remove
-                      </MDBBtn>
-                    </td>
-                  </tr>
-                </MDBTableBody>
-              ))}
-        </MDBTable>
-        <h3 style={{ float: "right" }}>Total : ${total}</h3>
-        <br />
-        <br />
-        <br />
-        <MDBBtn
-          color="secondary"
-          style={{ float: "right" }}
-          onClick={() => handleOrder()}
-        >
-          Place Order
-        </MDBBtn>
+          <MDBTable bordered>
+            <MDBTableHead color="primary-color" textWhite>
+              <tr>
+                <th>#</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Brand</th>
+                <th>Product Quantity</th>
+                <th>Product Price</th>
+                <th>Action</th>
+              </tr>
+            </MDBTableHead>
+            {cart?.length === 0
+              ? null
+              : cart?.map((cart, i) => (
+                  <MDBTableBody key={i}>
+                    <tr>
+                      <td>{i + 1}</td>
+                      <td>
+                        <img
+                          src={cart.imageURL}
+                          className="rounded mx-auto d-block"
+                          style={{ height: "100px" }}
+                          alt="aligment"
+                        />
+                      </td>
+                      <td>{cart.name}</td>
+                      <td>{cart.brand}</td>
+                      <td>{cart.quantity}</td>
+                      <td>{cart.price}</td>
+                      <td>
+                        <MDBBtn
+                          color="danger"
+                          onClick={() => handleRemove(cart.id)}
+                        >
+                          Remove
+                        </MDBBtn>
+                      </td>
+                    </tr>
+                  </MDBTableBody>
+                ))}
+          </MDBTable>
+          <h3 style={{ float: "right" }}>Total : ${total}</h3>
+          <br />
+          <br />
+          <br />
+          <MDBBtn
+            color="secondary"
+            style={{ float: "right" }}
+            onClick={() => handleOrder()}
+          >
+            Place Order
+          </MDBBtn>
+        </MDBContainer>
       </div>
     </UserAuth>
   );

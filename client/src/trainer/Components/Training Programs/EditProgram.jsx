@@ -19,7 +19,9 @@ const EditProgram = () => {
   const [err, setErr] = useState();
 
   const getPrograms = async () => {
-    await Axios.get("http://localhost:5000/training/get/" + id).then((res) => {
+    await Axios.get("http://localhost:5000/training/get/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       if (res) {
         setProgramId(res.data.programId);
         setTitle(res.data.title);
@@ -40,21 +42,23 @@ const EditProgram = () => {
   const submit = async (e) => {
     e.preventDefault();
     validate();
-    const formData = new FormData();
-    formData.append("programId", programId);
-    formData.append("title", title);
-    formData.append("targetArea", targetArea);
-    formData.append("equipment", equipment);
-    formData.append("description", description);
-    formData.append("image", image);
-    formData.append("cloudinary_id", cloudinaryId);
 
-    await Axios.put(
-      "http://localhost:5000/training/update/" + id,
-      formData
-    ).then((res) => {
-      if (res) history.push("/trainer/program");
-    });
+    if (err === undefined) {
+      const formData = new FormData();
+      formData.append("programId", programId);
+      formData.append("title", title);
+      formData.append("targetArea", targetArea);
+      formData.append("equipment", equipment);
+      formData.append("description", description);
+      formData.append("image", image);
+      formData.append("cloudinary_id", cloudinaryId);
+
+      await Axios.put("http://localhost:5000/training/update/" + id, formData, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }).then((res) => {
+        if (res) history.push("/trainer/program");
+      });
+    }
   };
 
   useEffect(() => {

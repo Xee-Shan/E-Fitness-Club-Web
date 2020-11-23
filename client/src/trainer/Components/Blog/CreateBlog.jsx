@@ -30,15 +30,19 @@ const CreatePrograms = () => {
   const submit = async (e) => {
     e.preventDefault();
     validate();
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("image", image);
-    formData.append("content", content);
-    Axios.post("http://localhost:5000/blog/create", formData).then((res) => {
-      if (res) {
-        history.push("/trainer/getblog");
-      } else alert("Error occured");
-    });
+    if (err === undefined) {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("image", image);
+      formData.append("content", content);
+      Axios.post("http://localhost:5000/blog/create", formData, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }).then((res) => {
+        if (res) {
+          history.push("/trainer/getblog");
+        } else alert("Error occured");
+      });
+    }
   };
 
   return (

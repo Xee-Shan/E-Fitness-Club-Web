@@ -3,11 +3,13 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
 import SideNav from "../../SideNav/SideNav";
 import TrainerAuth from "../../../../auth/TrainerAuth";
+import { useParams } from "react-router-dom";
 
-const AddWorkout = (props) => {
+const AddWorkout = () => {
   const [inputFields, setInputFields] = useState([
     { exerciseName: "", sets: "", reps: "" },
   ]);
+  const { id } = useParams();
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
@@ -28,9 +30,9 @@ const AddWorkout = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Axios.post(
-      "http://localhost:5000/training/add/workout/detail/" +
-        props.match.params.id,
-      inputFields
+      "http://localhost:5000/training/add/workout/detail/" + id,
+      inputFields,
+      { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
     );
     alert("Program Workout Added");
   };

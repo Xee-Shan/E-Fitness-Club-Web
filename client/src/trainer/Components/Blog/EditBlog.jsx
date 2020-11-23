@@ -25,7 +25,9 @@ const EditBlog = () => {
   };
 
   const fetchBlog = async () => {
-    await Axios.get("http://localhost:5000/blog/get/" + id).then((res) => {
+    await Axios.get("http://localhost:5000/blog/get/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       if (res) {
         setTitle(res.data.title);
         setContent(res.data.content);
@@ -43,19 +45,21 @@ const EditBlog = () => {
   const submit = async (e) => {
     e.preventDefault();
     validate();
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("image", image);
-    formData.append("content", content);
-    formData.append("cloudinary_id", cloudinaryId);
+    if (err === undefined) {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("image", image);
+      formData.append("content", content);
+      formData.append("cloudinary_id", cloudinaryId);
 
-    await Axios.put("http://localhost:5000/blog/update/" + id, formData).then(
-      (res) => {
+      await Axios.put("http://localhost:5000/blog/update/" + id, formData, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }).then((res) => {
         if (res) {
           history.push("/trainer/getblog");
         }
-      }
-    );
+      });
+    }
   };
 
   useEffect(() => {

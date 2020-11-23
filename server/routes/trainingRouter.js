@@ -5,6 +5,7 @@ const router = express.Router();
 const { Training } = require("../models/trainingModel");
 const upload = require("../utils/multer");
 const cloudinary = require("../utils/cloudinary");
+const auth = require("../middleware/auth");
 
 /*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -25,7 +26,7 @@ const cloudinary = require("../utils/cloudinary");
 const upload = multer({ storage: storage }); */
 
 //Create Training Program
-router.post("/create", upload.single("image"), async (req, res) => {
+router.post("/create", auth, upload.single("image"), async (req, res) => {
   const result = await cloudinary.uploader.upload(req.file.path);
   const training = new Training({
     programId: req.body.programId,
@@ -43,7 +44,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
 });
 
 //Get Traning Program
-router.get("/get", async (req, res) => {
+router.get("/get", auth, async (req, res) => {
   await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
@@ -51,7 +52,7 @@ router.get("/get", async (req, res) => {
 });
 
 //Get Training Program by id
-router.get("/get/:id", async (req, res) => {
+router.get("/get/:id", auth, async (req, res) => {
   await Training.findById(req.params.id).exec((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
@@ -59,7 +60,7 @@ router.get("/get/:id", async (req, res) => {
 });
 
 //Delete Training Program
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", auth, async (req, res) => {
   const training = await Training.findByIdAndDelete({ _id: req.params.id });
   await cloudinary.uploader.destroy(training.cloudinary_id);
   return res.send(training);
@@ -71,7 +72,7 @@ router.delete("/delete/:id", async (req, res) => {
 });
 
 //Update Training Program
-router.put("/update/:id", upload.single("image"), async (req, res) => {
+router.put("/update/:id", auth, upload.single("image"), async (req, res) => {
   const training = await Training.findByIdAndUpdate({ _id: req.params.id });
   if (req.body.cloudinary_id === "") {
     await cloudinary.uploader.destroy(training.cloudinary_id);
@@ -89,7 +90,7 @@ router.put("/update/:id", upload.single("image"), async (req, res) => {
 });
 
 //Add Program Details
-router.post("/add/detail/:id", async (req, res) => {
+router.post("/add/detail/:id", auth, async (req, res) => {
   const training = await Training.findById(req.params.id);
   let detail = [];
   req.body.map((data) => {
@@ -106,7 +107,7 @@ router.post("/add/detail/:id", async (req, res) => {
 });
 
 //Get Program Details
-router.get("/get/detail", async (req, res) => {
+router.get("/get/detail", auth, async (req, res) => {
   const training = await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(training);
@@ -114,7 +115,7 @@ router.get("/get/detail", async (req, res) => {
 });
 
 //Update Program Schedule
-router.put("/edit/schedule/:id/:index", async (req, res) => {
+router.put("/edit/schedule/:id/:index", auth, async (req, res) => {
   const training = await Training.findByIdAndUpdate({ _id: req.params.id });
   training.exercise[req.params.index] = req.body;
   training.markModified("exercise");
@@ -128,7 +129,7 @@ router.put("/edit/schedule/:id/:index", async (req, res) => {
 });
 
 //Add Workout List
-router.post("/add/workout/detail/:id", async (req, res) => {
+router.post("/add/workout/detail/:id", auth, async (req, res) => {
   const training = await Training.findById(req.params.id);
   let detail = [];
   req.body.map((data) => {
@@ -141,7 +142,7 @@ router.post("/add/workout/detail/:id", async (req, res) => {
 });
 
 //Get Workout List
-router.get("/get/workout/detail", async (req, res) => {
+router.get("/get/workout/detail", auth, async (req, res) => {
   const training = await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
@@ -149,7 +150,7 @@ router.get("/get/workout/detail", async (req, res) => {
 });
 
 //Update Program Workout
-router.put("/edit/workout/:id/:index", async (req, res) => {
+router.put("/edit/workout/:id/:index", auth, async (req, res) => {
   const training = await Training.findByIdAndUpdate({ _id: req.params.id });
   training.workoutList[req.params.index] = req.body;
   training.markModified("workoutList");

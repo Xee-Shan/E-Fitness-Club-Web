@@ -12,9 +12,18 @@ export default function Employee() {
   const [blog, setBlog] = useState();
   const history = useHistory();
 
+  const fetchBlogs = async () => {
+    const response = await axios.get("http://localhost:5000/blog/get", {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    });
+    setBlog(response.data);
+  };
+
   const handleDelete = async (id) => {
     await axios
-      .delete("http://localhost:5000/blog/delete/" + id)
+      .delete("http://localhost:5000/blog/delete/" + id, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      })
       .then((res) => {
         if (res) {
           window.location.reload();
@@ -27,11 +36,7 @@ export default function Employee() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("http://localhost:5000/blog/get");
-      setBlog(response.data);
-    }
-    fetchData();
+    fetchBlogs();
   }, []);
 
   return (

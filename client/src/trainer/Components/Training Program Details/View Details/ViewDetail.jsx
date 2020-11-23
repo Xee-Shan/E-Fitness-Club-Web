@@ -8,18 +8,18 @@ import {
   MDBTableBody,
   MDBContainer,
 } from "mdbreact";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import TrainerAuth from "../../../../auth/TrainerAuth";
 
-const View = (props) => {
+const View = () => {
   const [data, setData] = useState([]);
-
   const history = useHistory();
+  const { id } = useParams();
 
   const fetchProgramDetail = async () => {
-    const res = await Axios.get(
-      "http://localhost:5000/training/get/" + props.match.params.id
-    );
+    const res = await Axios.get("http://localhost:5000/training/get/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    });
     setData(res.data);
   };
 
@@ -28,11 +28,11 @@ const View = (props) => {
   }, []);
 
   const editSchedule = (i) => {
-    history.push("/trainer/editSchedule/" + props.match.params.id + "/" + i);
+    history.push("/trainer/editSchedule/" + id + "/" + i);
   };
 
   const editWorkout = (i) => {
-    history.push("/trainer/editWorkout/" + props.match.params.id + "/" + i);
+    history.push("/trainer/editWorkout/" + id + "/" + i);
   };
   return (
     <TrainerAuth>

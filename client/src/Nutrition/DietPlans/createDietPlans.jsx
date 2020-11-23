@@ -3,8 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
-import NutritionistAuth from "../../auth/NutritionAuth" 
-
+import NutritionistAuth from "../../auth/NutritionAuth";
 
 const CreateDietPlan = () => {
   let [day, setDay] = useState("");
@@ -57,7 +56,7 @@ const CreateDietPlan = () => {
     // formData.append("image", image);
 
     axios
-      .post("http://localhost:5000/dietPlan/create", DietPlan)
+      .post("http://localhost:5000/dietplans/create", DietPlan)
       .then((res) => {
         if (res.data.success) {
           history.push("/nutritionist/dietPlan");
@@ -67,75 +66,78 @@ const CreateDietPlan = () => {
 
   return (
     <>
-    <NutritionistAuth>
-      <SideNav />
-      <br />
-      <MDBContainer>
-        <MDBRow>
-          <MDBCol md="6">
-            <form>
-              <p className="h4 text-center mb-4">Add Diet Plans</p>
-              <MDBInput
-                label="Day"
-                onChange={onChangeDay}
-                type="text"
-                id="defaultFormRegisterNameEx"
-                className="form-control"
-                required
-              />
-              <select
-                className="browser-default custom-select"
-                onChange={onChangeUserType}
-              >
-                <option>User Type</option>
-                <option value="Normal">Normal</option>
-                <option value="UnderWeight">Under Weight</option>
-                <option value="OverWeight">Over Weight</option>
-                <option value="UnderWeight">Under Weight</option>
-              </select>
-              <br />
-              <br />
-              <select
-                className="browser-default custom-select"
-                onChange={onChangeDietType}
-              >
-                <option>Choose Option</option>
-                <option value="BreakFast">Break Fast</option>
-                <option value="MidMeal">Mid Meal</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Evening">Evening</option>
-                <option value="Dinner">Dinner</option>
-              </select>
-              <br />
-              <br />
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Diet
-              </label>
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="basic-addon">
-                    <i className="fas fa-pencil-alt prefix"></i>
-                  </span>
-                </div>
-                <textarea
-                  onChange={onChangeDiet}
+      <NutritionistAuth>
+        <SideNav />
+        <br />
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <form>
+                <p className="h4 text-center mb-4">Add Diet Plans</p>
+                <MDBInput
+                  label="Day"
+                  onChange={onChangeDay}
+                  type="text"
+                  id="defaultFormRegisterNameEx"
                   className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="5"
                   required
-                ></textarea>
-              </div>
-              <br />
-              <br />
-              <div className="text-center mt-4">
-                <MDBBtn onClick={btnClicked} color="unique" type="submit">
-                  Add Diet Plan
-                </MDBBtn>
-              </div>
-            </form>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+                />
+                <select
+                  className="browser-default custom-select"
+                  onChange={onChangeUserType}
+                >
+                  <option>User Type</option>
+                  <option value="Normal">Normal</option>
+                  <option value="UnderWeight">Under Weight</option>
+                  <option value="OverWeight">Over Weight</option>
+                  <option value="UnderWeight">Under Weight</option>
+                </select>
+                <br />
+                <br />
+                <select
+                  className="browser-default custom-select"
+                  onChange={onChangeDietType}
+                >
+                  <option>Choose Option</option>
+                  <option value="BreakFast">Break Fast</option>
+                  <option value="MidMeal">Mid Meal</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Evening">Evening</option>
+                  <option value="Dinner">Dinner</option>
+                </select>
+                <br />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterNameEx"
+                  className="grey-text"
+                >
+                  Diet
+                </label>
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon">
+                      <i className="fas fa-pencil-alt prefix"></i>
+                    </span>
+                  </div>
+                  <textarea
+                    onChange={onChangeDiet}
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                <br />
+                <br />
+                <div className="text-center mt-4">
+                  <MDBBtn onClick={btnClicked} color="unique" type="submit">
+                    Add Diet Plan
+                  </MDBBtn>
+                </div>
+              </form>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
       </NutritionistAuth>
     </>
   );

@@ -35,21 +35,24 @@ const CreatePrograms = () => {
     e.preventDefault();
     validate();
 
-    const formData = new FormData();
-    formData.append("programId", programId);
-    formData.append("title", title);
-    formData.append("targetArea", targetArea);
-    formData.append("equipment", equipment);
-    formData.append("description", description);
-    formData.append("image", image);
+    if (err === undefined) {
+      console.log(err);
+      const formData = new FormData();
+      formData.append("programId", programId);
+      formData.append("title", title);
+      formData.append("targetArea", targetArea);
+      formData.append("equipment", equipment);
+      formData.append("description", description);
+      formData.append("image", image);
 
-    Axios.post("http://localhost:5000/training/create", formData).then(
-      (res) => {
+      Axios.post("http://localhost:5000/training/create", formData, {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }).then((res) => {
         if (res) {
           history.push("/trainer/program");
         } else alert("Error occured");
-      }
-    );
+      });
+    }
   };
   return (
     <TrainerAuth>

@@ -44,7 +44,7 @@ import ViewDetail from "./trainer/Components/Training Program Details/View Detai
 import AddWorkout from "./trainer/Components/Training Program Details/Workout Details/AddWorkout";
 import EditSchedule from "./trainer/EditSchedule";
 import EditWorkout from "./trainer/EditWorkout";
-import UserProfile from "./User/UserProfile";
+import UserSettings from "./User/User Settings/UserSettings";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
@@ -158,7 +158,7 @@ const App = () => {
           <Route path="/doctor/home" component={Doctor} />
           <Route path="/chat" component={Chat} />
           <Route path="/join" component={Join} />
-          <Route path="/user/profile" component={UserProfile} />
+          <Route path="/user/profile" component={UserSettings} />
           <Route path="/reset/password" component={ResetPassword} />
           <Route path="/new/password/:token" component={NewPassword} />
           <Route path="/trainer/createblog" component={CreateBlog} />

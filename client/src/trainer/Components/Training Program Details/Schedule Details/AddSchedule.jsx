@@ -28,10 +28,9 @@ const AddDetail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post(
-      "http://localhost:5000/training/add/detail/" + id,
-      inputFields
-    ).then((res) => {
+    Axios.post("http://localhost:5000/training/add/detail/" + id, inputFields, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       if (res) {
         history.push("/trainer/view/program/" + id);
       }
