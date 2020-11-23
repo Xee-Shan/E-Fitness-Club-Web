@@ -16,7 +16,7 @@ const Admin = (props) => {
       .then((res) => {
         if (res.data.role !== "admin") history.push("/login");
       });
-  }, [localStorage.getItem("auth-token")]);
+  });
   return <>{props.children}</>;
 };
 export default Admin;
