@@ -25,7 +25,9 @@ const CreatePrograms = () => {
     formData.append("title", title);
     formData.append("image", image);
     formData.append("content", content);
-    Axios.post("http://localhost:5000/blog/create", formData).then((res) => {
+    Axios.post("http://localhost:5000/blog/create", formData,{
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then((res) => {
       if (res) {
         history.push("/doctor/getBlog");
       } else alert("Error occured");

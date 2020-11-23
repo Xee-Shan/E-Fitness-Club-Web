@@ -2,7 +2,7 @@ const express = require("express");
 const { Product } = require("../models/productModel");
 const router = express.Router();
 // const multer = require("multer");
-const fs = require("fs");
+//const fs = require("fs");
 const auth=require("../middleware/auth");
 const admin=require("../middleware/admin");
 const upload=require("../utils/multer");
@@ -28,12 +28,12 @@ const cloudinary=require("../utils/cloudinary");
 // const upload = multer({ storage: storage });
 
 //create product
-router.post("/create", upload.single("image"), auth,admin,async (req, res) => {
+router.post("/create",auth,admin,upload.single("image"),async (req, res) => {
   try{
     const {name,brand,price,quantity,description,category}=req.body;
-    if(!name||!brand||!price||!quantity||!description||!category){
+    if(!name||!brand||!price||!quantity||!description||!category)
       return res.status(400).json({ msg: "Not all fields have been entered" });
-    }
+      
   const result= await cloudinary.uploader.upload(req.file.path);
   const product = new Product({
     name: req.body.name,

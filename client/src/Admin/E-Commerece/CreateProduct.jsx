@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import history, { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";

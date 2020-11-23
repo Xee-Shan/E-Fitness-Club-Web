@@ -3,6 +3,7 @@ const router = express.Router();
 //const multer = require("multer");
 //const fs = require("fs");
 const { Blog } = require("../models/blogModel");
+const auth =require("../middleware/auth");
 const upload = require("../utils/multer");
 const cloudinary = require("../utils/cloudinary");
 
@@ -25,13 +26,14 @@ const cloudinary = require("../utils/cloudinary");
 const upload = multer({ storage: storage }); */
 
 //Create Blog
-router.post("/create", upload.single("image"), async (req, res) => {
+router.post("/create", auth,upload.single("image"), async (req, res) => {
   const result = await cloudinary.uploader.upload(req.file.path);
   const blog = new Blog({
     title: req.body.title,
     content: req.body.content,
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
+    userId:req.user
   });
   await blog.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -40,15 +42,15 @@ router.post("/create", upload.single("image"), async (req, res) => {
 });
 
 //Get Blog
-router.get("/get", async (req, res) => {
-  await Blog.find((err, doc) => {
+router.get("/get",auth, async (req, res) => {
+  await Blog.find({userId:req.user},(err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
 });
 
 //Get Blog by id
-router.get("/get/:id", async (req, res) => {
+router.get("/get/:id",auth, async (req, res) => {
   await Blog.findById(req.params.id).exec((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
@@ -56,7 +58,7 @@ router.get("/get/:id", async (req, res) => {
 });
 
 //Delete Blog by id
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id",auth, async (req, res) => {
   const blog = await Blog.findByIdAndDelete({ _id: req.params.id });
   await cloudinary.uploader.destroy(blog.cloudinary_id);
   return res.send(blog);
