@@ -14,7 +14,7 @@ export default function Product() {
   const history = useHistory();
 
   useEffect(()=>{
-    if(localStorage.getItem("auth-token")===undefined){
+    if(!localStorage.getItem("auth-token")){
       history.push("/login");
     }
   })

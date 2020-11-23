@@ -4,6 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";
 import SideNav from "../SideNav/SideNav";
+import ErrorNotice from "../../components/error/ErrorNotice";
 const CreateProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
@@ -13,7 +14,7 @@ const CreateProduct = () => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState("");
-
+  const [error,setError]=useState();
   const history = useHistory();
 
   const onChangeName = (e) => {
@@ -48,16 +49,17 @@ const CreateProduct = () => {
     formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("image", image);
-
-    axios
+try{
+   const response=await axios
       .post("http://localhost:5000/products/create", formData, {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
-      })
-      .then((res) => {
-        if (res.data.success) {
-          history.push("/admin/product");
-        } else alert("Error occured");
       });
+      if(response.data.success){
+        history.push("/admin/product");
+      }
+    }catch(err){
+      err.response.data.msg && setError(err.response.data.msg);
+    }
   };
 
   return (
@@ -68,6 +70,12 @@ const CreateProduct = () => {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Create Product</p>
+              {error && (
+                    <ErrorNotice
+                      message={error}
+                      clearError={() => setError(undefined)}
+                    />
+                  )}
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Name
               </label>
