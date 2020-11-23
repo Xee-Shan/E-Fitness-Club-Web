@@ -9,7 +9,9 @@ const BlogDetail = (props) => {
 
   const fetchData = async () => {
     const res = await Axios.get(
-      "http://localhost:5000/blog/get/" + props.match.params.id
+      "http://localhost:5000/blog/get/" + props.match.params.id,{
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }
     );
     console.log(res.data);
     setBlog(res.data);
