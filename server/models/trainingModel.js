@@ -8,6 +8,7 @@ const trainingSchema = new mongoose.Schema({
   description: { type: String },
   exercise: { type: Array },
   workoutList: { type: Array },
+  userId: { type: String },
   imageURL: { type: String },
   cloudinary_id: { type: String },
 });

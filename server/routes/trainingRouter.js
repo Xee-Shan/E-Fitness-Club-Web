@@ -36,6 +36,7 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
     description: req.body.description,
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
+    userId: req.user,
   });
   await training.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -45,7 +46,7 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
 
 //Get Traning Program
 router.get("/get", auth, async (req, res) => {
-  await Training.find((err, doc) => {
+  await Training.find({ userId: req.user }, (err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });

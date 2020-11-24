@@ -46,28 +46,35 @@ const Program = () => {
 
   return (
     <TrainerAuth>
-      <>
-        <SideNav />
-        <br />
-        <MDBContainer>
-          <p className="h1 text-center mb-4">Program List</p>
-          <MDBCol md="3">
-            <MDBInput
-              type="text"
-              label="Search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
+      <SideNav />
+      <br />
+      <MDBContainer>
+        {program.length === 0 ? (
+          <>
+            <br />
+            <p className="h1 text-center">No Program Added Yet</p>
+          </>
+        ) : (
+          <>
+            <p className="h1 text-center mb-4">Program List</p>
+            <MDBCol md="3">
+              <MDBInput
+                type="text"
+                label="Search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+              />
+            </MDBCol>
+            <br />
+            <GetPrograms program={search(currentprograms)} />
+            <Pagination
+              programPerPage={programPerpage}
+              totalPrograms={program.length}
+              paginate={paginate}
             />
-          </MDBCol>
-          <br />
-          <GetPrograms program={search(currentprograms)} />
-          <Pagination
-            programPerPage={programPerpage}
-            totalPrograms={program.length}
-            paginate={paginate}
-          />
-        </MDBContainer>
-      </>
+          </>
+        )}
+      </MDBContainer>
     </TrainerAuth>
   );
 };
