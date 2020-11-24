@@ -40,14 +40,6 @@ const View = () => {
       <>
         <SideNav />
         <MDBContainer>
-          {data?.exercise?.length === 0 ? (
-            <>
-              <br />
-              <p>No Details</p>
-            </>
-          ) : (
-            <></>
-          )}
           <br />
           <p className="h4 text-center mb-4">Complete Program Schedule</p>
           <MDBTable bordered striped small>

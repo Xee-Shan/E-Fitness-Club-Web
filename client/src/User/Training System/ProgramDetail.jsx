@@ -9,7 +9,8 @@ const ProgramDetail = (props) => {
 
   const fetchData = async () => {
     const res = await Axios.get(
-      "http://localhost:5000/training/get/" + props.match.params.id
+      "http://localhost:5000/training/get/" + props.match.params.id,
+      { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
     );
     setProgram(res.data);
   };

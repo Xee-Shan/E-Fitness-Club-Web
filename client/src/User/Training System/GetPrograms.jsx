@@ -39,6 +39,7 @@ const GetPrograms = ({ program }) => {
                       Target Areas: {program.targetArea}
                     </MDBCardText>
                     <MDBCardText>Equipments: {program.equipment}</MDBCardText>
+                    <MDBCardText>{program.name}</MDBCardText>
                     <MDBBtn
                       onClick={() => btnClicked(program._id)}
                       className="blue-gradient"
