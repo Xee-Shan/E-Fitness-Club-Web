@@ -21,6 +21,7 @@ const View = () => {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
     setData(res.data);
+    console.log(res.data);
   };
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const View = () => {
       <>
         <SideNav />
         <MDBContainer>
-          {data.length === 0 ? (
+          {data?.exercise?.length === 0 ? (
             <>
               <br />
               <p>No Details</p>
