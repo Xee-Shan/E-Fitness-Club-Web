@@ -9,9 +9,7 @@ router.post("/create", async (req, res) => {
     userType: req.body.userType,
     dietType: req.body.dietType,
     diet: req.body.diet,
-    userId: req.user,
   });
-  console.log(dietPlan);
   await dietPlan.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
@@ -23,6 +21,7 @@ router.get("/get", async (req, res) => {
   const dietPlan = await DietPlan.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
+
   });
 });
 

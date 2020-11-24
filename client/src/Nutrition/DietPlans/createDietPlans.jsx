@@ -29,8 +29,6 @@ const CreateDietPlan = () => {
     e.preventDefault();
     validate();
 
-    if(err === undefined){
-      console.log(err)
       const DietPlan = {
       day: day,
       userType: userType,
@@ -48,7 +46,6 @@ const CreateDietPlan = () => {
           history.push("/nutritionist/dietPlan");
         } else alert("Error occured");
       });
-  }
 };
 
   return (
@@ -61,12 +58,6 @@ const CreateDietPlan = () => {
             <MDBCol md="6">
               <form>
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
-                {err && (
-                  <ErrorNotice
-                    message={err}
-                    clearError={() => setErr(undefined)}
-                  />
-                )}
                 <MDBInput
                   label="Day"
                   onChange={(e) =>  setDay(e.target.value)}
@@ -93,9 +84,9 @@ const CreateDietPlan = () => {
                 >
                   <option>Choose Option</option>
                   <option value="BreakFast">Break Fast</option>
-                  <option value="MidMeal">Mid Meal</option>
+                  {/* <option value="MidMeal">Mid Meal</option> */}
                   <option value="Lunch">Lunch</option>
-                  <option value="Evening">Evening</option>
+                  {/* <option value="Evening">Evening</option> */}
                   <option value="Dinner">Dinner</option>
                 </select>
                 <br />

@@ -26,7 +26,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
 
 //get Recipe
 router.get("/get", async (req, res) => {
-  await Recipe.find((err, doc) => {
+  await Recipe.find({ userId: req.user },(err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
