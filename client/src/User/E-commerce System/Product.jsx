@@ -8,6 +8,7 @@ import {
   MDBBtn,
   MDBIcon,
   MDBView,
+  MDBContainer,
 } from "mdbreact";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
@@ -33,6 +34,8 @@ export default function Product() {
   return (
     <>
       <Navbar />
+      <MDBContainer>
+        <br/>
       <MDBRow>
         {product?.length === 0 ? (
           <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
@@ -76,6 +79,7 @@ export default function Product() {
           ))
         )}
       </MDBRow>
+      </MDBContainer>
     </>
   );
 }
