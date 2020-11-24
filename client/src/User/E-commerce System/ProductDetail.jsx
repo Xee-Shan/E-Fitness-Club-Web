@@ -93,6 +93,7 @@ export default function ProductDetail(props) {
   return (
     <>
       <Navbar />
+      <br/> <br/>
       {product.length === 0 ? null : (
         <MDBRow>
           <MDBCol md="6">
@@ -106,7 +107,7 @@ export default function ProductDetail(props) {
               </MDBCol>
             </MDBRow>
           </MDBCol>
-          <MDBCol md="6" style={{ backgroundColor: "#E9F0F7" }}>
+          <MDBCol md="6" className="blue-gradient">
             <b>Name : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.name}</i> <br />
             <hr />
             <b>Price ($): </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.price}</i>{" "}
@@ -122,7 +123,7 @@ export default function ProductDetail(props) {
               <p>{product?.description}</p>
               <hr />
               <b>Quantity : </b> &nbsp;
-              <button style={{ border: "none" }} onClick={increment}>
+              <button style={{ border: "none",marginTop:"10px",height:"30px" }} onClick={increment}>
                 <h2>+</h2>
               </button>{" "}
               &nbsp;&nbsp;
