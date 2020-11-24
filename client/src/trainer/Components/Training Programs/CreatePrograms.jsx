@@ -98,7 +98,7 @@ const CreatePrograms = () => {
                   <MDBInput
                     label="Description"
                     icon="info-circle"
-                    type="text"
+                    type="textarea"
                     onChange={(e) => setDescription(e.target.value)}
                   />
                   <label
