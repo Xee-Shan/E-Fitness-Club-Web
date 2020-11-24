@@ -123,7 +123,7 @@ export default function CartPage() {
           <br />
 
           <MDBTable bordered>
-            <MDBTableHead color="primary-color" textWhite>
+            <MDBTableHead color="blue-gradient" textWhite>
               <tr>
                 <th>#</th>
                 <th>Product Image</th>
@@ -169,7 +169,7 @@ export default function CartPage() {
           <br />
           <br />
           <MDBBtn
-            color="secondary"
+            className="blue-gradient"
             style={{ float: "right" }}
             onClick={() => handleOrder()}
           >
