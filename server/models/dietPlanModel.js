@@ -4,7 +4,8 @@ const dietPlanSchema = {
   day: String,
   userType: String,
   dietType: String,
-  diet: String
+  diet: String,
+  userId: { type: String }
 //   method: String,
 //   imageName: String,
 //   imagePath: String,

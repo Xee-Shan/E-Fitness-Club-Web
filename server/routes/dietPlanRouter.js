@@ -9,6 +9,7 @@ router.post("/create", async (req, res) => {
     userType: req.body.userType,
     dietType: req.body.dietType,
     diet: req.body.diet,
+    userId: req.user,
   });
   console.log(dietPlan);
   await dietPlan.save((err) => {
@@ -36,7 +37,8 @@ router.get("/get/:id", async (req, res) => {
 //delete Diet Plan
 router.delete("/delete/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndDelete({ _id: req.params.id });
-  });
+  return res.send(dietPlan);  
+});
 
 //update Diet Plan
 router.put("/update/:id", async (req, res) => {
