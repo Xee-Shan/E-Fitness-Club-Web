@@ -93,7 +93,7 @@ export default function ProductDetail(props) {
   return (
     <>
       <Navbar />
-      <br/> <br/>
+      <br /> <br />
       {product.length === 0 ? null : (
         <MDBRow>
           <MDBCol md="6">
@@ -123,9 +123,12 @@ export default function ProductDetail(props) {
               <p>{product?.description}</p>
               <hr />
               <b>Quantity : </b> &nbsp;
-              <button style={{ border: "none",marginTop:"10px",height:"30px" }} onClick={increment}>
+              {/* <button style={{ border: "none",marginTop:"10px",height:"30px" }} onClick={increment}>
                 <h2>+</h2>
-              </button>{" "}
+              </button>{" "} */}
+              <MDBBtn size="sm" onClick={increment}>
+                +
+              </MDBBtn>
               &nbsp;&nbsp;
               <input
                 type="number"
@@ -135,11 +138,15 @@ export default function ProductDetail(props) {
                 max={product?.quantity}
                 onChange={onChangeMyQuantity}
                 id=""
+                style={{ textAlign: "center" }}
               />
               &nbsp;&nbsp;{" "}
-              <button style={{ border: "none" }} onClick={decrement}>
+              {/* <button style={{ border: "none" }} onClick={decrement}>
                 <h2>╸</h2>
-              </button>
+              </button> */}
+              <MDBBtn size="sm" onClick={decrement}>
+                -
+              </MDBBtn>
             </div>
             <MDBBtn
               className="blue-gradient"
