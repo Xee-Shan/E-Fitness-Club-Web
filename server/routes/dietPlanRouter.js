@@ -10,7 +10,6 @@ router.post("/create", async (req, res) => {
     dietType: req.body.dietType,
     diet: req.body.diet,
   });
-  console.log(dietPlan);
   await dietPlan.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
@@ -22,6 +21,7 @@ router.get("/get", async (req, res) => {
   const dietPlan = await DietPlan.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
+
   });
 });
 
@@ -36,7 +36,8 @@ router.get("/get/:id", async (req, res) => {
 //delete Diet Plan
 router.delete("/delete/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndDelete({ _id: req.params.id });
-  });
+  return res.send(dietPlan);  
+});
 
 //update Diet Plan
 router.put("/update/:id", async (req, res) => {

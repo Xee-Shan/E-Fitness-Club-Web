@@ -14,7 +14,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
       method: req.body.method,
       description: req.body.description,
       imageURL: result.secure_url,
-      cloudinary_id: result.public_id
+      cloudinary_id: result.public_id,
+      userId: req.user,
   });
   await recipe.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -25,7 +26,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
 
 //get Recipe
 router.get("/get", async (req, res) => {
-  await Recipe.find((err, doc) => {
+  await Recipe.find({ userId: req.user },(err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });

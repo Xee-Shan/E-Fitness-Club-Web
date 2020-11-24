@@ -34,7 +34,6 @@ const CreateRecipe = () => {
     e.preventDefault();
     validate();
 
-    if(err === undefined){
     const formData = new FormData();
     formData.append("name", name);
     formData.append("type", type);
@@ -50,7 +49,6 @@ const CreateRecipe = () => {
         history.push("/nutritionist/recipe");
       } else alert("Error occured");
     });
-  }
 };
 
   return (
@@ -63,12 +61,6 @@ const CreateRecipe = () => {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Create Recipe</p>
-              {err && (
-                  <ErrorNotice
-                    message={err}
-                    clearError={() => setErr(undefined)}
-                  />
-                )}
               <MDBInput
                 onChange={(e) => setName(e.target.value)}
                 type="text"

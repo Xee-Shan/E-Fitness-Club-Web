@@ -6,7 +6,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 
 const DietPlan = () => {
-  const [dietplans, setDietplan] = useState({});
+  const [dietplans, setDietplan] = useState([]);
 
   const fetchData = async () => {
     const res = await Axios.get("http://localhost:5000/dietplans/get");
@@ -33,7 +33,7 @@ const DietPlan = () => {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {/* {dietplans?.map((data, i) => {
+            {dietplans?.map((data, i) => {
               return (
                 <tr key={i}>
                   <td className="text-center">{data.day}</td>
@@ -42,7 +42,7 @@ const DietPlan = () => {
                   <td className="text-center">{data.diet}</td>
                 </tr>
               );
-            })} */}
+            })}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>

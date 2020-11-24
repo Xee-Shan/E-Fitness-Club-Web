@@ -7,7 +7,7 @@ const recipeSchema = {
   description: String,
   method: String,
   imageURL:String,
-  cloudinary_id:String
+  cloudinary_id:String,
 };
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
