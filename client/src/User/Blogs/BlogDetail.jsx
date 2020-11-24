@@ -13,7 +13,6 @@ const BlogDetail = (props) => {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     }
     );
-    console.log(res.data);
     setBlog(res.data);
   };
 

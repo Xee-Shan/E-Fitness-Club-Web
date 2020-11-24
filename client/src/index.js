@@ -5,18 +5,16 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
 import App from "./App";
-import { applyMiddleware, createStore } from "redux";
-import { Provider } from "react-redux";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
-import Reducer from "./reducers/combineReducers";
+// import { applyMiddleware, createStore } from "redux";
+// import { Provider } from "react-redux";
+// import logger from "redux-logger";
+// import thunk from "redux-thunk";
+// import Reducer from "./reducers/combineReducers";
 
-const middleware = [thunk, logger];
-const store = createStore(Reducer, applyMiddleware(...middleware));
+// const middleware = [thunk, logger];
+// const store = createStore(Reducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+    <App />,
   document.getElementById("root")
 );

@@ -39,6 +39,10 @@ const Navbar = () => {
     setToggle(!toggle);
   };
 
+  const push = () => {
+    history.push("/user/product");
+  };
+
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
@@ -77,7 +81,7 @@ const Navbar = () => {
             ) : (
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                  <a href="/user/product" style={{ color: "white" }}>
+                  <a style={{ color: "white" }} onClick={push}>
                     SHOP
                   </a>
                 </MDBDropdownToggle>
