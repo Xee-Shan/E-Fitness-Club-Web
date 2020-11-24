@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
@@ -15,25 +15,7 @@ const CreateRecipe = () => {
   let [image, setImage] = useState();
 
   const history = useHistory();
-
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const onChangeType = (e) => {
-    setType(e.target.value);
-  };
-  const onChangeIngredients = (e) => {
-    setIngredients(e.target.value);
-  };
-  const onChangeMethod = (e) => {
-    setMethod(e.target.value);
-  };
-  const onChangeDescription = (e) => {
-    setDescription(e.target.value);
-  };
-  const onChangeImage = (e) => {
-    setImage(e.target.files[0]);
-  };
+  
   const btnClicked = async (e) => {
     e.preventDefault();
 
@@ -62,50 +44,40 @@ const CreateRecipe = () => {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Create Recipe</p>
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Name
-              </label>
-              <input
-                onChange={onChangeName}
+              <MDBInput
+                onChange={(e) => setName(e.target.value)}
                 type="text"
+                label="Name"
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
               />
-              <br />
               <select
                 className="browser-default custom-select"
-                onChange={onChangeType}
+                onChange={(e) => setType(e.target.value)}
               >
                 <option>Type</option>
                 <option value="Break Fast">Break Fast</option>
                 <option value="Lunch">Lunch</option>
                 <option value="Dinner">Dinner</option>
               </select>
-              <br />
-              <br />
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Ingredients
-              </label>
-              <input
+              <br/>
+              <MDBInput
                 type="text"
-                onChange={onChangeIngredients}
+                label="Ingredients"
+                onChange={(e) =>setIngredients(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
               />
-              <br />
-              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-                Method
-              </label>
-              <input
+              <MDBInput
                 type="text"
-                onChange={onChangeMethod}
+                label="Method"
+                onChange={(e) => setMethod(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
               />
-              <br />
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Descrpition
               </label>
@@ -116,7 +88,7 @@ const CreateRecipe = () => {
                   </span>
                 </div>
                 <textarea
-                  onChange={onChangeDescription}
+                  onChange={(e) => setDescription(e.target.value)}
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows="5"
@@ -131,7 +103,7 @@ const CreateRecipe = () => {
                 type="file"
                 accept=".jpeg, .jpg, .png"
                 name="file"
-                onChange={onChangeImage}
+                onChange={(e) => setImage(e.target.files[0])}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}

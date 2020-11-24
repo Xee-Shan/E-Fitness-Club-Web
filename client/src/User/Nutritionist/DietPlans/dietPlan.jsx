@@ -27,8 +27,8 @@ const DietPlan = () => {
           <MDBTableHead color="black" textWhite>
             <tr>
               <th className="text-center">Day</th>
-              <th className="text-center">Weight Type</th>
-              <th className="text-center">Meal Type</th>
+              <th className="text-center">User Type</th>
+              <th className="text-center">Diet Type</th>
               <th className="text-center">Diet</th>
             </tr>
           </MDBTableHead>

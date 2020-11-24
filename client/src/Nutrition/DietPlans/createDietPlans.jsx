@@ -15,25 +15,7 @@ const CreateDietPlan = () => {
   //   let [description, setDescription] = useState("");
   //   let [image, setImage] = useState();
 
-  const onChangeDay = (e) => {
-    setDay(e.target.value);
-  };
-  const onChangeUserType = (e) => {
-    setUserType(e.target.value);
-  };
-  const onChangeDietType = (e) => {
-    setDietType(e.target.value);
-  };
-  const onChangeDiet = (e) => {
-    setDiet(e.target.value);
-  };
-  //   const onChangeDescription = (e) => {
-  //     setDescription(e.target.value);
-  //   };
-  //   const onChangeImage = (e) => {
-  //     setImage(e.target.files[0]);
-  //   };
-
+  
   const btnClicked = async (e) => {
     e.preventDefault();
 
@@ -43,18 +25,7 @@ const CreateDietPlan = () => {
       dietType: dietType,
       diet: diet,
     };
-    // const formData = new FormData();
-    // formData.append("day",day);
-    // formData.append("userType",userType);
-    // formData.append("dietType",dietType);
-    // formData.append("diet",diet);
-    // formData.append("day", day);
-    // formData.append("userType", userType);
-    // formData.append("dietType", dietType);
-    // formData.append("diet", diet);
-    // // formData.append("method", method);
-    // formData.append("image", image);
-
+    
     axios
       .post("http://localhost:5000/dietplans/create", DietPlan)
       .then((res) => {
@@ -76,7 +47,7 @@ const CreateDietPlan = () => {
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
                 <MDBInput
                   label="Day"
-                  onChange={onChangeDay}
+                  onChange={(e) =>  setDay(e.target.value)}
                   type="text"
                   id="defaultFormRegisterNameEx"
                   className="form-control"
@@ -84,7 +55,7 @@ const CreateDietPlan = () => {
                 />
                 <select
                   className="browser-default custom-select"
-                  onChange={onChangeUserType}
+                  onChange={(e) => setUserType(e.target.value)}
                 >
                   <option>User Type</option>
                   <option value="Normal">Normal</option>
@@ -96,7 +67,7 @@ const CreateDietPlan = () => {
                 <br />
                 <select
                   className="browser-default custom-select"
-                  onChange={onChangeDietType}
+                  onChange={(e) => setDietType(e.target.value)}
                 >
                   <option>Choose Option</option>
                   <option value="BreakFast">Break Fast</option>
@@ -120,14 +91,13 @@ const CreateDietPlan = () => {
                     </span>
                   </div>
                   <textarea
-                    onChange={onChangeDiet}
+                    onChange={(e) => setDiet(e.target.value)}
                     className="form-control"
                     id="exampleFormControlTextarea1"
                     rows="5"
                     required
                   ></textarea>
                 </div>
-                <br />
                 <br />
                 <div className="text-center mt-4">
                   <MDBBtn onClick={btnClicked} color="unique" type="submit">

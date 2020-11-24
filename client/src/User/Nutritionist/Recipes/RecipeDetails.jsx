@@ -38,52 +38,6 @@ const RecipeDetail = (props) => {
         <h3>Method :</h3>
         <p>{recipe.method}</p>
       </MDBContainer>
-      {/* <MDBContainer>
-        <br /> 
-         <p className="h4 text-center mb-4">Schedule</p>
-        <MDBTable bordered striped small>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th className="text-center">Day</th>
-              <th className="text-center">Area</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            {program?.exercise?.map((data, i) => {
-              return (
-                <tr key={i}>
-                  <td className="text-center">{data.day}</td>
-                  <td className="text-center">{data.area}</td>
-                </tr>
-              );
-            })}
-          </MDBTableBody>
-        </MDBTable>
-      </MDBContainer>
-      <MDBContainer>
-        <br />
-        <p className="h4 text-center mb-4">Complete Workout List</p>
-        <MDBTable bordered striped small>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th className="text-center">Exercise Name</th>
-              <th className="text-center">Sets</th>
-              <th className="text-center">reps</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            {program?.workoutList?.map((data, i) => {
-              return (
-                <tr key={i}>
-                  <td className="text-center">{data.exerciseName}</td>
-                  <td className="text-center">{data.sets}</td>
-                  <td className="text-center">{data.reps}</td>
-                </tr>
-              );
-            })}
-          </MDBTableBody>
-        </MDBTable> 
-       </MDBContainer> */}
     </>
   );
 };
