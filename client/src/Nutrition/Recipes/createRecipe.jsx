@@ -4,7 +4,7 @@ import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth" 
-
+import ErrorNotice from "../../components/error/ErrorNotice";
 
 const CreateRecipe = () => {
   let [name, setName] = useState("");
@@ -13,12 +13,28 @@ const CreateRecipe = () => {
   let [method, setMethod] = useState("");
   let [description, setDescription] = useState("");
   let [image, setImage] = useState();
+  let [err, setErr] =useState("");
 
   const history = useHistory();
   
+  const validate = () => {
+    if (
+      !name ||
+      !type ||
+      !ingredients ||
+      !method ||
+      !description ||
+      !image
+    ) {
+      setErr("Please Enter All Fields");
+    }
+  };
+  
   const btnClicked = async (e) => {
     e.preventDefault();
+    validate();
 
+    if(err === undefined){
     const formData = new FormData();
     formData.append("name", name);
     formData.append("type", type);
@@ -27,12 +43,15 @@ const CreateRecipe = () => {
     formData.append("method", method);
     formData.append("image", image);
 
-    axios.post("http://localhost:5000/recipes/create", formData).then((res) => {
+    axios.post("http://localhost:5000/recipes/create", formData,
+    {headers: { "x-auth-token": localStorage.getItem("auth-token")},
+  }).then((res) => {
       if (res.data.success) {
         history.push("/nutritionist/recipe");
       } else alert("Error occured");
     });
-  };
+  }
+};
 
   return (
     <>
@@ -44,6 +63,12 @@ const CreateRecipe = () => {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Create Recipe</p>
+              {err && (
+                  <ErrorNotice
+                    message={err}
+                    clearError={() => setErr(undefined)}
+                  />
+                )}
               <MDBInput
                 onChange={(e) => setName(e.target.value)}
                 type="text"

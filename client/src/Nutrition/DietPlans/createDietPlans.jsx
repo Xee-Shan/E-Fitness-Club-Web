@@ -4,36 +4,52 @@ import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth";
+import ErrorNotice from "../../components/error/ErrorNotice";
 
 const CreateDietPlan = () => {
   let [day, setDay] = useState("");
   let [userType, setUserType] = useState("");
   let [dietType, setDietType] = useState("");
   let [diet, setDiet] = useState("");
-
+  let [err,setErr] =useState("")
   const history = useHistory();
-  //   let [description, setDescription] = useState("");
-  //   let [image, setImage] = useState();
-
+  
+  const validate = () => {
+    if (
+      !day ||
+      !userType ||
+      !dietType ||
+      !diet
+    ) {
+      setErr("Please Enter All Fields");
+    }
+  };
   
   const btnClicked = async (e) => {
     e.preventDefault();
+    validate();
 
-    const DietPlan = {
+    if(err === undefined){
+      console.log(err)
+      const DietPlan = {
       day: day,
       userType: userType,
       dietType: dietType,
       diet: diet,
     };
-    
+
     axios
-      .post("http://localhost:5000/dietplans/create", DietPlan)
+      .post("http://localhost:5000/dietplans/create", DietPlan,
+      {
+        headers: { "x-auth-token": localStorage.getItem("auth-token")},
+      })
       .then((res) => {
         if (res.data.success) {
           history.push("/nutritionist/dietPlan");
         } else alert("Error occured");
       });
-  };
+  }
+};
 
   return (
     <>
@@ -45,6 +61,12 @@ const CreateDietPlan = () => {
             <MDBCol md="6">
               <form>
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
+                {err && (
+                  <ErrorNotice
+                    message={err}
+                    clearError={() => setErr(undefined)}
+                  />
+                )}
                 <MDBInput
                   label="Day"
                   onChange={(e) =>  setDay(e.target.value)}
