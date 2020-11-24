@@ -43,7 +43,7 @@ export default function Order() {
                                 Product Name: {item.name} | Product Price : {item.price} | Product Quantity : {item.quantity}
                                  </div>   )
                    })}
-                   <MDBBtn color="secondary" onClick={()=>handleDelivered(order._id)}style={{float:"right"}}>Delivered</MDBBtn>
+                   <MDBBtn style={{ backgroundColor: "#68717C" }} onClick={()=>handleDelivered(order._id)}style={{float:"right"}}>Delivered</MDBBtn>
                    <br/> <br/> <br/>
                    
                     </MDBContainer>

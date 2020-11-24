@@ -50,7 +50,7 @@ export default function Employee() {
           <h2>No Employees added yet...</h2>
         ) : (
           <MDBTable bordered>
-            <MDBTableHead color="primary-color" textWhite>
+            <MDBTableHead style={{ backgroundColor: "#68717C" }} textWhite>
               <tr>
                 <th>#</th>
                 <th>Name</th>
