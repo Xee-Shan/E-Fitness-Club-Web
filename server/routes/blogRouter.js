@@ -6,6 +6,7 @@ const { Blog } = require("../models/blogModel");
 const auth = require("../middleware/auth");
 const upload = require("../utils/multer");
 const cloudinary = require("../utils/cloudinary");
+const { User } = require("../models/userModel");
 
 /*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,6 +28,7 @@ const upload = multer({ storage: storage }); */
 
 //Create Blog
 router.post("/create", auth, upload.single("image"), async (req, res) => {
+  const user = await User.findById(req.user);
   const result = await cloudinary.uploader.upload(req.file.path);
   const blog = new Blog({
     title: req.body.title,
@@ -34,6 +36,7 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
     userId: req.user,
+    userName: user.name,
   });
   await blog.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
