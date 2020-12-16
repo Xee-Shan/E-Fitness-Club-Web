@@ -50,7 +50,7 @@ const Recipe = () => {
                   <MDBCard style={{ width: "22rem" }}>
                     <MDBCardImage
                       className="img-fluid"
-                      src={"http://localhost:5000/" + recipe.imageName}
+                      src={recipe.imageURL}
                       waves
                     />
                     <MDBCardBody>

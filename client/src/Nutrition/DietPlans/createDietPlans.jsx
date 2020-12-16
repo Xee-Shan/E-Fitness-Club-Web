@@ -11,7 +11,10 @@ const CreateDietPlan = () => {
   let [userType, setUserType] = useState("");
   let [dietType, setDietType] = useState("");
   let [diet, setDiet] = useState("");
-  let [err,setErr] =useState("")
+  let [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState();
+  let [err,setErr] =useState("");
+
   const history = useHistory();
   
   const validate = () => {
@@ -19,33 +22,34 @@ const CreateDietPlan = () => {
       !day ||
       !userType ||
       !dietType ||
-      !diet
+      !diet ||
+      !image
     ) {
-      setErr("Please Enter All Fields");
+      alert("Please Enter All Fields");
     }
   };
   
   const btnClicked = async (e) => {
     e.preventDefault();
     validate();
-
-      const DietPlan = {
-      day: day,
-      userType: userType,
-      dietType: dietType,
-      diet: diet,
-    };
-
+    
+    const formData = new FormData();
+    formData.append("day",day);
+    formData.append("userType",userType);
+    formData.append("dietType", dietType);
+    formData.append("diet",diet);
+    formData.append("image", image);
+    
     axios
-      .post("http://localhost:5000/dietplans/create", DietPlan,
-      {
-        headers: { "x-auth-token": localStorage.getItem("auth-token")},
+      .post("http://localhost:5000/dietplans/create", formData,
+      {headers: { "x-auth-token": localStorage.getItem("auth-token")},
       })
       .then((res) => {
         if (res.data.success) {
           history.push("/nutritionist/dietPlan");
         } else alert("Error occured");
       });
+      console.log("Hello");
 };
 
   return (
@@ -74,7 +78,7 @@ const CreateDietPlan = () => {
                   <option value="Normal">Normal</option>
                   <option value="UnderWeight">Under Weight</option>
                   <option value="OverWeight">Over Weight</option>
-                  <option value="UnderWeight">Under Weight</option>
+                  <option value="UnderWeight">Obese</option>
                 </select>
                 <br />
                 <br />
@@ -112,6 +116,24 @@ const CreateDietPlan = () => {
                   ></textarea>
                 </div>
                 <br />
+                <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Uplaod Image
+              </label>
+              <img src={previewImage} alt="" />
+              <input
+                type="file"
+                accept=".jpeg, .jpg, .png"
+                name="file"
+                onChange={(e) => {
+                  setImage(e.target.files[0]);
+                  setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                }}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                style={{ borderStyle: "none" }}
+                required
+              />
+              <br />
                 <div className="text-center mt-4">
                   <MDBBtn onClick={btnClicked} color="unique" type="submit">
                     Add Diet Plan

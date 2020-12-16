@@ -51,10 +51,10 @@ router.delete("/delete/:id", async (req, res) => {
 router.put("/update/:id", upload.single("image"), async (req, res) => {
   const recipe = await Recipe.findByIdAndUpdate({ _id: req.params.id });
   if (req.body.cloudinary_id === "") {
-    await cloudinary.uploader.destroy(training.cloudinary_id);
+    await cloudinary.uploader.destroy(recipe.cloudinary_id);
     const result = await cloudinary.uploader.upload(req.file.path);
-    (training.imageURL = result.secure_url),
-      (training.cloudinary_id = result.public_id);
+    (recipe.imageURL = result.secure_url),
+      (recipe.cloudinary_id = result.public_id);
   }
   recipe.name = req.body.name;
   recipe.type = req.body.type;

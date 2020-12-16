@@ -13,6 +13,8 @@ const CreateRecipe = () => {
   let [method, setMethod] = useState("");
   let [description, setDescription] = useState("");
   let [image, setImage] = useState();
+  const [previewImage, setPreviewImage] = useState();
+
   let [err, setErr] =useState("");
 
   const history = useHistory();
@@ -116,11 +118,15 @@ const CreateRecipe = () => {
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Uplaod Image
               </label>
+              <img src={previewImage} alt="" />
               <input
                 type="file"
                 accept=".jpeg, .jpg, .png"
                 name="file"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={(e) => {
+                  setImage(e.target.files[0])
+                  setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                }}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}

@@ -9,6 +9,8 @@ router.post("/create", async (req, res) => {
     userType: req.body.userType,
     dietType: req.body.dietType,
     diet: req.body.diet,
+    imageURL: result.secure_url,
+    cloudinary_id: result.public_id
   });
   await dietPlan.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -18,10 +20,9 @@ router.post("/create", async (req, res) => {
 
 //get Diet Plan
 router.get("/get", async (req, res) => {
-  const dietPlan = await DietPlan.find((err, doc) => {
+  await DietPlan.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
-
   });
 });
 
@@ -36,16 +37,23 @@ router.get("/get/:id", async (req, res) => {
 //delete Diet Plan
 router.delete("/delete/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndDelete({ _id: req.params.id });
+  await cloudinary.uploader.destroy(dietPlan.cloudinary_id);
   return res.send(dietPlan);  
 });
 
 //update Diet Plan
 router.put("/update/:id", async (req, res) => {
   const dietPlan = await DietPlan.findByIdAndUpdate({ _id: req.params.id });
-  dietPlan.day = req.body.day;
-  dietPlan.userType = req.body.userType;
-  dietPlan.dietType = req.body.dietType;
-  dietPlan.diet = req.body.diet;
+  if (req.body.cloudinary_id === "") {
+    await cloudinary.uploader.destroy(dietPlan.cloudinary_id);
+    const result = await cloudinary.uploader.upload(req.file.path);
+    (dietPlan.imageURL = result.secure_url),
+      (dietPlan.cloudinary_id = result.public_id);
+  }
+dietPlan.day = req.body.day;
+dietPlan.userType = req.body.userType;
+dietPlan.dietType = req.body.dietType;
+dietPlan.diet = req.body.diet;
 
   await dietPlan.save();
     return res.send(dietPlan);
