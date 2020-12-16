@@ -13,6 +13,7 @@ import {
 } from "mdbreact";
 import ErrorNotice from "../error/ErrorNotice";
 import Navbar from "../navbar/Navbar";
+import Background from "./RegisterBAck.jpg"
 
 const Register = () => {
   const [name, setName] = useState();
@@ -59,12 +60,17 @@ const Register = () => {
   return (
     <>
       <Navbar />
+      <br/>
       <MDBContainer>
         <MDBRow>
-          <MDBCol md="2"></MDBCol>
+          <MDBCol md="4" style={{color:"White",backgroundImage:`url(${Background})`}}>
+            <h2 style={{paddingTop:"200px",textAlign:"center"}}><strong>Hello, Friends!</strong></h2>
+            <p style={{paddingTop:"50px",textAlign:"center"}}>Want to get in touch? Fill out your Personal Details To Start Your Jaourney With Us. Already Have Account then click on Login Button.  </p>
+            <div className = "text-center" style={{paddingTop:"50px"}}>
+              <MDBBtn href="/login" className="aqua-gradient" outline color="white">Log In</MDBBtn>
+            </div>
+          </MDBCol>
           <MDBCol md="8">
-            <MDBCard>
-              <MDBCardBody>
                 <form>
                   <p className="h3 text-center mb-4">Register</p>
                   {error && (
@@ -136,8 +142,6 @@ const Register = () => {
                     </MDBBtn>
                   </div>
                 </form>
-              </MDBCardBody>
-            </MDBCard>
           </MDBCol>
           <MDBCol md="2"></MDBCol>
         </MDBRow>

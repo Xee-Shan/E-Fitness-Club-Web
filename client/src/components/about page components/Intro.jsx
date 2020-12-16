@@ -35,7 +35,6 @@ const Intro = () => {
           backgroundImage: `url(${Background})`,
           backgroundSize: "contain, cover",
           backgroundRepeat: "no-repeat",
-
           width: "100%",
           backgroundPosition: "top left",
           overflow: "hidden",

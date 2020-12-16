@@ -4,6 +4,7 @@ const router = express.Router();
 
 //create Diet Plan
 router.post("/create", async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
   const dietPlan = new DietPlan({
     day: req.body.day,
     userType: req.body.userType,
