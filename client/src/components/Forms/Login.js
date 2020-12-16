@@ -11,6 +11,11 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBIcon,
+  MDBJumbotron,
+  MDBCardImage,
 } from "mdbreact";
 import Navbar from "../navbar/Navbar";
 import ResponseNotice from "../response/ResponseNotice";
@@ -98,8 +103,24 @@ const Login = () => {
 
       <MDBContainer>
         <MDBRow>
-          <MDBCol md="2"></MDBCol>
-          <MDBCol md="8">
+          <MDBCol md="6">
+            <MDBJumbotron className="text-center">
+              <MDBCardTitle className="card-title h4 pb-2">
+                <strong>Hello, Friends</strong>
+              </MDBCardTitle>
+              <MDBCardImage
+                src="https://img.wallpapersafari.com/desktop/1600/900/96/4/TAeOSs.jpg"
+                className="img-fluid"
+              />
+              <MDBCardBody>
+                <MDBCardTitle className="indigo-text h5 m-4">
+                  Welcome to your new journey
+                </MDBCardTitle>
+                <MDBBtn href="/register">Sign up</MDBBtn>
+              </MDBCardBody>
+            </MDBJumbotron>
+          </MDBCol>
+          <MDBCol md="6">
             <MDBCard>
               <MDBCardBody>
                 <form>
@@ -154,7 +175,6 @@ const Login = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol md="2"></MDBCol>
         </MDBRow>
       </MDBContainer>
     </>

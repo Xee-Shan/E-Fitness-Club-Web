@@ -15,6 +15,7 @@ const Program = () => {
     const response = await Axios.get("http://localhost:5000/training/get", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
+    console.log(response.data);
     setProgram(response.data);
   };
 
@@ -35,21 +36,19 @@ const Program = () => {
 
   return (
     <UserAuth>
-      <>
-        <Navbar />
-        <br />
-        <p className="h1 text-center mb-4">Workout Plans </p>
-        <br />
-        <GetPrograms program={currentPrograms} />
-        <br />
-        <MDBContainer>
-          <Pagination
-            programsPerPage={programsPerPage}
-            totalPrograms={program.length}
-            paginate={paginate}
-          />
-        </MDBContainer>
-      </>
+      <Navbar />
+      <br />
+      <p className="h1 text-center mb-4">Workout Plans </p>
+      <br />
+      <GetPrograms program={currentPrograms} />
+      <br />
+      <MDBContainer>
+        <Pagination
+          programsPerPage={programsPerPage}
+          totalPrograms={program.length}
+          paginate={paginate}
+        />
+      </MDBContainer>
     </UserAuth>
   );
 };
