@@ -38,7 +38,7 @@ const Program = () => {
       <>
         <Navbar />
         <br />
-        <p className="h1 text-center mb-4">Men Workout Plans </p>
+        <p className="h1 text-center mb-4">Workout Plans </p>
         <br />
         <GetPrograms program={currentPrograms} />
         <br />
