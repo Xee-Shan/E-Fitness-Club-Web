@@ -23,17 +23,22 @@ const RecipeDetail = (props) => {
       <MDBContainer>
         <br />
         <h1 className="h1 text-center mb-4">{recipe.name}</h1>
-        <h3>Description :</h3>
+        <p className="h5 text-center">{recipe.type}</p>
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h3">Description</p>
+        </div>
         <p>{recipe.description}</p>
-      </MDBContainer>
-      <MDBContainer>
         <br />
-        <img width="1100" height="400" src={recipe.imageURL}></img>
-        <h3>Type :</h3>
-        <p>{recipe.type}</p>
-        <h3>Ingredients :</h3>
+        <img width="100%" src={recipe.imageURL}></img>
+        <br />
+        <br />
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h3">Ingredients</p>
+        </div>
         <p>{recipe.ingredients}</p>
-        <h3>Method :</h3>
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h3">Method</p>
+        </div>
         <p>{recipe.method}</p>
       </MDBContainer>
     </>

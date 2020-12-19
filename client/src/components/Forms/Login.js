@@ -11,6 +11,11 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBIcon,
+  MDBJumbotron,
+  MDBCardImage,
 } from "mdbreact";
 import Navbar from "../navbar/Navbar";
 import ResponseNotice from "../response/ResponseNotice";
@@ -153,7 +158,6 @@ const Login = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol md="2"></MDBCol>
         </MDBRow>
       </MDBContainer>
       <br />
