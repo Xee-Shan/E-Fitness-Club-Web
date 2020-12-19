@@ -67,7 +67,7 @@ const Register = () => {
             <h2 style={{paddingTop:"200px",textAlign:"center"}}><strong>Hello, Friends!</strong></h2>
             <p style={{paddingTop:"50px",textAlign:"center"}}>Want to get in touch? Fill out your Personal Details To Start Your Jaourney With Us. Already Have Account then click on Login Button.  </p>
             <div className = "text-center" style={{paddingTop:"50px"}}>
-              <MDBBtn href="/login" className="aqua-gradient" outline color="white">Log In</MDBBtn>
+              <MDBBtn href="/login" className="aqua-gradient" outline color="white ">Log In</MDBBtn>
             </div>
           </MDBCol>
           <MDBCol md="8">

@@ -1,5 +1,5 @@
-import BMI from "../home page components/Images/BMI.png"
-import BLOG from "../home page components/Images/Blog.jpg"
+import BMI from "./Images/BMI2.jpg"
+import BLOG from "./Images/Blog.jpg"
 import React from "react";
 import {
   MDBRow,

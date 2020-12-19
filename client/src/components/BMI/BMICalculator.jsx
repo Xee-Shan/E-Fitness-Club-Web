@@ -11,9 +11,7 @@ export default function BMICalculator() {
   let [inch, setInch] = useState("");
   let [index, setIndex] = useState("");
   let [age, setAge] = useState("");
-
   let [show, setShow] = useState("false");
-
   let [ageErr, setAgeErr] = useState();
   let [footErr, setFootErr] = useState();
   let [inchErr, setInchErr] = useState();
