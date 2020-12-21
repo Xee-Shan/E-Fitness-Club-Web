@@ -10,7 +10,7 @@ const CreateRecipe = () => {
   let [name, setName] = useState("");
   let [type, setType] = useState("");
   let [ingredients, setIngredients] = useState("");
-  let [method, setMethod] = useState("");
+  let [category, setCategory] = useState("");
   let [description, setDescription] = useState("");
   let [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState();
@@ -24,7 +24,7 @@ const CreateRecipe = () => {
       !name ||
       !type ||
       !ingredients ||
-      !method ||
+      !category ||
       !description ||
       !image
     ) {
@@ -41,7 +41,7 @@ const CreateRecipe = () => {
     formData.append("type", type);
     formData.append("ingredients", ingredients);
     formData.append("description", description);
-    formData.append("method", method);
+    formData.append("category", category);
     formData.append("image", image);
 
     axios.post("http://localhost:5000/recipes/create", formData,
@@ -91,8 +91,8 @@ const CreateRecipe = () => {
               />
               <MDBInput
                 type="text"
-                label="Method"
-                onChange={(e) => setMethod(e.target.value)}
+                label="Category"
+                onChange={(e) => setCategory(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required

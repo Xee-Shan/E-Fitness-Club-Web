@@ -31,7 +31,7 @@ const CreateDietPlan = () => {
   
   const btnClicked = async (e) => {
     e.preventDefault();
-    validate();
+    // validate();
     
     // const formData = new FormData();
     // formData.append("day",day);
@@ -39,7 +39,7 @@ const CreateDietPlan = () => {
     // formData.append("dietType", dietType);
     // formData.append("diet",diet);
     // formData.append("image", image);
-   
+    
     const DietData ={
       day:day,
       userType:userType,
@@ -55,6 +55,7 @@ const CreateDietPlan = () => {
           history.push("/nutritionist/dietPlan");
         } else alert("Error occured");
       });
+      console.log("Hello");
 };
 
   return (

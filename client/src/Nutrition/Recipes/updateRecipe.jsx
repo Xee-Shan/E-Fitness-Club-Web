@@ -12,7 +12,7 @@ const EditRecipe = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [method, setMethod] = useState("");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
 
   const getRecipe = async () => {
@@ -21,7 +21,7 @@ const EditRecipe = () => {
         setName(res.data.name);
         setType(res.data.type);
         setIngredients(res.data.ingredients);
-        setMethod(res.data.method);
+        setCategory(res.data.method);
         setDescription(res.data.description);
       }
     });
@@ -33,7 +33,7 @@ const EditRecipe = () => {
       name: name,
       type: type,
       ingredients: ingredients,
-      method: method,
+      category: category,
       description: description,
     };
     await Axios.put("http://localhost:5000/recipes/update/" + id, data).then(
@@ -87,10 +87,10 @@ const EditRecipe = () => {
                 required
               />
               <MDBInput
-                label="Method"
-                value={method}
+                label="Category"
+                value={category}
                 type="text"
-                onChange={(e) => setMethod(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required

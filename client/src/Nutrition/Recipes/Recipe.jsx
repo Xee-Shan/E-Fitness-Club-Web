@@ -47,7 +47,7 @@ export default function Recipe() {
                 <th>#</th>
                 <th>Name</th>
                 <th>Type</th>
-                <th>Method</th>
+                <th>Category</th>
                 <th>Ingredients</th>
                 <th>Action</th>
               </tr>
@@ -58,7 +58,7 @@ export default function Recipe() {
                 <td>{i + 1}</td>
                 <td>{recipe.name}</td>
                 <td>{recipe.type}</td>
-                <td>{recipe.method}</td>
+                <td>{recipe.category}</td>
                 <td>{recipe.ingredients}</td>
                 <td>
                   <MDBBtn color="warning" onClick={() => handleEdit(recipe._id)}>
