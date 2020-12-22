@@ -6,7 +6,9 @@ import {
   MDBCol,
   MDBCardBody,
   MDBBtn,
-  MDBView,
+  MDBCard,
+  MDBCardImage,
+  MDBCardTitle,
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../Navbar/Navbar";
@@ -32,51 +34,41 @@ export default function Product() {
   return (
     <>
       <Navbar />
-      <MDBContainer>
-        <br/>
-      <MDBRow>
-        {product?.length === 0 ? (
-          <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
-        ) : (
-          product?.map((product, i) => (
-            <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
-              <MDBView className="overlay rounded z-depth-1">
-                <div>
-                  <img
-                    src={product.imageURL}
-                    alt=""
+      <br />
+      <p className="h1 text-center">All Products</p>
+      <br />
+      <MDBContainer className="text-center">
+        <MDBRow>
+          {product?.length === 0 ? (
+            <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
+          ) : (
+            product?.map((data, i) => (
+              <MDBCol md="4" key={i}>
+                <MDBCard style={{ width: "22rem" }}>
+                  <MDBCardImage
                     className="img-fluid"
-                    style={{
-                      maxHeight: "25vw",
-                      minHeight: "25vw",
-                      maxWidth: "25vw",
-                      minWidth: "25vw",
-                    }}
+                    src={data.imageURL}
+                    waves
                   />
-                </div>
-              </MDBView>
-              <MDBCardBody
-                className="pb-0"
-                style={{
-                  boxSizing: "border-box",
-                }}
-              >
-                <h4 className="font-weight-bold my-3">{product.name}</h4>
-                <p className="grey-text">{product.brand}</p>
-                <b>${product.price}</b>
+                  <MDBCardBody>
+                    <MDBCardTitle>{data.name}</MDBCardTitle>
+                    <p>{data.brand}</p>
+                    <p>${data.price}</p>
+                    <MDBBtn
+                      onClick={() => btnClicked(data._id)}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
+                      Details
+                    </MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
                 <br />
-                <MDBBtn
-                  className="blue-gradient"
-                  onClick={() => btnClicked(product._id)}
-                  /*href={"/user/productDetail/"+product._id}*/
-                >
-                  Details
-                </MDBBtn>
-              </MDBCardBody>
-            </MDBCol>
-          ))
-        )}
-      </MDBRow>
+              </MDBCol>
+            ))
+          )}
+        </MDBRow>
       </MDBContainer>
     </>
   );

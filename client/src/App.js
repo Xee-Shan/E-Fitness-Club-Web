@@ -9,6 +9,7 @@ import Bmi from "./components/pages/Bmi";
 import PageNotFound from "./components/pages/PageNotFound";
 import UserRecipes from "./User/Nutritionist/Recipes/Recipies";
 import DietPlan from "./User/Nutritionist/DietPlans/dietPlan";
+import DietPlanDetails from "./User/Nutritionist/DietPlans/dietPlanDetails"
 import Login from "./components/Forms/Login";
 import Register from "./components/Forms/Register";
 import Product from "./Admin/E-Commerece/Product";
@@ -135,6 +136,7 @@ const App = () => {
             component={UpdateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
+          <Route path="/user/dietPlanDetails" component={DietPlanDetails} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />

@@ -122,9 +122,9 @@ router.put("/edit/schedule/:id/:index", auth, async (req, res) => {
   training.markModified("exercise");
   await training.save((err, doc) => {
     if (err) {
-      return res.send(400).json({ msg: "Error Occured" });
+      return res.status(400).json({ msg: "Error Occured" });
     } else {
-      return res.send(200).json({ msg: "Program Schedule updated" });
+      return res.status(200).json({ msg: "Program Schedule updated" });
     }
   });
 });

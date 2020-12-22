@@ -1,16 +1,30 @@
-import React from "react";
-import Navbar from "../../Navbar/Navbar";
-import UserAuth from "../../../auth/UserAuth";
-import { MDBContainer, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import {
+  MDBRow,
+  MDBCol,
+  MDBCardBody,
+  MDBBtn,
+  MDBCard,
+  MDBCardImage,
+  MDBCardTitle,
+  MDBCardText,
+  MDBContainer,
+} from "mdbreact";
+import Navbar from "../../Navbar/Navbar";
+import { useHistory } from "react-router-dom";
+import UserAuth from "../../../auth/UserAuth";
 
 const DietPlan = () => {
-  const [dietplans, setDietplan] = useState([]);
-
+  const [dietPlan, setDietplan] = useState([]);
+  const history = useHistory();
   const fetchData = async () => {
-    const res = await Axios.get("http://localhost:5000/dietplans/get");
-    setDietplan(res.data);
+    const response = await Axios.get("http://localhost:5000/dietplans/get");
+    setDietplan(response.data);
+  };
+
+  const btnClicked = (id) => {
+    history.push("/user/dietPlanDetails/" + id);
   };
 
   useEffect(() => {
@@ -19,33 +33,40 @@ const DietPlan = () => {
 
   return (
     <UserAuth>
-      <Navbar />
-      <MDBContainer>
+      <>
+        <Navbar />
         <br />
-        <p className="h2 text-center mb-4">Diet Plan Schedule</p>
-        <MDBTable bordered striped small>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th className="text-center">Day</th>
-              <th className="text-center">User Type</th>
-              <th className="text-center">Diet Type</th>
-              <th className="text-center">Diet</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            {dietplans?.map((data, i) => {
-              return (
-                <tr key={i}>
-                  <td className="text-center">{data.day}</td>
-                  <td className="text-center">{data.userType}</td>
-                  <td className="text-center">{data.dietType}</td>
-                  <td className="text-center">{data.diet}</td>
-                </tr>
-              );
-            })}
-          </MDBTableBody>
-        </MDBTable>
-      </MDBContainer>
+        <p className="h1 text-center mb-4">Diet Plans</p>
+        <br />
+        <MDBContainer className="text-center">
+          <MDBRow>
+            {dietPlan?.length === 0 ? (
+              <h2 style={{ paddingLeft: "0.5em" }}>
+                NOTHING TO DISPLAY YET...
+              </h2>
+            ) : (
+              dietPlan?.map((dietPlan, i) => (
+                <MDBCol md="4" key={i}>
+                  <MDBCard style={{ width: "22rem" }}>
+                  <MDBCardImage
+                      className="img-fluid"
+                      src={"http://localhost:5000/" + dietPlan.imageName}
+                      waves
+                    />
+                    <MDBCardBody>
+                      <MDBCardTitle>{dietPlan.day}</MDBCardTitle>
+                      <MDBCardText>User Type: {dietPlan.userType}</MDBCardText>
+                      <MDBBtn onClick={() => btnClicked(dietPlan._id)}>
+                        Details
+                      </MDBBtn>
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCol>
+              ))
+            )}
+          </MDBRow>
+        </MDBContainer>
+      </>
     </UserAuth>
   );
 };

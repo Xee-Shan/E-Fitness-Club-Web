@@ -5,14 +5,12 @@ import Navbar from "../../Navbar/Navbar";
 
 const RecipeDetail = (props) => {
   const [recipe, setRecipe] = useState({});
-  const [imgURL, setImgURL] = useState({});
 
   const fetchData = async () => {
     const res = await Axios.get(
       "http://localhost:5000/recipes/get/" + props.match.params.id
     );
     setRecipe(res.data);
-    setImgURL("http://localhost:5000/" + res.data.imageName);
   };
 
   useEffect(() => {
@@ -25,18 +23,27 @@ const RecipeDetail = (props) => {
       <MDBContainer>
         <br />
         <h1 className="h1 text-center mb-4">{recipe.name}</h1>
-        <h3>Description :</h3>
-        <p>{recipe.description}</p>
-      </MDBContainer>
-      <MDBContainer>
+        <br/>
+        <img width="100%" src={recipe.imageURL}></img>
         <br />
-        <img width="1100" height="400" src={imgURL}></img>
-        <h3>Type :</h3>
+        <br />
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h2">Type</p>
+        </div>
         <p>{recipe.type}</p>
-        <h3>Ingredients :</h3>
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h2">Description</p>
+        </div>
+        <p>{recipe.description}</p>
+        <br />
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h3">Ingredients</p>
+        </div>
         <p>{recipe.ingredients}</p>
-        <h3>Method :</h3>
-        <p>{recipe.method}</p>
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+          <p className="h3">Category</p>
+        </div>
+        <p>{recipe.category}</p>
       </MDBContainer>
     </>
   );

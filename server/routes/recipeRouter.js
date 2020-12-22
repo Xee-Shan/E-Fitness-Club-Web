@@ -11,7 +11,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
       name: req.body.name,
       type: req.body.type,
       ingredients: req.body.ingredients,
-      method: req.body.method,
+      category: req.body.category,
       description: req.body.description,
       imageURL: result.secure_url,
       cloudinary_id: result.public_id,
@@ -51,15 +51,15 @@ router.delete("/delete/:id", async (req, res) => {
 router.put("/update/:id", upload.single("image"), async (req, res) => {
   const recipe = await Recipe.findByIdAndUpdate({ _id: req.params.id });
   if (req.body.cloudinary_id === "") {
-    await cloudinary.uploader.destroy(training.cloudinary_id);
+    await cloudinary.uploader.destroy(recipe.cloudinary_id);
     const result = await cloudinary.uploader.upload(req.file.path);
-    (training.imageURL = result.secure_url),
-      (training.cloudinary_id = result.public_id);
+    (recipe.imageURL = result.secure_url),
+      (recipe.cloudinary_id = result.public_id);
   }
   recipe.name = req.body.name;
   recipe.type = req.body.type;
   recipe.ingredients = req.body.ingredients;
-  recipe.method = req.body.method;
+  recipe.category = req.body.category;
   recipe.description = req.body.description;
   await recipe.save();
   return res.send(recipe);

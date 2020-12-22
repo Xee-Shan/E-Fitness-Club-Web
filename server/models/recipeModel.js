@@ -5,7 +5,7 @@ const recipeSchema = {
   type: String,
   ingredients: String,
   description: String,
-  method: String,
+  category: String,
   imageURL:String,
   cloudinary_id:String,
 };
