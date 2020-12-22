@@ -25,6 +25,7 @@ const DietPlan = () => {
 
   const btnClicked = (id) => {
     history.push("/user/dietPlanDetails/" + id);
+
   };
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const DietPlan = () => {
                   <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
                       className="img-fluid"
-                      src={"http://localhost:5000/" + dietPlan.imageName}
+                      src={dietPlan.imageURL}
                       waves
                     />
                     <MDBCardBody>
