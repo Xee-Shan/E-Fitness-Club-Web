@@ -6,7 +6,6 @@ import {
   MDBCol,
   MDBCardBody,
   MDBBtn,
-  MDBIcon,
   MDBView,
   MDBContainer,
 } from "mdbreact";
@@ -14,9 +13,8 @@ import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 
 export default function Product() {
-  const [product, setProduct] = useState([]);
-
   const history = useHistory();
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
