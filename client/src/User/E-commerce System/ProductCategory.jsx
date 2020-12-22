@@ -6,7 +6,6 @@ import {
   MDBCol,
   MDBCardBody,
   MDBBtn,
-  MDBIcon,
   MDBView,
   MDBContainer,
 } from "mdbreact";
