@@ -40,14 +40,15 @@ const CreateDietPlan = () => {
     // formData.append("diet",diet);
     // formData.append("image", image);
     
-    const DietData ={
-      day:day,
-      userType:userType,
-      dietType:dietType,
-      diet:diet
-    };
+    const formData = new FormData();
+    formData.append("day",day);
+    formData.append("userType",userType);
+    formData.append("dietType",dietType);
+    formData.append("diet",diet);
+    formData.append("image",image);
+    console.log(formData);
     axios
-      .post("http://localhost:5000/dietplans/create", DietData,
+      .post("http://localhost:5000/dietplans/create", formData,
       {headers: { "x-auth-token": localStorage.getItem("auth-token")},
       })
       .then((res) => {
@@ -55,7 +56,6 @@ const CreateDietPlan = () => {
           history.push("/nutritionist/dietPlan");
         } else alert("Error occured");
       });
-      console.log("Hello");
 };
 
   return (

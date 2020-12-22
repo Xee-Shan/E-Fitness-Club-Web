@@ -1,9 +1,12 @@
 const express = require("express");
 const { DietPlan } = require("../models/dietPlanModel");
+const cloudinary = require("../utils/cloudinary");
 const router = express.Router();
+const upload = require("../utils/multer");
 
 //create Diet Plan
-router.post("/create", async (req, res) => {
+router.post("/create", upload.single("image"),async (req, res) => {
+  console.log(req.file.path);
   const result = await cloudinary.uploader.upload(req.file.path);
   const dietPlan = new DietPlan({
     day: req.body.day,
