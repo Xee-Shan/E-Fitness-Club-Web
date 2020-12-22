@@ -51,6 +51,13 @@ router.get("/get", auth, async (req, res) => {
     res.status(200).send(doc);
   });
 });
+//Get all
+router.get("/getAll", auth, async (req, res) => {
+  await Training.find((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 
 //Get Training Program by id
 router.get("/get/:id", auth, async (req, res) => {

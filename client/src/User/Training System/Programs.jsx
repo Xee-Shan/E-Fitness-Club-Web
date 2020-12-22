@@ -12,7 +12,7 @@ const Program = () => {
   const [programsPerPage] = useState(3);
 
   const fetchData = async () => {
-    const response = await Axios.get("http://localhost:5000/training/get", {
+    const response = await Axios.get("http://localhost:5000/training/getAll", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
     console.log(response.data);
