@@ -35,11 +35,22 @@ export default function AdminHome() {
         <MDBContainer>
             <br/>
             <MDBCol>
+      <MDBCard style={{ width: "22rem"}}>
+        <MDBCardBody>
+          <MDBCardTitle>Products</MDBCardTitle>
+          <MDBCardText>
+            <h3>{product.length}</h3>
+          </MDBCardText>
+        </MDBCardBody>
+      </MDBCard>
+    </MDBCol>
+    <br/>
+    <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
         <MDBCardBody>
-          <MDBCardTitle>No. of Trainer</MDBCardTitle>
+          <MDBCardTitle>Physiatrist</MDBCardTitle>
           <MDBCardText>
-            {count.trainerCount}
+            <h3>{count.physiatristCount}</h3>
           </MDBCardText>
         </MDBCardBody>
       </MDBCard>
@@ -47,9 +58,9 @@ export default function AdminHome() {
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
         <MDBCardBody>
-          <MDBCardTitle>No. of Products</MDBCardTitle>
+          <MDBCardTitle>Nutritionist</MDBCardTitle>
           <MDBCardText>
-            {product.length}
+          <h3>{count.nutritionistCount}</h3>
           </MDBCardText>
         </MDBCardBody>
       </MDBCard>
@@ -57,9 +68,9 @@ export default function AdminHome() {
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
         <MDBCardBody>
-          <MDBCardTitle>No. of Physiatrist</MDBCardTitle>
+          <MDBCardTitle>User</MDBCardTitle>
           <MDBCardText>
-            {count.physiatristCount}
+          <h3>{count.userCount}</h3>
           </MDBCardText>
         </MDBCardBody>
       </MDBCard>
@@ -67,19 +78,9 @@ export default function AdminHome() {
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
         <MDBCardBody>
-          <MDBCardTitle>No. of Nutritionist</MDBCardTitle>
+          <MDBCardTitle>Trainer</MDBCardTitle>
           <MDBCardText>
-          {count.nutritionistCount}
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardBody>
-          <MDBCardTitle>No. of User</MDBCardTitle>
-          <MDBCardText>
-          {count.userCount}
+            <h3>{count.trainerCount}</h3>
           </MDBCardText>
         </MDBCardBody>
       </MDBCard>
