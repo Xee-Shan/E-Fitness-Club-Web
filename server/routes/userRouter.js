@@ -362,7 +362,34 @@ router.get("/get/employee", auth, admin, async (req, res) => {
   });
   res.status(200).send(employee);
 });
+//get count of different types of users
+router.get("/get/countOfUser", auth, admin, async (req, res) => {
+  let count={
+    trainerCount:0,
+    nutritionistCount:0,
+    userCount:0,
+    physiatristCount:0
+  };
+  const users = await User.find((err) => {
+    if (err) res.status(400).send(err);
+  });
+  users.map((user) => {
+    if (user.role === "user") {
+      count.userCount++;
+    }
+    if (user.role === "trainer") {
+      count.trainerCount++;
+    }
+    if (user.role === "nutritionist") {
+      count.nutritionistCount++;
+    }
+    if (user.role === "physiatrist") {
+      count.physiatristCount++;
+    }
 
+  });
+  res.status(200).send(count);
+});
 //delete an employee
 router.delete("/delete/employee/:id", auth, admin, async (req, res) => {
   await User.findByIdAndDelete({ _id: req.params.id });

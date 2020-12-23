@@ -58,6 +58,7 @@ import DoctorGetBlog from "./Doctor/Blog/GetBlog";
 import DoctorEditBlog from "./Doctor/Blog/EditBlog";
 import Blogs from "./User/Blogs/Blog";
 import BlogDetails from "./User/Blogs/BlogDetail";
+import AdminHome from "./Admin/AdminHome";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -108,6 +109,7 @@ const App = () => {
           <Route path="/admin/product" component={Product} />
           <Route path="/admin/create/product" component={CreateProduct} />
           <Route path="/admin/edit/product/:id" component={EditProduct} />
+          <Route path="/admin/home" component={AdminHome} />
           <Route path="/admin/order" component={Order} />
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
