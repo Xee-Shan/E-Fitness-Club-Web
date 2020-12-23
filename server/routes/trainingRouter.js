@@ -4,8 +4,11 @@ const router = express.Router();
 //const fs = require("fs");
 const { Training } = require("../models/trainingModel");
 const upload = require("../utils/multer");
+const {Video}=require("../models/videoModel");
+const uploadVideo = require("../utils/multerVideo");
 const cloudinary = require("../utils/cloudinary");
 const auth = require("../middleware/auth");
+const { User } = require("../models/userModel");
 
 /*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -44,6 +47,36 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
   });
 });
 
+router.post("/uploadVideo", auth, uploadVideo.single("video"), async (req, res) => {
+ try{
+  const user=await User.findById(req.user);
+  const result = await cloudinary.v2.uploader.upload(req.file.path,{ resource_type: "video" }, 
+  function(error, result) {console.log(result, error); });
+
+  console.log(result);
+  const video = new Video({
+    title: req.body.title,
+    targetArea: req.body.targetArea,
+    equipment: req.body.equipment,
+    description: req.body.description,
+    videoURL: result.secure_url,
+    cloudinary_id: result.public_id,
+    uploaderName: user.name
+  });
+  await video.save((err) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
+}catch(err){
+  console.log(err);
+}
+});
+router.get("/getVideos", auth, async (req, res) => {
+  await Video.find((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 //Get Traning Program
 router.get("/get", auth, async (req, res) => {
   await Training.find({ userId: req.user }, (err, doc) => {

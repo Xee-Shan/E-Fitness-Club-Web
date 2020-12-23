@@ -33,6 +33,12 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
+    title: "Upload Video",
+    path: "/trainer/uploadVideo",
+    icon: <FaIcons.FaPlusCircle />,
+    cName: "nav-text",
+  },
+  {
     title: "All Blogs",
     path: "/trainer/getblog",
     icon: <FaIcons.FaTable />,

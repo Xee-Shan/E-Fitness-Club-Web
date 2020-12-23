@@ -49,9 +49,11 @@ import UserSettings from "./User/User Settings/UserSettings";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
+import GetVideos from "./User/Training System/GetVideos";
 import ProductCategory from "./User/E-commerce System/ProductCategory";
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
+import UploadVideo from "./trainer/Components/UploadVideo";
 import EditBlog from "./trainer/Components/Blog/EditBlog";
 import DoctorCreateBlog from "./Doctor/Blog/CreateBlog";
 import DoctorGetBlog from "./Doctor/Blog/GetBlog";
@@ -111,6 +113,7 @@ const App = () => {
           <Route path="/admin/edit/product/:id" component={EditProduct} />
           <Route path="/admin/home" component={AdminHome} />
           <Route path="/admin/order" component={Order} />
+          <Route path="/user/videos" component={GetVideos} />
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
@@ -138,6 +141,7 @@ const App = () => {
             component={UpdateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
+          <Route path="/trainer/uploadVideo" component={UploadVideo} />
           <Route path="/user/dietPlanDetails" component={DietPlanDetails} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
