@@ -25,6 +25,9 @@ export default function GetVideos() {
       <source src={data.videoURL}/>
      </video>
      <br/>
+     {/* thumbnail of the video */}
+     <img src={data.videoURL.replace(".mp4",".jpg")} alt=""/>
+     <br/>
      <b>{data.uploaderName}</b>
      <h2>{data.title}</h2>
      <h4>
