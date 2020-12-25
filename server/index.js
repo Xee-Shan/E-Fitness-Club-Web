@@ -40,3 +40,4 @@ app.use("/dietplans", require("./routes/dietPlanRouter"));
 app.use("/training", require("./routes/trainingRouter"));
 app.use("/contact", require("./routes/contactFormRouter"));
 app.use("/blog", require("./routes/blogRouter"));
+app.use("/meditation", require("./routes/meditationRouter"));

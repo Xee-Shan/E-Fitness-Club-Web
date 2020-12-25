@@ -56,6 +56,7 @@ import GetBlog from "./trainer/Components/Blog/GetBlog";
 import UploadVideo from "./trainer/Components/UploadVideo";
 import EditBlog from "./trainer/Components/Blog/EditBlog";
 import DoctorCreateBlog from "./Doctor/Blog/CreateBlog";
+import UploadMeditation from "./Doctor/UploadMeditation";
 import DoctorGetBlog from "./Doctor/Blog/GetBlog";
 import DoctorEditBlog from "./Doctor/Blog/EditBlog";
 import Blogs from "./User/Blogs/Blog";
@@ -174,6 +175,7 @@ const App = () => {
           <Route path="/doctor/createBlog" component={DoctorCreateBlog} />
           <Route path="/doctor/getBlog" component={DoctorGetBlog} />
           <Route path="/doctor/editBlog/:id" component={DoctorEditBlog} />
+          <Route path="/doctor/upload" component={UploadMeditation} />
           <Route path="/trainer/editblog/:id" component={EditBlog} />
           <Route path="/user/blog" component={Blogs} />
           <Route path="/user/blogdetail/:id" component={BlogDetails} />
