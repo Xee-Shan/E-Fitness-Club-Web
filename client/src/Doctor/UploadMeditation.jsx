@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import SideNav from "./SideNav/SideNav";
-import FormData from "form-data";
 import ErrorNotice from "../components/error/ErrorNotice";
+
 
 export default function UploadVideo() {
     const [title,setTitle]=useState("");
@@ -22,19 +22,17 @@ export default function UploadVideo() {
         formData.append("description",description);
         formData.append("title",title);
         setLoading(true);
-        console.log(image);
-        console.log(audio);
         const response1=await axios
       .post("http://localhost:5000/meditation/uploadAudio", formData,{
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
-      const formData2=new FormData();
-      formData2.append("image");
+      let formData2=new FormData();
+      formData2.append("image",image);
       const response2=await axios
       .post("http://localhost:5000/meditation/uploadImage", formData2,{
-        headers: { "x-auth-token": localStorage.getItem("auth-token"), 'Content-Type': formData2.type },
+        headers: { "x-auth-token": localStorage.getItem("auth-token"), "Content-type": "multipart/form-data", },
       });
-      if(response1.data.success&&response2.data.success){
+      if(response2.data.success&&response1.data.success){
           alert("Success");
           setLoading(false);
       }
@@ -61,7 +59,7 @@ export default function UploadVideo() {
   </div>
   </div>
       )
-            : <form>
+            : <form enctype="multipart/form-data">
               <p className="h4 text-center mb-4">Meditation</p>
               {/* {error && (
                     <ErrorNotice
@@ -94,7 +92,7 @@ export default function UploadVideo() {
               <img src={previewImage} alt="" />
               <input
                 type="file"
-                accept=".jpeg, .jpg, .png"
+                accept=".jpeg, .jpg,.webp, .png"
                 name="file"
                 onChange={e=>{
                   setImage(e.target.files[0])

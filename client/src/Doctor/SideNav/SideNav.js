@@ -78,6 +78,7 @@ function Navbar() {
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
+                  <br/>
                   <Link to={item.path ? item.path : "#"}>
                     {item.icon}
                     <span>{item.title}</span>
@@ -95,6 +96,8 @@ function Navbar() {
                 </li>
               );
             })}
+            <br/>
+            <br/>
             <MDBBtn onClick={logout} style={{ left: "20%" }}>
               Logout
             </MDBBtn>
