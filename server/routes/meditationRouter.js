@@ -93,7 +93,7 @@ router.put("/updateImage/:id",auth,upload.single("image"), async (req, res) => {
     console.log(err);
   }
 });
-router.put("/get/:id",auth, async (req, res) => {
+router.get("/get/:id",auth, async (req, res) => {
   try{
     await Meditation.findById(req.params.id,(err,doc)=>{
       if(err) return res.status(400).send(err);

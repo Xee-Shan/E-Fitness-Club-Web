@@ -3,18 +3,19 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 // import { useSelector } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import SideNav from "../SideNav/SideNav";
 
 export default function UpdateMeditation(props) {
-  const [productId, setProductId] = useState();
+  const [meditationId, setMeditationId] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image,setImage]=useState();
   const [audio,setAudio]=useState();
   const [previewImage,setPreviewImage]=useState("");
+  const [previewAudio,setPreviewAudio]=useState("");
   const [cloudinaryImageId,setCloudinaryImageId]=useState("");
   const [cloudinaryAudioId,setCloudinaryAudioId]=useState("");
-  const [imageURL,setImageURL]=useState("");
-  const [audioURL,setAudioURL]=useState("");
+  const [meditation,setMeditation]=useState({});
   
   useEffect(() => {
     async function fetchData() {
@@ -22,21 +23,21 @@ export default function UpdateMeditation(props) {
       const response = await axios.get("http://localhost:5000/meditation/get/"+props.match.params.id, {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
-         console.log(response.data);
+        setMeditation(response.data);
+         setMeditationId(response.data._id);
          setTitle(response.data.title);
          setDescription(response.data.description);
-         setImageURL(response.data.imageURL);
-         setAudioURL(response.data.audioURL);
+         setPreviewImage(response.data.imageURL);
+         setPreviewAudio(response.data.audioURL);
          setCloudinaryAudioId(response.data.cloudinary_audio_id);
          setCloudinaryImageId(response.data.cloudinary_image_id);
-
     }
     catch(err){
       console.log(err);
     }
     }
     fetchData();
-  }, []);
+  },[]);
 
   const history = useHistory();
 
@@ -54,6 +55,8 @@ export default function UpdateMeditation(props) {
     history.push("/admin/product");
   };
   return (
+      <div>
+    <SideNav/>
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
@@ -64,17 +67,41 @@ export default function UpdateMeditation(props) {
                 type="file"
                 accept=".jpeg, .jpg, .png, .webp"
                 name="file"
+                onChange={(e)=>{
+                    setImage(e.target.files[0]);
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                }}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}
                 required
               />
               <br/>
+              {previewAudio?
+              (<>
+              <audio controls><source src={previewAudio} type="audio/mp3" /></audio>
+              <input
+                type="file"
+                accept=".mp3,.wav,.ogg"
+                name="file"
+                onChange={(e)=>{
+                    setAudio(e.target.files[0]);
+                    setPreviewAudio(URL.createObjectURL(e.target.files[0]));
+                    console.log(previewAudio);
+                }}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                style={{ borderStyle: "none" }}
+                required
+              />
+              </>):null}
+              <br/>
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Title
               </label>
               <input
                 value={title}
+                onChange={e=>setTitle(e.target.value)}
                 type="text"
                 id="defaultFormRegisterNameEx"
                 className="form-control"
@@ -92,6 +119,7 @@ export default function UpdateMeditation(props) {
                 </div>
                 <textarea
                   value={description}
+                  onChange={e=>setDescription(e.target.value)}
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows="5"
@@ -101,16 +129,17 @@ export default function UpdateMeditation(props) {
               <br />
               <div className="text-center mt-4">
                 <MDBBtn
-                  onClick={() => btnClicked(productId)}
+                  onClick={() => btnClicked(meditationId)}
                   color="unique"
                   type="submit"
                 >
-                  Edit Product
+                  Update Meditation
                 </MDBBtn>
               </div>
             </form>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      </div>
   );
 }

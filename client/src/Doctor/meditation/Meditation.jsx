@@ -13,9 +13,6 @@ export default function Meditation() {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
       setMeditation(response.data);
-      meditation.map(data => {
-        console.log(data);
-      })
     }
     fetchData();
   }, [meditation]);
