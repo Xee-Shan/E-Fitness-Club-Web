@@ -76,6 +76,9 @@ const Navbar = () => {
             <MDBNavLink to="/user/videos">VIDEOS</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
+            <MDBNavLink to="/user/meditation">MEDITATION</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
             <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>

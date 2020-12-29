@@ -1,5 +1,6 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
+import img from "./Images/zeeshan.jpeg";
 
 const TeamPage = () => {
   return (
@@ -18,20 +19,20 @@ const TeamPage = () => {
             <MDBCol lg="6" md="12" className="mb-5">
               <MDBCol md="4" lg="6" className="float-left">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg"
+                  src={img}
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
                   tag="img"
                   alt="Sample avatar"
                 />
               </MDBCol>
               <MDBCol md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Zeeshan Chaudhry</h4>
+                <h4 className="font-weight-bold mb-3">Muhammad Zeeshan Chaudhry</h4>
                 <h6 className="font-weight-bold grey-text mb-3">
-                  Web Developer
+                  Full Stack Developer
                 </h6>
                 <p className="grey-text">
-                  He is an motivated front end developer and has done 30+
-                  satisfied projects with teh rating of about four and half.
+                  He is a motivated front end developer and has done 30+
+                  satisfied projects with tech rating of about four and half.
                 </p>
                 <a
                   href="https://www.facebook.com/"
