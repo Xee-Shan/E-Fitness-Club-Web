@@ -102,7 +102,7 @@ const TeamPage = () => {
             <MDBCol lg="6" md="12" className="mb-5">
               <MDBCol md="4" lg="6" className="float-left">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg"
+                  src="https://scontent.flhe13-1.fna.fbcdn.net/v/t1.0-9/16602841_1114034188706147_5470258682028639371_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_eui2=AeH8mXt9pstNDulH6Zn_KyaY2CnGN3FWZFzYKcY3cVZkXBMfrPW8Fz9Zf12Apsdbc1QuMG2CTwU-J7q8pbYDA_Pf&_nc_ohc=pfgJGiOtOP8AX_5yhyn&_nc_ht=scontent.flhe13-1.fna&oh=a13e56ac383f89e9ec212cb7b490d327&oe=6011AED1"
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
                   tag="img"
                   alt="Sample avatar"
