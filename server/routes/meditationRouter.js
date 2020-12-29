@@ -113,4 +113,16 @@ router.get("/get/:id",auth, async (req, res) => {
  }
  
 });
+
+router.delete("/delete/:id",auth, async (req, res) => {
+  try{
+   const meditation=await Meditation.findByIdAndDelete({ _id: req.params.id });
+   await cloudinary.uploader.destroy(meditation.cloudinary_image_id);
+   await cloudinary.v2.uploader.destroy(meditation.cloudinary_audio_id,{resource_type: 'video'}, function(error, result) {console.log(result, error); });
+  }
+  catch(err){
+    console.log(err);
+  }
+
+});
    module.exports = router;

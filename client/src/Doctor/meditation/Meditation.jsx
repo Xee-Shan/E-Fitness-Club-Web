@@ -19,6 +19,11 @@ export default function Meditation() {
   const handleEdit=(id)=>{
     history.push("/doctor/update/"+id);
   }
+  async function handleDelete(id) {
+    axios.delete("http://localhost:5000/meditation/delete/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    });
+  }
   return (
     <div>
       <SideNav />
@@ -55,7 +60,7 @@ export default function Meditation() {
                     </MDBBtn>
                       <MDBBtn
                         color="danger"
-                      // onClick={() => handleDelete(product._id)}
+                       onClick={() => handleDelete(meditation._id)}
                       >
                         Delete
                     </MDBBtn>
