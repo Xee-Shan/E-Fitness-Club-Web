@@ -6,7 +6,7 @@ const About = () => {
       <MDBRow>
         <MDBCol md="6">
           <h2 className="h1-responsive font-weight-bold my-5 text-center">
-            About us
+            Information
           </h2>
           <p>
             When it comes to training and nutrition, there are 3 components that
