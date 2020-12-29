@@ -28,9 +28,8 @@ const Services = () => {
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaVQjATNELyuRd7M0gTntI0jKatdlWSO79-Q&usqp=CAU"
-                  style={{ height: "180px", width: "300px" }}
-                  alt=""
+                  src="https://i1.wp.com/blog.happyfox.com/wp-content/uploads/2020/06/Live-Chat-Adoption.png?fit=1920%2C1080&ssl=1"
+                  alt="Live Chat"
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
@@ -50,9 +49,8 @@ const Services = () => {
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src={BMI}
-                  alt="BMI image"
-                  style={{ height: "180px", width: "300px" }}
+                  src="https://i2s3e2c6.stackpathcdn.com/wp-content/uploads/2019/06/BMI-ECPL.jpg"
+                  alt="BMI"
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
@@ -72,7 +70,7 @@ const Services = () => {
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src="https://cdn4.wpbeginner.com/wp-content/uploads/2018/07/whatisblog.png"
+                  src="https://pagedesignweb.com/wp-content/uploads/2018/07/blogging-1.jpg"
                   alt="Blog Image"
                 />
                 <MDBMask overlay="white-slight" />
