@@ -60,19 +60,24 @@ router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) =
   }   
  });  
 //update with audio
- router.put("/updateAudio/:id",auth,upload.single("audio"), async (req, res) => {
+ router.put("/updateAudio/:id",auth,uploadAudio.single("audio"), async (req, res) => {
   try{
   const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
   if(req.body.cloudinary_audio_id===""){
-  await cloudinary.uploader.destroy(meditation.cloudinary_audio_id);
-  const result= await cloudinary.uploader.upload(req.file.path);
+    console.log(meditation.cloudinary_audio_id);
+  await cloudinary.v2.uploader.destroy(meditation.cloudinary_audio_id,{resource_type: 'video'}, function(error, result) {console.log(result, error); });
+  const result = await cloudinary.v2.uploader.upload(req.file.path,{ resource_type: "video" }, 
+     function(error, result) {console.log(result, error); });
   meditation.audioURL=result.secure_url,
   meditation.cloudinary_audio_id=result.public_id
   }
   meditation.title = req.body.title;
   meditation.description = req.body.description;
 
-  await meditation.save();
+  await meditation.save((err) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
   }catch(err){
     console.log(err);
   }
@@ -82,13 +87,16 @@ router.put("/updateImage/:id",auth,upload.single("image"), async (req, res) => {
   try{
   const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
   if(req.body.cloudinary_image_id===""){
-  await cloudinary.uploader.destroy(product.cloudinary_image_id);
+  await cloudinary.uploader.destroy(meditation.cloudinary_image_id);
   const result= await cloudinary.uploader.upload(req.file.path);
   meditation.imageURL=result.secure_url,
   meditation.cloudinary_image_id=result.public_id
   }
  
-  await product.save();
+  await meditation.save((err) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
   }catch(err){
     console.log(err);
   }
