@@ -82,7 +82,16 @@ const Features = () => {
               <MDBCol size="10">
                 <h5 className="font-weight-bold mb-3">EXERCISE AND TRAINING</h5>
                 <p className="grey-text">
-                In this portal user will provide a complete workout and exercise videos, pictures and posts according to the trainee’s needs.
+                This is the most important system of our website.In this system we will provide a complete workout and exercise videos and pictures according to the trainee’s needs.
+                </p>
+              </MDBCol>
+              <MDBCol size="2">
+                <MDBIcon icon="flag" size="2x" className="deep-purple-text" />
+              </MDBCol>
+              <MDBCol size="10">
+                <h5 className="font-weight-bold mb-3">BMI AND BLOG</h5>
+                <p className="grey-text">
+                In this system user can calculate their body mass index by giving their body details and can see blogs added by Trainer and Nutrition to get motivation.
                 </p>
               </MDBCol>
             </MDBRow>
