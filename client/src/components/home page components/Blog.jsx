@@ -1,5 +1,4 @@
 import BMI from "./Images/BMI2.jpg"
-import BLOG from "./Images/Blog.jpg"
 import React from "react";
 import {
   MDBRow,
@@ -28,7 +27,7 @@ const Blog = () => {
                 <img
                   className="img-fluid"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaVQjATNELyuRd7M0gTntI0jKatdlWSO79-Q&usqp=CAU"
-                  height="310px"
+                  style={{height:"180px" ,width:"300px"}}
                   alt=""
                 />
                 <MDBMask overlay="white-slight" />
@@ -67,7 +66,7 @@ const Blog = () => {
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
                 <img
                   className="img-fluid"
-                  src={BLOG}
+                  src="https://cdn4.wpbeginner.com/wp-content/uploads/2018/07/whatisblog.png"
                   alt="Blog Image"
                 />
                 <MDBMask overlay="white-slight" />

@@ -86,7 +86,7 @@ const Features = () => {
                 </p>
               </MDBCol>
               <MDBCol size="2">
-                <MDBIcon icon="flag" size="2x" className="deep-purple-text" />
+                <MDBIcon icon="magic" size="2x" className="deep-purple-text" />
               </MDBCol>
               <MDBCol size="10">
                 <h5 className="font-weight-bold mb-3">BMI AND BLOG</h5>
