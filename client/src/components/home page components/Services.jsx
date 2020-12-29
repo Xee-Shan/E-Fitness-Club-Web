@@ -1,9 +1,4 @@
-<<<<<<< HEAD:client/src/components/home page components/Blog.jsx
-import BMI from "./Images/BMI2.jpg"
-=======
 import BMI from "./Images/BMI2.jpg";
-import BLOG from "./Images/Blog.jpg";
->>>>>>> 84e83db43ebd411ddc6585b74bc1e5b4d946d093:client/src/components/home page components/Services.jsx
 import React from "react";
 import {
   MDBRow,
@@ -34,7 +29,7 @@ const Services = () => {
                 <img
                   className="img-fluid"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaVQjATNELyuRd7M0gTntI0jKatdlWSO79-Q&usqp=CAU"
-                  style={{height:"180px" ,width:"300px"}}
+                  style={{ height: "180px", width: "300px" }}
                   alt=""
                 />
                 <MDBMask overlay="white-slight" />
@@ -75,15 +70,11 @@ const Services = () => {
             </MDBCol>
             <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
               <MDBView hover className="rounded z-depth-2 mb-4" waves>
-<<<<<<< HEAD:client/src/components/home page components/Blog.jsx
                 <img
                   className="img-fluid"
                   src="https://cdn4.wpbeginner.com/wp-content/uploads/2018/07/whatisblog.png"
                   alt="Blog Image"
                 />
-=======
-                <img className="img-fluid" src={BLOG} alt="Blog Image" />
->>>>>>> 84e83db43ebd411ddc6585b74bc1e5b4d946d093:client/src/components/home page components/Services.jsx
                 <MDBMask overlay="white-slight" />
               </MDBView>
               <a href="#!" className="blue-text">
