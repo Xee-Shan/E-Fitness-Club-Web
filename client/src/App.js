@@ -56,12 +56,13 @@ import GetBlog from "./trainer/Components/Blog/GetBlog";
 import UploadVideo from "./trainer/Components/UploadVideo";
 import EditBlog from "./trainer/Components/Blog/EditBlog";
 import DoctorCreateBlog from "./Doctor/Blog/CreateBlog";
-import UploadMeditation from "./Doctor/UploadMeditation";
+import UploadMeditation from "./Doctor/meditation/UploadMeditation";
 import DoctorGetBlog from "./Doctor/Blog/GetBlog";
 import DoctorEditBlog from "./Doctor/Blog/EditBlog";
+import UpdateMeditation from "./Doctor/meditation/UpdateMeditation";
 import Blogs from "./User/Blogs/Blog";
 import BlogDetails from "./User/Blogs/BlogDetail";
-import Meditation from "./Doctor/Meditation";
+import Meditation from "./Doctor/meditation/Meditation";
 import AdminHome from "./Admin/AdminHome";
 
 const App = () => {
@@ -174,6 +175,7 @@ const App = () => {
           <Route path="/trainer/createblog" component={CreateBlog} />
           <Route path="/trainer/getblog" component={GetBlog} />
           <Route path="/doctor/createBlog" component={DoctorCreateBlog} />
+          <Route path="/doctor/update/:id" component={UpdateMeditation} />
           <Route path="/doctor/getBlog" component={DoctorGetBlog} />
           <Route path="/doctor/editBlog/:id" component={DoctorEditBlog} />
           <Route path="/doctor/upload" component={UploadMeditation} />

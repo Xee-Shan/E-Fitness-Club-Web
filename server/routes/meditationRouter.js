@@ -59,4 +59,50 @@ router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) =
     console.log(err);
   }   
  });  
+//update with audio
+ router.put("/updateAudio/:id",auth,upload.single("audio"), async (req, res) => {
+  try{
+  const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
+  if(req.body.cloudinary_audio_id===""){
+  await cloudinary.uploader.destroy(meditation.cloudinary_audio_id);
+  const result= await cloudinary.uploader.upload(req.file.path);
+  meditation.audioURL=result.secure_url,
+  meditation.cloudinary_audio_id=result.public_id
+  }
+  meditation.title = req.body.title;
+  meditation.description = req.body.description;
+
+  await meditation.save();
+  }catch(err){
+    console.log(err);
+  }
+});
+//update image only
+router.put("/updateImage/:id",auth,upload.single("image"), async (req, res) => {
+  try{
+  const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
+  if(req.body.cloudinary_image_id===""){
+  await cloudinary.uploader.destroy(product.cloudinary_image_id);
+  const result= await cloudinary.uploader.upload(req.file.path);
+  meditation.imageURL=result.secure_url,
+  meditation.cloudinary_image_id=result.public_id
+  }
+ 
+  await product.save();
+  }catch(err){
+    console.log(err);
+  }
+});
+router.put("/get/:id",auth, async (req, res) => {
+  try{
+    await Meditation.findById(req.params.id,(err,doc)=>{
+      if(err) return res.status(400).send(err);
+      res.status(200).send(doc);
+    })
+  }
+  catch(err){
+    console.log(err);
+ }
+ 
+});
    module.exports = router;

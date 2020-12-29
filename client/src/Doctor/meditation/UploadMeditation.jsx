@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
-import SideNav from "./SideNav/SideNav";
-import ErrorNotice from "../components/error/ErrorNotice";
+import SideNav from "../SideNav/SideNav";
+import ErrorNotice from "../../components/error/ErrorNotice";
 
 
 export default function UploadVideo() {
@@ -44,7 +44,8 @@ export default function UploadVideo() {
     return (
         <div>
             <SideNav />
-      <MDBContainer>
+            <br/> <br/>
+      <MDBContainer style={{marginLeft:"25%"}}>
         <MDBRow>
           <MDBCol md="6">
          {loading?(<div>
@@ -59,7 +60,7 @@ export default function UploadVideo() {
   </div>
   </div>
       )
-            : <form enctype="multipart/form-data">
+            : <form>
               <p className="h4 text-center mb-4">Meditation</p>
               {/* {error && (
                     <ErrorNotice
