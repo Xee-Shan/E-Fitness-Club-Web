@@ -4,7 +4,7 @@ import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth" 
-import ErrorNotice from "../../components/error/ErrorNotice";
+// import ErrorNotice from "../../components/error/ErrorNotice";
 
 const CreateRecipe = () => {
   let [name, setName] = useState("");

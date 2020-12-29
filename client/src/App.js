@@ -33,6 +33,9 @@ import NutritionistDashboard from "./Nutrition/Dashboard";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
 import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan";
+import CreateNutritionistBlog from "./Nutrition/Blog/CreateBlog"
+import GetNutritionistBlog from "./Nutrition/Blog/GetBlog"
+import EditNutritionistBlog from "./Nutrition/Blog/EditBlog"
 import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
@@ -142,8 +145,11 @@ const App = () => {
             component={UpdateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
-          <Route path="/trainer/uploadVideo" component={UploadVideo} />
           <Route path="/user/dietPlanDetails" component={DietPlanDetails} />
+          <Route path="/nutritionist/createblog" component={CreateNutritionistBlog} />
+          <Route path="/nutritionist/getblog" component={GetNutritionistBlog} />
+          <Route path="/nutritionist/editblog" component={EditNutritionistBlog} />
+          <Route path="/trainer/uploadVideo" component={UploadVideo} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />

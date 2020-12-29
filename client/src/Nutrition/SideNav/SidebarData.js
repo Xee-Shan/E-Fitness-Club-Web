@@ -34,4 +34,16 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
+  {
+    title: "Add Blog",
+    path: "/nutritionist/createblog",
+    icon: <FaIcons.FaPlusCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "All Blogs",
+    path: "/nutritionist/getblog",
+    icon: <FaIcons.FaTable />,
+    cName: "nav-text",
+  },
 ];

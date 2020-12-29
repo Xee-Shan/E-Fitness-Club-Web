@@ -4,7 +4,7 @@ import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth";
-import ErrorNotice from "../../components/error/ErrorNotice";
+// import ErrorNotice from "../../components/error/ErrorNotice";
 
 const CreateDietPlan = () => {
   let [day, setDay] = useState("");
@@ -13,7 +13,7 @@ const CreateDietPlan = () => {
   let [diet, setDiet] = useState("");
   let [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState();
-  let [err,setErr] =useState("");
+  // let [err,setErr] =useState("");
 
   const history = useHistory();
   
@@ -22,8 +22,8 @@ const CreateDietPlan = () => {
       !day ||
       !userType ||
       !dietType ||
-      !diet 
-      //!image
+      !diet ||
+      !image
     ) {
       alert("Please Enter All Fields");
     }
@@ -31,15 +31,8 @@ const CreateDietPlan = () => {
   
   const btnClicked = async (e) => {
     e.preventDefault();
-    // validate();
-    
-    // const formData = new FormData();
-    // formData.append("day",day);
-    // formData.append("userType",userType);
-    // formData.append("dietType", dietType);
-    // formData.append("diet",diet);
-    // formData.append("image", image);
-    
+   validate();
+      
     const formData = new FormData();
     formData.append("day",day);
     formData.append("userType",userType);

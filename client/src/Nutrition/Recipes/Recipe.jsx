@@ -20,7 +20,7 @@ export default function Recipe() {
 
   function handleDelete(id) {
     const value = window.confirm(
-      "Are you sure you want to delete this Diet Plan ?"
+      "Are you sure you want to delete this Recipe?"
     );
     if (value === true) {
       axios.delete("http://localhost:5000/recipes/delete/" + id);
