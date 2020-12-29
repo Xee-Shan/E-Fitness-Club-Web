@@ -19,14 +19,25 @@ const Footer = () => {
         <hr className="my4" />
       </div>
       <div className="pb-4">
-        <MDBIcon fab icon="facebook" className="mr-3" />
-        <MDBIcon fab icon="twitter" className="mr-3" />
-        <MDBIcon fab icon="youtube" className="mr-3" />
-        <MDBIcon fab icon="pinterest" className="mr-3" />
+        <a href="https://www.facebook.com/" target="blank">
+          <MDBIcon fab icon="facebook" className="mr-3" />
+        </a>
+        <a href="https://www.instagram.com/" target="blank">
+          <MDBIcon fab icon="instagram" className="mr-3" />
+        </a>
+        <a href="https://www.twitter.com/" target="blank">
+          <MDBIcon fab icon="twitter" className="mr-3" />
+        </a>
+        <a href="https://www.youtube.com/" target="blank">
+          <MDBIcon fab icon="youtube" className="mr-3" />
+        </a>
       </div>
       <p className="footer-copyright mb-0 py-3 text-center">
-        &copy; {new Date().getFullYear()} Copyright:{" "}
-        <a href="/"> efitnessclub.com </a>
+        &copy;{new Date().getFullYear()}
+        {""} Copyright:{" "}
+        <a href="/" target="blank">
+          efitnessclub.com
+        </a>
       </p>
     </MDBFooter>
   );
