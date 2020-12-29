@@ -15,15 +15,14 @@ export default function UpdateMeditation(props) {
   const [previewAudio,setPreviewAudio]=useState("");
   const [cloudinaryImageId,setCloudinaryImageId]=useState("");
   const [cloudinaryAudioId,setCloudinaryAudioId]=useState("");
-  const [meditation,setMeditation]=useState({});
-  
+  const [loading,setLoading]=useState(false);
   useEffect(() => {
     async function fetchData() {
       try{
       const response = await axios.get("http://localhost:5000/meditation/get/"+props.match.params.id, {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
-        setMeditation(response.data);
+
          setMeditationId(response.data._id);
          setTitle(response.data.title);
          setDescription(response.data.description);
@@ -41,18 +40,37 @@ export default function UpdateMeditation(props) {
 
   const history = useHistory();
 
-  const btnClicked = (id) => {
+  const btnClicked =async (id) => {
     const formData=new FormData();
     formData.append("description",description);
     formData.append("title",title);
-
-    axios.put("http://localhost:5000/meditation/update/" + id, formData, {
+    if(audio!==undefined)
+    formData.append("audio",audio);
+    formData.append("cloudinary_audio_id",cloudinaryAudioId);
+    setLoading(true);
+    const response1=await axios.put("http://localhost:5000/meditation/updateAudio/" + id, formData, {
       headers: {
          "x-auth-token": localStorage.getItem("auth-token"),
          //'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    history.push("/admin/product");
+    const formData2=new FormData();
+    if(image!==undefined)
+    formData2.append("image",image);
+    formData2.append("cloudinary_image_id",cloudinaryImageId);
+    const response2=await axios.put("http://localhost:5000/meditation/updateImage/" + id, formData2, {
+      headers: {
+         "x-auth-token": localStorage.getItem("auth-token"),
+         //'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+    if(response1.data.success&&response2.data.success){ 
+        setLoading(false);
+        history.push("/doctor/meditation");
+    }
+    else{
+        alert("unsuccessfull");
+    }
   };
   return (
       <div>
@@ -60,8 +78,25 @@ export default function UpdateMeditation(props) {
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
+          {loading?(<div>
+              <h2>Updating</h2>
+            <div className="spinner-grow text-primary" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+    <div className="spinner-grow text-primary" role="status">
+    <span className="sr-only">Loading...</span>
+  </div>
+  </div>
+      )
+            :
             <form>
               <p className="h4 text-center mb-4">Update Meditation</p>
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Image
+              </label>
               <img src={previewImage} alt=""/>
               <input
                 type="file"
@@ -70,15 +105,19 @@ export default function UpdateMeditation(props) {
                 onChange={(e)=>{
                     setImage(e.target.files[0]);
                     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                    setCloudinaryImageId("");
                 }}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}
-                required
+                
               />
               <br/>
               {previewAudio?
               (<>
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Audio
+              </label>
               <audio controls><source src={previewAudio} type="audio/mp3" /></audio>
               <input
                 type="file"
@@ -87,12 +126,12 @@ export default function UpdateMeditation(props) {
                 onChange={(e)=>{
                     setAudio(e.target.files[0]);
                     setPreviewAudio(URL.createObjectURL(e.target.files[0]));
-                    console.log(previewAudio);
+                    setCloudinaryAudioId("");
                 }}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 style={{ borderStyle: "none" }}
-                required
+                
               />
               </>):null}
               <br/>
@@ -137,6 +176,7 @@ export default function UpdateMeditation(props) {
                 </MDBBtn>
               </div>
             </form>
+}
           </MDBCol>
         </MDBRow>
       </MDBContainer>

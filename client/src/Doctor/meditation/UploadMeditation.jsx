@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import ErrorNotice from "../../components/error/ErrorNotice";
-
+import { useHistory } from "react-router-dom";
 
 export default function UploadVideo() {
     const [title,setTitle]=useState("");
@@ -13,6 +12,7 @@ export default function UploadVideo() {
     const [image, setImage] = useState();
     const [audio,setAudio]=useState();
     const [loading,setLoading]=useState(false);
+    const history=useHistory();
 
 
     const btnClicked=async (e)=>{
@@ -35,6 +35,7 @@ export default function UploadVideo() {
       if(response2.data.success&&response1.data.success){
           alert("Success");
           setLoading(false);
+          history.push("/doctor/meditation");
       }
       else{
           setLoading(false);
@@ -49,6 +50,7 @@ export default function UploadVideo() {
         <MDBRow>
           <MDBCol md="6">
          {loading?(<div>
+           <h2>Uploading</h2>
             <div className="spinner-grow text-primary" role="status">
         <span className="sr-only">Loading...</span>
       </div>
