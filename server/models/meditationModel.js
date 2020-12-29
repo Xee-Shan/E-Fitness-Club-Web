@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  uploaderName: { type: String, required: true },
-  description: { type: String, required: true },
-  cloudinary_audio_id: { type: String, required: true },
-  audioURL: { type: String, required: true },
-  cloudinary_image_id: { type: String, required: true },
-  imageURL: { type: String, required: true },
-  uploaderId:{type:String,required:true}
+  title: { type: String },
+  uploaderName: { type: String },
+  description: { type: String },
+  cloudinary_audio_id: { type: String },
+  audioURL: { type: String },
+  cloudinary_image_id: { type: String },
+  imageURL: { type: String },
+  uploaderId:{type:String}
 });
 
 const Meditation = mongoose.model("Meditation", userSchema);
