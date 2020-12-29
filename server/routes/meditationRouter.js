@@ -114,6 +114,18 @@ router.get("/get/:id",auth, async (req, res) => {
  
 });
 
+router.get("/getAll",auth, async (req, res) => {
+  try{
+    await Meditation.find((err,doc)=>{
+      if(err) return res.status(400).send(err);
+      res.status(200).send(doc);
+    })
+  }
+  catch(err){
+    console.log(err);
+ }
+});
+
 router.delete("/delete/:id",auth, async (req, res) => {
   try{
    const meditation=await Meditation.findByIdAndDelete({ _id: req.params.id });

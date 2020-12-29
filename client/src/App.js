@@ -67,6 +67,9 @@ import Blogs from "./User/Blogs/Blog";
 import BlogDetails from "./User/Blogs/BlogDetail";
 import Meditation from "./Doctor/meditation/Meditation";
 import AdminHome from "./Admin/AdminHome";
+import ShowMeditation from "./User/Meditation/ShowMeditation";
+import MeditationDetail from "./User/Meditation/MeditationDetail";
+
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -123,6 +126,7 @@ const App = () => {
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
+          <Route path="/user/meditationDetail/:id" component={MeditationDetail} />
           <Route
             path="/user/productCategory/:category"
             component={ProductCategory}
@@ -134,6 +138,8 @@ const App = () => {
             component={UpdateRecipe}
           />
           <Route path="/nutritionist/recipe" component={Recipe} />
+          <Route path="/user/meditation" component={ShowMeditation} />
+
           <Route
             path="/nutritionist/dashboard"
             component={NutritionistDashboard}
