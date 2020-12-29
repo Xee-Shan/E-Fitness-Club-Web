@@ -115,7 +115,7 @@ const TeamPage = () => {
                 </h6>
                 <p className="grey-text">
                   He is an motivated front end developer and has done 30+
-                  satisfied projects with teh rating of about four and half.
+                  satisfied projects.
                 </p>
                 <a
                   href="https://www.facebook.com/"
