@@ -79,7 +79,7 @@ export default function UpdateMeditation(props) {
         <MDBRow>
           <MDBCol md="6">
           {loading?(<div>
-              Updating
+              <h2>Updating</h2>
             <div className="spinner-grow text-primary" role="status">
         <span className="sr-only">Loading...</span>
       </div>
