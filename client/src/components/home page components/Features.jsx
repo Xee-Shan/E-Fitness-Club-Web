@@ -23,7 +23,7 @@ const Features = () => {
             <MDBRow className="mb-3">
               <MDBCol size="2">
                 <MDBIcon
-                  icon="flag-checkered"
+                  icon="user-cog"
                   size="2x"
                   className="deep-purple-text"
                 />
@@ -38,7 +38,11 @@ const Features = () => {
             </MDBRow>
             <MDBRow className="mb-3">
               <MDBCol size="2">
-                <MDBIcon icon="flask" size="2x" className="deep-purple-text" />
+                <MDBIcon
+                  icon="briefcase-medical"
+                  size="2x"
+                  className="deep-purple-text"
+                />
               </MDBCol>
               <MDBCol size="10">
                 <h5 className="font-weight-bold mb-3">HEALTH AND CARE</h5>
