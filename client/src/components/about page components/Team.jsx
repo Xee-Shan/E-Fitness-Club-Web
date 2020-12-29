@@ -30,8 +30,8 @@ const TeamPage = () => {
                   Web Developer
                 </h6>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                  eos id officiis hic tenetur.
+                  He is an motivated front end developer and has done 30+
+                  satisfied projects with teh rating of about four and half.
                 </p>
                 <a
                   href="https://www.facebook.com/"
@@ -48,7 +48,7 @@ const TeamPage = () => {
                   <MDBIcon fab icon="twitter" />
                 </a>
                 <a
-                  href="https://dribbble.com/"
+                  href="https://instagram.com/"
                   target="blank"
                   className="p-2 fa-lg dribbble-ic"
                 >
@@ -60,7 +60,7 @@ const TeamPage = () => {
             <MDBCol lg="6" md="12" className="mb-5">
               <MDBCol md="4" lg="6" className="float-left">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
+                  src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.0-9/18010488_1441241129273796_1316910691126033963_n.jpg?_nc_cat=101&ccb=2&_nc_sid=174925&_nc_eui2=AeHSbRPNZX1ks4l2kMDtSXEFCfpKjFgqgiMJ-kqMWCqCIzmhuCdXfYbzcNXhyL0jGoxjtoISNapcxrMqC-pJbFsl&_nc_ohc=hSAA7W4GFM4AX9aK3cK&_nc_ht=scontent.flhe7-1.fna&oh=acf9f5b9f7f17b9dadffce05c123905b&oe=60110822"
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
                   tag="img"
                   alt="Sample avatar"
@@ -69,11 +69,11 @@ const TeamPage = () => {
               <MDBCol md="8" lg="6" className="float-right">
                 <h4 className="font-weight-bold mb-3">Osama Abdul Sabboor</h4>
                 <h6 className="font-weight-bold grey-text mb-3">
-                  Graphics Designer
+                  Web Developer
                 </h6>
                 <p className="grey-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                  eos id officiis hic tenetur.
+                  He is an motivated front end developer and has done 30+
+                  satisfied projects with teh rating of about four and half.
                 </p>
                 <a
                   href="https://www.facebook.com/"
@@ -111,7 +111,7 @@ const TeamPage = () => {
               <MDBCol md="8" lg="6" className="float-right">
                 <h4 className="font-weight-bold mb-3">Mohtashim Tajamal</h4>
                 <h6 className="font-weight-bold grey-text mb-3">
-                  Front end Developer
+                  Web Developer
                 </h6>
                 <p className="grey-text">
                   He is an motivated front end developer and has done 30+
