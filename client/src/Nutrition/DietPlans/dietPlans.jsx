@@ -61,8 +61,6 @@ export default function Recipe() {
                     <td>{dietPlan.day}</td>
                     <td>{dietPlan.userType}</td>
                     <td>{dietPlan.dietType}</td>
-                    {/*<td>{dietPlan.diet}</td>
-                 <td>{recipe.description}</td> */}
                     <td>
                       <MDBBtn
                         color="warning"
