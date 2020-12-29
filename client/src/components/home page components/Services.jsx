@@ -33,12 +33,12 @@ const Services = () => {
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
-              <a href="#!" className="pink-text">
-                <h4 className="font-weight-bold mb-3">
-                  <MDBIcon icon="comment-alt" className="pr-2" />
-                  Live Chat
-                </h4>
-              </a>
+
+              <h4 className="font-weight-bold mb-3">
+                <MDBIcon icon="comment-alt" className="pr-2" />
+                Live Chat
+              </h4>
+
               <p className="dark-grey-text">
                 Live Chat is the most important feature of our site in which the
                 user can chat with the doctor directly and can doctor can take
@@ -54,12 +54,12 @@ const Services = () => {
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
-              <a href="#!" className="deep-orange-text">
-                <h4 className="font-weight-bold mb-3">
-                  <MDBIcon icon="calculator" className="pr-2" />
-                  BMI
-                </h4>
-              </a>
+
+              <h4 className="font-weight-bold mb-3">
+                <MDBIcon icon="calculator" className="pr-2" />
+                BMI
+              </h4>
+
               <p className="dark-grey-text">
                 BMI is one of the important feature of our site in which user
                 can calculate his/her body mass index and can carry out diet
@@ -75,12 +75,12 @@ const Services = () => {
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>
-              <a href="#!" className="blue-text">
-                <h4 className="font-weight-bold mb-3">
-                  <MDBIcon fab icon="blogger" className="pr-2" />
-                  Blog
-                </h4>
-              </a>
+
+              <h4 className="font-weight-bold mb-3">
+                <MDBIcon fab icon="blogger" className="pr-2" />
+                Blog
+              </h4>
+
               <p className="dark-grey-text">
                 A Blog is one of the biggest feature of our site in which user
                 is provided by the blogs written by our trainers and
