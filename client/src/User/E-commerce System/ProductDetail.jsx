@@ -66,8 +66,8 @@ export default function ProductDetail(props) {
 
   async function btnClicked(product) {
     if (
-      myQuantity <= 0 ||
-      myQuantity + itemCount > product.quantity - orderedQuantity
+      parseInt(myQuantity,10) <= 0 ||
+      parseInt(myQuantity,10) + itemCount > product.quantity - orderedQuantity
     ) {
       alert("Invalid quantity or quantity more than availabe in stock");
     } else {
@@ -114,7 +114,7 @@ export default function ProductDetail(props) {
             <br />
             <hr /> <b>Brand : </b>&nbsp;&nbsp;&nbsp;&nbsp;
             <i>{product?.brand}</i> <br />
-            <hr /> <b>In Stock : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <hr /> <b>Available : </b>&nbsp;&nbsp;&nbsp;&nbsp;
             <i>{(product?.quantity - orderedQuantity).toString()}</i>
             <hr />
             <b>Delivery Time : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
