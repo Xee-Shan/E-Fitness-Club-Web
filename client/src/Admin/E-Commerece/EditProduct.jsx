@@ -14,6 +14,7 @@ export default function EditProduct(props) {
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [deliveryDays, setDeliveryDays] = useState("");
   const [image,setImage]=useState();
   const [previewImage,setPreviewImage]=useState("");
   const [cloudinaryId,setCloudinaryId]=useState("");
@@ -31,6 +32,7 @@ export default function EditProduct(props) {
       setPrice(response.data.price);
       setQuantity(response.data.quantity);
       setDescription(response.data.description);
+      setDeliveryDays(response.data.deliveryDays);
       setCategory(response.data.category);
       setPreviewImage(response.data.imageURL);
       setCloudinaryId(response.data.cloudinary_id);
@@ -58,6 +60,9 @@ export default function EditProduct(props) {
   };
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
+  };
+  const onChangeDeliveryDays = (e) => {
+    setDeliveryDays(e.target.value);
   };
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
@@ -159,6 +164,18 @@ export default function EditProduct(props) {
                 type="number"
                 value={quantity}
                 onChange={onChangeQuantity}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                required
+              />
+              <br />
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Delivery Day(s)
+              </label>
+              <input
+                type="number"
+                value={deliveryDays}
+                onChange={onChangeDeliveryDays}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required

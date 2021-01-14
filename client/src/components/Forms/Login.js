@@ -48,7 +48,7 @@ const Login = () => {
           user: loginRes.data.user,
         });
         localStorage.setItem("auth-token", loginRes.data.token);
-        history.push("/admin/product");
+        history.push("/admin/home");
       }
 
       if (loginRes.data.user.role === "trainer") {

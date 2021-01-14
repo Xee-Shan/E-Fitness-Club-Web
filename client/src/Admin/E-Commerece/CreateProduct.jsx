@@ -12,6 +12,7 @@ const CreateProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [deliveryDays, setDeliveryDays] = useState("");
   const [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState("");
   const [error,setError]=useState();
@@ -35,6 +36,9 @@ const CreateProduct = () => {
   const onChangeCategory = (e) => {
     setCategory(e.target.value);
   };
+  const onChangeDeliveryDays = (e) => {
+    setDeliveryDays(e.target.value);
+  };
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
@@ -47,6 +51,7 @@ const CreateProduct = () => {
     formData.append("price", price);
     formData.append("description", description);
     formData.append("quantity", quantity);
+    formData.append("deliveryDays", deliveryDays);
     formData.append("category", category);
     formData.append("image", image);
 try{
@@ -129,6 +134,17 @@ try{
               <input
                 type="number"
                 onChange={onChangeQuantity}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                required
+              />
+              <br />
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Delivery Day(s)
+              </label>
+              <input
+                type="number"
+                onChange={onChangeDeliveryDays}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required

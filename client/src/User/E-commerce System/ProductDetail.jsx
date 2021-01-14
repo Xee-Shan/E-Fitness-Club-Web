@@ -116,7 +116,8 @@ export default function ProductDetail(props) {
             <i>{product?.brand}</i> <br />
             <hr /> <b>In Stock : </b>&nbsp;&nbsp;&nbsp;&nbsp;
             <i>{(product?.quantity - orderedQuantity).toString()}</i>
-            <br />
+            <hr />
+            <b>Delivery Time : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
             <hr />
             <div>
               <b>Description : </b>
@@ -141,9 +142,6 @@ export default function ProductDetail(props) {
                 style={{ textAlign: "center" }}
               />
               &nbsp;&nbsp;{" "}
-              {/* <button style={{ border: "none" }} onClick={decrement}>
-                <h2>╸</h2>
-              </button> */}
               <MDBBtn size="sm" onClick={decrement}>
                 -
               </MDBBtn>

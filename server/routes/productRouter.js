@@ -41,6 +41,7 @@ router.post("/create",auth,admin,upload.single("image"),async (req, res) => {
     price: req.body.price,
     quantity: req.body.quantity,
     description: req.body.description,
+    deliveryDays:req.body.deliveryDays,
     category: req.body.category,
     imageURL: result.secure_url,
     cloudinary_id: result.public_id
@@ -143,6 +144,7 @@ router.put("/update/:id",auth,admin,upload.single("image"), async (req, res) => 
   product.category = req.body.category;
   product.price = req.body.price;
   product.quantity = req.body.quantity;
+  product.deliveryDays = req.body.deliveryDays;
   product.description = req.body.description;
 
   await product.save();

@@ -2,9 +2,8 @@ import React,{useState,useEffect} from 'react'
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol,MDBContainer } from 'mdbreact';
 import SideNav from "./SideNav//SideNav";
 import axios from "axios";
-import { PureComponent } from 'react';
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
 export default function AdminHome() {
