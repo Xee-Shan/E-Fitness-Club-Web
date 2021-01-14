@@ -4,7 +4,6 @@ import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import TrainerAuth from "../auth/TrainerAuth";
 import SideNav from "./Components/SideNav/SideNav";
 import { useParams, useHistory } from "react-router-dom";
-import ResponseNotice from "../components/response/ResponseNotice";
 
 export default function EditSchedule() {
   const [day, setDay] = useState();

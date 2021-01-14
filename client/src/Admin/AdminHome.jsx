@@ -2,10 +2,29 @@ import React,{useState,useEffect} from 'react'
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol,MDBContainer } from 'mdbreact';
 import SideNav from "./SideNav//SideNav";
 import axios from "axios";
+import { PureComponent } from 'react';
+import {
+  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
 export default function AdminHome() {
     const [count,setCount]=useState({});
     const [product,setProduct]=useState([]);
+    const data = [
+      {
+        name: 'Physiatrist', value: count.physiatristCount,
+      },
+      {
+        name: 'Trainer', value: count.trainerCount,
+      },
+      {
+        name: 'User', value: count.userCount,
+      },
+      {
+        name: 'Nutritionist', value: count.nutritionistCount,
+      }
+    ];
+
     useEffect(() => {
         async function fetchData() {
           const response = await axios.get(
@@ -34,6 +53,23 @@ export default function AdminHome() {
             <SideNav/>
         <MDBContainer>
             <br/>
+      <BarChart
+        width={600}
+        height={400}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+        barSize={20}
+      >
+        <XAxis dataKey="name" scale="point" padding={{ left: 30, right: 11 }} />
+        <YAxis /> 
+        <Tooltip />
+        <Legend />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Bar dataKey="value" fill="purple" background={{ fill: '#eee' }} />
+      </BarChart>
+      <br/>
             <MDBCol>
       <MDBCard style={{ width: "22rem"}}>
         <MDBCardBody>
