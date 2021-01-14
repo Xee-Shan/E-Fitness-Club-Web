@@ -12,18 +12,26 @@ export default function AdminHome() {
     const [product,setProduct]=useState([]);
     const data = [
       {
-        name: 'Physiatrist', value: count.physiatristCount,
+        name: 'Physiatrist', count: count.physiatristCount,
       },
       {
-        name: 'Trainer', value: count.trainerCount,
+        name: 'Trainer', count: count.trainerCount,
       },
       {
-        name: 'User', value: count.userCount,
+        name: 'User', count: count.userCount,
       },
       {
-        name: 'Nutritionist', value: count.nutritionistCount,
+        name: 'Nutritionist', count: count.nutritionistCount,
       }
     ];
+    const productData=[];
+    product.map(product=>{
+      productData.push({
+        name:product.name,
+        quantity:product.quantity
+      });
+    });
+  
 
     useEffect(() => {
         async function fetchData() {
@@ -33,7 +41,6 @@ export default function AdminHome() {
               headers: { "x-auth-token": localStorage.getItem("auth-token") },
             }
           );
-          console.log(response.data);
           setCount(response.data);
         }
         fetchData();
@@ -53,12 +60,13 @@ export default function AdminHome() {
             <SideNav/>
         <MDBContainer>
             <br/>
+            <div style={{marginLeft:"15%"}}>
       <BarChart
         width={600}
         height={400}
         data={data}
         margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
+          top: 8, right: 30, left: 20, bottom: 5,
         }}
         barSize={20}
       >
@@ -67,8 +75,26 @@ export default function AdminHome() {
         <Tooltip />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="value" fill="purple" background={{ fill: '#eee' }} />
+        <Bar dataKey="count" fill="purple" background={{ fill: '#eee' }} />
       </BarChart>
+      <br/> <br/>
+      <BarChart
+        width={600}
+        height={400}
+        data={productData}
+        margin={{
+          top: 8, right: 30, left: 20, bottom: 5,
+        }}
+        barSize={20}
+      >
+        <XAxis dataKey="name" scale="point" padding={{ left: 30, right: 11 }} />
+        <YAxis interval={1} allowDecimals="false"/> 
+        <Tooltip />
+        <Legend />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Bar dataKey="quantity" fill="teal" background={{ fill: '#eee' }} />
+      </BarChart>
+      </div>
       <br/>
             <MDBCol>
       <MDBCard style={{ width: "22rem"}}>
