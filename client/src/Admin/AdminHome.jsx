@@ -63,7 +63,7 @@ export default function AdminHome() {
         barSize={20}
       >
         <XAxis dataKey="name" scale="point" padding={{ left: 30, right: 11 }} />
-        <YAxis /> 
+        <YAxis interval={1} allowDecimals="false"/> 
         <Tooltip />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
