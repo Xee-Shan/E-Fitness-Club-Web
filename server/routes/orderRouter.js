@@ -10,7 +10,7 @@ router.post("/placeOrder",auth,async(req,res)=>{
     const order=new Order({
     name:user.name,
     email:user.email,
-    orderDate:new Date().toDateString(),
+    orderDate:new Date(),
     phoneNumber:user.phoneNumber,
     address:user.address,
     orderList:req.body
