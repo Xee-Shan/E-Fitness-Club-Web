@@ -7,6 +7,8 @@ const recipeSchema = {
   description: String,
   method: String,
   category: String,
+  userId: { type: String },
+  userName: { type: String },
   imageURL:String,
   cloudinary_id:String,
 };

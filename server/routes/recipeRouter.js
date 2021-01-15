@@ -6,8 +6,9 @@ const upload = require("../utils/multer");
 
 //create recipe
 router.post("/create", upload.single("image"), async (req, res) => {
-    const result= await cloudinary.uploader.upload(req.file.path);
-    const recipe = new Recipe({
+  const user = await User.findById(req.user);  
+  const result= await cloudinary.uploader.upload(req.file.path);
+  const recipe = new Recipe({
       name: req.body.name,
       type: req.body.type,
       ingredients: req.body.ingredients,
@@ -17,6 +18,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
       imageURL: result.secure_url,
       cloudinary_id: result.public_id,
       userId: req.user,
+      userName: user.name,
   });
   await recipe.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
