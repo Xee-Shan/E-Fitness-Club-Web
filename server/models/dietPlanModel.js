@@ -5,6 +5,8 @@ const dietPlanSchema = {
   userType: String,
   dietType: String,
   diet: String,
+  userId: String ,
+  userName: String ,
   imageURL:String,
   cloudinary_id:String
 };

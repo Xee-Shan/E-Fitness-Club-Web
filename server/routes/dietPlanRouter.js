@@ -14,7 +14,9 @@ router.post("/create", upload.single("image"),async (req, res) => {
     dietType: req.body.dietType,
     diet: req.body.diet,
     imageURL: result.secure_url,
-    cloudinary_id: result.public_id
+    cloudinary_id: result.public_id,
+    userId: req.user,
+    userName: user.name,
   });
   await dietPlan.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
