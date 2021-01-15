@@ -41,11 +41,12 @@ const Navbar = () => {
   return (
     <MDBNavbar color="blue-gradient" dark expand="md">
       <MDBNavbarBrand>
-        <MDBNavLink to="/">
-          <strong className="white-text">E-Fitness Club</strong>
-        </MDBNavLink>
+        <strong className="white-text">E-Fitness Club</strong>
       </MDBNavbarBrand>
       <MDBNavbarNav left>
+        <MDBNavItem>
+          <MDBNavLink to="/">HOME</MDBNavLink>
+        </MDBNavItem>
         <MDBNavItem>
           <MDBNavLink to="/about">ABOUT</MDBNavLink>
         </MDBNavItem>

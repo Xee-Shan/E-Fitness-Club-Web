@@ -12,6 +12,7 @@ import {
 } from "mdbreact";
 const GetBlogs = ({ blog }) => {
   const history = useHistory();
+  console.log(blog);
 
   const btnClicked = (id) => {
     history.push("/user/blogdetail/" + id);

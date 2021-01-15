@@ -1,5 +1,6 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBView } from "mdbreact";
+import Abt from "./Images/download.png";
 const About = () => {
   return (
     <MDBContainer>
@@ -17,12 +18,14 @@ const About = () => {
             understand how to sustain them after they’re gone.
           </p>
         </MDBCol>
-        <MDBCol md="6">
-          <MDBView hover rounded className="z-depth-1-half mb-4">
+        <MDBCol md="1"/>
+        <MDBCol md="5" style={{paddingTop:"50px"}}>
+          <MDBView>
             <img
               className="img-fluid"
-              src="https://wallpapercave.com/wp/wp2861304.jpg"
+              src={Abt}
               alt=""
+              style={{height:"250px",width:"350px"}}
             />
           </MDBView>
         </MDBCol>

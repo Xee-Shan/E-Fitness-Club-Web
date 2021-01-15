@@ -39,7 +39,7 @@ const DietPlanDetails = () => {
                   <td className="text-center">{data.day}</td>
                   <td className="text-center">{data.userType}</td>
                   <td className="text-center">{data.dietType}</td>
-                  <td className="text-center">{data.diet}</td>
+                  <td className="text-center" dangerouslySetInnerHTML={{ __html: data.diet }}></td>
                 </tr>
               );
             })}

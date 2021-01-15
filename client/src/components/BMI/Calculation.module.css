@@ -9,6 +9,7 @@
 }
 .paraSection{
     display: flex;
+    font-weight: bold;
 }
 .paraSection>img{
     width: 50%;
