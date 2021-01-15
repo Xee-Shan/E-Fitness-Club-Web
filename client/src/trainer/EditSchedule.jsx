@@ -77,9 +77,6 @@ export default function EditSchedule() {
                 <MDBBtn color="indigo" type="submit" onClick={edit}>
                   Update
                 </MDBBtn>
-                <MDBBtn color="indigo" type="submit">
-                  Back
-                </MDBBtn>
               </div>
             </form>
           </MDBCol>

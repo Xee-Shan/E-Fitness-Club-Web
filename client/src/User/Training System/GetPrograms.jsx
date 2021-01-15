@@ -15,6 +15,7 @@ import UserAuth from "../../auth/UserAuth";
 
 const GetPrograms = ({ program }) => {
   const history = useHistory();
+  console.log(program);
 
   const btnClicked = (id) => {
     history.push("/user/programdetail/" + id);
@@ -44,6 +45,7 @@ const GetPrograms = ({ program }) => {
                       </MDBCardText>
                       <MDBCardText>Equipments: {program.equipment}</MDBCardText>
                       <MDBCardText>{program.name}</MDBCardText>
+                      <MDBCardText>Trainer: {program.userName}</MDBCardText>
                       <MDBBtn
                         onClick={() => btnClicked(program._id)}
                         className="blue-gradient"
