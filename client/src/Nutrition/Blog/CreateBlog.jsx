@@ -89,8 +89,8 @@ const CreatePrograms = () => {
                     required
                   />
                 </div>
+                <br />
                 <div>
-                  <br />
                   <CKEditor
                     editor={ClassicEditor}
                     data={content}

@@ -4,6 +4,8 @@ import SideNav from "../SideNav/SideNav";
 import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
 import NutritionistAuth from "../../auth/NutritionAuth" 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 
 const EditRecipe = () => {
@@ -13,6 +15,7 @@ const EditRecipe = () => {
   const [type, setType] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [category, setCategory] = useState("");
+  const [method, setMethod] = useState("");
   const [description, setDescription] = useState("");
 
   const getRecipe = async () => {
@@ -21,18 +24,28 @@ const EditRecipe = () => {
         setName(res.data.name);
         setType(res.data.type);
         setIngredients(res.data.ingredients);
-        setCategory(res.data.method);
+        setCategory(res.data.category);
         setDescription(res.data.description);
+        setMethod(res.data.method);
       }
     });
   };
-
+  const onChangeEditor = (e, editor) => {
+    const data = editor.getData();
+    setIngredients(data);
+  };
+  const onChangeMethod = (e, editor) => {
+    const data = editor.getData();
+    setMethod(data);
+  };
+  
   const submit = async (e) => {
     e.preventDefault();
     const data = {
       name: name,
       type: type,
       ingredients: ingredients,
+      method: method,
       category: category,
       description: description,
     };
@@ -54,7 +67,8 @@ const EditRecipe = () => {
       <br/>
       <MDBContainer>
         <MDBRow>
-          <MDBCol md="6">
+        <MDBCol md="3" />
+          <MDBCol md="6" >
             <form>
               <p className="h3 text-center mb-4">Update Recipe</p>
               <MDBInput
@@ -77,15 +91,7 @@ const EditRecipe = () => {
                 <option value="Dinner">Dinner</option>
               </select>
               <br />
-              <MDBInput
-                label="Ingredients"
-                value={ingredients}
-                type="text"
-                onChange={(e) => setIngredients(e.target.value)}
-                id="defaultFormRegisterNameEx"
-                className="form-control"
-                required
-              />
+
               <MDBInput
                 label="Category"
                 value={category}
@@ -95,6 +101,26 @@ const EditRecipe = () => {
                 className="form-control"
                 required
               />
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Ingredients
+              </label>
+              <div>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={ingredients}
+                  onChange={onChangeEditor}
+                />
+              </div>
+            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Method
+              </label>
+              <div>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={method}
+                  onChange={onChangeMethod}
+                />
+              </div>
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Description
               </label>
@@ -121,6 +147,7 @@ const EditRecipe = () => {
               </div>
             </form>
           </MDBCol>
+          <MDBCol md="3" />
         </MDBRow>
       </MDBContainer>
       </NutritionistAuth>

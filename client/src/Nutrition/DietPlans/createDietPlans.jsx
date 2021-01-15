@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth";
-// import ErrorNotice from "../../components/error/ErrorNotice";
 
 const CreateDietPlan = () => {
   let [day, setDay] = useState("");
@@ -12,9 +13,9 @@ const CreateDietPlan = () => {
   let [dietType, setDietType] = useState("");
   let [diet, setDiet] = useState("");
   let [image, setImage] = useState();
+  const [content, setContent] = useState("");
   const [previewImage, setPreviewImage] = useState();
-  // let [err,setErr] =useState("");
-
+  
   const history = useHistory();
   
   const validate = () => {
@@ -29,6 +30,11 @@ const CreateDietPlan = () => {
     }
   };
   
+const onChangeEditor = (e, editor) => {
+    const data = editor.getData();
+    setDiet(data);
+  };
+
   const btnClicked = async (e) => {
     e.preventDefault();
    validate();
@@ -58,6 +64,7 @@ const CreateDietPlan = () => {
         <br />
         <MDBContainer>
           <MDBRow>
+          <MDBCol md="3" />
             <MDBCol md="6">
               <form>
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
@@ -87,9 +94,7 @@ const CreateDietPlan = () => {
                 >
                   <option>Choose Option</option>
                   <option value="BreakFast">Break Fast</option>
-                  {/* <option value="MidMeal">Mid Meal</option> */}
                   <option value="Lunch">Lunch</option>
-                  {/* <option value="Evening">Evening</option> */}
                   <option value="Dinner">Dinner</option>
                 </select>
                 <br />
@@ -100,19 +105,12 @@ const CreateDietPlan = () => {
                 >
                   Diet
                 </label>
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text" id="basic-addon">
-                      <i className="fas fa-pencil-alt prefix"></i>
-                    </span>
-                  </div>
-                  <textarea
-                    onChange={(e) => setDiet(e.target.value)}
-                    className="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="5"
-                    required
-                  ></textarea>
+                <div>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={content}
+                    onChange={onChangeEditor}
+                  />
                 </div>
                 <br />
                 <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
@@ -140,6 +138,7 @@ const CreateDietPlan = () => {
                 </div>
               </form>
             </MDBCol>
+            <MDBCol md="3" />
           </MDBRow>
         </MDBContainer>
       </NutritionistAuth>

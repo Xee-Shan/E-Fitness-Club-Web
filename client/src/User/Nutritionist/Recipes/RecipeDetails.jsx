@@ -32,6 +32,10 @@ const RecipeDetail = (props) => {
         </div>
         <p>{recipe.type}</p>
         <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
+        <p className="h3">Category</p>
+        </div>
+        <p>{recipe.category}</p>
+        <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
           <p className="h2">Description</p>
         </div>
         <p>{recipe.description}</p>
@@ -39,11 +43,11 @@ const RecipeDetail = (props) => {
         <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
           <p className="h3">Ingredients</p>
         </div>
-        <p>{recipe.ingredients}</p>
+        <p dangerouslySetInnerHTML={{__html: recipe.ingredients}}></p>
         <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
-          <p className="h3">Category</p>
+        <p className="h3">Method</p>
         </div>
-        <p>{recipe.category}</p>
+        <p dangerouslySetInnerHTML={{__html: recipe.method}}></p>
       </MDBContainer>
     </>
   );

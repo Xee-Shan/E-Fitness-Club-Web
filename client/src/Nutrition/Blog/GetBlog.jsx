@@ -36,7 +36,7 @@ export default function Employee() {
 };
 
   const editBlog = async (id) => {
-    history.push("/trainer/editblog/" + id);
+    history.push("/nutritionist/editblog/" + id);
   };
 
   useEffect(() => {

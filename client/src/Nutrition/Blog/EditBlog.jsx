@@ -56,7 +56,7 @@ const EditBlog = () => {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       }).then((res) => {
         if (res) {
-          history.push("/trainer/getblog");
+          history.push("/nutritionist/getblog");
         }
       });
     }
@@ -105,8 +105,8 @@ const EditBlog = () => {
                   required
                 />
               </div>
+              <br />
               <div>
-                <br />
                 <CKEditor
                   editor={ClassicEditor}
                   data={content}

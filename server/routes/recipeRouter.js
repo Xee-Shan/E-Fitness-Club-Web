@@ -12,6 +12,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
       type: req.body.type,
       ingredients: req.body.ingredients,
       category: req.body.category,
+      method: req.body.method,
       description: req.body.description,
       imageURL: result.secure_url,
       cloudinary_id: result.public_id,
@@ -60,6 +61,7 @@ router.put("/update/:id", upload.single("image"), async (req, res) => {
   recipe.type = req.body.type;
   recipe.ingredients = req.body.ingredients;
   recipe.category = req.body.category;
+  recipe.method = req.body.method;
   recipe.description = req.body.description;
   await recipe.save();
   return res.send(recipe);
