@@ -4,6 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import Admin from "../../auth/Admin";
 import { useHistory } from "react-router-dom";
+import SideNav from "../SideNav/SideNav";
 
 export default function EditProduct(props) {
   // const product = useSelector((state) => state.product.newProduct);
@@ -94,6 +95,8 @@ export default function EditProduct(props) {
   };
   return (
     <Admin>
+      <SideNav/>
+      <br/>
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">

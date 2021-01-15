@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: "user" },
   resetToken: { type: String },
   expireToken: { type: Date },
-
   cart: {
     type: Array,
     default: [],

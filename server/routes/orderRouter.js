@@ -10,7 +10,7 @@ router.post("/placeOrder",auth,async(req,res)=>{
     const order=new Order({
     name:user.name,
     email:user.email,
-    orderDate:new Date().toLocaleFormat('%d-%b-%Y'),
+    orderDate:new Date().toDateString(),
     phoneNumber:user.phoneNumber,
     address:user.address,
     orderList:req.body
