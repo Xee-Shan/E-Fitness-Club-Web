@@ -6,6 +6,7 @@
     margin-top: 100px;
     box-shadow: 15px 15px 15px #C3C3C3;
     box-sizing: border-box;
+    opacity: 150%;
 }
 .button{
     border-radius: 200em;
@@ -19,19 +20,18 @@
 .input:focus{
     border-bottom:2px solid black;
     outline: none;
-    
 }
 .select{
     width: 35%;
-    margin-left: 45px;
+    margin-left: 80px;
 }
 .label{
     font-weight: bold;
     transform: translate(-50%,2%);
 }
 .span{
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: bolder;
 }
 .small{
     color:red

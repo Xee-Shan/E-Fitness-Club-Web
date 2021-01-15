@@ -8,7 +8,7 @@ const Bmi = () => {
   return (
     <div style={{backgroundImage:`url(${BMIBack})`,backgroundSize:"100% 100%"}}>
       <Navbar />
-      <BmiCalculator style={{opacity:"100%"}}/>
+      <BmiCalculator/>
       <br />
       <br />
       <br />

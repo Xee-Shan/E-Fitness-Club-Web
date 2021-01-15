@@ -84,14 +84,14 @@ export default function BMICalculator() {
           Calculate <br /> Your Body Mass Index <br />
           (BMI)
         </h1>
-        <p>
+        <p><strong>
           This BMI calculator measures your body fat by using your weight and
           height.
           <br />
           Your BMI can indicate if you are underweight, normal, overweight or
           obese,
           <br /> and it can also suggest your risk for chronic disease.
-        </p>
+          </strong></p>
         <br />
         <form>
           <select className={styles.select}>
@@ -161,11 +161,12 @@ export default function BMICalculator() {
         </form>
         <br />
         <p>
-          <span className={styles.span}>*</span>This BMI calculator is intended
+          <span className={styles.span}>*</span><strong>This BMI calculator is intended
           for informational purposes only, and should not be interpreted as
           specific medical advice. A qualified health care provider should be
           consulted before making decisions about therapies and/or health
           conditions.
+          </strong>
         </p>
         <div>{myComponent()}</div>
       </div>
