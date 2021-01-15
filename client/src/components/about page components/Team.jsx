@@ -21,6 +21,7 @@ const TeamPage = () => {
                 <img
                   src={img}
                   className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
+                  style={{height:"220px", width:"270px"}}
                   tag="img"
                   alt="Sample avatar"
                 />
