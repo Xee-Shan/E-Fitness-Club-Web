@@ -4,7 +4,8 @@ const userSchema = new mongoose.Schema({
   name:String,
   email:String, 
   phoneNumber:String, 
-  address:String, 
+  address:String,
+  orderDate:Date, 
   orderList:{
     type:Array,
     default:[]
