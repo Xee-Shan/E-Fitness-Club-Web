@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import axios from "axios";
 import {MDBRow,MDBCol,MDBBtn,MDBContainer} from "mdbreact";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import Admin from "../../auth/Admin";
 
@@ -22,11 +23,9 @@ export default function Order() {
     return (
         <Admin>
         <SideNav/>
+        <br/>
         <MDBContainer>
-            <h2 >Orders : </h2>
-            <br/>
-            <br/>
-            {
+            {/* {
                 order?.length===0?<h3>No orders yet...</h3>
                 : order?.map((order,i)=>(
                     <div key={i}>
@@ -51,7 +50,43 @@ export default function Order() {
                     <br/>
                     </div>
                 ))
-            }
+            } */}
+            <MDBTable bordered>
+            <MDBTableHead style={{ backgroundColor: "white" }} textWhite>
+              <tr style={{color:"black"}}>
+                <th>#</th>
+                <th>Customer's Name</th>
+                <th>Customer's Address</th>
+                <th>Customer's Email</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </MDBTableHead>
+            {order?.map((order, i) => (
+              <MDBTableBody key={i}>
+                <tr>
+                  <td>{i+1}</td>
+                  <td>{order.name}</td>
+                  <td>{order.address}</td>
+                  <td>{order.email}</td>
+                  <td>{order.orderDate.slice(0,10)}</td>
+                  <td>${order.total}</td>
+                  <td>
+                    <button style={{backgroundColor:"white"}}>
+                    <b>✓</b>
+                    </button>
+                    {" "}
+                    <MDBBtn
+                      color="danger"
+                      onClick>
+                      Delete
+                    </MDBBtn>
+                  </td>
+                </tr>
+              </MDBTableBody>
+            ))}
+          </MDBTable>
         </MDBContainer>
         </Admin>
     )

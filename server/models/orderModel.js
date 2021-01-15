@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   phoneNumber:String, 
   address:String,
   orderDate:Date, 
+  total:Number,
   orderList:{
     type:Array,
     default:[]

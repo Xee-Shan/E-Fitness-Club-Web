@@ -94,7 +94,7 @@ export default function CartPage() {
         (arr) => arr.id === localStorage.getItem("item-id")
       );
       if (item.quantity <= product.quantity - orderedQuantity) {
-        axios.post("http://localhost:5000/orders/placeOrder/", cart, {
+        axios.post("http://localhost:5000/orders/placeOrder/"+total, cart, {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         });
         alert("Order placed successfully!!!");

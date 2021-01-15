@@ -5,7 +5,7 @@ const {User}=require("../models/userModel");
 const {Product}=require("../models/productModel");
 const admin=require("../middleware/admin");
 
-router.post("/placeOrder",auth,async(req,res)=>{
+router.post("/placeOrder/:total",auth,async(req,res)=>{
     const user=await User.findByIdAndUpdate(req.user);
     const order=new Order({
     name:user.name,
@@ -13,6 +13,7 @@ router.post("/placeOrder",auth,async(req,res)=>{
     orderDate:new Date(),
     phoneNumber:user.phoneNumber,
     address:user.address,
+    total:req.params.total,
     orderList:req.body
   });
   await order.save();
