@@ -19,7 +19,9 @@ import {
 } from "mdbreact";
 import Navbar from "../navbar/Navbar";
 import ResponseNotice from "../response/ResponseNotice";
-import Background from "./loginBack.jpg"
+import Background from "./loginBack.jpg";
+import Footer from "../footer/Footer";
+
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -92,7 +94,12 @@ const Login = () => {
   };
 
   return (
-    <div style={{backgroundImage:`url(${Background})`,backgroundSize:"100% 100%"}}>
+    <div
+      style={{
+        backgroundImage: `url(${Background})`,
+        backgroundSize: "100% 100%",
+      }}
+    >
       <Navbar />
       <br />
       <br />
@@ -103,7 +110,7 @@ const Login = () => {
       <MDBContainer>
         <MDBRow>
           <MDBCol md="8" sm="6"></MDBCol>
-          <MDBCol md="4" sm="6" style={{ height:"250px",opacity:"80%"}}>
+          <MDBCol md="4" sm="6" style={{ height: "250px", opacity: "80%" }}>
             <MDBCard>
               <MDBCardBody>
                 <form>
@@ -166,6 +173,10 @@ const Login = () => {
       <br />
       <br />
       <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 };
