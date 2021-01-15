@@ -4,7 +4,7 @@ const router = express.Router();
 //const fs = require("fs");
 const { Training } = require("../models/trainingModel");
 const upload = require("../utils/multer");
-const {Video}=require("../models/videoModel");
+const { Video } = require("../models/videoModel");
 const uploadVideo = require("../utils/multerVideo");
 const cloudinary = require("../utils/cloudinary");
 const auth = require("../middleware/auth");
@@ -30,6 +30,7 @@ const upload = multer({ storage: storage }); */
 
 //Create Training Program
 router.post("/create", auth, upload.single("image"), async (req, res) => {
+  const user = await User.findById(req.user);
   const result = await cloudinary.uploader.upload(req.file.path);
   const training = new Training({
     programId: req.body.programId,
@@ -40,6 +41,7 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
     userId: req.user,
+    userName: user.name,
   });
   await training.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -47,30 +49,40 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
   });
 });
 
-router.post("/uploadVideo", auth, uploadVideo.single("video"), async (req, res) => {
- try{
-  const user=await User.findById(req.user);
-  const result = await cloudinary.v2.uploader.upload(req.file.path,{ resource_type: "video" }, 
-  function(error, result) {console.log(result, error); });
+router.post(
+  "/uploadVideo",
+  auth,
+  uploadVideo.single("video"),
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user);
+      const result = await cloudinary.v2.uploader.upload(
+        req.file.path,
+        { resource_type: "video" },
+        function (error, result) {
+          console.log(result, error);
+        }
+      );
 
-  console.log(result);
-  const video = new Video({
-    title: req.body.title,
-    targetArea: req.body.targetArea,
-    equipment: req.body.equipment,
-    description: req.body.description,
-    videoURL: result.secure_url,
-    cloudinary_id: result.public_id,
-    uploaderName: user.name
-  });
-  await video.save((err) => {
-    if (err) return res.status(400).json({ success: false, err });
-    return res.status(200).json({ success: true });
-  });
-}catch(err){
-  console.log(err);
-}
-});
+      console.log(result);
+      const video = new Video({
+        title: req.body.title,
+        targetArea: req.body.targetArea,
+        equipment: req.body.equipment,
+        description: req.body.description,
+        videoURL: result.secure_url,
+        cloudinary_id: result.public_id,
+        uploaderName: user.name,
+      });
+      await video.save((err) => {
+        if (err) return res.status(400).json({ success: false, err });
+        return res.status(200).json({ success: true });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 router.get("/getVideos", auth, async (req, res) => {
   await Video.find((err, doc) => {
     if (err) res.status(400).send(err);
@@ -177,8 +189,12 @@ router.post("/add/workout/detail/:id", auth, async (req, res) => {
     detail.push(data);
   });
   training.workoutList = detail;
-  await training.save((err) => {
-    if (err) res.status(400).send(err);
+  await training.save((err, doc) => {
+    if (err) {
+      return res.status(400).status.json({ msg: "Program Workout Added" });
+    } else {
+      return res.status(200).send(doc);
+    }
   });
 });
 
