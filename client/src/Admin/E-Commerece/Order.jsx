@@ -23,9 +23,14 @@ export default function Order() {
     }
     fetchData();
   }, [order]);
-  async function handleDelivered(id) {
-    axios.delete("http://localhost:5000/orders/delete/" + id, { headers: { "x-auth-token": localStorage.getItem("auth-token") } });
-    window.location.reload();
+  async function handleDelivered(order) {
+    const response = await axios.post("http://localhost:5000/history/add",order, {
+            headers: { "x-auth-token": localStorage.getItem("auth-token") },
+          });
+          if(response.data.success){
+            await axios.delete("http://localhost:5000/orders/delete/" + order._id, { headers: { "x-auth-token": localStorage.getItem("auth-token") } });
+            window.location.reload();
+          }
   }
 
   async function view(id) {
@@ -33,7 +38,6 @@ export default function Order() {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     }).then(res => {
       setOneOrder(res.data);
-      console.log(res.data);
     });
     setModal(true);
   }
@@ -65,7 +69,7 @@ export default function Order() {
                 <td>{order.orderDate.slice(0, 10)}</td>
                 <td>${order.total}</td>
                 <td>
-                  <button onClick={() => handleDelivered(order._id)} style={{ backgroundColor: "white" }}>
+                  <button onClick={() => handleDelivered(order)} style={{ backgroundColor: "white" }}>
                     <b>✓</b>
                   </button>
                   {" "}

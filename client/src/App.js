@@ -56,6 +56,7 @@ import GetVideos from "./User/Training System/GetVideos";
 import ProductCategory from "./User/E-commerce System/ProductCategory";
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
+import History from "./Admin/E-Commerece/History";
 import UploadVideo from "./trainer/Components/UploadVideo";
 import EditBlog from "./trainer/Components/Blog/EditBlog";
 import DoctorCreateBlog from "./Doctor/Blog/CreateBlog";
@@ -139,6 +140,7 @@ const App = () => {
           />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route path="/user/meditation" component={ShowMeditation} />
+          <Route path="/admin/history" component={History} />
 
           <Route
             path="/nutritionist/dashboard"
