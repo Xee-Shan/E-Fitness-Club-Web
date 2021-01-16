@@ -11,7 +11,6 @@ import {
 } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
-import { FaWindows } from "react-icons/fa";
 
 export default function Employee() {
   const [employee, setEmployee] = useState([]);

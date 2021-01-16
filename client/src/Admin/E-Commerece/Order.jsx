@@ -1,93 +1,152 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import {MDBRow,MDBCol,MDBBtn,MDBContainer} from "mdbreact";
-import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import { MDBModalHeader, MDBModalFooter, MDBModal, MDBModalBody, MDBBtn, MDBContainer } from "mdbreact";
+import { MDBTable, MDBCol, MDBRow, MDBTableBody, MDBTableHead } from "mdbreact";
 import SideNav from "../SideNav/SideNav";
 import Admin from "../../auth/Admin";
+import { HiEye } from "react-icons/hi";
 
 export default function Order() {
-    const [order,setOrder]=useState([]);
-    useEffect(()=>{
-        async function fetchData() {
-             await axios.get("http://localhost:5000/orders/get",{headers:{"x-auth-token":localStorage.getItem("auth-token")}})
-             .then(res=>{
-                 setOrder(res.data)
-                });            
-          }
-          fetchData();
-    },[order]);
-    async function handleDelivered(id){
-        axios.delete("http://localhost:5000/orders/delete/"+id,{headers:{"x-auth-token":localStorage.getItem("auth-token")}});
-        window.location.reload();
+  const [order, setOrder] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [oneOrder, setOneOrder] = useState({});
+  const toggle = () => {
+    setModal(!modal);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      await axios.get("http://localhost:5000/orders/get", { headers: { "x-auth-token": localStorage.getItem("auth-token") } })
+        .then(res => {
+          setOrder(res.data)
+        });
     }
-    return (
-        <Admin>
-        <SideNav/>
-        <br/>
-        <MDBContainer>
-            {/* {
-                order?.length===0?<h3>No orders yet...</h3>
-                : order?.map((order,i)=>(
-                    <div key={i}>
-                    <MDBContainer style={{border:"1px solid black"}}>
-                    <div>
-                     <h3> Consumer's Name :  {order.name} | Consumer's Email : {order.email}| Order Date : {order.orderDate.slice(0,10)}| Consumer's Phone Number : {order.phoneNumber}| Consumer's Address : {order.address}</h3>
-                    </div>
-                   {order.orderList.map((item,j)=>{
-                       return (<div key={j}>
-                            <MDBRow className="mb-4">
-          <MDBCol md="4">
-            <img src={item.imageURL} className="img-fluid" alt="product" />
-          </MDBCol>
-        </MDBRow>
-                                Product Name: {item.name} | Product Price : {item.price} | Product Quantity : {item.quantity}
-                                 </div>   )
-                   })}
-                   <MDBBtn style={{ backgroundColor: "#68717C" }} onClick={()=>handleDelivered(order._id)}style={{float:"right"}}>Delivered</MDBBtn>
-                   <br/> <br/> <br/>
-                   
-                    </MDBContainer>
-                    <br/>
-                    </div>
-                ))
-            } */}
-            <MDBTable bordered>
-            <MDBTableHead style={{ backgroundColor: "white" }} textWhite>
-              <tr style={{color:"black"}}>
-                <th>#</th>
-                <th>Customer's Name</th>
-                <th>Customer's Address</th>
-                <th>Customer's Email</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Action</th>
-              </tr>
-            </MDBTableHead>
-            {order?.map((order, i) => (
-              <MDBTableBody key={i}>
-                <tr>
-                  <td>{i+1}</td>
-                  <td>{order.name}</td>
-                  <td>{order.address}</td>
-                  <td>{order.email}</td>
-                  <td>{order.orderDate.slice(0,10)}</td>
-                  <td>${order.total}</td>
-                  <td>
-                    <button style={{backgroundColor:"white"}}>
+    fetchData();
+  }, [order]);
+  async function handleDelivered(id) {
+    axios.delete("http://localhost:5000/orders/delete/" + id, { headers: { "x-auth-token": localStorage.getItem("auth-token") } });
+    window.location.reload();
+  }
+
+  async function view(id) {
+    await axios.get("http://localhost:5000/orders/getOneOrder/" + id, {
+      headers: { "x-auth-token": localStorage.getItem("auth-token") },
+    }).then(res => {
+      setOneOrder(res.data);
+      console.log(res.data);
+    });
+    setModal(true);
+  }
+
+  return (
+    <Admin>
+      <SideNav />
+      <br />
+      <MDBContainer>
+        <MDBTable>
+          <MDBTableHead style={{ backgroundColor: "white" }} textWhite>
+            <tr style={{ color: "black" }}>
+              <th>#</th>
+              <th>Customer's Name</th>
+              <th>Customer's Address</th>
+              <th>Customer's Email</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </MDBTableHead>
+          {order?.map((order, i) => (
+            <MDBTableBody key={i}>
+              <tr>
+                <td>{i + 1}</td>
+                <td>{order.name}</td>
+                <td>{order.address}</td>
+                <td>{order.email}</td>
+                <td>{order.orderDate.slice(0, 10)}</td>
+                <td>${order.total}</td>
+                <td>
+                  <button onClick={() => handleDelivered(order._id)} style={{ backgroundColor: "white" }}>
                     <b>✓</b>
-                    </button>
-                    {" "}
-                    <MDBBtn
-                      color="danger"
-                      onClick>
-                      Delete
-                    </MDBBtn>
-                  </td>
-                </tr>
-              </MDBTableBody>
-            ))}
-          </MDBTable>
-        </MDBContainer>
-        </Admin>
-    )
+                  </button>
+                  {" "}
+                  <button style={{ width: "50px" }} onClick={() => { toggle(); view(order._id); }}>
+                    <HiEye />
+                  </button>
+                  <MDBModal isOpen={modal} toggle={toggle} size="lg">
+                    <MDBModalHeader toggle={toggle}>
+                      Order Details
+                        </MDBModalHeader>
+                    <MDBModalBody>
+                      <MDBRow>
+                        <MDBCol sm="6">
+                          <div>
+                            <b>Name :</b> {oneOrder.name}
+                          </div>
+                        </MDBCol>
+                        <MDBCol sm="6">
+                          <div>
+                            <b>Phone No :</b> {oneOrder.phoneNumber}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol sm="6">
+                          <div>
+                            <b>Delivery Address :</b> {oneOrder.address}
+                          </div>
+                        </MDBCol>
+                        <MDBCol sm="6">
+                          <div>
+                            <b>Order Date :</b> {oneOrder.orderDate}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBTable>
+                        <MDBTableHead>
+                          <tr>
+                            <th>#</th>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Product Brand</th>
+                            <th>Product Quantity</th>
+                            <th>Product Price(PKR)</th>
+                            <th>Delivery Charges(PKR)</th>
+                          </tr>
+                        </MDBTableHead>
+                        {oneOrder?.orderList?.map((orderList, i) => (
+                          <tr>
+                            <td>{i + 1}</td>
+                            <td>
+                              <MDBRow>
+                                <MDBCol>
+                                  <img src={orderList.imageURL} alt="thumbnail" className="img-thumbnail" />
+                                </MDBCol>
+                              </MDBRow>
+                            </td>
+                            <td>{orderList.name}</td>
+                            <td>{orderList.brand}</td>
+                            <td>{orderList.quantity}</td>
+                            <td>{orderList.price}</td>
+                            <td>{orderList.deliveryCharges}</td>
+                          </tr>
+
+                        ))}
+                      </MDBTable>
+                      <h4>Total : {oneOrder.total} PKR</h4>
+
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                      <MDBBtn color="secondary" onClick={toggle}>
+                        Close
+                          </MDBBtn>
+                    </MDBModalFooter>
+                  </MDBModal>
+                </td>
+              </tr>
+            </MDBTableBody>
+          ))}
+        </MDBTable>
+      </MDBContainer>
+    </Admin>
+  )
 }

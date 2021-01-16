@@ -39,8 +39,13 @@ router.get("/getbyId/:id",auth,async(req,res)=>{
     })
   });
    res.send({quantity:total});
-})
-
+});
+router.get("/getOneOrder/:id",auth,async(req,res)=>{
+  await Order.findById(req.params.id).exec((err,doc)=>{
+    if(err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 router.delete("/delete/:id",auth,admin,async(req,res)=>{
   const order=await Order.findById(req.params.id);
   var negative=false;
