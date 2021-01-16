@@ -6,6 +6,7 @@ const productSchema = {
   price: Number,
   quantity: Number,
   deliveryDays: Number,
+  deliveryCharges: Number,
   description: String,
   category: String,
   imageURL:String,

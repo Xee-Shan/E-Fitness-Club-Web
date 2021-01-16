@@ -436,6 +436,7 @@ router.post("/addToCart/:myQuantity", auth, async (req, res) => {
               imageURL: req.body.imageURL,
               brand: req.body.brand,
               price: req.body.price,
+              deliveryCharges:req.body.deliveryCharges,
               date: Date.now(),
             },
           },

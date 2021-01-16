@@ -119,6 +119,8 @@ export default function ProductDetail(props) {
             <hr />
             <b>Delivery Time : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
             <hr />
+            <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>$ {product?.deliveryCharges}</i><br />
+            <hr />
             <div>
               <b>Description : </b>
               <p>{product?.description}</p>

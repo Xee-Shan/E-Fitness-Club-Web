@@ -62,7 +62,7 @@ export default function CartPage() {
   function calculate(cart) {
     let amount = 0;
     cart.map((cart) => {
-      amount += cart.quantity * cart.price;
+      amount += cart.quantity * (cart.price+cart.deliveryCharges);
       return amount;
     });
     setTotal(amount);

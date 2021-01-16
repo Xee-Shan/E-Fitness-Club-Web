@@ -16,6 +16,7 @@ export default function EditProduct(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [deliveryDays, setDeliveryDays] = useState("");
+  const [deliveryCharges, setDeliveryCharges] = useState("");
   const [image,setImage]=useState();
   const [previewImage,setPreviewImage]=useState("");
   const [cloudinaryId,setCloudinaryId]=useState("");
@@ -34,6 +35,7 @@ export default function EditProduct(props) {
       setQuantity(response.data.quantity);
       setDescription(response.data.description);
       setDeliveryDays(response.data.deliveryDays);
+      setDeliveryCharges(response.data.deliveryCharges);
       setCategory(response.data.category);
       setPreviewImage(response.data.imageURL);
       setCloudinaryId(response.data.cloudinary_id);
@@ -65,6 +67,9 @@ export default function EditProduct(props) {
   const onChangeDeliveryDays = (e) => {
     setDeliveryDays(e.target.value);
   };
+  const onChangeDeliveryCharges = (e) => {
+    setDeliveryCharges(e.target.value);
+  };
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
@@ -79,6 +84,7 @@ export default function EditProduct(props) {
     formData.append("image",image);
     formData.append("description",description);
     formData.append("name",name);
+    formData.append("deliveryCharges",deliveryCharges);
     formData.append("category",category);
     formData.append("price",price);
     formData.append("quantity",quantity);
@@ -155,6 +161,18 @@ export default function EditProduct(props) {
                 type="number"
                 value={price}
                 onChange={onChangePrice}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                required
+              />
+              <br />
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Delivery Charges
+              </label>
+              <input
+                type="number"
+                value={deliveryCharges}
+                onChange={onChangeDeliveryCharges}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required

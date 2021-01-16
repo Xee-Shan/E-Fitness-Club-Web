@@ -9,6 +9,7 @@ const CreateProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+  const [deliveryCharges, setDeliveryCharges] = useState("");
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -33,6 +34,9 @@ const CreateProduct = () => {
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
   };
+  const onChangeDeliveryCharges = (e) => {
+    setDeliveryCharges(e.target.value);
+  };
   const onChangeCategory = (e) => {
     setCategory(e.target.value);
   };
@@ -49,6 +53,7 @@ const CreateProduct = () => {
     formData.append("name", name);
     formData.append("brand", brand);
     formData.append("price", price);
+    formData.append("deliveryCharges", deliveryCharges);
     formData.append("description", description);
     formData.append("quantity", quantity);
     formData.append("deliveryDays", deliveryDays);
@@ -123,6 +128,17 @@ try{
               <input
                 type="number"
                 onChange={onChangePrice}
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                required
+              />
+              <br />
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Delivery Charges
+              </label>
+              <input
+                type="number"
+                onChange={onChangeDeliveryCharges}
                 id="defaultFormRegisterNameEx"
                 className="form-control"
                 required
