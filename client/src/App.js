@@ -21,6 +21,7 @@ import UserProduct from "./User/E-commerce System/Product";
 import ProductDetail from "./User/E-commerce System/ProductDetail";
 import CartPage from "./User/E-commerce System/CartPage";
 import Order from "./Admin/E-Commerece/Order";
+import History from "./Admin/E-Commerece/History";
 import TrainerDashboard from "./trainer/Dashboard";
 import UserProgram from "./User/Training System/Programs";
 import Programs from "./trainer/Components/Training Programs/Programs";
