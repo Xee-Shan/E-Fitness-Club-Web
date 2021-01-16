@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { MDBContainer } from "mdbreact";
 import Navbar from "../../Navbar/Navbar";
+import UserAuth from "../../../auth/UserAuth"
 
 const RecipeDetail = (props) => {
   const [recipe, setRecipe] = useState({});
 
   const fetchData = async () => {
-    const res = await Axios.get(
-      "http://localhost:5000/recipes/get/" + props.match.params.id
-    );
+    const res = await Axios.get("http://localhost:5000/recipes/get/" + props.match.params.id);
     setRecipe(res.data);
   };
 
@@ -18,7 +17,7 @@ const RecipeDetail = (props) => {
   }, []);
 
   return (
-    <>
+    <UserAuth>
       <Navbar />
       <MDBContainer>
         <br />
@@ -49,7 +48,7 @@ const RecipeDetail = (props) => {
         </div>
         <p dangerouslySetInnerHTML={{__html: recipe.method}}></p>
       </MDBContainer>
-    </>
+    </UserAuth>
   );
 };
 export default RecipeDetail;

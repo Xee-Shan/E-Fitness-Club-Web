@@ -1,16 +1,16 @@
-import React from "react";
 import Navbar from "../../Navbar/Navbar";
 import UserAuth from "../../../auth/UserAuth";
 import { MDBContainer, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 
-const DietPlanDetails = () => {
+const DietPlanDetails = (props) => {
   const [dietplans, setDietplan] = useState([]);
 
   const fetchData = async () => {
-    const res = await Axios.get("http://localhost:5000/dietplans/get");
-    setDietplan(res.data);
+    const res = await Axios.get("http://localhost:5000/dietplans/get/" + props.match.params.id);
+    setDietplan(res.data); 
+    console.log(res.data)
   };
 
   useEffect(() => {
@@ -33,16 +33,12 @@ const DietPlanDetails = () => {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {dietplans?.map((data, i) => {
-              return (
-                <tr key={i}>
-                  <td className="text-center">{data.day}</td>
-                  <td className="text-center">{data.userType}</td>
-                  <td className="text-center">{data.dietType}</td>
-                  <td className="text-center" dangerouslySetInnerHTML={{ __html: data.diet }}></td>
+                <tr>
+                  <td className="text-center">{dietplans.day}</td>
+                  <td className="text-center">{dietplans.userType}</td>
+                  <td className="text-center">{dietplans.dietType}</td>
+                  <td className="text-center" dangerouslySetInnerHTML={{ __html: dietplans.diet }}></td>
                 </tr>
-              );
-            })}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>

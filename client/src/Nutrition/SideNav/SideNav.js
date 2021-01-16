@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
-import "./SideNav.css";
 import { IconContext } from "react-icons";
 import { MDBBtn } from "mdbreact";
+import { FaUserAlt } from "react-icons/fa";
+import "./SideNav.css";
+import axios from "axios";
+import NutritionAuth from "../../auth/NutritionAuth"
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const [personName, setPersonName] = useState("");
 
   const history = useHistory();
 
   const showSidebar = () => setSidebar(!sidebar);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/users/getUser", {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      })
+      .then((res) => {
+        setPersonName(res.data.userName);
+      });
+  }, []);
 
   const logout = () => {
     localStorage.setItem("auth-token", "");
@@ -20,12 +33,15 @@ function Navbar() {
   };
 
   return (
-    <>
+    <NutritionAuth>
       <IconContext.Provider value={{ color:"blue-gradient" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+          <h2 style={{ fontFamily: "mono space" ,color:"white"}}>
+            {personName} <FaUserAlt />
+          </h2>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
@@ -50,7 +66,7 @@ function Navbar() {
           </ul>
         </nav>
       </IconContext.Provider>
-    </>
+    </NutritionAuth>
   );
 }
 

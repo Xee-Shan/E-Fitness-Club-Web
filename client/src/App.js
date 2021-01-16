@@ -162,7 +162,7 @@ const App = () => {
             component={UpdateDietPlan}
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
-          <Route path="/user/dietPlanDetails" component={DietPlanDetails} />
+          <Route path="/user/dietPlanDetails/:id" component={DietPlanDetails} />
           <Route
             path="/nutritionist/createblog"
             component={CreateNutritionistBlog}

@@ -46,17 +46,6 @@ const UserSetting = () => {
               Edit Profile
             </MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink
-              link
-              to="#"
-              active={active === "3"}
-              onClick={toggle("3")}
-              role="tab"
-            >
-              Password
-            </MDBNavLink>
-          </MDBNavItem>
         </MDBNav>
         <MDBTabContent activeItem={active}>
           <MDBTabPane tabId="1">

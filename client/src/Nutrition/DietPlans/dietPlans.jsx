@@ -14,7 +14,6 @@ export default function Recipe() {
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/dietplans/get");
       setDietPlan(response.data);
-      console.log(dietPlan);
     }
     fetchData();
   }, []);

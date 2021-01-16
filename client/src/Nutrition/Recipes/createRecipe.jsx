@@ -54,13 +54,19 @@ const CreateRecipe = () => {
     formData.append("type", type);
     formData.append("ingredients", ingredients);
     formData.append("description", description);
-    formData.append("category", category);
+    formData.append("category",category);
     formData.append("method",method);
-    formData.append("image", image);
+    formData.append("image",image);
+    // const formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("type", type);
+    // formData.append("ingredients", ingredients);
+    // formData.append("description", description);
+    // formData.append("category", category);
+    // formData.append("method",method);
+    // formData.append("image", image);
 
-    axios.post("http://localhost:5000/recipes/create", formData,
-    {headers: { "x-auth-token": localStorage.getItem("auth-token")},
-  }).then((res) => {
+    axios.post("http://localhost:5000/recipes/create", formData).then((res) => {
       if (res.data.success) {
         history.push("/nutritionist/recipe");
       } else alert("Error occured");
