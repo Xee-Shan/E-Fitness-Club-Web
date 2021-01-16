@@ -130,6 +130,65 @@ router.put(
   }
 );
 
+//Add Schedule Guided Workout
+router.post("/add/guided/detail/:id", auth, async (req, res) => {
+  const training = await Video.findById(req.params.id);
+  let detail = [];
+  req.body.map((data) => {
+    detail.push(data);
+  });
+  training.exercise = detail;
+  await training.save((err, doc) => {
+    if (err) {
+      return res.status(400).status.json({ msg: "Program Scheduled Added" });
+    } else {
+      return res.status(200).send(doc);
+    }
+  });
+});
+
+//Update Guided Workout Schedule
+router.put("/edit/guided/schedule/:id/:index", auth, async (req, res) => {
+  const training = await Video.findByIdAndUpdate({ _id: req.params.id });
+  training.exercise[req.params.index] = req.body;
+  training.markModified("exercise");
+  await training.save((err, doc) => {
+    if (err) {
+      return res.status(400).json({ msg: "Error Occured" });
+    } else {
+      return res.status(200).json({ msg: "Program Schedule updated" });
+    }
+  });
+});
+
+//Add Guided Workout List
+router.post("/add/guided/workout/detail/:id", auth, async (req, res) => {
+  const training = await Video.findById(req.params.id);
+  let detail = [];
+  req.body.map((data) => {
+    detail.push(data);
+  });
+  training.workoutList = detail;
+  await training.save((err, doc) => {
+    if (err) {
+      return res.status(400).status.json({ msg: "Program Workout Added" });
+    } else {
+      return res.status(200).send(doc);
+    }
+  });
+});
+
+//Update Guided Workout List
+router.put("/edit/workout/:id/:index", auth, async (req, res) => {
+  const training = await Video.findByIdAndUpdate({ _id: req.params.id });
+  training.workoutList[req.params.index] = req.body;
+  training.markModified("workoutList");
+  await training.save();
+  return res.send(training);
+});
+
+module.exports = router;
+
 //Get Traning Program
 router.get("/get", auth, async (req, res) => {
   await Training.find({ userId: req.user }, (err, doc) => {

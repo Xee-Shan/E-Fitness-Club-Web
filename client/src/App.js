@@ -71,6 +71,9 @@ import AdminHome from "./Admin/AdminHome";
 import ShowMeditation from "./User/Meditation/ShowMeditation";
 import MeditationDetail from "./User/Meditation/MeditationDetail";
 import GuidedWorkoutDetail from "../src/User/Training System/GuidedWorkoutDetail";
+import GuidedWOrkoutSchedule from "../src/trainer/Components/Guided Workouts/AddWorkoutSchedule";
+import GuidedWorkoutList from "../src/trainer/Components/Guided Workouts/AddWorkoutList";
+import GuidedWorkoutInfo from "../src/trainer/Components/Guided Workouts/WorkoutDetails";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -212,6 +215,18 @@ const App = () => {
           <Route
             path="/user/guided/workout/detail/:id"
             component={GuidedWorkoutDetail}
+          />
+          <Route
+            path="/trainer/guided/schedule/:id"
+            component={GuidedWOrkoutSchedule}
+          />
+          <Route
+            path="/trainer/guidedworkout/list/:id"
+            component={GuidedWorkoutList}
+          />
+          <Route
+            path="/trainer/guidedworkout/view/:id"
+            component={GuidedWorkoutInfo}
           />
 
           <Redirect to="/pagenotfound" />

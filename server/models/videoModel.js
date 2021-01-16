@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   videoURL: { type: String, required: true },
   targetArea: { type: String, required: true },
   equipment: { type: String, required: true },
-  
+  exercise: { type: Array },
+  workoutList: { type: Array },
 });
 
 const Video = mongoose.model("Video", userSchema);

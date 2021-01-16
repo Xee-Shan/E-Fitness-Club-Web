@@ -82,21 +82,21 @@ const GuidedWorkout = () => {
                   <MDBBtn
                     color="cyan"
                     size="sm"
-                    href={"/trainer/add/schedule/" + program._id}
+                    href={"/trainer/guided/schedule/" + program._id}
                   >
                     Schedule
                   </MDBBtn>
                   <MDBBtn
                     color="black"
                     size="sm"
-                    href={"/trainer/add/workout/" + program._id}
+                    href={"/trainer/guidedworkout/list/" + program._id}
                   >
                     Workout
                   </MDBBtn>
                   <MDBBtn
                     color="secondary"
                     size="sm"
-                    href={"/trainer/view/program/" + program._id}
+                    href={"/trainer/guidedworkout/view/" + program._id}
                   >
                     View
                   </MDBBtn>
