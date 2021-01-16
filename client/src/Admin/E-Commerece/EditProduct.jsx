@@ -34,6 +34,7 @@ export default function EditProduct(props) {
       setPrice(response.data.price);
       setQuantity(response.data.quantity);
       setDescription(response.data.description);
+      console.log(response.data);
       setDeliveryDays(response.data.deliveryDays);
       setDeliveryCharges(response.data.deliveryCharges);
       setCategory(response.data.category);

@@ -43,4 +43,10 @@ export const SidebarData = [
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
   },
+  {
+    title: "Show History",
+    path: "/admin/history",
+    icon: <FaIcons.FaCartPlus />,
+    cName: "nav-text",
+  },
 ];

@@ -146,6 +146,7 @@ const App = () => {
           />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route path="/user/meditation" component={ShowMeditation} />
+          <Route path="/admin/history" component={History} />
 
           <Route
             path="/nutritionist/dashboard"
