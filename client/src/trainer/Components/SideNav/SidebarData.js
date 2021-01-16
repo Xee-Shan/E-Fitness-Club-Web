@@ -33,8 +33,14 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Upload Video",
-    path: "/trainer/uploadVideo",
+    title: "Guided Workout",
+    path: "/trainer/create/guided/workout",
+    icon: <FaIcons.FaPlusCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "All Guided Workouts",
+    path: "/trainer/guided/workout",
     icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },

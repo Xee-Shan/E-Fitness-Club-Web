@@ -49,6 +49,7 @@ router.post("/create", auth, upload.single("image"), async (req, res) => {
   });
 });
 
+//Create Guided WOrkout
 router.post(
   "/uploadVideo",
   auth,
@@ -83,12 +84,52 @@ router.post(
     }
   }
 );
+
+//Get Guided Workouts
 router.get("/getVideos", auth, async (req, res) => {
   await Video.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
 });
+
+//Get Guided WOrkout by id
+router.get("/getVideos/:id", auth, async (req, res) => {
+  await Video.findById(req.params.id).exec((err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
+
+//Delete Guided Workout
+router.delete("/delete/guided/:id", auth, async (req, res) => {
+  const video = await Video.findByIdAndDelete({ _id: req.params.id });
+  await cloudinary.uploader.destroy(video.cloudinary_id);
+  return res.send(video);
+});
+
+//Update Guided Workout
+router.put(
+  "/update/:id",
+  auth,
+  uploadVideo.single("video"),
+  async (req, res) => {
+    const video = await Video.findByIdAndUpdate({ _id: req.params.id });
+    if (req.body.cloudinary_id === "") {
+      await cloudinary.uploader.destroy(video.cloudinary_id);
+      const result = await cloudinary.uploader.upload(req.file.path);
+      (video.imageURL = result.secure_url),
+        (video.cloudinary_id = result.public_id);
+    }
+    video.title = req.body.title;
+    video.targetArea = req.body.targetArea;
+    video.equipment = req.body.equipment;
+    video.description = req.body.description;
+    await video.save();
+    return res.send(video);
+  }
+);
+
 //Get Traning Program
 router.get("/get", auth, async (req, res) => {
   await Training.find({ userId: req.user }, (err, doc) => {

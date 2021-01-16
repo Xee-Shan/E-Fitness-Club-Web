@@ -9,7 +9,7 @@ import Bmi from "./components/pages/Bmi";
 import PageNotFound from "./components/pages/PageNotFound";
 import UserRecipes from "./User/Nutritionist/Recipes/Recipies";
 import DietPlan from "./User/Nutritionist/DietPlans/dietPlan";
-import DietPlanDetails from "./User/Nutritionist/DietPlans/dietPlanDetails"
+import DietPlanDetails from "./User/Nutritionist/DietPlans/dietPlanDetails";
 import Login from "./components/Forms/Login";
 import Register from "./components/Forms/Register";
 import Product from "./Admin/E-Commerece/Product";
@@ -33,9 +33,9 @@ import NutritionistDashboard from "./Nutrition/Dashboard";
 import DietPlans from "./Nutrition/DietPlans/dietPlans";
 import CreateDietPlan from "./Nutrition/DietPlans/createDietPlans";
 import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan";
-import CreateNutritionistBlog from "./Nutrition/Blog/CreateBlog"
-import GetNutritionistBlog from "./Nutrition/Blog/GetBlog"
-import EditNutritionistBlog from "./Nutrition/Blog/EditBlog"
+import CreateNutritionistBlog from "./Nutrition/Blog/CreateBlog";
+import GetNutritionistBlog from "./Nutrition/Blog/GetBlog";
+import EditNutritionistBlog from "./Nutrition/Blog/EditBlog";
 import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
@@ -52,11 +52,12 @@ import UserSettings from "./User/User Settings/UserSettings";
 import ResetPassword from "./components/Forms/Reset";
 import NewPassword from "./components/Forms/NewPassword";
 import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
-import GetVideos from "./User/Training System/GetVideos";
+import GetVideos from "./User/Training System/GuidedWorkouts";
 import ProductCategory from "./User/E-commerce System/ProductCategory";
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
-import UploadVideo from "./trainer/Components/UploadVideo";
+import CreateGuidedWorkout from "./trainer/Components/Guided Workouts/CreateWorkout";
+import GetGuidedWorkout from "./trainer/Components/Guided Workouts/GetWorkouts";
 import EditBlog from "./trainer/Components/Blog/EditBlog";
 import DoctorCreateBlog from "./Doctor/Blog/CreateBlog";
 import UploadMeditation from "./Doctor/meditation/UploadMeditation";
@@ -69,7 +70,7 @@ import Meditation from "./Doctor/meditation/Meditation";
 import AdminHome from "./Admin/AdminHome";
 import ShowMeditation from "./User/Meditation/ShowMeditation";
 import MeditationDetail from "./User/Meditation/MeditationDetail";
-
+import GuidedWorkoutDetail from "../src/User/Training System/GuidedWorkoutDetail";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -126,7 +127,10 @@ const App = () => {
           <Route path="/user/cart" component={CartPage} />
           <Route path="/user/product" component={UserProduct} />
           <Route path="/user/productDetail/:id" component={ProductDetail} />
-          <Route path="/user/meditationDetail/:id" component={MeditationDetail} />
+          <Route
+            path="/user/meditationDetail/:id"
+            component={MeditationDetail}
+          />
           <Route
             path="/user/productCategory/:category"
             component={ProductCategory}
@@ -154,10 +158,20 @@ const App = () => {
           />
           <Route path="/nutritionist/dietPlan" component={DietPlans} />
           <Route path="/user/dietPlanDetails" component={DietPlanDetails} />
-          <Route path="/nutritionist/createblog" component={CreateNutritionistBlog} />
+          <Route
+            path="/nutritionist/createblog"
+            component={CreateNutritionistBlog}
+          />
           <Route path="/nutritionist/getblog" component={GetNutritionistBlog} />
-          <Route path="/nutritionist/editblog/:id" component={EditNutritionistBlog} />
-          <Route path="/trainer/uploadVideo" component={UploadVideo} />
+          <Route
+            path="/nutritionist/editblog/:id"
+            component={EditNutritionistBlog}
+          />
+          <Route
+            path="/trainer/create/guided/workout"
+            component={CreateGuidedWorkout}
+          />
+          <Route path="/trainer/guided/workout" component={GetGuidedWorkout} />
           <Route path="/trainer/dashboard" component={TrainerDashboard} />
           <Route path="/trainer/create/program" component={CreateProgram} />
           <Route path="/trainer/program" component={Programs} />
@@ -195,6 +209,11 @@ const App = () => {
           <Route path="/trainer/editblog/:id" component={EditBlog} />
           <Route path="/user/blog" component={Blogs} />
           <Route path="/user/blogdetail/:id" component={BlogDetails} />
+          <Route
+            path="/user/guided/workout/detail/:id"
+            component={GuidedWorkoutDetail}
+          />
+
           <Redirect to="/pagenotfound" />
         </Switch>
       </UserContext.Provider>
