@@ -16,7 +16,15 @@ router.post("/add",auth,admin,async(req,res)=>{
         console.log(err);
     }
 });
-
+router.delete("/delete/:id",auth,admin, async (req, res) => {
+    try{
+     await History.findByIdAndDelete({ _id: req.params.id })
+     return res.status(200).json({ success: true });
+    }
+    catch(err){
+      console.log(err);
+    }
+  });
 router.get("/get",auth,admin,async(req,res)=>{
     try{
     await History.find().exec((err,doc)=>{

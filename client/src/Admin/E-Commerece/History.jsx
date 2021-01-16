@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { MDBBtn } from "mdbreact";
 import { MDBTable, MDBTableBody,MDBRow,MDBCol, MDBTableHead, MDBContainer } from "mdbreact";
 import Axios from 'axios';
+import { FaWindows } from "react-icons/fa";
 
 
 export default function History() {
@@ -18,6 +19,15 @@ export default function History() {
         }
         fetchData();
       }, [history]);
+      async function handleDelete(id) {
+        const response=await Axios.delete("http://localhost:5000/history/delete/" + id, {
+          headers: { "x-auth-token": localStorage.getItem("auth-token") },
+        });
+        if(response.status.success) {
+          window.location.reload()
+        };
+
+      }
     return (
       <>
       <SideNav/>
@@ -26,7 +36,7 @@ export default function History() {
         <h1 style={{marginLeft:"35%"}}>Order History</h1>
         <br/>
           {history.map((history,i)=>{
-           return <>
+           return <div key={i}>
           <hr style={{border:"1.5px solid black "}}/>
            <MDBRow>
                         <MDBCol sm="6">
@@ -52,7 +62,7 @@ export default function History() {
                           </div>
                         </MDBCol>
                       </MDBRow>
-                      <MDBTable>
+                      <MDBTable bordered>
                         <MDBTableHead>
                           <tr>
                             <th>#</th>
@@ -84,8 +94,14 @@ export default function History() {
                         ))}
                       </MDBTable>
                       <h4>Total : {history?.data?.total} PKR</h4>
+                      <MDBBtn
+                      color="danger"
+                      onClick={() => handleDelete(history._id)}
+                    >
+                      Delete
+                    </MDBBtn>
                       <hr style={{border:"1.5px solid black "}}/>
-                      </>
+                      </div>
 })}
         </MDBContainer>
         </>
