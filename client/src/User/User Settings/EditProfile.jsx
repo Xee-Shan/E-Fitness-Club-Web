@@ -46,16 +46,18 @@ const EditProfile = () => {
         phoneNumber,
         address,
       };
-      await Axios.post("http://localhost:5000/users/register", data, {
+      console.log(data);
+      await Axios.put("http://localhost:5000/users/editUser", data, {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
+      window.location.reload();
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
   };
   useEffect(() => {
     fetchUser();
-  });
+  },[]);
   return (
     <>
       <MDBRow>

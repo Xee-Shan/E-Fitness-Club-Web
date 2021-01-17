@@ -132,67 +132,18 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.put("/register", async (req, res) => {
-  try {
-    let { name, email, userName, gender, phoneNumber, address } = req.body;
-    var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+router.put("/editUser",auth, async (req, res) => {
+  const user=await User.findById(req.user);
+  user.name=req.body.name;
+  user.address=req.body.address;
+  user.email=req.body.email;
+  user.phoneNumber=req.body.phoneNumber;
+  user.userName=req.body.userName;
+  await user.save((err) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
 
-    // validate
-
-    if (!name || !email || !userName || !gender || !phoneNumber || !address)
-      return res.status(400).json({ msg: "Not all fields have been entered" });
-
-    var valid = emailRegex.test(email);
-    if (!valid) res.status(400).json({ msg: "Please enter correct email" });
-
-    const existingUser = await User.findOne({ email: email });
-    if (existingUser)
-      return res
-        .status(400)
-        .json({ msg: "An account with this email already exists" });
-
-    if (userName.length > 10)
-      return res.status(400).json({
-        msg: "The username needs to be less than or equal to 10 character",
-      });
-
-    const existingUserName = await User.findOne({ userName: userName });
-    if (existingUserName)
-      return res
-        .status(400)
-        .json({ msg: "An Account with this username already exists" });
-
-    if (gender !== "Male" && gender !== "Female")
-      return res.status(400).json({ msg: "Please select correct gender" });
-
-    if (phoneNumber.length !== 11)
-      return res
-        .status(400)
-        .json({ msg: "The phone number needs to be 11 digits long" });
-
-    const existingPhoneNumber = await User.findOne({
-      phoneNumber: phoneNumber,
-    });
-    if (existingPhoneNumber)
-      return res
-        .status(400)
-        .json({ msg: "An account with this phone number already exists" });
-    const user = new User({
-      name,
-      email,
-      userName,
-      password: passwordHash,
-      gender,
-      phoneNumber,
-      role,
-      address,
-    });
-
-    const updateUser = user.update();
-    res.json(updateUser);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 });
 
 router.post("/login", async (req, res) => {
