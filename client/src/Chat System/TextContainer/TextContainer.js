@@ -1,7 +1,5 @@
 import React from 'react';
-
 import onlineIcon from '../../icons/onlineIcon.png';
-
 import styles from './TextContainer.module.css';
 
 const TextContainer = ({ users }) => (

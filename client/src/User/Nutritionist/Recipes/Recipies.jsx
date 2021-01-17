@@ -33,7 +33,6 @@ const Recipe = () => {
 
   return (
     <UserAuth>
-      <>
         <Navbar />
         <br />
         <p className="h1 text-center mb-4">Recipes</p>
@@ -66,7 +65,6 @@ const Recipe = () => {
             )}
           </MDBRow>
         </MDBContainer>
-      </>
     </UserAuth>
   );
 };

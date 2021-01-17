@@ -3,6 +3,7 @@ const { Recipe } = require("../models/recipeModel");
 const router = express.Router();
 const cloudinary = require("../utils/cloudinary");
 const upload = require("../utils/multer");
+const { User } = require("../models/userModel");
 
 //create recipe
 router.post("/create", upload.single("image"), async (req, res) => {
@@ -17,8 +18,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
       description: req.body.description,
       imageURL: result.secure_url,
       cloudinary_id: result.public_id,
-      userId: req.user,
-      userName: user.name,
+      // userId: req.user,
+      // userName: user.name,
   });
   await recipe.save((err) => {
     if (err) return res.status(400).json({ success: false, err });

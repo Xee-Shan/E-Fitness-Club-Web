@@ -3,10 +3,11 @@ const { DietPlan } = require("../models/dietPlanModel");
 const cloudinary = require("../utils/cloudinary");
 const router = express.Router();
 const upload = require("../utils/multer");
+const { User } = require("../models/userModel");
 
 //create Diet Plan
 router.post("/create", upload.single("image"),async (req, res) => {
-  console.log(req.file.path);
+  const user = await User.findById(req.user);  
   const result = await cloudinary.uploader.upload(req.file.path);
   const dietPlan = new DietPlan({
     day: req.body.day,
@@ -15,8 +16,8 @@ router.post("/create", upload.single("image"),async (req, res) => {
     diet: req.body.diet,
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
-    userId: req.user,
-    userName: user.name,
+    // userId: req.user,
+    // userName: user.name,
   });
   await dietPlan.save((err) => {
     if (err) return res.status(400).json({ success: false, err });

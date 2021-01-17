@@ -10,10 +10,11 @@ export default function Recipe() {
   let [recipe, setRecipe] = useState();
 
   const history = useHistory();
+ 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/recipes/get");
-      setRecipe(response.data);
+      const res = await axios.get("http://localhost:5000/recipes/get");
+          setRecipe(res.data);
     }
     fetchData();
   }, []);
@@ -23,14 +24,16 @@ export default function Recipe() {
       "Are you sure you want to delete this Recipe?"
     );
     if (value === true) {
-      axios.delete("http://localhost:5000/recipes/delete/" + id);
+      axios.delete("http://localhost:5000/recipes/delete/" + id).then((res) => {
       window.location.reload();
-    }
-  }
+  });
+};
+}
 
   const handleEdit = (id) => {
     history.push("/nutritionist/update/recipe/" +id);
   };
+  
   return (
     <div>
       <NutritionistAuth>
@@ -39,7 +42,7 @@ export default function Recipe() {
       <MDBContainer>
       <h2>List of Recipes : </h2>
       {recipe?.length === 0 ? (
-        <h2>No recipes added yet...</h2>
+        <h2>No Recipes added yet...</h2>
       ) : (
       <MDBTable bordered>
             <MDBTableHead color="primary-color" textWhite>
