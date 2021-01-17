@@ -37,7 +37,6 @@ import UpdateDietPlan from "./Nutrition/DietPlans/UpdateDietPlan";
 import CreateNutritionistBlog from "./Nutrition/Blog/CreateBlog";
 import GetNutritionistBlog from "./Nutrition/Blog/GetBlog";
 import EditNutritionistBlog from "./Nutrition/Blog/EditBlog";
-import Trainee from "./trainer/Components/Trainees/Trainee";
 import AddEmployee from "./Admin/Employee/AddEmployee";
 import Employee from "./Admin/Employee/Employee";
 import Chat from "./Chat System/Chat/Chat";
@@ -75,6 +74,9 @@ import GuidedWorkoutDetail from "../src/User/Training System/GuidedWorkoutDetail
 import GuidedWOrkoutSchedule from "../src/trainer/Components/Guided Workouts/AddWorkoutSchedule";
 import GuidedWorkoutList from "../src/trainer/Components/Guided Workouts/AddWorkoutList";
 import GuidedWorkoutInfo from "../src/trainer/Components/Guided Workouts/WorkoutDetails";
+import EditGuidedWorkoutSchedule from "../src/trainer/Components/Guided Workouts/EditSchedule";
+import EditGuidedWorkoutList from "./trainer/Components/Guided Workouts/EditWorkout";
+import EditGuidedWorkouts from "./trainer/Components/Guided Workouts/EditGuidedWorkouts";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -194,7 +196,6 @@ const App = () => {
             path="/trainer/editWorkout/:id/:index"
             component={EditWorkout}
           />
-          <Route path="/trainer/trainee" component={Trainee} />
           <Route path="/admin/addEmployee" component={AddEmployee} />
           <Route path="/admin/employee" component={Employee} />
           <Route path="/doctor/home" component={Doctor} />
@@ -229,6 +230,18 @@ const App = () => {
           <Route
             path="/trainer/guidedworkout/view/:id"
             component={GuidedWorkoutInfo}
+          />
+          <Route
+            path="/trainer/guidedworkout/editschedule/:id/:index"
+            component={EditGuidedWorkoutSchedule}
+          />
+          <Route
+            path="/trainer/guidedworkout/editworkout/list/:id/:index"
+            component={EditGuidedWorkoutList}
+          />
+          <Route
+            path="/trainer/edit/guidedworkout/:id"
+            component={EditGuidedWorkouts}
           />
 
           <Redirect to="/pagenotfound" />

@@ -9,27 +9,15 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Add Programs",
+    title: "Self Guided Workout",
     path: "/trainer/create/program",
     icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },
   {
-    title: "All Programs",
+    title: "All Self Guided Workouts",
     path: "/trainer/program",
     icon: <FaIcons.FaTable />,
-    cName: "nav-text",
-  },
-  {
-    title: "All Trainees",
-    path: "/trainer/trainee",
-    icon: <FaIcons.FaList />,
-    cName: "nav-text",
-  },
-  {
-    title: "Add Blog",
-    path: "/trainer/createblog",
-    icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },
   {
@@ -41,6 +29,12 @@ export const SidebarData = [
   {
     title: "All Guided Workouts",
     path: "/trainer/guided/workout",
+    icon: <FaIcons.FaPlusCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "Add Blog",
+    path: "/trainer/createblog",
     icon: <FaIcons.FaPlusCircle />,
     cName: "nav-text",
   },

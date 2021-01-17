@@ -64,7 +64,10 @@ const Navbar = () => {
       <MDBCollapse id="navbarCollapse3" isOpen={toggle} navbar>
         <MDBNavbarNav left>
           <MDBNavItem>
-            <MDBNavLink to="/user/program">WORKOUTS</MDBNavLink>
+            <MDBNavLink to="/user/program">SELF GUIDED WORKOUTS</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to="/user/videos">GUIDED WORKOUTS</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/user/dietplans">DIETPLANS</MDBNavLink>
@@ -72,40 +75,36 @@ const Navbar = () => {
           <MDBNavItem>
             <MDBNavLink to="/user/recipes">RECEPIES</MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink to="/user/videos">VIDEOS</MDBNavLink>
-          </MDBNavItem>
+
           <MDBNavItem>
             <MDBNavLink to="/user/meditation">MEDITATION</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem style={{width:"48px"}}>
+          <MDBNavItem style={{ width: "48px" }}>
             <MDBNavLink to="/user/product">SHOP</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-              <MDBDropdown >
-                <MDBDropdownToggle nav caret>
-                  {/* <div>
+            <MDBDropdown>
+              <MDBDropdownToggle nav caret>
+                {/* <div>
                   <a style={{ color: "white" }} onClick={push}>
                     SHOP
                   </a>
-                  </div> */}   
-                                 
-                </MDBDropdownToggle>
-                <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem header>Categories</MDBDropdownItem>
-                  {category.map((data, i) => {
-                    return (
-                      <MDBDropdownItem key={i}>
-                        <a href={"/user/productCategory/" + data}>{data}</a>
-                      </MDBDropdownItem>
-                    );
-                  })}
-                </MDBDropdownMenu>
-              </MDBDropdown>
-    
+                  </div> */}
+              </MDBDropdownToggle>
+              <MDBDropdownMenu className="dropdown-default">
+                <MDBDropdownItem header>CATEGORIES</MDBDropdownItem>
+                {category.map((data, i) => {
+                  return (
+                    <MDBDropdownItem key={i}>
+                      <a href={"/user/productCategory/" + data}>{data}</a>
+                    </MDBDropdownItem>
+                  );
+                })}
+              </MDBDropdownMenu>
+            </MDBDropdown>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/user/blog">BLOGS</MDBNavLink>

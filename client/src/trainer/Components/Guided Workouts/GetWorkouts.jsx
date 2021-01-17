@@ -24,7 +24,7 @@ const GuidedWorkout = () => {
   };
 
   const editProgram = async (id) => {
-    history.push("/trainer/edit/program/" + id);
+    history.push("/trainer/edit/guidedworkout/" + id);
   };
 
   const fetchWorkouts = async () => {

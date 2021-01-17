@@ -32,11 +32,11 @@ const View = () => {
   }, []);
 
   const editSchedule = (i) => {
-    history.push("/trainer/editSchedule/" + id + "/" + i);
+    history.push("/trainer/guidedworkout/editschedule/" + id + "/" + i);
   };
 
   const editWorkout = (i) => {
-    history.push("/trainer/editWorkout/" + id + "/" + i);
+    history.push("/trainer/guidedworkout/editworkout/list/" + id + "/" + i);
   };
   return (
     <TrainerAuth>
