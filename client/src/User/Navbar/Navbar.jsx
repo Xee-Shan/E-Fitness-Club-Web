@@ -56,7 +56,7 @@ const Navbar = () => {
     fetchData();
   }, []);
   return (
-    <MDBNavbar className="blue-gradient" dark expand="md">
+    <MDBNavbar className="blue-gradient" dark expand="lg">
       <MDBNavbarBrand>
         <strong className="white-text">E-FITNESS CLUB</strong>
       </MDBNavbarBrand>
@@ -81,15 +81,18 @@ const Navbar = () => {
           <MDBNavItem>
             <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
           </MDBNavItem>
+          <MDBNavItem style={{width:"49px"}}>
+            <MDBNavLink to="/user/product">SHOP</MDBNavLink>
+          </MDBNavItem>
           <MDBNavItem>
-            {category.length === 0 ? (
-              <MDBNavLink to="/user/product">SHOP </MDBNavLink>
-            ) : (
-              <MDBDropdown>
+              <MDBDropdown >
                 <MDBDropdownToggle nav caret>
+                  {/* <div>
                   <a style={{ color: "white" }} onClick={push}>
                     SHOP
                   </a>
+                  </div> */}   
+                                 
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   <MDBDropdownItem header>Categories</MDBDropdownItem>
@@ -102,7 +105,7 @@ const Navbar = () => {
                   })}
                 </MDBDropdownMenu>
               </MDBDropdown>
-            )}
+    
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/user/blog">BLOGS</MDBNavLink>
