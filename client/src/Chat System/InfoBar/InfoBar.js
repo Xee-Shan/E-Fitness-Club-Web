@@ -8,10 +8,11 @@ const InfoBar = ({ room,socket }) => {
   const history = useHistory();
 
   const btnClicked=(e)=>{
+    e.preventDefault();
     socket.emit("disconnect");
     socket.off();
     history.push("/join");
-    e.preventDefault();
+    window.location.reload();
  }
  
   
