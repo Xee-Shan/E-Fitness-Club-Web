@@ -12,11 +12,13 @@ export default function Recipe() {
   const history = useHistory();
  
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const res = await axios.get("http://localhost:5000/recipes/get");
-          setRecipe(res.data);
+          if(mounted)setRecipe(res.data);
     }
     fetchData();
+    return ()=>mounted=false;
   }, []);
 
   function handleDelete(id) {

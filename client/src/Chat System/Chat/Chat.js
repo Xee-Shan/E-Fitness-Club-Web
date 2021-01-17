@@ -33,6 +33,7 @@ const Chat = ({ location }) => {
         alert(error);
       }
     });
+    
   }, [ location.search]);
   
   useEffect(() => {
@@ -43,6 +44,7 @@ const Chat = ({ location }) => {
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
+    
 }, []);
 
   const sendMessage = (event) => {
@@ -57,7 +59,7 @@ const Chat = ({ location }) => {
     <ChatAuth>
     <div className={styles.outerContainer}>
       <div className={styles.container}>
-          <InfoBar room={room} />
+          <InfoBar room={room} socket={socket} />
           <Messages messages={messages} name={name} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
