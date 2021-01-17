@@ -81,7 +81,7 @@ const Navbar = () => {
           <MDBNavItem>
             <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem style={{width:"49px"}}>
+          <MDBNavItem style={{width:"48px"}}>
             <MDBNavLink to="/user/product">SHOP</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
