@@ -14,35 +14,44 @@ export default function ProductDetail(props) {
   const history = useHistory();
 
   useEffect(() => {
+    let mounted=true;
     function fetchData() {
       axios
         .get("http://localhost:5000/products/get/" + props.match.params.id)
         .then((res) => {
+          if(mounted)
           setProduct(res.data);
         });
     }
     fetchData();
+    return ()=>mounted=false;
   }, [props.match.params.id]);
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const response = await axios.get(
         "http://localhost:5000/orders/getById/" + props.match.params.id,
         { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
       );
+      if(mounted)
       setOrderedQuantity(response.data.quantity);
     }
     fetchData();
+    return ()=>mounted=false;
   }, [props.match.params.id]);
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       await axios
         .get("http://localhost:5000/users/getCart", {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         })
         .then((res) => {
+          if(mounted){
           setCart(res.data);
+          }
           if (cart.length > 0) {
             const item = cart.find((arr) => arr.id === props.match.params.id);
             setItemCount(item?.quantity);
@@ -51,10 +60,11 @@ export default function ProductDetail(props) {
         });
     }
     fetchData();
+    return ()=>mounted=false;
   }, [cart, props.match.params.id]);
 
   const onChangeMyQuantity = (e) => {
-    setMyQuantity(e.target.value);
+    setMyQuantity(parseInt(e.target.value,10));
   };
 
   const increment = () => {
@@ -66,10 +76,10 @@ export default function ProductDetail(props) {
 
   async function btnClicked(product) {
     if (
-      parseInt(myQuantity,10) <= 0 ||
-      parseInt(myQuantity,10) + itemCount > product.quantity - orderedQuantity
+      myQuantity <= 0 ||
+      myQuantity + itemCount > product.quantity - orderedQuantity
     ) {
-      alert("Invalid quantity or quantity more than availabe in stock");
+      alert("Invalid quantity or item quantity in cart is more than availabe in stock");
     } else {
       if (product.quantity - orderedQuantity > 0) {
         const response = await axios.post(
@@ -135,7 +145,7 @@ export default function ProductDetail(props) {
               &nbsp;&nbsp;
               <input
                 type="number"
-                value={myQuantity}
+                value={myQuantity.toString()}
                 name=""
                 min="1"
                 max={product?.quantity}

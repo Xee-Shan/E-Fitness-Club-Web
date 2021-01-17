@@ -6,13 +6,16 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 export default function MeditationDetail(props) {
     const [meditation,setMeditation]=useState({});
     useEffect(() => {
+      let mounted=true;
         async function fetchData() {
           const response = await axios.get("http://localhost:5000/meditation/get/"+props.match.params.id, {
             headers: { "x-auth-token": localStorage.getItem("auth-token") },
           });
+          if(mounted)
           setMeditation(response.data);
         }
         fetchData();
+        return ()=> mounted=false;
       }, [meditation]);
     return (
         <>

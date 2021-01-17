@@ -18,30 +18,37 @@ export default function CartPage() {
   /*const [order,setOrder]=useState();*/
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       await axios
         .get("http://localhost:5000/users/getCart", {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         })
         .then((res) => {
+          if(mounted){
           setCart(res.data);
           localStorage.setItem("item-count", res.data.length);
+          }
         });
     }
     fetchData();
+    return ()=>mounted=false;
   }, [cart]);
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const response = await axios.get(
         "http://localhost:5000/orders/getById/" +
           localStorage.getItem("item-id"),
         { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
       );
+      if(mounted)
       setOrderedQuantity(response.data.quantity);
     }
     fetchData();
-  });
+    return ()=>mounted=false;
+  },[orderedQuantity]);
 
   /*
   useEffect(()=>{
@@ -68,6 +75,7 @@ export default function CartPage() {
     setTotal(amount);
   }
   useEffect(() => {
+    let mounted=true;
     function fetchData() {
       axios
         .get(
@@ -75,11 +83,13 @@ export default function CartPage() {
             localStorage.getItem("item-id")
         )
         .then((res) => {
+          if(mounted)
           setProduct(res.data);
         });
     }
     fetchData();
-  });
+    return ()=>mounted=false;
+  },[product]);
 
   async function handleRemove(id) {
     axios.delete("http://localhost:5000/users/removeFromCart/" + id, {

@@ -18,6 +18,7 @@ export default function ProductCategory(props) {
   const history = useHistory();
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const response = await axios.get(
         "http://localhost:5000/products/get/productBy/" +
@@ -26,9 +27,11 @@ export default function ProductCategory(props) {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         }
       );
+      if(mounted)
       setProduct(response.data);
     }
     fetchData();
+    return ()=> mounted=false;
   }, [product]);
 
   function btnClicked(id) {
