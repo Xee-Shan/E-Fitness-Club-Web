@@ -19,13 +19,16 @@ function Navbar() {
   const showSidebar = () => setSidebar(!sidebar);
 
   useEffect(() => {
+    let mounted=true;
     axios
       .get("http://localhost:5000/users/getUser", {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       })
       .then((res) => {
+        if(mounted)
         setPersonName(res.data.userName);
       });
+      return ()=>mounted=false;
   }, []);
   const logout = () => {
     //localStorage.removeItem("auth-token");

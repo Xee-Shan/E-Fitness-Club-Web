@@ -77,7 +77,7 @@ try{
       <SideNav />
       <MDBContainer>
         <MDBRow>
-          <MDBCol md="6">
+          <MDBCol md="6" style={{marginLef}}>
             <form>
               <p className="h4 text-center mb-4">Create Product</p>
               {error && (

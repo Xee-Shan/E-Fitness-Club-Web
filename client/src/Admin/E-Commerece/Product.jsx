@@ -19,13 +19,16 @@ export default function Product() {
     }
   })
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/products/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
+      if(mounted)
       setProduct(response.data);
     }
     fetchData();
+    return ()=>mounted=false;
   }, [product]);
 
   async function handleDelete(id) {

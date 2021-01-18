@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol,MDBContainer } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol,MDBContainer, MDBRow } from 'mdbreact';
 import SideNav from "./SideNav//SideNav";
 import axios from "axios";
 import {
@@ -9,18 +9,19 @@ import {
 export default function AdminHome() {
     const [count,setCount]=useState({});
     const [product,setProduct]=useState([]);
+    const [order,setOrder]=useState([]);
     const data = [
       {
-        name: 'Physiatrist', count: count.physiatristCount,
+        name: 'Physiatrist', count: parseInt(count.physiatristCount,10),
       },
       {
-        name: 'Trainer', count: count.trainerCount,
+        name: 'Trainer', count: parseInt(count.trainerCount,10),
       },
       {
-        name: 'User', count: count.userCount,
+        name: 'User', count: parseInt(count.userCount,10),
       },
       {
-        name: 'Nutritionist', count: count.nutritionistCount,
+        name: 'Nutritionist', count: parseInt(count.nutritionistCount,10),
       }
     ];
     const productData=[];
@@ -33,6 +34,7 @@ export default function AdminHome() {
   
 
     useEffect(() => {
+      let mounted=true;
         async function fetchData() {
           const response = await axios.get(
             "http://localhost:5000/users/get/countOfUser",
@@ -40,33 +42,44 @@ export default function AdminHome() {
               headers: { "x-auth-token": localStorage.getItem("auth-token") },
             }
           );
+          if(mounted)
           setCount(response.data);
         }
         fetchData();
+        return ()=>mounted=false;
       }, []);
       useEffect(() => {
+        let mounted=true;
         async function fetchData() {
           const response = await axios.get("http://localhost:5000/products/get", {
             headers: { "x-auth-token": localStorage.getItem("auth-token") },
           });
+          if(mounted)
           setProduct(response.data);
         }
         fetchData();
+        return ()=>mounted=false;
       }, [product]);
       useEffect(() => {
+        let mounted=true;
         async function fetchData() {
-          const response = await axios.get("http://localhost:5000/products/get", {
-            headers: { "x-auth-token": localStorage.getItem("auth-token") },
-          });
-          setProduct(response.data);
+          await axios.get("http://localhost:5000/orders/get", { headers: { "x-auth-token": localStorage.getItem("auth-token") } })
+            .then(res => {
+              if(mounted)
+              setOrder(res.data)
+            });
         }
         fetchData();
-      }, [product]);
+        return ()=>mounted=false;
+      }, [order]);
     return (
         <div>
             <SideNav/>
+            {(Object.keys(count).length===0)?null:
         <MDBContainer>
             <br/>
+            <MDBRow>
+              <MDBCol size="1"></MDBCol>
             <MDBCol>
       <MDBCard style={{ width: "15rem"}}>
         <MDBCardBody>
@@ -77,7 +90,19 @@ export default function AdminHome() {
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
-    <br/>
+    <MDBCol>
+      <MDBCard style={{ width: "15rem"}}>
+        <MDBCardBody>
+          <MDBCardTitle>Pending Orders</MDBCardTitle>
+          <MDBCardText style={{textAlign:"center"}}>
+            <b style={{fontSize:"3em"}}>{order.length}</b>
+          </MDBCardText>
+        </MDBCardBody>
+      </MDBCard>
+    </MDBCol>
+    </MDBRow>
+    <hr style={{border:"px solid black"}}/>
+    <br/> <br/>
             <div style={{marginLeft:"15%"}}>
       <BarChart
         width={600}
@@ -113,50 +138,8 @@ export default function AdminHome() {
         <Bar dataKey="quantity" fill="teal" background={{ fill: '#eee' }} />
       </BarChart>
       </div>
-      <br/>
-            
-    <br/>
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardBody>
-          <MDBCardTitle>Physiatrist</MDBCardTitle>
-          <MDBCardText>
-            <h3>{count.physiatristCount}</h3>
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardBody>
-          <MDBCardTitle>Nutritionist</MDBCardTitle>
-          <MDBCardText>
-          <h3>{count.nutritionistCount}</h3>
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardBody>
-          <MDBCardTitle>User</MDBCardTitle>
-          <MDBCardText>
-          <h3>{count.userCount}</h3>
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardBody>
-          <MDBCardTitle>Trainer</MDBCardTitle>
-          <MDBCardText>
-            <h3>{count.trainerCount}</h3>
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
         </MDBContainer>
+}
         </div>
     )
 }
