@@ -10,14 +10,17 @@ import { FaWindows } from "react-icons/fa";
 export default function History() {
     const [history,setHistory]=useState([]);
     useEffect(() => {
+      let mounted=true;
         async function fetchData() {
           const response = await Axios.get("http://localhost:5000/history/get", {
             headers: { "x-auth-token": localStorage.getItem("auth-token") },
           });
+          if(mounted){
           setHistory(response.data);
-          console.log(response.data);
+          }
         }
         fetchData();
+        return ()=>mounted=false;
       }, [history]);
       async function handleDelete(id) {
         const response=await Axios.delete("http://localhost:5000/history/delete/" + id, {
@@ -74,13 +77,14 @@ export default function History() {
                             <th>Delivery Charges(PKR)</th>
                           </tr>
                         </MDBTableHead>
+                        <MDBTableBody>
                         {history.data?.orderList?.map((orderList, i) => (
-                          <tr>
+                          <tr key={i}>
                             <td>{i + 1}</td>
                             <td>
                               <MDBRow>
                                 <MDBCol>
-                                  <img src={orderList.imageURL} alt="thumbnail" className="img-thumbnail" />
+                                  <img style={{ height: "80px"}}src={orderList.imageURL} alt="thumbnail" className="img-thumbnail" />
                                 </MDBCol>
                               </MDBRow>
                             </td>
@@ -92,6 +96,7 @@ export default function History() {
                           </tr>
 
                         ))}
+                        </MDBTableBody>
                       </MDBTable>
                       <h4>Total : {history?.data?.total} PKR</h4>
                       <MDBBtn

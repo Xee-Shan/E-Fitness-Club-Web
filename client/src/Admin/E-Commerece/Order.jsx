@@ -19,8 +19,9 @@ export default function Order() {
     async function fetchData() {
       await axios.get("http://localhost:5000/orders/get", { headers: { "x-auth-token": localStorage.getItem("auth-token") } })
         .then(res => {
-          if(mounted)
-          setOrder(res.data)
+          if(mounted){
+          setOrder(res.data);
+          }
         });
     }
     fetchData();
@@ -50,6 +51,7 @@ export default function Order() {
       <SideNav />
       <br />
       <MDBContainer>
+        {order.length===0?<h1 style={{textAlign:"center"}}>No Pending Orders...</h1>:
         <MDBTable>
           <MDBTableHead style={{ backgroundColor: "white" }} textWhite>
             <tr style={{ color: "black" }}>
@@ -69,7 +71,7 @@ export default function Order() {
                 <td>{order.name}</td>
                 <td>{order.address}</td>
                 <td>{order.email}</td>
-                <td>{order.orderDate.slice(0, 10)}</td>
+                <td>{order.orderDate}</td>
                 <td>${order.total}</td>
                 <td>
                   <button onClick={() => handleDelivered(order)} style={{ backgroundColor: "white" }}>
@@ -153,6 +155,7 @@ export default function Order() {
             </MDBTableBody>
           ))}
         </MDBTable>
+}
       </MDBContainer>
     </Admin>
   )

@@ -4,17 +4,9 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const { User } = require("../models/userModel");
 const admin = require("../middleware/admin");
-const nodemailer = require("nodemailer");
+
 const crypto = require("crypto");
 
-let smtpTransport = nodemailer.createTransport({
-  service: "Gmail",
-  port: 465,
-  auth: {
-    user: "efitnessclub7@gmail.com",
-    pass: "efitness",
-  },
-});
 
 router.post("/register", async (req, res) => {
   try {
@@ -404,7 +396,6 @@ router.post("/addToCart/:myQuantity", auth, async (req, res) => {
     }
   });
 });
-
 //get cart
 router.get("/getCart", auth, async (req, res) => {
   const user = await User.findById(req.user);
