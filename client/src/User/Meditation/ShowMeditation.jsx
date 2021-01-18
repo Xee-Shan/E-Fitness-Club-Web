@@ -41,8 +41,8 @@ export default function ShowMeditation() {
                   <tr onClick={()=>btnClicked(meditation._id)} style={{cursor:"pointer"}}>
                     <td><img style={{ height: "100px"}} src={meditation.imageURL} className="img-fluid rounded"
                       alt="..." /></td>
-                    <td><h2>{meditation.title}</h2></td>
-                    <td><h3>{meditation.uploaderName}</h3></td>
+                    <td style={{textAlign:"center"}}><h3>{meditation.title}</h3></td>
+                    <td style={{textAlign:"center"}}><h5>{meditation.uploaderName}</h5></td>
                   </tr>
                 </MDBTableBody>
               ))}
