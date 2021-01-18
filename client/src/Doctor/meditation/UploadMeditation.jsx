@@ -11,11 +11,13 @@ export default function UploadVideo() {
     const [previewImage, setPreviewImage] = useState("");
     const [image, setImage] = useState();
     const [audio,setAudio]=useState();
+    const [error,setError]=useState();
     const [loading,setLoading]=useState(false);
     const history=useHistory();
 
 
     const btnClicked=async (e)=>{
+      try{
         e.preventDefault();
         const formData=new FormData();
         formData.append("audio",audio);
@@ -39,8 +41,11 @@ export default function UploadVideo() {
       }
       else{
           setLoading(false);
-          alert("Unsuccessful");
       }
+    }catch(err){
+      setLoading(false);
+      err.response.data.msg && setError(err.response.data.msg);
+    }
     }
     return (
         <div>
@@ -50,7 +55,7 @@ export default function UploadVideo() {
         <MDBRow>
           <MDBCol md="6">
          {loading?(<div>
-           <h2>Uploading</h2>
+           <h2>Uploading
             <div className="spinner-grow text-primary" role="status">
         <span className="sr-only">Loading...</span>
       </div>
@@ -60,16 +65,17 @@ export default function UploadVideo() {
     <div className="spinner-grow text-primary" role="status">
     <span className="sr-only">Loading...</span>
   </div>
+  </h2>
   </div>
       )
             : <form>
               <p className="h4 text-center mb-4">Meditation</p>
-              {/* {error && (
+              {error && (
                     <ErrorNotice
                       message={error}
                       clearError={() => setError(undefined)}
                     />
-                  )} */}
+                  )} 
                   
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                 Uplaod Audio

@@ -12,6 +12,11 @@ let cloudinary_audio_id="";
 
 router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) => {
     try{
+
+      const {title,description}=req.body;
+    if(!title||!description||(req.file==null))
+      return res.status(400).json({ msg: "Not all fields have been entered" });
+
      const user=await User.findById(req.user);
      const result1 = await cloudinary.v2.uploader.upload(req.file.path,{ resource_type: "video" }, 
      function(error, result1) {console.log(result1, error); });
@@ -36,6 +41,8 @@ router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) =
 
    router.post("/uploadImage", auth, upload.single("image"),async (req, res) => {
     try{
+      if(req.file==null)
+      return res.status(400).json({ msg: "Image not selected for upload" });
      const result2= await cloudinary.uploader.upload(req.file.path);
      const meditation= await Meditation.findOne({cloudinary_audio_id:cloudinary_audio_id,audioURL:audioURL});
      meditation.imageURL=result2.secure_url;
@@ -62,6 +69,9 @@ router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) =
 //update with audio
  router.put("/updateAudio/:id",auth,uploadAudio.single("audio"), async (req, res) => {
   try{
+    const {title,description}=req.body;
+    if(!title||!description||req.file==null)
+      return res.status(400).json({ msg: "Not all fields have been entered" });
   const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
   if(req.body.cloudinary_audio_id===""){
     console.log(meditation.cloudinary_audio_id);
@@ -85,6 +95,8 @@ router.post("/uploadAudio", auth,uploadAudio.single("audio"), async (req, res) =
 //update image only
 router.put("/updateImage/:id",auth,upload.single("image"), async (req, res) => {
   try{
+    if(req.file==null)
+      return res.status(400).json({ msg: "Image not selected for upload" });
   const meditation = await Meditation.findByIdAndUpdate({ _id: req.params.id });
   if(req.body.cloudinary_image_id===""){
   await cloudinary.uploader.destroy(meditation.cloudinary_image_id);

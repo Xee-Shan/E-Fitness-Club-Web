@@ -77,6 +77,7 @@ import GuidedWorkoutInfo from "../src/trainer/Components/Guided Workouts/Workout
 import EditGuidedWorkoutSchedule from "../src/trainer/Components/Guided Workouts/EditSchedule";
 import EditGuidedWorkoutList from "./trainer/Components/Guided Workouts/EditWorkout";
 import EditGuidedWorkouts from "./trainer/Components/Guided Workouts/EditGuidedWorkouts";
+import DoctorProfile from "./Doctor/EditProfile";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -149,6 +150,7 @@ const App = () => {
           />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route path="/user/meditation" component={ShowMeditation} />
+          <Route path="/doctor/profile" component={DoctorProfile} />          
           <Route path="/admin/history" component={History} />
 
           <Route

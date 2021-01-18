@@ -133,6 +133,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.put("/editUser",auth, async (req, res) => {
+  const {name,address,email,phoneNumber,userName}=req.body;
+    if(!name||!address||!email||!phoneNumber||!userName)
+      return res.status(400).json({ msg: "Not all fields have been entered" });
   const user=await User.findById(req.user);
   user.name=req.body.name;
   user.address=req.body.address;

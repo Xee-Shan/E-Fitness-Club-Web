@@ -7,9 +7,11 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
+  MDBContainer,
 } from "mdbreact";
-import ErrorNotice from "../../components/error/ErrorNotice";
+import ErrorNotice from "../components/error/ErrorNotice";
 import { useEffect } from "react";
+import SideNav from "./SideNav//SideNav"
 
 const EditProfile = () => {
   const [name, setName] = useState();
@@ -59,14 +61,17 @@ const EditProfile = () => {
     fetchUser();
   },[]);
   return (
-    <>
+      <>
+      <SideNav/>
+    <MDBContainer>
+        <br/>
       <MDBRow>
         <MDBCol md="2"></MDBCol>
         <MDBCol md="8">
           <MDBCard>
             <MDBCardBody>
               <form>
-                <p className="h3 text-center mb-4">Update</p>
+                <p className="h3 text-center mb-4">My Profile</p>
                 {error && (
                   <ErrorNotice
                     message={error}
@@ -136,6 +141,7 @@ const EditProfile = () => {
         </MDBCol>
         <MDBCol md="2"></MDBCol>
       </MDBRow>
+    </MDBContainer>
     </>
   );
 };

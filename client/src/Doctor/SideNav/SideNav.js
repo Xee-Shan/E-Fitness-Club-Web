@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./SideNav.css";
 import { IconContext } from "react-icons";
-import { MDBBtn, MDBIcon } from "mdbreact";
+import {  MDBIcon } from "mdbreact";
 import history from "../../history/History";
 import axios from "axios";
 import DoctorAuth from "../../auth/DoctorAuth";
@@ -53,16 +53,16 @@ function Navbar() {
             </MDBDropdownToggle>
             <MDBDropdownMenu style={{ width: "-50px" }}>
               <MDBDropdownItem>
-                <MDBNavLink to="/user/profile" style={{ color: "black" }}>
+                <MDBNavLink to="/doctor/profile" style={{ color: "black" }}>
                   Profile
                 </MDBNavLink>
                 <b>{userName}</b>
               </MDBDropdownItem>
               <MDBDropdownItem divider />
               <MDBDropdownItem>
-                <MDBBtn size="sm" onClick={logout}>
-                  Logout
-                </MDBBtn>
+                <span size="sm" onClick={logout}>
+                Logout
+                </span>
               </MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
@@ -97,9 +97,9 @@ function Navbar() {
             })}
             <br/>
             <br/>
-            <MDBBtn onClick={logout} style={{ left: "20%" }}>
+            {/* <MDBBtn onClick={logout} style={{ left: "20%" }}>
               Logout
-            </MDBBtn>
+            </MDBBtn> */}
           </ul>
         </nav>
       </IconContext.Provider>

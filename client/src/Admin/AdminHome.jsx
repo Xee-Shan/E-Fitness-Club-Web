@@ -53,12 +53,31 @@ export default function AdminHome() {
         }
         fetchData();
       }, [product]);
-    
+      useEffect(() => {
+        async function fetchData() {
+          const response = await axios.get("http://localhost:5000/products/get", {
+            headers: { "x-auth-token": localStorage.getItem("auth-token") },
+          });
+          setProduct(response.data);
+        }
+        fetchData();
+      }, [product]);
     return (
         <div>
             <SideNav/>
         <MDBContainer>
             <br/>
+            <MDBCol>
+      <MDBCard style={{ width: "15rem"}}>
+        <MDBCardBody>
+          <MDBCardTitle>Total Products</MDBCardTitle>
+          <MDBCardText style={{textAlign:"center"}}>
+            <b style={{fontSize:"3em"}}>{product.length}</b>
+          </MDBCardText>
+        </MDBCardBody>
+      </MDBCard>
+    </MDBCol>
+    <br/>
             <div style={{marginLeft:"15%"}}>
       <BarChart
         width={600}
@@ -95,16 +114,7 @@ export default function AdminHome() {
       </BarChart>
       </div>
       <br/>
-            <MDBCol>
-      <MDBCard style={{ width: "22rem"}}>
-        <MDBCardBody>
-          <MDBCardTitle>Products</MDBCardTitle>
-          <MDBCardText>
-            <h3>{product.length}</h3>
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
+            
     <br/>
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>

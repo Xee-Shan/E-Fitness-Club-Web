@@ -34,5 +34,10 @@ export const SidebarData = [
     path: "/doctor/meditation",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
+  },{
+    title: "My Profile",
+    path: "/doctor/profile",
+    icon: <AiIcons.AiFillHome />,
+    cName: "nav-text",
   }
 ];

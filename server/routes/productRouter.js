@@ -30,8 +30,8 @@ const cloudinary=require("../utils/cloudinary");
 //create product
 router.post("/create",auth,admin,upload.single("image"),async (req, res) => {
   try{
-    const {name,brand,price,quantity,description,category}=req.body;
-    if(!name||!brand||!price||!quantity||!description||!category)
+    const {name,brand,price,quantity,description,deliveryCharges,deliveryDays,category}=req.body;
+    if(!name||!brand||!price||!quantity||!description||!category||!deliveryCharges||!deliveryDays)
       return res.status(400).json({ msg: "Not all fields have been entered" });
       
   const result= await cloudinary.uploader.upload(req.file.path);
