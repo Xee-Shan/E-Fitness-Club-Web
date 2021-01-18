@@ -105,7 +105,7 @@ export default function EditProduct(props) {
       <br/>
       <MDBContainer>
         <MDBRow>
-          <MDBCol md="6">
+          <MDBCol md="6"style={{marginLeft:"20%"}}>
             <form>
               <p className="h4 text-center mb-4">Edit Product</p>
               <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
