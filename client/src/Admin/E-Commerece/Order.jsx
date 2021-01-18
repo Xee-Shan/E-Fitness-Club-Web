@@ -15,13 +15,16 @@ export default function Order() {
   };
 
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       await axios.get("http://localhost:5000/orders/get", { headers: { "x-auth-token": localStorage.getItem("auth-token") } })
         .then(res => {
+          if(mounted)
           setOrder(res.data)
         });
     }
     fetchData();
+    return ()=>mounted=false;
   }, [order]);
   async function handleDelivered(order) {
     const response = await axios.post("http://localhost:5000/history/add",order, {

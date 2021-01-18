@@ -2,11 +2,13 @@ import React,{useState,useEffect} from 'react'
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol,MDBContainer, MDBRow } from 'mdbreact';
 import SideNav from "./SideNav//SideNav";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
 export default function AdminHome() {
+  const history = useHistory();
     const [count,setCount]=useState({});
     const [product,setProduct]=useState([]);
     const [order,setOrder]=useState([]);
@@ -78,10 +80,12 @@ export default function AdminHome() {
             {(Object.keys(count).length===0)?null:
         <MDBContainer>
             <br/>
+          <h1 style={{textAlign:"center"}}>Admin Panel</h1>
+          <br/>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
-            <MDBCol>
-      <MDBCard style={{ width: "15rem"}}>
+            <MDBCol size="3">
+      <MDBCard style={{ width: "15rem"},{cursor:"pointer"}} onClick={()=>{history.push("/admin/product")}}>
         <MDBCardBody>
           <MDBCardTitle>Total Products</MDBCardTitle>
           <MDBCardText style={{textAlign:"center"}}>
@@ -90,8 +94,9 @@ export default function AdminHome() {
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
+    <MDBCol></MDBCol>
     <MDBCol>
-      <MDBCard style={{ width: "15rem"}}>
+      <MDBCard style={{ width: "15rem"},{cursor:"pointer"}} onClick={()=>{history.push("/admin/order")}}>
         <MDBCardBody>
           <MDBCardTitle>Pending Orders</MDBCardTitle>
           <MDBCardText style={{textAlign:"center"}}>
@@ -100,12 +105,15 @@ export default function AdminHome() {
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
+    <MDBCol></MDBCol>
     </MDBRow>
-    <hr style={{border:"px solid black"}}/>
+    <br/>
+    <hr style={{border:"1px solid black"}}/>
     <br/> <br/>
-            <div style={{marginLeft:"15%"}}>
+            <div>
+            {(Object.keys(count).length===0)?null:
       <BarChart
-        width={600}
+        width={1000}
         height={400}
         data={data}
         margin={{
@@ -120,9 +128,11 @@ export default function AdminHome() {
         <CartesianGrid strokeDasharray="3 3" />
         <Bar dataKey="count" fill="purple" background={{ fill: '#eee' }} />
       </BarChart>
+            }
       <br/> <br/>
+      {product.length===0?null:
       <BarChart
-        width={600}
+        width={1000}
         height={400}
         data={productData}
         margin={{
@@ -137,6 +147,7 @@ export default function AdminHome() {
         <CartesianGrid strokeDasharray="3 3" />
         <Bar dataKey="quantity" fill="teal" background={{ fill: '#eee' }} />
       </BarChart>
+            }
       </div>
         </MDBContainer>
 }
