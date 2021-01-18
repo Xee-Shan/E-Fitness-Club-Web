@@ -37,7 +37,7 @@ export default function MeditationDetail(props) {
             <br />
             <p className="h3 text-center">{meditation.title}</p>
             <p className="h5 text-center">{meditation.uploaderName}</p>
-            <p>{meditation.description}</p>
+            <p style={{textAlign:"center"}}>{meditation.description}</p>
             <br />
           </MDBContainer>
         </>
