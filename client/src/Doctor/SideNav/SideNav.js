@@ -32,7 +32,7 @@ function Navbar() {
       });
   }, []);
 
-  SidebarData[1].path = `/chat?name=${userName}&room=${room}`;
+  SidebarData[2].path = `/chat?name=${userName}&room=${room}`;
 
   const logout = () => {
     localStorage.removeItem("auth-token");

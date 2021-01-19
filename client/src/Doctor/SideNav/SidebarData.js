@@ -9,14 +9,14 @@ export const SidebarData = [
     heading:"Doctor/Physiatrist Dashboard"
   },
   {
-    title: "Chat with patients",
-    path: "",
+    title: "Home",
+    path: "/doctor/home",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },
   {
-    title: "Home",
-    path: "/doctor/home",
+    title: "Chat with patients",
+    path: "",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },
