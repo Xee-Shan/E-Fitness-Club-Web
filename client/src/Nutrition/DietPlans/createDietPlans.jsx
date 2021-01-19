@@ -48,7 +48,7 @@ const CreateDietPlan = () => {
               <form>
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
                 <MDBInput
-                  label="Day"
+                  label="Title"
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   id="defaultFormRegisterNameEx"
