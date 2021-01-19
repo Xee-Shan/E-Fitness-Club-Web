@@ -49,6 +49,9 @@ export default function Product() {
               <MDBCol md="4" key={i}>
                 <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
+                  style={{
+                    height:"250px"
+                  }}
                     className="img-fluid"
                     src={data.imageURL}
                     waves
@@ -56,7 +59,7 @@ export default function Product() {
                   <MDBCardBody>
                     <MDBCardTitle>{data.name}</MDBCardTitle>
                     <p>{data.brand}</p>
-                    <p>${data.price}</p>
+                    <p>{data.price} PKR</p>
                     <MDBBtn
                       onClick={() => btnClicked(data._id)}
                       className="blue-gradient"

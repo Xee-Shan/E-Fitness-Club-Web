@@ -57,10 +57,7 @@ export default function ProductCategory(props) {
                     alt=""
                     className="img-fluid"
                     style={{
-                      maxHeight: "25vw",
-                      minHeight: "25vw",
-                      maxWidth: "25vw",
-                      minWidth: "25vw",
+                      height:"250px"
                     }}
                   />
                 </div>

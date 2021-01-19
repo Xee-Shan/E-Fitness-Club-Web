@@ -60,7 +60,7 @@ export default function Order() {
               <th>Customer's Address</th>
               <th>Customer's Email</th>
               <th>Date</th>
-              <th>Total</th>
+              <th>Total(PKR)</th>
               <th>Action</th>
             </tr>
           </MDBTableHead>
@@ -72,7 +72,7 @@ export default function Order() {
                 <td>{order.address}</td>
                 <td>{order.email}</td>
                 <td>{order.orderDate}</td>
-                <td>${order.total}</td>
+                <td>{order.total}</td>
                 <td>
                   <button onClick={() => handleDelivered(order)} style={{ backgroundColor: "white" }}>
                     <b>✓</b>
@@ -128,7 +128,7 @@ export default function Order() {
                             <td>
                               <MDBRow>
                                 <MDBCol>
-                                  <img src={orderList.imageURL} alt="thumbnail" className="img-thumbnail" />
+                                  <img style={{ height: "80px"}}src={orderList.imageURL} alt="thumbnail" className="img-thumbnail" />
                                 </MDBCol>
                               </MDBRow>
                             </td>

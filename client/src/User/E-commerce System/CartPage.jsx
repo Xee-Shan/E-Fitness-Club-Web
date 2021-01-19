@@ -154,7 +154,7 @@ export default function CartPage() {
                         <img
                           src={cart.imageURL}
                           className="rounded mx-auto d-block"
-                          style={{ height: "100px" }}
+                          style={{ height: "80px" }}
                           alt="aligment"
                         />
                       </td>
@@ -174,7 +174,7 @@ export default function CartPage() {
                   </MDBTableBody>
                 ))}
           </MDBTable>
-          <h3 style={{ float: "right" }}>Total : ${total}</h3>
+          <h3 style={{ float: "right" }}>Total : {total} PKR</h3>
           <br />
           <br />
           <br />
