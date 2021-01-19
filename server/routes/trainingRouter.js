@@ -104,7 +104,7 @@ router.get("/getVideos/:id", auth, async (req, res) => {
 //Delete Guided Workout
 router.delete("/delete/guided/:id", auth, async (req, res) => {
   const video = await Video.findByIdAndDelete({ _id: req.params.id });
-  await cloudinary.uploader.destroy(video.cloudinary_id);
+  await cloudinary.v2.uploader.destroy(video.cloudinary_id,{resource_type: 'video'}, function(error, result) {console.log(result, error); });
   return res.send(video);
 });
 
