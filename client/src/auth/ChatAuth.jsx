@@ -17,6 +17,6 @@ export default function ChatAuth(props) {
         if (res.data.role !== "physiatrist" && res.data.role !== "user")
           history.push("/login");
       });
-  }, []);
+  });
   return <>{props.children}</>;
 }

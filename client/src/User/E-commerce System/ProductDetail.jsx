@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
-import {BiMoney} from "react-icons/bi";
+import { BiMoney } from "react-icons/bi";
 
 export default function ProductDetail(props) {
   const [cart, setCart] = useState([]);
@@ -15,43 +15,41 @@ export default function ProductDetail(props) {
   const history = useHistory();
 
   useEffect(() => {
-    let mounted=true;
+    let mounted = true;
     function fetchData() {
       axios
         .get("http://localhost:5000/products/get/" + props.match.params.id)
         .then((res) => {
-          if(mounted)
-          setProduct(res.data);
+          if (mounted) setProduct(res.data);
         });
     }
     fetchData();
-    return ()=>mounted=false;
+    return () => (mounted = false);
   }, [props.match.params.id]);
 
   useEffect(() => {
-    let mounted=true;
+    let mounted = true;
     async function fetchData() {
       const response = await axios.get(
         "http://localhost:5000/orders/getById/" + props.match.params.id,
         { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
       );
-      if(mounted)
-      setOrderedQuantity(response.data.quantity);
+      if (mounted) setOrderedQuantity(response.data.quantity);
     }
     fetchData();
-    return ()=>mounted=false;
+    return () => (mounted = false);
   }, [props.match.params.id]);
 
   useEffect(() => {
-    let mounted=true;
+    let mounted = true;
     async function fetchData() {
       await axios
         .get("http://localhost:5000/users/getCart", {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         })
         .then((res) => {
-          if(mounted){
-          setCart(res.data);
+          if (mounted) {
+            setCart(res.data);
           }
           if (cart.length > 0) {
             const item = cart.find((arr) => arr.id === props.match.params.id);
@@ -61,11 +59,11 @@ export default function ProductDetail(props) {
         });
     }
     fetchData();
-    return ()=>mounted=false;
+    return () => (mounted = false);
   }, [cart, props.match.params.id]);
 
   const onChangeMyQuantity = (e) => {
-    setMyQuantity(parseInt(e.target.value,10));
+    setMyQuantity(parseInt(e.target.value, 10));
   };
 
   const increment = () => {
@@ -80,7 +78,9 @@ export default function ProductDetail(props) {
       myQuantity <= 0 ||
       myQuantity + itemCount > product.quantity - orderedQuantity
     ) {
-      alert("Invalid quantity or item quantity in cart is more than availabe in stock");
+      alert(
+        "Invalid quantity or item quantity in cart is more than availabe in stock"
+      );
     } else {
       if (product.quantity - orderedQuantity > 0) {
         const response = await axios.post(
@@ -128,16 +128,26 @@ export default function ProductDetail(props) {
             <hr /> <b>Available : </b>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <i>{(product?.quantity - orderedQuantity).toString()}</i>
             <hr />
-            <b>Delivery Time : </b>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
+            <b>Delivery Time : </b>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i>{product?.deliveryDays} day(s)</i>
+            <br />
             <hr />
-            <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryCharges} PKR</i><br />
+            <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <i>{product?.deliveryCharges} PKR</i>
+            <br />
             <hr />
-            <b>Payment Method : </b>&nbsp;&nbsp;&nbsp;&nbsp;<BiMoney style={{fontSize:"25px"}}/><i>&nbsp;Cash On Delivery</i><br />
-            <hr/>
+            <b>Payment Method : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <BiMoney style={{ fontSize: "25px" }} />
+            <i>&nbsp;Cash On Delivery</i>
+            <br />
+            <hr />
             <div>
-              <b>Quantity : </b> &nbsp;
-              &emsp;&emsp;
-              <MDBBtn size="sm" onClick={increment} style={{fontSize:"25px"}}>
+              <b>Quantity : </b> &nbsp; &emsp;&emsp;
+              <MDBBtn
+                size="sm"
+                onClick={increment}
+                style={{ fontSize: "25px" }}
+              >
                 +
               </MDBBtn>
               &nbsp;&nbsp;
@@ -149,14 +159,18 @@ export default function ProductDetail(props) {
                 max={product?.quantity}
                 onChange={onChangeMyQuantity}
                 id=""
-                style={{fontSize:"25px",textAlign:"center"}}
+                style={{ fontSize: "25px", textAlign: "center" }}
               />
               &nbsp;&nbsp;{" "}
-              <MDBBtn size="sm" style={{fontSize:"25px"}}onClick={decrement}>
+              <MDBBtn
+                size="sm"
+                style={{ fontSize: "25px" }}
+                onClick={decrement}
+              >
                 -
               </MDBBtn>
             </div>
-            <br/>
+            <br />
             <MDBBtn
               className="blue-gradient"
               onClick={() => btnClicked(product)}
@@ -168,9 +182,9 @@ export default function ProductDetail(props) {
           </MDBCol>
         </MDBRow>
       )}
-      <br/>
+      <br />
       <h4>Description : </h4>
-              <p>{product?.description}</p>
+      <p>{product?.description}</p>
     </>
   );
 }

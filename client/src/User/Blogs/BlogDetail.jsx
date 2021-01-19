@@ -9,9 +9,10 @@ const BlogDetail = (props) => {
 
   const fetchData = async () => {
     const res = await Axios.get(
-      "http://localhost:5000/blog/get/" + props.match.params.id,{
-      headers: { "x-auth-token": localStorage.getItem("auth-token") },
-    }
+      "http://localhost:5000/blog/get/" + props.match.params.id,
+      {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }
     );
     setBlog(res.data);
   };
@@ -29,7 +30,11 @@ const BlogDetail = (props) => {
           <br />
           <MDBRow>
             <MDBCol md="12" className="mb-3">
-              <img src={blog?.imageURL} className="img-fluid z-depth-1" />
+              <img
+                src={blog?.imageURL}
+                className="img-fluid z-depth-1"
+                alt="Blogs"
+              />
             </MDBCol>
           </MDBRow>
           <br />

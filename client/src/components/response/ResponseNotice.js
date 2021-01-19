@@ -1,6 +1,6 @@
 import React from "react";
 import Styles from "../../styles/styles.module.css";
-import { MDBBtn, MDBAlert, MDBContainer } from "mdbreact";
+import { MDBBtn } from "mdbreact";
 
 const ResponseNotice = (props) => {
   return (

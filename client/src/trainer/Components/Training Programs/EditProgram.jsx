@@ -115,7 +115,11 @@ const EditProgram = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
-                <img src={previewImage} alt="" />
+                <img
+                  src={previewImage}
+                  alt="program"
+                  style={{ width: "100%" }}
+                />
                 <input
                   type="file"
                   accept=".jpeg, .jpg, .png"

@@ -16,7 +16,7 @@ const RecipeDetail = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <UserAuth>
@@ -25,7 +25,7 @@ const RecipeDetail = (props) => {
         <br />
         <h1 className="h1 text-center mb-4">{recipe.name}</h1>
         <br />
-        <img width="100%" src={recipe.imageURL} alt="Recipe-image" />
+        <img width="100%" src={recipe.imageURL} alt="Recipes" />
         <br />
         <br />
         <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>

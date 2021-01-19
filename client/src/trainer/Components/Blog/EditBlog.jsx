@@ -89,7 +89,7 @@ const EditBlog = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                <img src={previewImage} />
+                <img src={previewImage} alt="edit" style={{ width: "100%" }} />
                 <input
                   type="file"
                   accept=".jpeg, .jpg, .png"

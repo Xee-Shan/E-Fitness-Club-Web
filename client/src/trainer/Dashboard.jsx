@@ -1,15 +1,21 @@
 import React from "react";
 import SideNav from "./Components/SideNav/SideNav";
 import TrainerAuth from "../auth/TrainerAuth";
+import { MDBCardBody, MDBContainer, MDBCardTitle, MDBCard } from "mdbreact";
 const Dashboard = () => {
   return (
     <TrainerAuth>
-      <>
-        <SideNav />
-        <p className="h1 text-center mb-4" style={{ margin: "250px" }}>
-          Welcome to Dashboard
-        </p>
-      </>
+      <SideNav />
+      <MDBContainer>
+        <br />
+        <p className="h1 text-center">Welcome To Trainer Panel</p>
+        <br />
+        <MDBCard>
+          <MDBCardBody>
+            <MDBCardTitle></MDBCardTitle>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBContainer>
     </TrainerAuth>
   );
 };

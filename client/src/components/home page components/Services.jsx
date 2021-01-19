@@ -70,7 +70,7 @@ const Services = () => {
                 <img
                   className="img-fluid"
                   src="https://pagedesignweb.com/wp-content/uploads/2018/07/blogging-1.jpg"
-                  alt="Blog Image"
+                  alt="Blog"
                 />
                 <MDBMask overlay="white-slight" />
               </MDBView>

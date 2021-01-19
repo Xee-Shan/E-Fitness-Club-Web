@@ -9,26 +9,22 @@ const Pagination = ({ blogsPerPage, totalBlogs, paginate }) => {
   return (
     <div>
       <nav>
-        <ul className="pagination">
-          {pageNumber.map((number) => (
-            <li
-              key={number}
-              className="page-item"
-              style={{
-                backgroundColor: "white",
-                border: " 1px solid #DEE2E6",
-              }}
-            >
-              <a
-                onClick={() => paginate(number)}
-                className="page-link"
-                style={{ color: "#1E8BFF" }}
-              >
-                {number}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {pageNumber.map((number) => (
+          <button
+            onClick={() => paginate(number)}
+            size="sm"
+            style={{ backgroundColor: "white", border: "none" }}
+          >
+            {number}
+          </button>
+          // //{/* <a
+          //   onClick={() => paginate(number)}
+          //   className="page-link"
+          //   style={{ color: "#1E8BFF" }}
+          // >
+          //   {number}
+          // </a> */}
+        ))}
       </nav>
     </div>
   );

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 import SideNav from "../SideNav/SideNav";
-import ErrorNotice from "../../../components/error/ErrorNotice";
 
 export default function UploadVideo() {
   const [title, setTitle] = useState("");
@@ -43,7 +41,7 @@ export default function UploadVideo() {
           <MDBCol md="3" />
           <MDBCol md="6">
             <form>
-              <p className="h1 text-center mb-4">Guided Workout</p>
+              <p className="h1 text-center mb-4">Add Details</p>
               {/* {error && (
                     <ErrorNotice
                       message={error}

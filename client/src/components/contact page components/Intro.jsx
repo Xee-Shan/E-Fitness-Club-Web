@@ -12,14 +12,6 @@ const Intro = () => {
           bg={false}
         ></Particles>
       </div>
-      <br />
-      <h1
-        className="h1-responsive font-weight-bold"
-        style={{
-          textAlign: "center",
-          color: "black",
-        }}
-      ></h1>
     </>
   );
 };

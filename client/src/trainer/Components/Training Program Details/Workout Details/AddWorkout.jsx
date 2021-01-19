@@ -7,7 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 const AddWorkout = () => {
   const [inputFields, setInputFields] = useState([
-    { exerciseName: "", sets: "", reps: "" },
+    { day: "", exerciseName: "", sets: "", reps: "" },
   ]);
   const { id } = useParams();
   const history = useHistory();
@@ -19,7 +19,10 @@ const AddWorkout = () => {
   };
 
   const handleAddFields = () => {
-    setInputFields([...inputFields, { exerciseName: "", sets: "", reps: "" }]);
+    setInputFields([
+      ...inputFields,
+      { day: "", exerciseName: "", sets: "", reps: "" },
+    ]);
   };
 
   const handleRemoveFields = (index) => {
@@ -52,7 +55,16 @@ const AddWorkout = () => {
             {inputFields.map((inputField, index) => (
               <div key={index}>
                 <MDBRow>
-                  <MDBCol md="3">
+                  <MDBCol md="2">
+                    <MDBInput
+                      name="day"
+                      type="text"
+                      label="Enter Day"
+                      value={inputField.Day}
+                      onChange={(event) => handleChangeInput(index, event)}
+                    />
+                  </MDBCol>
+                  <MDBCol md="2">
                     <MDBInput
                       name="exerciseName"
                       type="text"
@@ -61,7 +73,7 @@ const AddWorkout = () => {
                       onChange={(event) => handleChangeInput(index, event)}
                     />
                   </MDBCol>
-                  <MDBCol md="3">
+                  <MDBCol md="2">
                     <MDBInput
                       name="sets"
                       type="text"
@@ -70,7 +82,7 @@ const AddWorkout = () => {
                       onChange={(event) => handleChangeInput(index, event)}
                     />
                   </MDBCol>
-                  <MDBCol md="3">
+                  <MDBCol md="2">
                     <MDBInput
                       name="reps"
                       type="text"
@@ -79,7 +91,7 @@ const AddWorkout = () => {
                       onChange={(event) => handleChangeInput(index, event)}
                     />
                   </MDBCol>
-                  <MDBCol md="3">
+                  <MDBCol md="4">
                     <MDBBtn onClick={() => handleRemoveFields(index)} size="sm">
                       -
                     </MDBBtn>

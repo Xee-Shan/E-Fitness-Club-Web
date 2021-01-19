@@ -22,7 +22,7 @@ import { FaShoppingCart } from "react-icons/fa";
 const Navbar = () => {
   const [category, setCategories] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const { userData, setUserData } = useContext(UserContext);
+  const { setUserData } = useContext(UserContext);
   const history = useHistory();
   const logout = () => {
     setUserData({

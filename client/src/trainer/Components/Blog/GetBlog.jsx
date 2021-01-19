@@ -47,12 +47,12 @@ export default function Employee() {
           {blog?.length === 0 ? (
             <>
               <br />
-              <p className="h1 text-center">No Blog added yet</p>
+              <p className="h1 text-center">No Blogs Added Yet</p>
             </>
           ) : (
             <div>
               <br />
-              <p className=" h1 text-center">Blog List </p>
+              <p className=" h1 text-center">Blogs List </p>
               <br />
               <MDBTable bordered striped small>
                 <MDBTableHead color="black" textWhite>

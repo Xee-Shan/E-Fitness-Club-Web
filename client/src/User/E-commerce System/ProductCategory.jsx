@@ -18,7 +18,7 @@ export default function ProductCategory(props) {
   const history = useHistory();
 
   useEffect(() => {
-    let mounted=true;
+    let mounted = true;
     async function fetchData() {
       const response = await axios.get(
         "http://localhost:5000/products/get/productBy/" +
@@ -27,11 +27,10 @@ export default function ProductCategory(props) {
           headers: { "x-auth-token": localStorage.getItem("auth-token") },
         }
       );
-      if(mounted)
-      setProduct(response.data);
+      if (mounted) setProduct(response.data);
     }
     fetchData();
-    return ()=> mounted=false;
+    return () => (mounted = false);
   }, [product]);
 
   function btnClicked(id) {
@@ -41,52 +40,52 @@ export default function ProductCategory(props) {
     <>
       <Navbar />
       <MDBContainer>
-        <br/>
-        <h1 style={{textAlign:"center"}}>{props.match.params.category}</h1>
-        <br/>
-      <MDBRow>
-        {product?.length === 0 ? (
-          <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
-        ) : (
-          product?.map((product, i) => (
-            <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
-              <MDBView className="overlay rounded z-depth-1">
-                <div>
-                  <img
-                    src={product.imageURL}
-                    alt=""
-                    className="img-fluid"
-                    style={{
-                      height:"250px"
-                    }}
-                  />
-                </div>
-              </MDBView>
-              <MDBCardBody
-                className="pb-0"
-                style={{
-                  boxSizing: "border-box",
-                }}
-              >
-                <h4 className="font-weight-bold my-3">{product.name}</h4>
-                <p className="grey-text">{product.brand}</p>
-                <b>${product.price}</b>
-                <br />
-                <MDBBtn
-                  onClick={() => btnClicked(product._id)}
-                  /*href={"/user/productDetail/"+product._id}*/ color="indigo"
-                  className="blue-gradient"
-                  outline
-                  color="white"
-                  size="sm"
+        <br />
+        <h1 style={{ textAlign: "center" }}>{props.match.params.category}</h1>
+        <br />
+        <MDBRow>
+          {product?.length === 0 ? (
+            <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>
+          ) : (
+            product?.map((product, i) => (
+              <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
+                <MDBView className="overlay rounded z-depth-1">
+                  <div>
+                    <img
+                      src={product.imageURL}
+                      alt=""
+                      className="img-fluid"
+                      style={{
+                        height: "250px",
+                      }}
+                    />
+                  </div>
+                </MDBView>
+                <MDBCardBody
+                  className="pb-0"
+                  style={{
+                    boxSizing: "border-box",
+                  }}
                 >
-                  Details
-                </MDBBtn>
-              </MDBCardBody>
-            </MDBCol>
-          ))
-        )}
-      </MDBRow>
+                  <h4 className="font-weight-bold my-3">{product.name}</h4>
+                  <p className="grey-text">{product.brand}</p>
+                  <b>${product.price}</b>
+                  <br />
+                  <MDBBtn
+                    onClick={() => btnClicked(product._id)}
+                    /*href={"/user/productDetail/"+product._id}*/
+                    className="blue-gradient"
+                    outline
+                    color="white"
+                    size="sm"
+                  >
+                    Details
+                  </MDBBtn>
+                </MDBCardBody>
+              </MDBCol>
+            ))
+          )}
+        </MDBRow>
       </MDBContainer>
     </>
   );

@@ -74,7 +74,7 @@ const CreatePrograms = () => {
                   >
                     Uplaod Image
                   </label>
-                  <img src={previewImage} alt="" />
+                  <img src={previewImage} alt="" style={{ width: "100%" }} />
                   <input
                     type="file"
                     accept=".jpeg, .jpg, .png"

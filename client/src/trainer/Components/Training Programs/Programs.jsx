@@ -57,7 +57,7 @@ const Program = () => {
           </>
         ) : (
           <>
-            <p className="h1 text-center mb-4">Program List</p>
+            <p className="h1 text-center mb-4">Self Guided Workouts List</p>
             <MDBCol md="3">
               <MDBInput
                 type="text"

@@ -18,7 +18,7 @@ export default function MeditationDetail(props) {
     }
     fetchData();
     return () => (mounted = false);
-  }, [meditation]);
+  });
   return (
     <>
       <Navbar />
@@ -29,7 +29,7 @@ export default function MeditationDetail(props) {
             <img
               src={meditation.imageURL}
               className="img-fluid z-depth-1"
-              alt="image"
+              alt="Meditations"
             />
           </MDBCol>
         </MDBRow>

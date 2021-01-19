@@ -17,7 +17,7 @@ const ProgramDetail = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <UserAuth>
@@ -30,13 +30,11 @@ const ProgramDetail = (props) => {
         </MDBContainer>
         <MDBContainer>
           <br />
-          <iframe
-            title="Hello"
-            width="1100"
-            height="400"
-            src="https://www.youtube.com/embed/ZzOk6yH9bT8"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
+          <img
+            src={program.imageURL}
+            alt="programs"
+            style={{ width: "100%" }}
+          />
         </MDBContainer>
         <MDBContainer>
           <br />
@@ -66,6 +64,7 @@ const ProgramDetail = (props) => {
           <MDBTable bordered striped small>
             <MDBTableHead color="black" textWhite>
               <tr>
+                <th className="text-center">Day</th>
                 <th className="text-center">Exercise Name</th>
                 <th className="text-center">Sets</th>
                 <th className="text-center">reps</th>
@@ -75,6 +74,7 @@ const ProgramDetail = (props) => {
               {program?.workoutList?.map((data, i) => {
                 return (
                   <tr key={i}>
+                    <td className="text-center">{data.day}</td>
                     <td className="text-center">{data.exerciseName}</td>
                     <td className="text-center">{data.sets}</td>
                     <td className="text-center">{data.reps}</td>

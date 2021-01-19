@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import SideNav from "../SideNav/SideNav";
 
 export default function EditSchedule() {
+  const [day, setDay] = useState();
   const [exercise, setExercise] = useState();
   const [sets, setSets] = useState();
   const [reps, setReps] = useState();
@@ -16,6 +17,7 @@ export default function EditSchedule() {
     await Axios.get("http://localhost:5000/training/getVideos/" + id, {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     }).then((res) => {
+      setDay(res.data.workoutList[index].day);
       setExercise(res.data.workoutList[index].exerciseName);
       setSets(res.data.workoutList[index].sets);
       setReps(res.data.workoutList[index].reps);
@@ -28,6 +30,7 @@ export default function EditSchedule() {
 
   const edit = () => {
     const data = {
+      day: day,
       exerciseName: exercise,
       sets: sets,
       reps: reps,
@@ -51,6 +54,18 @@ export default function EditSchedule() {
           <MDBCol md="6">
             <form>
               <p className="h4 text-center mb-4">Update</p>
+              <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
+                Day
+              </label>
+              <input
+                type="text"
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
+                id="defaultFormLoginEmailEx"
+                className="form-control"
+                required
+              />
+              <br />
               <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                 Exercise
               </label>

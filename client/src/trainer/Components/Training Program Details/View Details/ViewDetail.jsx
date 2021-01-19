@@ -78,6 +78,7 @@ const View = () => {
           <MDBTable bordered striped small>
             <MDBTableHead color="black" textWhite>
               <tr>
+                <th className="text-center">Day</th>
                 <th className="text-center">Exercise Name</th>
                 <th className="text-center">Sets</th>
                 <th className="text-center">Reps</th>
@@ -88,6 +89,7 @@ const View = () => {
               {data?.workoutList?.map((data, i) => {
                 return (
                   <tr key={i}>
+                    <td className="text-center">{data.day}</td>
                     <td className="text-center">{data.exerciseName}</td>
                     <td className="text-center">{data.sets}</td>
                     <td className="text-center">{data.reps}</td>

@@ -61,7 +61,8 @@ const CreatePrograms = () => {
         <br />
         <MDBContainer>
           <MDBRow>
-            <MDBCol>
+            <MDBCol md="3" />
+            <MDBCol md="6">
               <form>
                 <p className="h1 text-center mb-4">Add Details</p>
                 {err && (
@@ -107,7 +108,7 @@ const CreatePrograms = () => {
                   >
                     Uplaod Image
                   </label>
-                  <img src={previewImage} alt="" />
+                  <img src={previewImage} alt="" style={{ width: "100%" }} />
                   <input
                     type="file"
                     accept=".jpeg, .jpg, .png"
@@ -129,6 +130,7 @@ const CreatePrograms = () => {
                 </div>
               </form>
             </MDBCol>
+            <MDBCol md="3" />
           </MDBRow>
         </MDBContainer>
       </>

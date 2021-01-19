@@ -43,7 +43,7 @@ const GuidedWorkout = () => {
       <SideNav />
       <MDBContainer>
         <br />
-        <p className="h1 text-center">Guided Workouts</p>
+        <p className="h1 text-center">Guided Workouts List</p>
         <br />
         <MDBTable bordered striped small>
           <MDBTableHead color="black" textWhite>

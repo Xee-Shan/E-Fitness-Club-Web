@@ -29,7 +29,7 @@ export const SidebarData = [
   {
     title: "All Guided Workouts",
     path: "/trainer/guided/workout",
-    icon: <FaIcons.FaPlusCircle />,
+    icon: <FaIcons.FaTable />,
     cName: "nav-text",
   },
   {

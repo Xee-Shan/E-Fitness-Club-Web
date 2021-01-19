@@ -3,7 +3,7 @@ import Axios from "axios";
 import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import TrainerAuth from "../../../auth/TrainerAuth";
 import SideNav from "../SideNav/SideNav";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function EditSchedule() {
   const [day, setDay] = useState();
