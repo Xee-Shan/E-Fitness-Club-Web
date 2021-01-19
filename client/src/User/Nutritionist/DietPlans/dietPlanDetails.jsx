@@ -25,7 +25,7 @@ const DietPlanDetails = (props) => {
       <MDBContainer>
           <br />
           <h1 className="h1 text-center mb-4">{dietplans.title}</h1>
-          <img style={{width:"700px"}} src={dietplans.imageURL}/>
+          <img style={{width:"100%"}} src={dietplans.imageURL}/>
           <br/>
           <br/>
           <p className="h4 text-center mb-4">Complete Workout Schedule</p>
