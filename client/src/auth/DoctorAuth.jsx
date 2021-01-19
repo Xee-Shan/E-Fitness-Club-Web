@@ -16,6 +16,6 @@ export default function DoctorAuth(props) {
       .then((res) => {
         if (res.data.role !== "physiatrist") history.push("/login");
       });
-  }, []);
+  });
   return <>{props.children}</>;
 }

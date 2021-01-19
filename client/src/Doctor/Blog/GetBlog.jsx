@@ -8,7 +8,7 @@ import DoctorAuth from "../../auth/DoctorAuth";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 
-export default function Employee() {
+export default function GetBlog() {
   const [blog, setBlog] = useState();
   const history = useHistory();
 

@@ -4,6 +4,7 @@ import DoctorAuth from "../auth/DoctorAuth";
 import SideNav from "./SideNav/SideNav";
  
  export default function Home() {
+     
      return (
         <DoctorAuth>
         <SideNav/>

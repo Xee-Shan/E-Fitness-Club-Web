@@ -7,7 +7,7 @@ import SideNav from "../SideNav/SideNav";
 import DoctorAuth from "../../auth/DoctorAuth";
 import { useHistory } from "react-router-dom";
 
-const CreatePrograms = () => {
+const CreateBlog = () => {
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
   const [previewImage, setPreviewImage] = useState();
@@ -95,4 +95,4 @@ const CreatePrograms = () => {
   );
 };
 
-export default CreatePrograms;
+export default CreateBlog;

@@ -20,13 +20,13 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "All Products",
+    title: "Products",
     path: "/admin/product",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
   {
-    title: "All Orders",
+    title: "Orders",
     path: "/admin/order",
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
@@ -38,14 +38,20 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Show Employees",
+    title: "Employees",
     path: "/admin/employee",
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
   },
   {
-    title: "Show History",
+    title: "History",
     path: "/admin/history",
+    icon: <FaIcons.FaCartPlus />,
+    cName: "nav-text",
+  },
+  {
+    title: "My Profile",
+    path: "/admin/profile",
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
   },

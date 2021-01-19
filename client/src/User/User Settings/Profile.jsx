@@ -9,7 +9,6 @@ const UserProfile = () => {
     const res = await Axios.get("http://localhost:5000/users/getUser", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
-    console.log(res.data);
     setUser(res.data);
   };
 

@@ -3,6 +3,7 @@ import history from "./history/History";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import Axios from "axios";
 import Home from "./components/pages/Home";
+import AdminProfile from "./Admin/EditProfile";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Bmi from "./components/pages/Bmi";
@@ -150,6 +151,7 @@ const App = () => {
           />
           <Route path="/nutritionist/recipe" component={Recipe} />
           <Route path="/user/meditation" component={ShowMeditation} />
+          <Route path="/admin/profile" component={AdminProfile} />
           <Route path="/doctor/profile" component={DoctorProfile} />          
           <Route path="/admin/history" component={History} />
 
