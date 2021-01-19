@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
+import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
@@ -183,8 +183,10 @@ export default function ProductDetail(props) {
         </MDBRow>
       )}
       <br />
-      <h4>Description : </h4>
+      <MDBContainer>
+      <h3>Description : </h3>
       <p>{product?.description}</p>
+      </MDBContainer>
     </>
   );
 }
