@@ -9,6 +9,7 @@ const CreateDietPlan = () => {
   let [title, setTitle] = useState("");
   let [userType, setUserType] = useState("");
   let [image, setImage] = useState();
+
   const [previewImage, setPreviewImage] = useState();
 
   const history = useHistory();
@@ -24,7 +25,7 @@ const CreateDietPlan = () => {
     validate();
 
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("Title", title);
     formData.append("userType", userType);
     formData.append("image", image);
     console.log(formData);
@@ -47,7 +48,7 @@ const CreateDietPlan = () => {
               <form>
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
                 <MDBInput
-                  label="Title"
+                  label="Day"
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   id="defaultFormRegisterNameEx"

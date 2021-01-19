@@ -31,6 +31,7 @@ export default function Recipe() {
   const handleEdit = (id) => {
     history.push("/nutritionist/update/dietPlan/" + id);
   };
+  
   return (
     <div>
       <NutritionistAuth>
