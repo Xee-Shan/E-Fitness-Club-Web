@@ -125,6 +125,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.put("/editUser",auth, async (req, res) => {
+  try{
   const {name,address,email,phoneNumber,userName}=req.body;
     if(!name||!address||!email||!phoneNumber||!userName)
       return res.status(400).json({ msg: "Not all fields have been entered" });
@@ -138,7 +139,9 @@ router.put("/editUser",auth, async (req, res) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true });
   });
-
+  }catch(err){
+    console.log(err);
+  }
 });
 
 router.post("/login", async (req, res) => {
