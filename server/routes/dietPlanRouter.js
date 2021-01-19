@@ -10,10 +10,10 @@ router.post("/create", upload.single("image"),async (req, res) => {
   const user = await User.findById(req.user);  
   const result = await cloudinary.uploader.upload(req.file.path);
   const dietPlan = new DietPlan({
-    day: req.body.day,
+    title: req.body.title,
     userType: req.body.userType,
-    dietType: req.body.dietType,
-    diet: req.body.diet,
+    // dietType: req.body.dietType,
+    // diet: req.body.diet,
     imageURL: result.secure_url,
     cloudinary_id: result.public_id,
     // userId: req.user,
@@ -25,13 +25,30 @@ router.post("/create", upload.single("image"),async (req, res) => {
   });
 });
 
+//Add Diet List
+router.post("/add/dietPlan/detail/:id", async (req, res) => {
+  const dietPlan = await DietPlan.findById(req.params.id);
+  let detail = [];
+    req.body.map((data) => {
+    detail.push(data);
+  });
+  dietPlan.dietList = detail;
+  await dietPlan.save((err, doc) => {
+    if (err) {
+      return res.status(400).status.json({ msg: "Diet Plan List Added" });
+    } else {
+      return res.status(200).send(doc);
+    }
+  });
+});
+
 //get Diet Plan
 router.get("/get", async (req, res) => {
   await DietPlan.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
-});
+}); 
 
 //get diet plan by id
 router.get("/get/:id", async (req, res) => {
@@ -57,13 +74,20 @@ router.put("/update/:id", async (req, res) => {
     (dietPlan.imageURL = result.secure_url),
       (dietPlan.cloudinary_id = result.public_id);
   }
-dietPlan.day = req.body.day;
+dietPlan.title = req.body.title;
 dietPlan.userType = req.body.userType;
-dietPlan.dietType = req.body.dietType;
 dietPlan.diet = req.body.diet;
-
   await dietPlan.save();
     return res.send(dietPlan);
+});
+
+//Update Diet List
+router.put("/update/dietPlan/:id/:index", async (req, res) => {
+  const dietPlan = await DietPlan.findByIdAndUpdate({ _id: req.params.id });
+  dietPlan.dietList[req.params.index] = req.body;
+  dietPlan.markModified("dietList");
+  await dietPlan.save();
+  return res.send(dietPlan);
 });
 
 module.exports = router;

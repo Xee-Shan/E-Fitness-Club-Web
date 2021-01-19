@@ -289,7 +289,7 @@ router.post("/add/workout/detail/:id", auth, async (req, res) => {
 
 //Get Workout List
 router.get("/get/workout/detail", auth, async (req, res) => {
-  const training = await Training.find((err, doc) => {
+  await Training.find((err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });

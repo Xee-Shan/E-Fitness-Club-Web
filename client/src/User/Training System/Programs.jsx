@@ -38,7 +38,7 @@ const Program = () => {
     <UserAuth>
       <Navbar />
       <br />
-      <p className="h1 text-center mb-4">Workout Plans </p>
+      <p className="h1 text-center mb-4">Self Guided Workouts</p>
       <br />
       <GetPrograms program={currentPrograms} />
       <br />

@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SideNav from "../SideNav/SideNav";
 import { useHistory } from "react-router-dom";
 import NutritionistAuth from "../../auth/NutritionAuth";
 
 const CreateDietPlan = () => {
-  let [day, setDay] = useState("");
+  let [title, setTitle] = useState("");
   let [userType, setUserType] = useState("");
-  let [dietType, setDietType] = useState("");
-  let [diet, setDiet] = useState("");
   let [image, setImage] = useState();
   const [content] = useState("");
   const [previewImage, setPreviewImage] = useState();
@@ -82,30 +78,6 @@ const CreateDietPlan = () => {
                 </select>
                 <br />
                 <br />
-                <select
-                  className="browser-default custom-select"
-                  onChange={(e) => setDietType(e.target.value)}
-                >
-                  <option>Choose Option</option>
-                  <option value="BreakFast">Break Fast</option>
-                  <option value="Lunch">Lunch</option>
-                  <option value="Dinner">Dinner</option>
-                </select>
-                <br />
-                <br />
-                <label
-                  htmlFor="defaultFormRegisterNameEx"
-                  className="grey-text"
-                >
-                  Diet
-                </label>
-                <div>
-                  <CKEditor
-                    editor={ClassicEditor}
-                    data={content}
-                    onChange={onChangeEditor}
-                  />
-                </div>
                 <br />
                 <label
                   htmlFor="defaultFormRegisterNameEx"
