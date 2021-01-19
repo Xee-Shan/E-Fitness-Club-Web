@@ -53,11 +53,6 @@ router.delete("/delete/:id", auth, async (req, res) => {
   const blog = await Blog.findByIdAndDelete({ _id: req.params.id });
   await cloudinary.uploader.destroy(blog.cloudinary_id);
   return res.send(blog);
-
-  /*  fs.unlink(blog.imagePath, (err) => {
-    if (err) console.log(err);
-    console.log("file deleted from directory");
-  });*/
 });
 
 //Update Blog by id
