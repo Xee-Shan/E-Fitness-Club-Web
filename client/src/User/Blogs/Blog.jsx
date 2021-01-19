@@ -9,7 +9,7 @@ import UserAuth from "../../auth/UserAuth";
 const Blog = () => {
   const [blog, setBlog] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [blogsPerpage] = useState(3);
+  const [blogsPerpage] = useState(6);
 
   const indexOfLastBlog = currentPage * blogsPerpage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerpage;
@@ -20,7 +20,7 @@ const Blog = () => {
   };
 
   const fetchData = async () => {
-    const response = await Axios.get("http://localhost:5000/blog/getAll",{
+    const response = await Axios.get("http://localhost:5000/blog/getAll", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
     setBlog(response.data);

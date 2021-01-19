@@ -6,7 +6,16 @@ const { User } = require("../models/userModel");
 const admin = require("../middleware/admin");
 
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
+let smtpTransport = nodemailer.createTransport({
+  service: "Gmail",
+  port: 465,
+  auth: {
+    user: "efitnessclub7@gmail.com",
+    pass: "efitness",
+  },
+});
 
 router.post("/register", async (req, res) => {
   try {
@@ -124,22 +133,22 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.put("/editUser",auth, async (req, res) => {
-  try{
-  const {name,address,email,phoneNumber,userName}=req.body;
-    if(!name||!address||!email||!phoneNumber||!userName)
+router.put("/editUser", auth, async (req, res) => {
+  try {
+    const { name, address, email, phoneNumber, userName } = req.body;
+    if (!name || !address || !email || !phoneNumber || !userName)
       return res.status(400).json({ msg: "Not all fields have been entered" });
-  const user=await User.findById(req.user);
-  user.name=req.body.name;
-  user.address=req.body.address;
-  user.email=req.body.email;
-  user.phoneNumber=req.body.phoneNumber;
-  user.userName=req.body.userName;
-  await user.save((err) => {
-    if (err) return res.status(400).json({ success: false, err });
-    return res.status(200).json({ success: true });
-  });
-  }catch(err){
+    const user = await User.findById(req.user);
+    user.name = req.body.name;
+    user.address = req.body.address;
+    user.email = req.body.email;
+    user.phoneNumber = req.body.phoneNumber;
+    user.userName = req.body.userName;
+    await user.save((err) => {
+      if (err) return res.status(400).json({ success: false, err });
+      return res.status(200).json({ success: true });
+    });
+  } catch (err) {
     console.log(err);
   }
 });
@@ -313,11 +322,11 @@ router.get("/get/employee", auth, admin, async (req, res) => {
 });
 //get count of different types of users
 router.get("/get/countOfUser", auth, admin, async (req, res) => {
-  let count={
-    trainerCount:0,
-    nutritionistCount:0,
-    userCount:0,
-    physiatristCount:0
+  let count = {
+    trainerCount: 0,
+    nutritionistCount: 0,
+    userCount: 0,
+    physiatristCount: 0,
   };
   const users = await User.find((err) => {
     if (err) res.status(400).send(err);
@@ -335,7 +344,6 @@ router.get("/get/countOfUser", auth, admin, async (req, res) => {
     if (user.role === "physiatrist") {
       count.physiatristCount++;
     }
-
   });
   res.status(200).send(count);
 });
@@ -385,7 +393,7 @@ router.post("/addToCart/:myQuantity", auth, async (req, res) => {
               imageURL: req.body.imageURL,
               brand: req.body.brand,
               price: req.body.price,
-              deliveryCharges:req.body.deliveryCharges,
+              deliveryCharges: req.body.deliveryCharges,
               date: Date.now(),
             },
           },
