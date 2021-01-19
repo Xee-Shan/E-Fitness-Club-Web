@@ -55,4 +55,16 @@ export const SidebarData = [
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
   },
+  {
+    title: "Write a Blog",
+    path: "/admin/createBlog",
+    icon: <FaIcons.FaCartPlus />,
+    cName: "nav-text",
+  },
+  {
+    title: "My Blog",
+    path: "/admin/getBlog",
+    icon: <FaIcons.FaCartPlus />,
+    cName: "nav-text",
+  }
 ];

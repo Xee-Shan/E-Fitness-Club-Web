@@ -56,6 +56,9 @@ import RecipeDetail from "./User/Nutritionist/Recipes/RecipeDetails";
 import GetVideos from "./User/Training System/GuidedWorkouts";
 import ProductCategory from "./User/E-commerce System/ProductCategory";
 import CreateBlog from "./trainer/Components/Blog/CreateBlog";
+import CreateAdminBlog from "./Admin/Blog/CreateBlog";
+import EditAdminBlog from "./Admin/Blog/EditBlog";
+import GetAdminBlog from "./Admin/Blog/GetBlog";
 import GetBlog from "./trainer/Components/Blog/GetBlog";
 import CreateGuidedWorkout from "./trainer/Components/Guided Workouts/CreateWorkout";
 import GetGuidedWorkout from "./trainer/Components/Guided Workouts/GetWorkouts";
@@ -154,6 +157,9 @@ const App = () => {
           <Route path="/admin/profile" component={AdminProfile} />
           <Route path="/doctor/profile" component={DoctorProfile} />          
           <Route path="/admin/history" component={History} />
+          <Route path="/admin/createBlog" component={CreateAdminBlog} />
+          <Route path="/admin/blog/edit/:id" component={EditAdminBlog} />
+          <Route path="/admin/getBlog" component={GetAdminBlog} />
 
           <Route
             path="/nutritionist/dashboard"

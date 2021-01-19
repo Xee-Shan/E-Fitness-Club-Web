@@ -8,13 +8,16 @@ export default function Meditation() {
   const history = useHistory();
   const [meditation, setMeditation] = useState([]);
   useEffect(() => {
+    let mounted=true;
     async function fetchData() {
       const response = await axios.get("http://localhost:5000/meditation/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
+      if(mounted)
       setMeditation(response.data);
     }
     fetchData();
+    return ()=>mounted=false;
   }, [meditation]);
   const handleEdit=(id)=>{
     history.push("/doctor/update/"+id);
@@ -47,7 +50,7 @@ export default function Meditation() {
                 <MDBTableBody key={i}>
                   <tr>
                     <td>{i + 1}</td>
-                    <td><img style={{ height: "100px" }} src={meditation.imageURL} class="img-fluid rounded"
+                    <td><img style={{ height: "100px" }} src={meditation.imageURL} className="img-fluid rounded"
                       alt="..." /></td>
                     <td>{meditation.title}</td>
                     <td>{meditation.description}</td>

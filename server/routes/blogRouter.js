@@ -8,23 +8,6 @@ const upload = require("../utils/multer");
 const cloudinary = require("../utils/cloudinary");
 const { User } = require("../models/userModel");
 
-/*const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploadImages/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-  fileFilter: function (req, file, cb) {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      cb(null, true);
-    } else {   
-      cb(null, false);
-    }
-  },
-});
-
-const upload = multer({ storage: storage }); */
 
 //Create Blog
 router.post("/create", auth, upload.single("image"), async (req, res) => {
