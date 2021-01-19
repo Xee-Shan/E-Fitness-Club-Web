@@ -2,6 +2,13 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
+//import * as IoIcons from "react-icons/io";
+import * as BsIcons from "react-icons/bs";
+import * as ImIcons from "react-icons/im";
+import * as GiIcons from "react-icons/gi";
+import * as GrIcons from "react-icons/gr";
+import * as FcIcons from "react-icons/fc";
+import * as MdIcons from "react-icons/md";
 
 export const SidebarData = [
   {
@@ -16,13 +23,13 @@ export const SidebarData = [
   {
     title: "Create Product",
     path: "/admin/create/product",
-    icon: <IoIcons.IoIosPaper />,
+    icon: <FaIcons.FaProductHunt />,
     cName: "nav-text",
   },
   {
     title: "Products",
     path: "/admin/product",
-    icon: <IoIcons.IoIosPaper />,
+    icon: <GiIcons.GiCash />,
     cName: "nav-text",
   },
   {
@@ -34,37 +41,37 @@ export const SidebarData = [
   {
     title: "Add Employee",
     path: "/admin/addEmployee",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <GrIcons.GrUserWorker />,
     cName: "nav-text",
   },
   {
     title: "Employees",
     path: "/admin/employee",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <FcIcons.FcManager />,
     cName: "nav-text",
   },
   {
     title: "History",
     path: "/admin/history",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <FaIcons.FaHistory />,
     cName: "nav-text",
   },
   {
     title: "My Profile",
     path: "/admin/profile",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <ImIcons.ImProfile />,
     cName: "nav-text",
   },
   {
     title: "Write a Blog",
     path: "/admin/createBlog",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <ImIcons.ImBlogger />,
     cName: "nav-text",
   },
   {
     title: "My Blog",
     path: "/admin/getBlog",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <ImIcons.ImBlog  />,
     cName: "nav-text",
   }
 ];
