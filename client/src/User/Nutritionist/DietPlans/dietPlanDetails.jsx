@@ -17,7 +17,7 @@ const DietPlanDetails = (props) => {
   useEffect(() => {
     fetchData();
   });
-
+ 
   return (
     <UserAuth>
       <Navbar />
