@@ -8,8 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 export default function EditSchedule() {
   const [day, setDay] = useState();
   const [area, setArea] = useState();
-  const [response, setResponse] = useState();
-  const history = useHistory();
+
   const { id, index } = useParams();
 
   const fetchProgramDetail = async () => {

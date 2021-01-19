@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import TrainerAuth from "../auth/TrainerAuth";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SideNav from "./Components/SideNav/SideNav";
 
 export default function EditSchedule() {
   const [exercise, setExercise] = useState();
   const [sets, setSets] = useState();
   const [reps, setReps] = useState();
-  const history = useHistory();
+
   const { id, index } = useParams();
 
   const fetchProgramDetail = async () => {
