@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const dietPlanSchema = {
   title: String,
   userType: String,
-  // dietType: String,
-  // diet: String,
   dietList:Array,
   userId: String ,
   userName: String ,

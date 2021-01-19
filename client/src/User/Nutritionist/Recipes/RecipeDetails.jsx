@@ -23,7 +23,7 @@ const RecipeDetail = (props) => {
         <br />
         <h1 className="h1 text-center mb-4">{recipe.name}</h1>
         <br/>
-        <img style={{width:"1200",alignItems:"center"}} src={recipe.imageURL}></img>
+        <img style={{width:"100%"}} src={recipe.imageURL}></img>
         <br />
         <br />
         <div style={{ backgroundColor: "#F5F6F6", padding: "10px" }}>
