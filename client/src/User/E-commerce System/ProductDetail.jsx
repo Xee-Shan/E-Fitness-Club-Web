@@ -152,7 +152,7 @@ export default function ProductDetail(props) {
                 style={{fontSize:"25px",textAlign:"center"}}
               />
               &nbsp;&nbsp;{" "}
-              <MDBBtn size="sm" onClick={decrement}>
+              <MDBBtn size="sm" style={{fontSize:"25px"}}onClick={decrement}>
                 -
               </MDBBtn>
             </div>
