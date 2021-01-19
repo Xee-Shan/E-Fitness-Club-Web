@@ -60,6 +60,7 @@ const Recipe = () => {
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
+                  <br />
                 </MDBCol>
               ))
             )}

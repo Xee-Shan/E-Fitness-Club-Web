@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const dietPlanSchema = {
-  day: String,
+  title: String,
   userType: String,
-  dietType: String,
-  diet: String,
+  // dietType: String,
+  // diet: String,
+  dietList:Array,
   userId: String ,
   userName: String ,
   imageURL:String,

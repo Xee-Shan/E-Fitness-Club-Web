@@ -47,7 +47,7 @@ const DietPlan = () => {
               </h2>
             ) : (
               dietPlan?.map((dietPlan, i) => (
-                <MDBCol md="4" key={i}>
+                <MDBCol md="4" key={i} style={{marginBottom:"20px"}}>
                   <MDBCard style={{ width: "22rem" }}>
                   <MDBCardImage
                       className="img-fluid"

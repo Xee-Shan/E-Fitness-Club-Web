@@ -45,11 +45,8 @@ export default function Recipe() {
               <MDBTableHead color="primary-color" textWhite>
                 <tr>
                   <th>#</th>
-                  <th>Day</th>
+                  <th>Title</th>
                   <th>User Type</th>
-                  <th>Diet Type</th>
-                  {/*<th>Diet</th>
-                 <th>Description</th> */}
                   <th>Action</th>
                 </tr>
               </MDBTableHead>
@@ -57,9 +54,8 @@ export default function Recipe() {
                 <MDBTableBody key={i}>
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{dietPlan.day}</td>
+                    <td>{dietPlan.title}</td>
                     <td>{dietPlan.userType}</td>
-                    <td>{dietPlan.dietType}</td>
                     <td>
                       <MDBBtn
                         color="warning"
@@ -72,6 +68,18 @@ export default function Recipe() {
                         onClick={() => handleDelete(dietPlan._id)}
                       >
                         Delete
+                      </MDBBtn>
+                      <MDBBtn
+                        color="cyan"
+                        href={"/nutritionist/dietPlanList/"+ dietPlan._id}
+                      >
+                        Diet List
+                      </MDBBtn>
+                      <MDBBtn
+                        color="purple"
+                        href={"/nutritionist/view/"+ dietPlan._id}
+                      >
+                        View
                       </MDBBtn>
                     </td>
                   </tr>

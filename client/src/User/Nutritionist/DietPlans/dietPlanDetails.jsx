@@ -10,7 +10,6 @@ const DietPlanDetails = (props) => {
   const fetchData = async () => {
     const res = await Axios.get("http://localhost:5000/dietplans/get/" + props.match.params.id);
     setDietplan(res.data); 
-    console.log(res.data)
   };
 
   useEffect(() => {
@@ -22,26 +21,32 @@ const DietPlanDetails = (props) => {
       <Navbar />
       <MDBContainer>
         <br />
-        <p className="h2 text-center mb-4">Diet Plan Schedule</p>
-        <MDBTable bordered striped small>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th className="text-center">Day</th>
-              <th className="text-center">User Type</th>
-              <th className="text-center">Diet Type</th>
-              <th className="text-center">Diet</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-                <tr>
-                  <td className="text-center">{dietplans.day}</td>
-                  <td className="text-center">{dietplans.userType}</td>
-                  <td className="text-center">{dietplans.dietType}</td>
-                  <td className="text-center" dangerouslySetInnerHTML={{ __html: dietplans.diet }}></td>
-                </tr>
-          </MDBTableBody>
-        </MDBTable>
-      </MDBContainer>
+        <h1 className="h1 text-center mb-4">{dietplans.title}</h1>
+        <img style={{width:"700px", marginLeft:"200px"}} src={dietplans.imageURL}></img>
+        <br />
+        <br/>
+        <p className="h2 text-center mb-4">Complete Week Diet Plan</p>
+          <MDBTable bordered striped small>
+            <MDBTableHead color="black" textWhite>
+              <tr>
+                <th className="text-center">Day</th>
+                <th className="text-center">Diet Type</th>
+                <th className="text-center">Diet</th>
+              </tr>
+            </MDBTableHead>
+            <MDBTableBody>
+              {dietplans?.dietList?.map((data, i) => {
+                return (
+                  <tr key={i}>
+                    <td className="text-center">{data.day}</td>
+                    <td className="text-center">{data.dietType}</td>
+                    <td className="text-center">{data.diet}</td>
+                  </tr>
+                );
+              })}
+            </MDBTableBody>
+          </MDBTable>
+        </MDBContainer>
     </UserAuth>
   );
 };
