@@ -6,7 +6,9 @@ import {
   MDBCol,
   MDBCardBody,
   MDBBtn,
-  MDBView,
+  MDBCardImage,
+  MDBCard,
+  MDBCardTitle,
   MDBContainer,
 } from "mdbreact";
 import Navbar from "../Navbar/Navbar";
@@ -49,39 +51,30 @@ export default function ProductCategory(props) {
           ) : (
             product?.map((product, i) => (
               <MDBCol lg="4" md="12" className="mb-lg-0 mb-4" key={i}>
-                <MDBView className="overlay rounded z-depth-1">
-                  <div>
-                    <img
-                      src={product.imageURL}
-                      alt=""
-                      className="img-fluid"
-                      style={{
-                        height: "250px",
-                      }}
-                    />
-                  </div>
-                </MDBView>
-                <MDBCardBody
-                  className="pb-0"
+                  <MDBCard style={{ width: "22rem" }}>
+                  <MDBCardImage
                   style={{
-                    boxSizing: "border-box",
+                    height:"250px"
                   }}
-                >
-                  <h4 className="font-weight-bold my-3">{product.name}</h4>
-                  <p className="grey-text">{product.brand}</p>
-                  <b>${product.price}</b>
-                  <br />
-                  <MDBBtn
-                    onClick={() => btnClicked(product._id)}
-                    /*href={"/user/productDetail/"+product._id}*/
-                    className="blue-gradient"
-                    outline
-                    color="white"
-                    size="sm"
-                  >
-                    Details
-                  </MDBBtn>
-                </MDBCardBody>
+                    className="img-fluid"
+                    src={product.imageURL}
+                    waves
+                  />
+                  <MDBCardBody>
+                    <MDBCardTitle>{product.name}</MDBCardTitle>
+                    <p>{product.brand}</p>
+                    <p>{product.price} PKR</p>
+                    <MDBBtn
+                      onClick={() => btnClicked(product._id)}
+                      className="blue-gradient"
+                      outline
+                      color="white"
+                    >
+                      Details
+                    </MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
+                <br/>
               </MDBCol>
             ))
           )}
