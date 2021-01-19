@@ -132,7 +132,7 @@ export default function ProductDetail(props) {
             <hr />
             <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryCharges} PKR</i><br />
             <hr />
-            <b>Payment Method : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i><BiMoney/>&nbsp;Cash On Delivery</i><br />
+            <b>Payment Method : </b>&nbsp;&nbsp;&nbsp;&nbsp;<BiMoney style={{fontSize:"25px"}}/><i>&nbsp;Cash On Delivery</i><br />
             <hr/>
             <div>
               <b>Quantity : </b> &nbsp;
