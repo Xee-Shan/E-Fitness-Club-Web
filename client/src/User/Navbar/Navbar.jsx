@@ -39,10 +39,6 @@ const Navbar = () => {
     setToggle(!toggle);
   };
 
-  const push = () => {
-    history.push("/user/product");
-  };
-
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(

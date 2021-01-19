@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
+import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
+import {BiMoney} from "react-icons/bi";
 
 export default function ProductDetail(props) {
   const [cart, setCart] = useState([]);
@@ -117,29 +118,26 @@ export default function ProductDetail(props) {
               </MDBCol>
             </MDBRow>
           </MDBCol>
-          <MDBCol md="6" className="blue-gradient">
-            <b>Name : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.name}</i> <br />
+          <MDBCol md="5">
+            <b>Name : </b>&nbsp;&emsp;&emsp;&nbsp;<i>{product?.name}</i> <br />
             <hr />
-            <b>Price ($): </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.price}</i>{" "}
+            <b>Price : </b>&emsp;&emsp;&nbsp;&nbsp;<i>{product?.price} PKR</i>{" "}
             <br />
-            <hr /> <b>Brand : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <hr /> <b>Brand : </b>&emsp;&emsp;&nbsp;&nbsp;&nbsp;
             <i>{product?.brand}</i> <br />
-            <hr /> <b>Available : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <hr /> <b>Available : </b>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <i>{(product?.quantity - orderedQuantity).toString()}</i>
             <hr />
-            <b>Delivery Time : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
+            <b>Delivery Time : </b>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryDays} {" "}day(s)</i><br />
             <hr />
-            <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>$ {product?.deliveryCharges}</i><br />
+            <b>Delivery Charges : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i>{product?.deliveryCharges} PKR</i><br />
             <hr />
+            <b>Payment Method : </b>&nbsp;&nbsp;&nbsp;&nbsp;<i><BiMoney/>&nbsp;Cash On Delivery</i><br />
+            <hr/>
             <div>
-              <b>Description : </b>
-              <p>{product?.description}</p>
-              <hr />
               <b>Quantity : </b> &nbsp;
-              {/* <button style={{ border: "none",marginTop:"10px",height:"30px" }} onClick={increment}>
-                <h2>+</h2>
-              </button>{" "} */}
-              <MDBBtn size="sm" onClick={increment}>
+              &emsp;&emsp;
+              <MDBBtn size="sm" onClick={increment} style={{fontSize:"25px"}}>
                 +
               </MDBBtn>
               &nbsp;&nbsp;
@@ -151,13 +149,14 @@ export default function ProductDetail(props) {
                 max={product?.quantity}
                 onChange={onChangeMyQuantity}
                 id=""
-                style={{ textAlign: "center" }}
+                style={{fontSize:"25px",textAlign:"center"}}
               />
               &nbsp;&nbsp;{" "}
               <MDBBtn size="sm" onClick={decrement}>
                 -
               </MDBBtn>
             </div>
+            <br/>
             <MDBBtn
               className="blue-gradient"
               onClick={() => btnClicked(product)}
@@ -169,6 +168,9 @@ export default function ProductDetail(props) {
           </MDBCol>
         </MDBRow>
       )}
+      <br/>
+      <h4>Description : </h4>
+              <p>{product?.description}</p>
     </>
   );
 }
