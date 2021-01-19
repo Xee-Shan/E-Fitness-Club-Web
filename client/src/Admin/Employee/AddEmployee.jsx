@@ -84,13 +84,13 @@ export default function AddEmployee() {
                   )}
                   <div className="grey-text">
                     <MDBInput
-                      label="Your Name"
+                      label=" Name"
                       icon="file-signature"
                       type="text"
                       onChange={(e) => setName(e.target.value)}
                     />
                     <MDBInput
-                      label="Your email"
+                      label="E-mail"
                       icon="envelope"
                       type="email"
                       onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +102,7 @@ export default function AddEmployee() {
                       onChange={(e) => setUserName(e.target.value)}
                     />
                     <MDBInput
-                      label="Your password"
+                      label=" password"
                       icon="lock"
                       type="password"
                       onChange={(e) => {
@@ -110,7 +110,7 @@ export default function AddEmployee() {
                       }}
                     />
                     <MDBInput
-                      label="Confirm Your Password"
+                      label="Confirm Password"
                       icon="check-square"
                       type="password"
                       onChange={(e) => setPasswordCheck(e.target.value)}

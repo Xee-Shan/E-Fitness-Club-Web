@@ -49,11 +49,12 @@ export default function GetVideos() {
           ) : (
             data?.map((program, i) => (
               <MDBCol md="4" key={i}>
-                <MDBCard style={{ width: "22rem" }}>
+                <MDBCard>
                   <MDBCardImage
                     className="img-fluid"
                     src={program.videoURL.replace(".mp4", ".jpg")}
                     waves
+                    style={{ width: "100%" }}
                   />
                   <MDBCardBody>
                     <MDBCardTitle>{program.title}</MDBCardTitle>
