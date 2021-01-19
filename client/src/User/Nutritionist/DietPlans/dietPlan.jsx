@@ -53,7 +53,7 @@ const DietPlan = () => {
                       className="img-fluid"
                       src={dietPlan.imageURL}
                       waves
-                      width="100%"
+                      style={{height:"250px"}}
                     />
                     <MDBCardBody>
                       <MDBCardTitle>{dietPlan.day}</MDBCardTitle>

@@ -21,6 +21,7 @@ const CreateDietPlan = () => {
   };
 
   const btnClicked = async (e) => {
+    console.log(title);
     e.preventDefault();
     validate();
 
