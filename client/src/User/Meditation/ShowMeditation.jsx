@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBContainer } from "mdbreact";
+import { MDBTable, MDBTableBody, MDBContainer } from "mdbreact";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import NavBar from "../Navbar/Navbar";

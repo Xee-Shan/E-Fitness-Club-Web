@@ -104,7 +104,7 @@ export default function ProductDetail(props) {
     <>
       <Navbar />
       <br /> <br />
-      {product.length === 0 ? null : (
+      {Object.keys(product).length === 0 ? null : (
         <MDBRow>
           <MDBCol md="6">
             <MDBRow className="mb-4">

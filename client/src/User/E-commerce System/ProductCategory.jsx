@@ -42,6 +42,8 @@ export default function ProductCategory(props) {
       <Navbar />
       <MDBContainer>
         <br/>
+        <h1 style={{textAlign:"center"}}>{props.match.params.category}</h1>
+        <br/>
       <MDBRow>
         {product?.length === 0 ? (
           <h2 style={{ paddingLeft: "0.5em" }}>NOTHING TO DISPLAY YET...</h2>

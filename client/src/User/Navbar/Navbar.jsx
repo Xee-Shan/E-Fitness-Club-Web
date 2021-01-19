@@ -79,9 +79,6 @@ const Navbar = () => {
           <MDBNavItem>
             <MDBNavLink to="/user/meditation">MEDITATION</MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
-          </MDBNavItem>
           <MDBNavItem style={{ width: "48px" }}>
             <MDBNavLink to="/user/product">SHOP</MDBNavLink>
           </MDBNavItem>
@@ -108,6 +105,9 @@ const Navbar = () => {
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/user/blog">BLOGS</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to="/join">HEALTH CARE</MDBNavLink>
           </MDBNavItem>
         </MDBNavbarNav>
         <MDBNavbarNav right>
