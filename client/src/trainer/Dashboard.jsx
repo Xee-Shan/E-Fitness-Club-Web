@@ -26,9 +26,12 @@ const Dashboard = () => {
   };
 
   const fetchGuidedPrograms = async () => {
-    const res = await axios.get("http://localhost:5000/training/getVideos", {
-      headers: { "x-auth-token": localStorage.getItem("auth-token") },
-    });
+    const res = await axios.get(
+      "http://localhost:5000/training/specific/getVideos",
+      {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }
+    );
     setGuidedPrograms(res.data);
   };
 

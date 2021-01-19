@@ -74,6 +74,8 @@ router.post(
         videoURL: result.secure_url,
         cloudinary_id: result.public_id,
         uploaderName: user.name,
+        userId: req.user,
+        userName: user.name,
       });
       await video.save((err) => {
         if (err) return res.status(400).json({ success: false, err });
@@ -84,6 +86,14 @@ router.post(
     }
   }
 );
+
+//Get Guided Workouts for specific
+router.get("/specific/getVideos", auth, async (req, res) => {
+  await Video.find({ userId: req.user }, (err, doc) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
 
 //Get Guided Workouts
 router.get("/getVideos", auth, async (req, res) => {
@@ -104,7 +114,13 @@ router.get("/getVideos/:id", auth, async (req, res) => {
 //Delete Guided Workout
 router.delete("/delete/guided/:id", auth, async (req, res) => {
   const video = await Video.findByIdAndDelete({ _id: req.params.id });
-  await cloudinary.v2.uploader.destroy(video.cloudinary_id,{resource_type: 'video'}, function(error, result) {console.log(result, error); });
+  await cloudinary.v2.uploader.destroy(
+    video.cloudinary_id,
+    { resource_type: "video" },
+    function (error, result) {
+      console.log(result, error);
+    }
+  );
   return res.send(video);
 });
 

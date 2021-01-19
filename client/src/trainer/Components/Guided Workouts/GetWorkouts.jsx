@@ -9,6 +9,7 @@ import {
   MDBBtn,
   MDBTableBody,
 } from "mdbreact";
+import TrainerAuth from "../../../auth/TrainerAuth";
 const GuidedWorkout = () => {
   const [workout, setWorkout] = useState();
   const history = useHistory();
@@ -28,9 +29,12 @@ const GuidedWorkout = () => {
   };
 
   const fetchWorkouts = async () => {
-    const res = await Axios.get("http://localhost:5000/training/getVideos", {
-      headers: { "x-auth-token": localStorage.getItem("auth-token") },
-    });
+    const res = await Axios.get(
+      "http://localhost:5000/training/specific/getVideos",
+      {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      }
+    );
     setWorkout(res.data);
   };
 
@@ -40,72 +44,74 @@ const GuidedWorkout = () => {
 
   return (
     <div>
-      <SideNav />
-      <MDBContainer>
-        <br />
-        <p className="h1 text-center">Guided Workouts List</p>
-        <br />
-        <MDBTable bordered striped small>
-          <MDBTableHead color="black" textWhite>
-            <tr>
-              <th className="text-center">Title</th>
-              <th className="text-center">Target Area</th>
-              <th className="text-center">Equipment</th>
-              <th className="text-center">Actions</th>
-              <th className="text-center">Details</th>
-            </tr>
-          </MDBTableHead>
-
-          {workout?.map((program) => (
-            <MDBTableBody key={program._id}>
+      <TrainerAuth>
+        <SideNav />
+        <MDBContainer>
+          <br />
+          <p className="h1 text-center">Guided Workouts List</p>
+          <br />
+          <MDBTable bordered striped small>
+            <MDBTableHead color="black" textWhite>
               <tr>
-                <td className="text-center">{program.title}</td>
-                <td className="text-center">{program.targetArea}</td>
-                <td className="text-center">{program.equipment}</td>
-                <td className="text-center">
-                  <MDBBtn
-                    color="warning"
-                    size="sm"
-                    onClick={() => editProgram(program._id)}
-                  >
-                    Edit
-                  </MDBBtn>
-                  <MDBBtn
-                    color="danger"
-                    size="sm"
-                    onClick={() => deleteProgram(program._id)}
-                  >
-                    Delete
-                  </MDBBtn>
-                </td>
-                <td>
-                  <MDBBtn
-                    color="cyan"
-                    size="sm"
-                    href={"/trainer/guided/schedule/" + program._id}
-                  >
-                    Schedule
-                  </MDBBtn>
-                  <MDBBtn
-                    color="black"
-                    size="sm"
-                    href={"/trainer/guidedworkout/list/" + program._id}
-                  >
-                    Workout
-                  </MDBBtn>
-                  <MDBBtn
-                    color="secondary"
-                    size="sm"
-                    href={"/trainer/guidedworkout/view/" + program._id}
-                  >
-                    View
-                  </MDBBtn>
-                </td>
+                <th className="text-center">Title</th>
+                <th className="text-center">Target Area</th>
+                <th className="text-center">Equipment</th>
+                <th className="text-center">Actions</th>
+                <th className="text-center">Details</th>
               </tr>
-            </MDBTableBody>
-          ))}
-        </MDBTable>
-      </MDBContainer>
+            </MDBTableHead>
+
+            {workout?.map((program) => (
+              <MDBTableBody key={program._id}>
+                <tr>
+                  <td className="text-center">{program.title}</td>
+                  <td className="text-center">{program.targetArea}</td>
+                  <td className="text-center">{program.equipment}</td>
+                  <td className="text-center">
+                    <MDBBtn
+                      color="warning"
+                      size="sm"
+                      onClick={() => editProgram(program._id)}
+                    >
+                      Edit
+                    </MDBBtn>
+                    <MDBBtn
+                      color="danger"
+                      size="sm"
+                      onClick={() => deleteProgram(program._id)}
+                    >
+                      Delete
+                    </MDBBtn>
+                  </td>
+                  <td>
+                    <MDBBtn
+                      color="cyan"
+                      size="sm"
+                      href={"/trainer/guided/schedule/" + program._id}
+                    >
+                      Schedule
+                    </MDBBtn>
+                    <MDBBtn
+                      color="black"
+                      size="sm"
+                      href={"/trainer/guidedworkout/list/" + program._id}
+                    >
+                      Workout
+                    </MDBBtn>
+                    <MDBBtn
+                      color="secondary"
+                      size="sm"
+                      href={"/trainer/guidedworkout/view/" + program._id}
+                    >
+                      View
+                    </MDBBtn>
+                  </td>
+                </tr>
+              </MDBTableBody>
+            ))}
+          </MDBTable>
+        </MDBContainer>
+      </TrainerAuth>
     </div>
   );
 };
