@@ -9,20 +9,15 @@ const CreateDietPlan = () => {
   let [title, setTitle] = useState("");
   let [userType, setUserType] = useState("");
   let [image, setImage] = useState();
-  const [content] = useState("");
+ 
   const [previewImage, setPreviewImage] = useState();
 
   const history = useHistory();
 
   const validate = () => {
-    if (!day || !userType || !dietType || !diet || !image) {
+    if (!title || !userType ||  !image) {
       alert("Please Enter All Fields");
     }
-  };
-
-  const onChangeEditor = (e, editor) => {
-    const data = editor.getData();
-    setDiet(data);
   };
 
   const btnClicked = async (e) => {
@@ -30,10 +25,8 @@ const CreateDietPlan = () => {
     validate();
 
     const formData = new FormData();
-    formData.append("day", day);
+    formData.append("Title", title);
     formData.append("userType", userType);
-    formData.append("dietType", dietType);
-    formData.append("diet", diet);
     formData.append("image", image);
     console.log(formData);
     axios
@@ -60,7 +53,7 @@ const CreateDietPlan = () => {
                 <p className="h4 text-center mb-4">Add Diet Plans</p>
                 <MDBInput
                   label="Day"
-                  onChange={(e) => setDay(e.target.value)}
+                  onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   id="defaultFormRegisterNameEx"
                   className="form-control"
