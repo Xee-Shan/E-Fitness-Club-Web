@@ -25,7 +25,7 @@ const CreateDietPlan = () => {
     validate();
 
     const formData = new FormData();
-    formData.append("Title", title);
+    formData.append("title", title);
     formData.append("userType", userType);
     formData.append("image", image);
     console.log(formData);
