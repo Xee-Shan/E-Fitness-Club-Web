@@ -1,4 +1,3 @@
-import BMI from "./Images/BMI2.jpg";
 import React from "react";
 import {
   MDBRow,

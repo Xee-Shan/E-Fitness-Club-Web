@@ -3,12 +3,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import Axios from "axios";
 import SideNav from "../SideNav/SideNav";
 import TrainerAuth from "../../../auth/TrainerAuth";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const AddDetail = () => {
   const [inputFields, setInputFields] = useState([{ day: "", area: "" }]);
   const { id } = useParams();
-  const history = useHistory();
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
