@@ -71,7 +71,7 @@ export default function Order() {
                 <td>{order.name}</td>
                 <td>{order.address}</td>
                 <td>{order.email}</td>
-                <td>{order.orderDate}</td>
+                <td>{order.orderDate.slice(0,10)}</td>
                 <td>{order.total}</td>
                 <td>
                   <button onClick={() => handleDelivered(order)} style={{ backgroundColor: "white" }}>
