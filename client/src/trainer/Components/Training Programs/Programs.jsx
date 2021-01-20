@@ -16,7 +16,7 @@ const Program = () => {
     const res = await Axios.get("http://localhost:5000/training/get", {
       headers: { "x-auth-token": localStorage.getItem("auth-token") },
     });
-    console.log(res.data);
+
     setProgram(res.data);
   };
 

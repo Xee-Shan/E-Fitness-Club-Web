@@ -35,6 +35,7 @@ const GuidedWorkout = () => {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       }
     );
+    console.log(res.data);
     setWorkout(res.data);
   };
 

@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema({
   equipment: { type: String, required: true },
   exercise: { type: Array },
   workoutList: { type: Array },
+  userId: { type: String },
+  userName: { type: String },
 });
 
 const Video = mongoose.model("Video", userSchema);

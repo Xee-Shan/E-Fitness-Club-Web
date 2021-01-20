@@ -38,7 +38,7 @@ const AddWorkout = () => {
       { headers: { "x-auth-token": localStorage.getItem("auth-token") } }
     ).then((res) => {
       if (res) {
-        //history.push("/trainer/view/program/" + id);
+        alert("Workout Added");
       }
     });
   };

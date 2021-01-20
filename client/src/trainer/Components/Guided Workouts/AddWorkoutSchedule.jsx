@@ -35,7 +35,7 @@ const AddDetail = () => {
       }
     ).then((res) => {
       if (res) {
-        // history.push("/trainer/view/program/" + id);
+        alert("Scedule Added");
       }
     });
   };
